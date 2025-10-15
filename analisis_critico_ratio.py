@@ -180,3 +180,5 @@ def analisis_critico_ratio():
 
 if __name__ == "__main__":
     analisis_critico_ratio()
+
+

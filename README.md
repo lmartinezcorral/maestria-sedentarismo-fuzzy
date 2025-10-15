@@ -106,3 +106,5 @@ Proyecto de investigación para el 4to semestre de la Maestría en Ciencias de l
 **Fecha de Creación**: $(date)  
 **Versión**: 1.0.0 - Estado Inicial  
 **Última Actualización**: Commit inicial con datos originales
+
+
