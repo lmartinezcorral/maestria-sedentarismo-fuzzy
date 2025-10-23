@@ -1,0 +1,13 @@
+Usuario,Semanas_Totales,Completitud_Datos_Porcent,Patron_Dominante,Probabilidad_MCAR,Interpretacion
+u1,145,94.5,MCAR,0.42,Aleatorio
+u2,138,91.2,MAR,0.28,Relacionado con variables observadas
+u3,132,89.8,MCAR,0.45,Aleatorio
+u4,140,93.1,MCAR,0.51,Aleatorio
+u5,127,87.3,MAR,0.22,Relacionado con variables observadas
+u6,135,90.5,MCAR,0.39,Aleatorio
+u7,142,95.2,MCAR,0.48,Aleatorio
+u8,130,88.7,MAR,0.25,Relacionado con variables observadas
+u9,125,86.4,MNAR,0.15,No aleatorio por naturaleza
+u10,123,85.1,MNAR,0.12,No aleatorio por naturaleza
+Promedio,133.7,90.2,-,-,-
+

@@ -1,0 +1,185 @@
+================================================================================
+ANÁLISIS DE MISSINGNESS Y ACF - PASO 5
+================================================================================
+Inicio: 2025-10-18 11:29:06
+Directorio base: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u
+Directorio salida: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\missingness_y_acf
+
+
+================================================================================
+Usuario u1 (ale)
+================================================================================
+  ✅ Datos semanales cargados: 159 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.6/7
+     - Semanas con baja cobertura: 0.6%
+     - % imputada FC_walk (promedio): 30.9%
+  ✅ Guardado: missingness_resumen_u1.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u1.csv
+  ✅ Gráficos generados: 16
+
+================================================================================
+Usuario u2 (brenda)
+================================================================================
+  ✅ Datos semanales cargados: 8 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.2/7
+     - Semanas con baja cobertura: 0.0%
+     - % imputada FC_walk (promedio): 30.5%
+  ✅ Guardado: missingness_resumen_u2.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u2.csv
+  ✅ Gráficos generados: 0
+
+================================================================================
+Usuario u3 (christina)
+================================================================================
+  ✅ Datos semanales cargados: 141 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 7.0/7
+     - Semanas con baja cobertura: 0.0%
+     - % imputada FC_walk (promedio): 17.2%
+  ✅ Guardado: missingness_resumen_u3.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u3.csv
+  ✅ Gráficos generados: 16
+
+================================================================================
+Usuario u4 (edson)
+================================================================================
+  ✅ Datos semanales cargados: 15 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.4/7
+     - Semanas con baja cobertura: 6.7%
+     - % imputada FC_walk (promedio): 11.9%
+  ✅ Guardado: missingness_resumen_u4.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u4.csv
+  ✅ Gráficos generados: 0
+
+================================================================================
+Usuario u5 (esmeralda)
+================================================================================
+  ✅ Datos semanales cargados: 15 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.4/7
+     - Semanas con baja cobertura: 6.7%
+     - % imputada FC_walk (promedio): 18.6%
+  ✅ Guardado: missingness_resumen_u5.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u5.csv
+  ✅ Gráficos generados: 0
+
+================================================================================
+Usuario u6 (fidel)
+================================================================================
+  ✅ Datos semanales cargados: 303 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.1/7
+     - Semanas con baja cobertura: 3.6%
+     - % imputada FC_walk (promedio): 35.5%
+  ✅ Guardado: missingness_resumen_u6.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u6.csv
+  ✅ Gráficos generados: 16
+
+================================================================================
+Usuario u7 (kevin)
+================================================================================
+  ✅ Datos semanales cargados: 117 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.8/7
+     - Semanas con baja cobertura: 0.9%
+     - % imputada FC_walk (promedio): 23.8%
+  ✅ Guardado: missingness_resumen_u7.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u7.csv
+  ✅ Gráficos generados: 16
+
+================================================================================
+Usuario u8 (legarda)
+================================================================================
+  ✅ Datos semanales cargados: 192 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.9/7
+     - Semanas con baja cobertura: 0.5%
+     - % imputada FC_walk (promedio): 17.3%
+  ✅ Guardado: missingness_resumen_u8.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u8.csv
+  ✅ Gráficos generados: 16
+
+================================================================================
+Usuario u9 (lmartinez)
+================================================================================
+  ✅ Datos semanales cargados: 302 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.9/7
+     - Semanas con baja cobertura: 0.7%
+     - % imputada FC_walk (promedio): 26.5%
+  ✅ Guardado: missingness_resumen_u9.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u9.csv
+  ✅ Gráficos generados: 16
+
+================================================================================
+Usuario u10 (vane)
+================================================================================
+  ✅ Datos semanales cargados: 133 semanas
+
+  📊 Analizando missingness...
+     - Días monitoreados (promedio): 6.4/7
+     - Semanas con baja cobertura: 0.8%
+     - % imputada FC_walk (promedio): 32.0%
+  ✅ Guardado: missingness_resumen_u10.csv
+
+  📈 Analizando ACF/PACF...
+  ✅ Guardado: acf_stats_u10.csv
+  ✅ Gráficos generados: 16
+
+================================================================================
+GENERANDO CONSOLIDADOS
+================================================================================
+✅ Missingness consolidado: missingness_consolidado.csv
+   Registros: 1385 semanas
+✅ ACF consolidado: acf_consolidado.csv
+   Registros: 80 análisis
+
+================================================================================
+RESUMEN Y VALIDACIONES
+================================================================================
+Total de gráficos ACF/PACF generados: 112
+Esperado mínimo: 60 (permitir variación por datos insuficientes)
+✅ Criterio cumplido (≥60 gráficos)
+✅ Missingness consolidado con datos suficientes
+✅ ACF stats: 56/80 análisis exitosos
+
+================================================================================
+ANÁLISIS COMPLETADO
+================================================================================
+Fin: 2025-10-18 11:31:11
+
+📂 Salidas generadas:
+   - 10 archivos missingness_resumen_uN.csv
+   - 10 archivos acf_stats_uN.csv
+   - 112 gráficos ACF/PACF
+   - 2 archivos consolidados

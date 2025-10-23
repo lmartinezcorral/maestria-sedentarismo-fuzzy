@@ -1,0 +1,38 @@
+{
+  "Actividad_relativa_p50": {
+    "min": 0.0564102564102564,
+    "max": 0.21645833333333322,
+    "n_samples": 1385,
+    "percentile_range": [
+      5,
+      95
+    ]
+  },
+  "Superavit_calorico_basal_p50": {
+    "min": 14.033055594651653,
+    "max": 56.918812295618054,
+    "n_samples": 1385,
+    "percentile_range": [
+      5,
+      95
+    ]
+  },
+  "HRV_SDNN_p50": {
+    "min": 28.5726,
+    "max": 68.6334161904762,
+    "n_samples": 1385,
+    "percentile_range": [
+      5,
+      95
+    ]
+  },
+  "Delta_cardiaco_p50": {
+    "min": 31.0,
+    "max": 59.0,
+    "n_samples": 1385,
+    "percentile_range": [
+      5,
+      95
+    ]
+  }
+}

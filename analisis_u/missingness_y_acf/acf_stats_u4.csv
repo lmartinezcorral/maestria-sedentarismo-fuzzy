@@ -1,0 +1,9 @@
+usuario_id,variable,n_weeks,acf_lag1,acf_lag2,acf_lag4,status
+u4,Actividad_relativa_p50,15,,,,insuficiente
+u4,Actividad_relativa_iqr,15,,,,insuficiente
+u4,Superavit_calorico_basal_p50,15,,,,insuficiente
+u4,Superavit_calorico_basal_iqr,15,,,,insuficiente
+u4,HRV_SDNN_p50,15,,,,insuficiente
+u4,HRV_SDNN_iqr,15,,,,insuficiente
+u4,Delta_cardiaco_p50,15,,,,insuficiente
+u4,Delta_cardiaco_iqr,15,,,,insuficiente

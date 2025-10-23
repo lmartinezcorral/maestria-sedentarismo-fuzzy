@@ -1,0 +1,12 @@
+Metrica,Modelo_4V,Modelo_2V,Diferencia_Abs,Diferencia_Porcent
+F1-Score,0.840,0.835,-0.005,-0.6%
+Recall,0.976,0.968,-0.008,-0.8%
+Precision,0.737,0.731,-0.006,-0.8%
+Accuracy,0.740,0.732,-0.008,-1.1%
+MCC,0.294,0.279,-0.015,-5.1%
+tau_Optimo,0.30,0.28,0.02,-
+Verdaderos_Positivos,913,905,8,-
+Falsos_Positivos,326,332,-6,-
+Verdaderos_Negativos,76,70,6,-
+Falsos_Negativos,22,30,-8,-
+

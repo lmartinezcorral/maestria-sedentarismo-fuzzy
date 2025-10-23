@@ -1,0 +1,6 @@
+id,descripcion,antecedentes,consecuente,peso,justificacion
+R1,Actividad Baja AND Superávit Bajo → Sedentarismo Alto,"['Act_Baja', 'Sup_Baja']",Alto,1.0,Inactividad física combinada con bajo gasto energético indica sedentarismo severo
+R2,Actividad Alta AND Superávit Alto → Sedentarismo Bajo,"['Act_Alta', 'Sup_Alta']",Bajo,1.0,Alta actividad y alto gasto energético indica estilo de vida activo
+R3,HRV Baja AND Delta Cardíaco Bajo → Sedentarismo Alto,"['HRV_Baja', 'DC_Baja']",Alto,1.0,Pobre variabilidad cardíaca y respuesta cardiovascular baja indica desacondicionamiento
+R4,Actividad Media AND HRV Media → Sedentarismo Medio,"['Act_Media', 'HRV_Media']",Medio,1.0,Estado intermedio balanceado entre actividad y función autonómica
+R5,Actividad Baja AND Superávit Medio → Sedentarismo Medio-Alto,"['Act_Baja', 'Sup_Media']",Alto,0.7,Baja actividad parcialmente compensada por gasto moderado (peso reducido)

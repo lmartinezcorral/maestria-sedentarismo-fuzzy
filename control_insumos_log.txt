@@ -1,0 +1,382 @@
+================================================================================
+CONTROL DE INSUMOS - PIPELINE DE SEDENTARISMO
+================================================================================
+Fecha de ejecución: 2025-10-16 14:09:34
+Directorio de trabajo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset
+
+--------------------------------------------------------------------------------
+1. AUDITORÍAS FC_WALK_IMPUTACION_V3
+--------------------------------------------------------------------------------
+Archivos copiados: 9/10
+
+u1 (ale):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_ale\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u1.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 1048
+  Fechas: 2022-02-23 → 2025-03-09
+  Fuentes de imputación:
+    observada           :   734 ( 70.0%)
+    roll_mediana        :   197 ( 18.8%)
+    sin_imputar_hard    :    63 (  6.0%)
+    baseline_FCr        :    53 (  5.1%)
+    baseline_lowAct     :     1 (  0.1%)
+
+u2 (brenda):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_brenda\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u2.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 50
+  Fechas: 2025-01-07 → 2025-02-28
+  Fuentes de imputación:
+    observada           :    34 ( 68.0%)
+    roll_mediana        :    12 ( 24.0%)
+    baseline_FCr        :     3 (  6.0%)
+    sin_imputar_hard    :     1 (  2.0%)
+
+u3 (christina):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_christina\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u3.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 980
+  Fechas: 2022-06-25 → 2025-03-01
+  Fuentes de imputación:
+    observada           :   813 ( 83.0%)
+    roll_mediana        :   156 ( 15.9%)
+    baseline_FCr        :     6 (  0.6%)
+    sin_imputar_hard    :     4 (  0.4%)
+    baseline_lowAct     :     1 (  0.1%)
+
+u4 (edson):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_edson\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u4.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 96
+  Fechas: 2024-11-10 → 2025-02-13
+  Fuentes de imputación:
+    observada           :    86 ( 89.6%)
+    roll_mediana        :     9 (  9.4%)
+    sin_imputar_hard    :     1 (  1.0%)
+
+u5 (esmeralda):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_esmeralda\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u5.csv
+  Existe origen: False
+  Copiado: False
+
+u6 (fidel):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_fidel\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u6.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 1861
+  Fechas: 2019-05-05 → 2025-02-13
+  Fuentes de imputación:
+    observada           :  1198 ( 64.4%)
+    roll_mediana        :   442 ( 23.8%)
+    sin_imputar_hard    :   142 (  7.6%)
+    baseline_FCr        :    74 (  4.0%)
+    baseline_lowAct     :     5 (  0.3%)
+
+u7 (kevin):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_kevin\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u7.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 799
+  Fechas: 2022-11-23 → 2025-02-13
+  Fuentes de imputación:
+    observada           :   612 ( 76.6%)
+    roll_mediana        :   155 ( 19.4%)
+    sin_imputar_hard    :    23 (  2.9%)
+    baseline_FCr        :     9 (  1.1%)
+
+u8 (legarda):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_legarda\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u8.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 1332
+  Fechas: 2021-06-25 → 2028-02-11
+  Fuentes de imputación:
+    observada           :  1107 ( 83.1%)
+    roll_mediana        :   201 ( 15.1%)
+    sin_imputar_hard    :    13 (  1.0%)
+    baseline_FCr        :    11 (  0.8%)
+
+u9 (lmartinez):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_lmartinez\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u9.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 2070
+  Fechas: 2018-10-31 → 2025-02-24
+  Fuentes de imputación:
+    observada           :  1532 ( 74.0%)
+    roll_mediana        :   494 ( 23.9%)
+    baseline_FCr        :    24 (  1.2%)
+    sin_imputar_hard    :    16 (  0.8%)
+    baseline_lowAct     :     4 (  0.2%)
+
+u10 (vane):
+  Origen: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\apple_health_export\apple_health_export_vane\FC_walk_imputacion_V3.csv
+  Destino: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\FC_walk_imputacion_V3_u10.csv
+  Existe origen: True
+  Copiado: True
+  Registros: 853
+  Fechas: 2022-08-12 → 2025-02-18
+  Fuentes de imputación:
+    observada           :   581 ( 68.1%)
+    roll_mediana        :   207 ( 24.3%)
+    sin_imputar_hard    :    53 (  6.2%)
+    baseline_FCr        :    12 (  1.4%)
+
+--------------------------------------------------------------------------------
+2. DATASETS DE TRABAJO (DB_final_v3_uN.csv)
+--------------------------------------------------------------------------------
+Archivos existentes: 10/10
+Con variables derivadas completas: 10/10
+
+u1 (ale):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u1.csv
+  Existe: True
+  Registros: 1048
+  Columnas: 14
+  Fechas: 2022-02-23 → 2025-03-09
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u2 (brenda):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u2.csv
+  Existe: True
+  Registros: 50
+  Columnas: 14
+  Fechas: 2025-01-07 → 2025-02-28
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u3 (christina):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u3.csv
+  Existe: True
+  Registros: 980
+  Columnas: 14
+  Fechas: 2022-06-25 → 2025-03-01
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u4 (edson):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u4.csv
+  Existe: True
+  Registros: 96
+  Columnas: 14
+  Fechas: 2024-11-10 → 2025-02-13
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u5 (esmeralda):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u5.csv
+  Existe: True
+  Registros: 96
+  Columnas: 14
+  Fechas: 2024-11-10 → 2025-02-13
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u6 (fidel):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u6.csv
+  Existe: True
+  Registros: 1861
+  Columnas: 14
+  Fechas: 2019-05-05 → 2025-02-13
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u7 (kevin):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u7.csv
+  Existe: True
+  Registros: 799
+  Columnas: 14
+  Fechas: 2022-11-23 → 2025-02-13
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u8 (legarda):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u8.csv
+  Existe: True
+  Registros: 1332
+  Columnas: 14
+  Fechas: 2021-06-25 → 2028-02-11
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u9 (lmartinez):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u9.csv
+  Existe: True
+  Registros: 2070
+  Columnas: 14
+  Fechas: 2018-10-31 → 2025-02-24
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+u10 (vane):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u10.csv
+  Existe: True
+  Registros: 853
+  Columnas: 14
+  Fechas: 2022-08-12 → 2025-02-18
+  NaNs totales: 0
+  Tiene Actividad_relativa: True
+  Tiene Superavit_calorico_basal: True
+  Columnas presentes (14):
+    - Fecha
+    - Numero_horas_con_deambulacion
+    - Numero_horas_estacionarias
+    - Total_hrs_monitorizadas
+    - Hrs_sin_registro
+    - Total_min_de_ejercicio_diario
+    - distancia_caminada_en_km
+    - Numero_pasos_por_dia
+    - FCr_promedio_diario
+    - HRV_SDNN
+    ... (+4 columnas)
+
+--------------------------------------------------------------------------------
+3. RESUMEN CONSOLIDADO
+--------------------------------------------------------------------------------
+Total usuarios procesados: 10
+Auditorías copiadas: 9/10
+Datasets verificados: 10/10
+Datasets con derivadas completas: 10/10
+Total de registros diarios: 9,185
+
+--------------------------------------------------------------------------------
+4. ESTADO DEL PIPELINE
+--------------------------------------------------------------------------------
+❌ INSUMOS INCOMPLETOS: Faltan archivos necesarios.
+
+Acción requerida: Revisar archivos faltantes antes de continuar.
+
+================================================================================
+FIN DEL LOG
+================================================================================

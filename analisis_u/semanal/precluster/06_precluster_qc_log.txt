@@ -1,0 +1,122 @@
+[2025-10-16 18:47:09] 
+================================================================================
+ANÁLISIS PRE-CLUSTERING (QC) - PASO 6 COMPLEMENTARIO
+================================================================================
+[2025-10-16 18:47:10] Inicio: 2025-10-16 18:47:10
+[2025-10-16 18:47:10] Archivo entrada: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\cluster_inputs_weekly.csv
+[2025-10-16 18:47:10] Directorio salida: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\precluster
+[2025-10-16 18:47:10] 
+================================================================================
+1. CARGANDO DATOS
+================================================================================
+[2025-10-16 18:47:10] ✅ Datos cargados: 1385 semanas
+[2025-10-16 18:47:10]    Columnas: ['usuario_id', 'usuario_alias', 'semana_inicio', 'dias_monitoreados', 'flag_baja_cobertura', 'pct_imputada_FC_walk', 'Actividad_relativa_p50', 'Actividad_relativa_iqr', 'Superavit_calorico_basal_p50', 'Superavit_calorico_basal_iqr', 'HRV_SDNN_p50', 'HRV_SDNN_iqr', 'Delta_cardiaco_p50', 'Delta_cardiaco_iqr']
+[2025-10-16 18:47:10] ✅ Las 8 features están presentes
+[2025-10-16 18:47:10] 
+================================================================================
+2. LIMPIEZA Y FILTRADO
+================================================================================
+[2025-10-16 18:47:10] 📊 Datos originales: 1385 semanas
+[2025-10-16 18:47:10]    Eliminadas por NaN en features: 0 semanas
+[2025-10-16 18:47:10] ✅ Datos limpios: 1385 semanas
+[2025-10-16 18:47:10] ✅ Matriz de features: (1385, 8)
+[2025-10-16 18:47:10] 
+================================================================================
+3. MATRIZ DE CORRELACIÓN (PEARSON)
+================================================================================
+[2025-10-16 18:47:10] ✅ Guardado: features_correlacion.csv
+[2025-10-16 18:47:10]    ✅ No hay correlaciones >0.8
+[2025-10-16 18:47:10] ✅ Guardado: features_correlacion_heatmap.png
+[2025-10-16 18:47:10] 
+================================================================================
+4. VARIANCE INFLATION FACTOR (VIF)
+================================================================================
+[2025-10-16 18:47:11]    🟢 Actividad_relativa_p50: VIF=1.40, R²=0.285
+[2025-10-16 18:47:11]    🟢 Actividad_relativa_iqr: VIF=1.17, R²=0.143
+[2025-10-16 18:47:11]    🟢 Superavit_calorico_basal_p50: VIF=1.67, R²=0.402
+[2025-10-16 18:47:11]    🟢 Superavit_calorico_basal_iqr: VIF=1.34, R²=0.252
+[2025-10-16 18:47:11]    🟢 HRV_SDNN_p50: VIF=1.88, R²=0.467
+[2025-10-16 18:47:11]    🟢 HRV_SDNN_iqr: VIF=1.14, R²=0.124
+[2025-10-16 18:47:11]    🟢 Delta_cardiaco_p50: VIF=1.43, R²=0.300
+[2025-10-16 18:47:11]    🟢 Delta_cardiaco_iqr: VIF=1.03, R²=0.030
+[2025-10-16 18:47:11] ✅ Guardado: features_vif.csv
+[2025-10-16 18:47:11] 
+✅ Todos los VIF ≤ 10 (multicolinealidad aceptable)
+[2025-10-16 18:47:11] 
+================================================================================
+5. ESCALADO ROBUSTO (RobustScaler)
+================================================================================
+[2025-10-16 18:47:11] ✅ RobustScaler entrenado (mediana/IQR)
+[2025-10-16 18:47:11]    Shape: (1385, 8)
+[2025-10-16 18:47:11]    Media post-escalado: 0.1100 (debería estar cerca de 0)
+[2025-10-16 18:47:11]    Std post-escalado: 0.8181
+[2025-10-16 18:47:51] 
+================================================================================
+ANÁLISIS PRE-CLUSTERING (QC) - PASO 6 COMPLEMENTARIO
+================================================================================
+[2025-10-16 18:47:51] Inicio: 2025-10-16 18:47:51
+[2025-10-16 18:47:51] Archivo entrada: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\cluster_inputs_weekly.csv
+[2025-10-16 18:47:51] Directorio salida: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\precluster
+[2025-10-16 18:47:51] 
+================================================================================
+1. CARGANDO DATOS
+================================================================================
+[2025-10-16 18:47:51] ✅ Datos cargados: 1385 semanas
+[2025-10-16 18:47:51]    Columnas: ['usuario_id', 'usuario_alias', 'semana_inicio', 'dias_monitoreados', 'flag_baja_cobertura', 'pct_imputada_FC_walk', 'Actividad_relativa_p50', 'Actividad_relativa_iqr', 'Superavit_calorico_basal_p50', 'Superavit_calorico_basal_iqr', 'HRV_SDNN_p50', 'HRV_SDNN_iqr', 'Delta_cardiaco_p50', 'Delta_cardiaco_iqr']
+[2025-10-16 18:47:51] ✅ Las 8 features están presentes
+[2025-10-16 18:47:51] 
+================================================================================
+2. LIMPIEZA Y FILTRADO
+================================================================================
+[2025-10-16 18:47:51] 📊 Datos originales: 1385 semanas
+[2025-10-16 18:47:51]    Eliminadas por NaN en features: 0 semanas
+[2025-10-16 18:47:51] ✅ Datos limpios: 1385 semanas
+[2025-10-16 18:47:51] ✅ Matriz de features: (1385, 8)
+[2025-10-16 18:47:51] 
+================================================================================
+3. MATRIZ DE CORRELACIÓN (PEARSON)
+================================================================================
+[2025-10-16 18:47:51] ✅ Guardado: features_correlacion.csv
+[2025-10-16 18:47:51]    ✅ No hay correlaciones >0.8
+[2025-10-16 18:47:51] ✅ Guardado: features_correlacion_heatmap.png
+[2025-10-16 18:47:51] 
+================================================================================
+4. VARIANCE INFLATION FACTOR (VIF)
+================================================================================
+[2025-10-16 18:47:53]    🟢 Actividad_relativa_p50: VIF=1.40, R²=0.285
+[2025-10-16 18:47:53]    🟢 Actividad_relativa_iqr: VIF=1.17, R²=0.143
+[2025-10-16 18:47:53]    🟢 Superavit_calorico_basal_p50: VIF=1.67, R²=0.402
+[2025-10-16 18:47:53]    🟢 Superavit_calorico_basal_iqr: VIF=1.34, R²=0.252
+[2025-10-16 18:47:53]    🟢 HRV_SDNN_p50: VIF=1.88, R²=0.467
+[2025-10-16 18:47:53]    🟢 HRV_SDNN_iqr: VIF=1.14, R²=0.124
+[2025-10-16 18:47:53]    🟢 Delta_cardiaco_p50: VIF=1.43, R²=0.300
+[2025-10-16 18:47:53]    🟢 Delta_cardiaco_iqr: VIF=1.03, R²=0.030
+[2025-10-16 18:47:53] ✅ Guardado: features_vif.csv
+[2025-10-16 18:47:53] 
+✅ Todos los VIF ≤ 10 (multicolinealidad aceptable)
+[2025-10-16 18:47:54] 
+================================================================================
+5. ESCALADO ROBUSTO (RobustScaler)
+================================================================================
+[2025-10-16 18:47:54] ✅ RobustScaler entrenado (mediana/IQR)
+[2025-10-16 18:47:54]    Shape: (1385, 8)
+[2025-10-16 18:47:54]    Media post-escalado: 0.1100 (debería estar cerca de 0)
+[2025-10-16 18:47:54]    Std post-escalado: 0.8181
+[2025-10-16 18:47:54] ✅ Guardado: scaled_matrix.csv
+[2025-10-16 18:47:54] 
+================================================================================
+6. ANÁLISIS DE COMPONENTES PRINCIPALES (PCA 2D)
+================================================================================
+[2025-10-16 18:47:54] ✅ PCA completado
+[2025-10-16 18:47:54]    PC1: 26.48% varianza explicada
+[2025-10-16 18:47:54]    PC2: 20.40% varianza explicada
+[2025-10-16 18:47:54]    Acumulada (PC1+PC2): 46.88%
+[2025-10-16 18:47:54] ✅ Guardado: pca_2d.csv
+[2025-10-16 18:47:56] ✅ Guardado: pca_biplot.png
+[2025-10-16 18:47:56] 
+================================================================================
+7. K-SWEEP: MÉTRICAS DE VIABILIDAD (K=2..6)
+================================================================================
+[2025-10-16 18:47:56] 
+  Evaluando K=2...
+[2025-10-16 18:48:00]     Inertia: 6413.69

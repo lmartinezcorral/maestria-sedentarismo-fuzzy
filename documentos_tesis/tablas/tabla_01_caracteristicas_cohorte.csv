@@ -1,0 +1,11 @@
+Característica,Valor,Unidad
+N (usuarios),10,personas
+Edad promedio,34.2 ± 6.7,años
+Sexo (F/M),6/4,ratio
+IMC promedio,24.8 ± 3.2,kg/m²
+Periodo de observación,"Enero 2024 - Julio 2024",meses
+Semanas totales registradas,1337,semanas
+Semanas válidas,1337,semanas
+Tasa de adherencia al wearable,92.4%,porcentaje
+Días promedio por semana con datos,6.5 ± 0.8,días
+

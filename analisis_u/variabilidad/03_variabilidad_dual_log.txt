@@ -1,0 +1,257 @@
+================================================================================
+ANÁLISIS DE VARIABILIDAD DUAL - PASO 3
+================================================================================
+Inicio: 2025-10-16 15:59:36
+Directorio base: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset
+Directorio salida: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\variabilidad
+
+
+================================================================================
+Usuario u1 (ale)
+================================================================================
+  📊 Registros totales: 1048
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=1048)...
+  ✅ Guardado: variabilidad_operativa_u1.csv
+  📉 Calculando Panel A (observada, n=734, 70.0% del total)...
+  ✅ Guardado: variabilidad_observada_u1.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u1.csv
+
+  ✅ Usuario u1 completado exitosamente
+     Panel A: 734 registros (70.0%)
+     Panel B: 1048 registros
+     Variables: 6
+
+================================================================================
+Usuario u2 (brenda)
+================================================================================
+  📊 Registros totales: 50
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=50)...
+  ✅ Guardado: variabilidad_operativa_u2.csv
+  📉 Calculando Panel A (observada, n=34, 68.0% del total)...
+  ✅ Guardado: variabilidad_observada_u2.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u2.csv
+
+  ✅ Usuario u2 completado exitosamente
+     Panel A: 34 registros (68.0%)
+     Panel B: 50 registros
+     Variables: 6
+
+================================================================================
+Usuario u3 (christina)
+================================================================================
+  📊 Registros totales: 980
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=980)...
+  ✅ Guardado: variabilidad_operativa_u3.csv
+  📉 Calculando Panel A (observada, n=813, 83.0% del total)...
+  ✅ Guardado: variabilidad_observada_u3.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u3.csv
+
+  ✅ Usuario u3 completado exitosamente
+     Panel A: 813 registros (83.0%)
+     Panel B: 980 registros
+     Variables: 6
+
+================================================================================
+Usuario u4 (edson)
+================================================================================
+  📊 Registros totales: 96
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=96)...
+  ✅ Guardado: variabilidad_operativa_u4.csv
+  📉 Calculando Panel A (observada, n=86, 89.6% del total)...
+  ✅ Guardado: variabilidad_observada_u4.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u4.csv
+
+  ✅ Usuario u4 completado exitosamente
+     Panel A: 86 registros (89.6%)
+     Panel B: 96 registros
+     Variables: 6
+
+================================================================================
+Usuario u5 (esmeralda)
+================================================================================
+  📊 Registros totales: 96
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=96)...
+  ✅ Guardado: variabilidad_operativa_u5.csv
+  📉 Calculando Panel A (observada, n=79, 82.3% del total)...
+  ✅ Guardado: variabilidad_observada_u5.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u5.csv
+
+  ✅ Usuario u5 completado exitosamente
+     Panel A: 79 registros (82.3%)
+     Panel B: 96 registros
+     Variables: 6
+
+================================================================================
+Usuario u6 (fidel)
+================================================================================
+  📊 Registros totales: 1861
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=1861)...
+  ✅ Guardado: variabilidad_operativa_u6.csv
+  📉 Calculando Panel A (observada, n=1198, 64.4% del total)...
+  ✅ Guardado: variabilidad_observada_u6.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u6.csv
+
+  ✅ Usuario u6 completado exitosamente
+     Panel A: 1198 registros (64.4%)
+     Panel B: 1861 registros
+     Variables: 6
+
+================================================================================
+Usuario u7 (kevin)
+================================================================================
+  📊 Registros totales: 799
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=799)...
+  ✅ Guardado: variabilidad_operativa_u7.csv
+  📉 Calculando Panel A (observada, n=612, 76.6% del total)...
+  ✅ Guardado: variabilidad_observada_u7.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u7.csv
+
+  ✅ Usuario u7 completado exitosamente
+     Panel A: 612 registros (76.6%)
+     Panel B: 799 registros
+     Variables: 6
+
+================================================================================
+Usuario u8 (legarda)
+================================================================================
+  📊 Registros totales: 1332
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=1332)...
+  ✅ Guardado: variabilidad_operativa_u8.csv
+  📉 Calculando Panel A (observada, n=1107, 83.1% del total)...
+  ✅ Guardado: variabilidad_observada_u8.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u8.csv
+
+  ✅ Usuario u8 completado exitosamente
+     Panel A: 1107 registros (83.1%)
+     Panel B: 1332 registros
+     Variables: 6
+
+================================================================================
+Usuario u9 (lmartinez)
+================================================================================
+  📊 Registros totales: 2070
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=2070)...
+  ✅ Guardado: variabilidad_operativa_u9.csv
+  📉 Calculando Panel A (observada, n=1532, 74.0% del total)...
+  ✅ Guardado: variabilidad_observada_u9.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u9.csv
+
+  ✅ Usuario u9 completado exitosamente
+     Panel A: 1532 registros (74.0%)
+     Panel B: 2070 registros
+     Variables: 6
+
+================================================================================
+Usuario u10 (vane)
+================================================================================
+  📊 Registros totales: 853
+  ✅ Delta_cardiaco derivado en memoria
+  ✅ Variables a analizar (6): Actividad_relativa, Superavit_calorico_basal, HRV_SDNN, FC_al_caminar_promedio_diario, FCr_promedio_diario, Delta_cardiaco
+
+  📈 Calculando Panel B (operativa, n=853)...
+  ✅ Guardado: variabilidad_operativa_u10.csv
+  📉 Calculando Panel A (observada, n=581, 68.1% del total)...
+  ✅ Guardado: variabilidad_observada_u10.csv
+
+  🔀 Generando comparativo dual...
+  ✅ Guardado: variabilidad_dual_u10.csv
+
+  ✅ Usuario u10 completado exitosamente
+     Panel A: 581 registros (68.1%)
+     Panel B: 853 registros
+     Variables: 6
+
+================================================================================
+GENERANDO CONSOLIDADO GLOBAL
+================================================================================
+✅ Consolidado guardado: variabilidad_dual_consolidado.csv
+   Registros totales: 60
+   Usuarios cubiertos: 10
+   Variables únicas: 6
+
+================================================================================
+RESUMEN FINAL POR USUARIO
+================================================================================
+Usuario      Alias        Status   n_obs    n_op     %obs     vars  
+--------------------------------------------------------------------------------
+u1           ale          OK       734      1048     70.0     6     
+u2           brenda       OK       34       50       68.0     6     
+u3           christina    OK       813      980      83.0     6     
+u4           edson        OK       86       96       89.6     6     
+u5           esmeralda    OK       79       96       82.3     6     
+u6           fidel        OK       1198     1861     64.4     6     
+u7           kevin        OK       612      799      76.6     6     
+u8           legarda      OK       1107     1332     83.1     6     
+u9           lmartinez    OK       1532     2070     74.0     6     
+u10          vane         OK       581      853      68.1     6     
+
+Usuarios completados: 10/10
+Usuarios fallidos:    0/10
+
+================================================================================
+TOP 10 CAMBIOS EN VARIABILIDAD (por |ratio_std - 1|)
+================================================================================
+Usuario    Variable                       ratio_std    delta_iqr    Flags
+----------------------------------------------------------------------------------------------------
+u6         Actividad_relativa             2.325        -0.000       ↑var(ratio=2.32)
+u1         FCr_promedio_diario            1.607        0.000        ↑var(ratio=1.61)
+u10        FCr_promedio_diario            1.464        1.000        ↑var(ratio=1.46) | Δiqr=1.000
+u1         Actividad_relativa             1.375        -0.001       ↑var(ratio=1.38)
+u9         Superavit_calorico_basal       1.340        0.335        ↑var(ratio=1.34)
+u6         Superavit_calorico_basal       1.193        2.895        Δiqr=2.895
+u7         Actividad_relativa             1.185        -0.002       OK
+u2         Superavit_calorico_basal       1.182        5.908        Δiqr=5.908
+u10        Actividad_relativa             1.176        0.001        OK
+u1         Superavit_calorico_basal       1.158        1.853        Δiqr=1.853
+
+================================================================================
+ANÁLISIS COMPLETADO
+================================================================================
+Fin: 2025-10-16 15:59:37
+
+📂 Todos los resultados en: analisis_u\variabilidad

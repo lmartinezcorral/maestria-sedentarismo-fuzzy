@@ -1,0 +1,189 @@
+[2025-10-17 16:31:14] 
+================================================================================
+FUZZY INFERENCE - PASO 7B: INFERENCIA DIFUSA SEMANAL
+================================================================================
+[2025-10-17 16:31:14] Inicio: 2025-10-17 16:31:14
+[2025-10-17 16:31:14] Archivo entrada: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\weekly_consolidado.csv
+[2025-10-17 16:31:14] Config MF: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\fuzzy_config\fuzzy_membership_config.yaml
+[2025-10-17 16:31:14] Scalers: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\fuzzy_config\feature_scalers.json
+[2025-10-17 16:31:14] 
+================================================================================
+1. CARGANDO CONFIGURACIÓN FUZZY
+================================================================================
+[2025-10-17 16:31:14] ✅ Configuración cargada:
+[2025-10-17 16:31:14]    Features con MF: 4
+[2025-10-17 16:31:14]      - Actividad_relativa_p50
+[2025-10-17 16:31:14]      - Superavit_calorico_basal_p50
+[2025-10-17 16:31:14]      - HRV_SDNN_p50
+[2025-10-17 16:31:14]      - Delta_cardiaco_p50
+[2025-10-17 16:31:14] 
+================================================================================
+2. CARGANDO DATOS SEMANALES
+================================================================================
+[2025-10-17 16:31:14] ✅ Usando versión original: weekly_consolidado.csv
+[2025-10-17 16:31:14]    Total semanas: 1385
+[2025-10-17 16:31:14] 
+================================================================================
+3. ESCALANDO FEATURES A [0,1]
+================================================================================
+[2025-10-17 16:31:14] ✅ Actividad_relativa_p50: escalado con min=0.056, max=0.216
+[2025-10-17 16:31:14] ✅ Superavit_calorico_basal_p50: escalado con min=14.033, max=56.919
+[2025-10-17 16:31:14] ✅ HRV_SDNN_p50: escalado con min=28.573, max=68.633
+[2025-10-17 16:31:14] ✅ Delta_cardiaco_p50: escalado con min=31.000, max=59.000
+[2025-10-17 16:31:14] 
+✅ Features escaladas: 4
+[2025-10-17 16:31:14] 
+================================================================================
+4. EVALUANDO MEMBRESÍAS POR SEMANA
+================================================================================
+[2025-10-17 16:31:14] ✅ Membresías calculadas para 4 features
+[2025-10-17 16:31:14] 
+================================================================================
+5. APLICANDO REGLAS DIFUSAS
+================================================================================
+[2025-10-17 16:31:14] 
+📋 Definiendo reglas:
+[2025-10-17 16:31:14]    Features disponibles: Actividad=True, Superavit=True, HRV=True, Delta=True
+[2025-10-17 16:31:14]    ✅ R1: Actividad Baja AND Superavit Bajo → Sedentarismo Alto
+[2025-10-17 16:31:14]    ✅ R2: Actividad Alta AND Superavit Alto → Sedentarismo Bajo
+[2025-10-17 16:31:14]    ✅ R3: HRV Baja AND Delta Alta_Carga → Sedentarismo Alto
+[2025-10-17 16:31:14]    ✅ R4: Actividad Media AND HRV Media → Sedentarismo Medio
+[2025-10-17 16:31:14]    ✅ R5: Actividad Baja AND Superavit Medio → Sedentarismo Medio-Alto (peso 0.7)
+[2025-10-17 16:31:14] 
+✅ Total reglas activas: 5
+[2025-10-17 16:31:14] 
+================================================================================
+6. EJECUTANDO INFERENCIA DIFUSA
+================================================================================
+[2025-10-17 16:31:15] ✅ Inferencia completada: 1385 semanas
+[2025-10-17 16:31:15]    Score medio: 0.571 ± 0.235
+[2025-10-17 16:31:15]    Min: 0.000, Max: 1.000
+[2025-10-17 16:31:15] ✅ Distribución no degenerada (std = 0.235)
+[2025-10-17 16:31:15] 
+================================================================================
+7. GUARDANDO RESULTADOS
+================================================================================
+[2025-10-17 16:31:15] ✅ Guardado: fuzzy_output.csv
+[2025-10-17 16:31:15]    Columnas: 17
+[2025-10-17 16:31:15]    Filas: 1385
+[2025-10-17 16:31:15] ✅ Sin NaNs en Sedentarismo_score
+[2025-10-17 16:31:15] 
+================================================================================
+8. ANÁLISIS POR TERCILES
+================================================================================
+[2025-10-17 16:31:15] Terciles: p33=0.500, p67=0.500
+[2025-10-17 16:31:44] 
+================================================================================
+FUZZY INFERENCE - PASO 7B: INFERENCIA DIFUSA SEMANAL
+================================================================================
+[2025-10-17 16:31:44] Inicio: 2025-10-17 16:31:44
+[2025-10-17 16:31:44] Archivo entrada: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\weekly_consolidado.csv
+[2025-10-17 16:31:44] Config MF: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\fuzzy_config\fuzzy_membership_config.yaml
+[2025-10-17 16:31:44] Scalers: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\fuzzy_config\feature_scalers.json
+[2025-10-17 16:31:44] 
+================================================================================
+1. CARGANDO CONFIGURACIÓN FUZZY
+================================================================================
+[2025-10-17 16:31:44] ✅ Configuración cargada:
+[2025-10-17 16:31:44]    Features con MF: 4
+[2025-10-17 16:31:44]      - Actividad_relativa_p50
+[2025-10-17 16:31:44]      - Superavit_calorico_basal_p50
+[2025-10-17 16:31:44]      - HRV_SDNN_p50
+[2025-10-17 16:31:44]      - Delta_cardiaco_p50
+[2025-10-17 16:31:44] 
+================================================================================
+2. CARGANDO DATOS SEMANALES
+================================================================================
+[2025-10-17 16:31:44] ✅ Usando versión original: weekly_consolidado.csv
+[2025-10-17 16:31:44]    Total semanas: 1385
+[2025-10-17 16:31:44] 
+================================================================================
+3. ESCALANDO FEATURES A [0,1]
+================================================================================
+[2025-10-17 16:31:44] ✅ Actividad_relativa_p50: escalado con min=0.056, max=0.216
+[2025-10-17 16:31:44] ✅ Superavit_calorico_basal_p50: escalado con min=14.033, max=56.919
+[2025-10-17 16:31:44] ✅ HRV_SDNN_p50: escalado con min=28.573, max=68.633
+[2025-10-17 16:31:44] ✅ Delta_cardiaco_p50: escalado con min=31.000, max=59.000
+[2025-10-17 16:31:44] 
+✅ Features escaladas: 4
+[2025-10-17 16:31:44] 
+================================================================================
+4. EVALUANDO MEMBRESÍAS POR SEMANA
+================================================================================
+[2025-10-17 16:31:44] ✅ Membresías calculadas para 4 features
+[2025-10-17 16:31:44] 
+================================================================================
+5. APLICANDO REGLAS DIFUSAS
+================================================================================
+[2025-10-17 16:31:44] 
+📋 Definiendo reglas:
+[2025-10-17 16:31:44]    Features disponibles: Actividad=True, Superavit=True, HRV=True, Delta=True
+[2025-10-17 16:31:44]    ✅ R1: Actividad Baja AND Superavit Bajo → Sedentarismo Alto
+[2025-10-17 16:31:44]    ✅ R2: Actividad Alta AND Superavit Alto → Sedentarismo Bajo
+[2025-10-17 16:31:44]    ✅ R3: HRV Baja AND Delta Alta_Carga → Sedentarismo Alto
+[2025-10-17 16:31:44]    ✅ R4: Actividad Media AND HRV Media → Sedentarismo Medio
+[2025-10-17 16:31:44]    ✅ R5: Actividad Baja AND Superavit Medio → Sedentarismo Medio-Alto (peso 0.7)
+[2025-10-17 16:31:44] 
+✅ Total reglas activas: 5
+[2025-10-17 16:31:44] 
+================================================================================
+6. EJECUTANDO INFERENCIA DIFUSA
+================================================================================
+[2025-10-17 16:31:45] ✅ Inferencia completada: 1385 semanas
+[2025-10-17 16:31:45]    Score medio: 0.571 ± 0.235
+[2025-10-17 16:31:45]    Min: 0.000, Max: 1.000
+[2025-10-17 16:31:45] ✅ Distribución no degenerada (std = 0.235)
+[2025-10-17 16:31:45] 
+================================================================================
+7. GUARDANDO RESULTADOS
+================================================================================
+[2025-10-17 16:31:45] ✅ Guardado: fuzzy_output.csv
+[2025-10-17 16:31:45]    Columnas: 17
+[2025-10-17 16:31:45]    Filas: 1385
+[2025-10-17 16:31:45] ✅ Sin NaNs en Sedentarismo_score
+[2025-10-17 16:31:45] 
+================================================================================
+8. ANÁLISIS POR TERCILES
+================================================================================
+[2025-10-17 16:31:45] Terciles: p33=0.500, p67=0.500
+[2025-10-17 16:31:45] ⚠️  WARNING: Terciles duplicados, usando bins únicos: [0, 0.5, 1.0]
+[2025-10-17 16:31:45] 
+Distribución por terciles:
+[2025-10-17 16:31:45]    Bajo: 969 semanas (70.0%)
+[2025-10-17 16:31:45]    Medio-Alto: 416 semanas (30.0%)
+[2025-10-17 16:31:45] 
+================================================================================
+9. GENERANDO VISUALIZACIONES
+================================================================================
+[2025-10-17 16:31:46] ✅ Guardado: sedentarismo_score_histogram.png
+[2025-10-17 16:31:46] 
+================================================================================
+10. RESUMEN EJECUTIVO
+================================================================================
+[2025-10-17 16:31:46] 
+📊 DATOS PROCESADOS:
+[2025-10-17 16:31:46]    - Semanas totales: 1385
+[2025-10-17 16:31:46]    - Features usadas: 4
+[2025-10-17 16:31:46]    - Reglas activas: 5
+[2025-10-17 16:31:46] 
+📈 SEDENTARISMO SCORE:
+[2025-10-17 16:31:46]    - Media: 0.571
+[2025-10-17 16:31:46]    - Desv. Std: 0.235
+[2025-10-17 16:31:46]    - Min: 0.000
+[2025-10-17 16:31:46]    - Max: 1.000
+[2025-10-17 16:31:46] 
+📊 DISTRIBUCIÓN POR TERCILES:
+[2025-10-17 16:31:46]    - Bajo: 969 semanas (70.0%)
+[2025-10-17 16:31:46]    - Medio-Alto: 416 semanas (30.0%)
+[2025-10-17 16:31:46] 
+✅ ARCHIVOS GENERADOS:
+[2025-10-17 16:31:46]    - fuzzy_output.csv
+[2025-10-17 16:31:46]    - plots/sedentarismo_score_histogram.png
+[2025-10-17 16:31:46]    - 08_fuzzy_inference_log.txt
+[2025-10-17 16:31:46] 
+================================================================================
+FUZZY INFERENCE COMPLETADO
+================================================================================
+[2025-10-17 16:31:46] Fin: 2025-10-17 16:31:46
+[2025-10-17 16:31:46] 
+✅ Listo para evaluación vs clusters (ejecutar 09_fuzzy_vs_clusters_eval.py)

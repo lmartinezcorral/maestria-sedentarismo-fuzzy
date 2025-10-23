@@ -1,0 +1,798 @@
+%!TEX program = pdflatex
+% ============================================================================
+% SISTEMA DE INFERENCIA DIFUSA PARA EVALUACIÓN DE SEDENTARISMO
+% Tesis de Maestría en Ciencias - Luis Ángel Martínez
+% ============================================================================
+
+\documentclass[12pt,a4paper,twoside]{article}
+
+% ============================================================================
+% PAQUETES ESENCIALES
+% ============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Matemáticas
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+% Gráficos y tablas
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Formato de página
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+
+% Colores y cajas
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{framed}
+
+% Enlaces e hipervínculos
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+% Algoritmos y código
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+
+% Bibliografía
+\usepackage[numbers,sort&compress]{natbib}
+
+% Otros
+\usepackage{lipsum}
+\usepackage{enumitem}
+
+% ============================================================================
+% CONFIGURACIONES
+% ============================================================================
+
+% Configuración de listings para código Python
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{gray}
+}
+
+% Formato de algoritmos en español
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Salida:}}
+\renewcommand{\algorithmicif}{\textbf{si}}
+\renewcommand{\algorithmicthen}{\textbf{entonces}}
+\renewcommand{\algorithmicelse}{\textbf{si no}}
+\renewcommand{\algorithmicfor}{\textbf{para}}
+\renewcommand{\algorithmicwhile}{\textbf{mientras}}
+\renewcommand{\algorithmicreturn}{\textbf{retornar}}
+
+% Captions
+\captionsetup{font=small,labelfont=bf}
+
+% Interlineado
+\onehalfspacing
+
+% Encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ============================================================================
+% COMANDOS PERSONALIZADOS
+% ============================================================================
+
+\newcommand{\VIF}{\mathrm{VIF}}
+\newcommand{\TMB}{\mathrm{TMB}}
+\newcommand{\FCr}{\mathrm{FC}_r}
+\newcommand{\FCw}{\mathrm{FC}_w}
+\newcommand{\HRV}{\mathrm{HRV}}
+\newcommand{\SDNN}{\mathrm{SDNN}}
+
+% Cajas de definiciones
+\newtcolorbox{definicion}{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    title=Definición
+}
+
+% Cajas de notas
+\newtcolorbox{nota}{
+    colback=yellow!5!white,
+    colframe=orange!75!black,
+    title=Nota
+}
+
+% ============================================================================
+% INFORMACIÓN DEL DOCUMENTO
+% ============================================================================
+
+\title{
+    \textbf{Sistema de Inferencia Difusa para Evaluación del Comportamiento Sedentario mediante Datos de Wearables}\\
+    \vspace{0.5cm}
+    \large Modelo Mamdani con Validación Cruzada vs. Clustering No Supervisado
+}
+
+\author{
+    Luis Ángel Martínez\\
+    \small Maestría en Ciencias, Semestre 3\\
+    \small \texttt{luis.martinez@institution.edu}
+}
+
+\date{18 de octubre de 2025}
+
+% ============================================================================
+% INICIO DEL DOCUMENTO
+% ============================================================================
+
+\begin{document}
+
+% Página de título
+\maketitle
+\thispagestyle{empty}
+
+% ============================================================================
+% RESUMEN / ABSTRACT
+% ============================================================================
+
+\begin{abstract}
+\noindent
+\textbf{Objetivo:} Desarrollar y validar un sistema de inferencia difusa tipo Mamdani para clasificar el sedentarismo semanal a partir de biomarcadores obtenidos de wearables (Apple Watch), contrastando su salida con una verdad operativa derivada de clustering no supervisado K-means.
+
+\textbf{Métodos:} Cohorte de 10 adultos (5M/5H) con seguimiento multianual. Unidad de análisis: 1,337 semanas agregadas. Pipeline de 5 fases: preprocesamiento con imputación jerárquica, creación de variables derivadas (Actividad\_relativa, Superávit\_calórico\_basal), agregación semanal (medianas/IQR), clustering K-means (K=2), y sistema difuso con 4 entradas $\times$ 3 etiquetas y 5 reglas Mamdani. Funciones de membresía triangulares derivadas por percentiles de la cohorte. Validación: búsqueda exhaustiva de umbral $\tau$ que maximiza F1-score.
+
+\textbf{Resultados:} Clustering K=2 óptimo (Silhouette=0.232): Cluster 0 (Bajo Sedentarismo, 402 semanas, 30\%) y Cluster 1 (Alto Sedentarismo, 935 semanas, 70\%). Sistema difuso con umbral $\tau=0.30$: F1-score=0.840, Recall=0.976, Accuracy=0.740, Precision=0.737, MCC=0.294. Matriz de confusión: TN=77, FP=325, FN=22, TP=913. Concordancia por usuario: media 70.0\% (rango 27.7\%--99.3\%).
+
+\textbf{Conclusiones:} Alta sensibilidad (Recall=97.6\%) adecuada para screening poblacional; trade-off aceptado (FP=26\%) con confirmación clínica posterior. Variables normalizadas por antropometría (Superávit\_calórico\_basal) y exposición (Actividad\_relativa) permiten comparabilidad inter-sujeto. Sistema interpretable con reglas auditables converge con estructura data-driven (F1=0.84). Heterogeneidad inter-sujeto sugiere personalización futura de $\tau$ o reglas moduladas por IQR.
+
+\textbf{Palabras clave:} Lógica difusa, sedentarismo, wearables, Apple Watch, clustering, validación cruzada, screening.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ============================================================================
+% 1. INTRODUCCIÓN
+% ============================================================================
+
+\section{Introducción}
+
+\subsection{Contexto y Motivación}
+
+El sedentarismo es un factor de riesgo cardiovascular y metabólico crítico en poblaciones contemporáneas, asociado con enfermedades cardiovasculares, diabetes tipo 2, obesidad y mortalidad por todas las causas \citep{Troiano2008,TudorLocke2011}. La evaluación objetiva del comportamiento sedentario en vida libre requiere:
+
+\begin{enumerate}[itemsep=0pt]
+    \item \textbf{Métricas basadas en wearables:} Superan el sesgo de autoreporte \citep{Troiano2008}.
+    \item \textbf{Normalización antropométrica:} 400 kcal gastadas no representan impacto fisiológico equivalente en sujetos con distinto metabolismo basal (TMB).
+    \item \textbf{Integración multivariada:} Actividad física + eficiencia autonómica (HRV) + carga cardíaca ($\Delta$ FC).
+\end{enumerate}
+
+\subsection{Justificación de Variables Clave}
+
+\subsubsection{Actividad Relativa (Normalizada por Exposición)}
+
+\begin{definicion}
+\textbf{Actividad\_relativa} se define como:
+\begin{equation}
+\text{Actividad\_relativa} = \frac{\text{min\_totales\_en\_movimiento}}{60 \times \text{Total\_hrs\_monitoreadas}}
+\end{equation}
+\end{definicion}
+
+\textbf{Rationale fisiológico:} Dos usuarios con 30 minutos de movimiento NO son equivalentes si uno tiene 24h monitoreadas (1.25\% del tiempo) y otro solo 8h (6.25\% del tiempo). Esta variable corrige por exposición de monitoreo, permitiendo comparabilidad justa.
+
+\textbf{Evidencia empírica:} Normalizar por tiempo de uso mejora la comparabilidad inter-sujeto en estudios con acelerómetros \citep{Troiano2008,TudorLocke2011}.
+
+\subsubsection{Superávit Calórico Basal (Ajustado por TMB)}
+
+\begin{definicion}
+\textbf{Superávit\_calórico\_basal} se define como:
+\begin{equation}
+\text{Superávit\_calórico\_basal} = \frac{\text{Gasto\_calorico\_activo} \times 100}{\TMB}
+\end{equation}
+
+Donde $\TMB$ (Tasa Metabólica Basal) se calcula mediante la ecuación de Mifflin-St Jeor \citep{Mifflin1990}:
+
+\textbf{Hombres:}
+\begin{equation}
+\TMB = 10 \cdot \text{peso(kg)} + 6.25 \cdot \text{altura(cm)} - 5 \cdot \text{edad} + 5
+\end{equation}
+
+\textbf{Mujeres:}
+\begin{equation}
+\TMB = 10 \cdot \text{peso(kg)} + 6.25 \cdot \text{altura(cm)} - 5 \cdot \text{edad} - 161
+\end{equation}
+\end{definicion}
+
+\textbf{Ejemplo clínico:} Usuario 9 (124 kg, hombre, $\TMB \approx 2241$ kcal/día): 400 kcal activas = 17.8\% del TMB. Usuario 10 (58 kg, mujer, $\TMB \approx 1304$ kcal/día): 400 kcal activas = 30.7\% del TMB. El impacto fisiológico es distinto y es capturado por el ratio.
+
+\subsubsection{HRV\_SDNN (Variabilidad Cardíaca)}
+
+La variabilidad de la frecuencia cardíaca (SDNN, \textit{Standard Deviation of NN intervals}) es un marcador del tono vagal:
+\begin{itemize}
+    \item \textbf{HRV alta ($>60$ ms):} Tono vagal saludable, recuperación adecuada.
+    \item \textbf{HRV baja ($<40$ ms):} Estrés crónico, desacondicionamiento, riesgo cardiovascular aumentado \citep{Thayer2010,TaskForce1996}.
+\end{itemize}
+
+\textbf{Uso en sistema difuso:} HRV baja refuerza la clasificación de sedentarismo alto (marcador indirecto de desacondicionamiento).
+
+\subsubsection{Delta Cardiaco (Respuesta al Esfuerzo)}
+
+\begin{definicion}
+\textbf{Delta\_cardiaco} se define como:
+\begin{equation}
+\Delta_{\text{cardiaco}} = \FCw_{\text{p50}} - \FCr_{\text{p50}}
+\end{equation}
+donde $\FCw$ es la frecuencia cardíaca al caminar y $\FCr$ la frecuencia cardíaca en reposo.
+\end{definicion}
+
+\textbf{Interpretación fisiológica:}
+\begin{itemize}
+    \item $\Delta$ alto ($>50$ lpm): Respuesta cardíaca apropiada al esfuerzo.
+    \item $\Delta$ bajo ($<30$ lpm): Posible bloqueo beta, desacondicionamiento o bajo esfuerzo percibido.
+\end{itemize}
+
+\subsection{Por Qué Lógica Difusa}
+
+La Tabla~\ref{tab:fuzzy_vs_clustering} compara clustering K-means (enfoque data-driven) con lógica difusa (enfoque interpretable).
+
+\begin{table}[h]
+\centering
+\caption{Comparación entre Clustering y Lógica Difusa}
+\label{tab:fuzzy_vs_clustering}
+\small
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspecto} & \textbf{Clustering (K-Means)} & \textbf{Lógica Difusa} \\
+\midrule
+Interpretabilidad & Partición dura; centroides abstractos & Reglas lingüísticas auditables \\
+Personalización & Reasignación global (retraining) & Ajuste local de MF o pesos \\
+Explicabilidad & ``Perteneces al cluster 1'' & ``Score alto por: Act. baja ($\mu=0.9$) $\land$ HRV baja ($\mu=0.7$)'' \\
+Validación externa & Requiere recalibración completa & MF por percentiles $\rightarrow$ fácil recalibración \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Decisión:} Usar clustering como verdad operativa para descubrir estructura data-driven, luego validar sistema fuzzy interpretable contra esa estructura.
+
+\subsection{Objetivos}
+
+\textbf{Objetivo principal:} Desarrollar y validar un sistema de inferencia difusa tipo Mamdani para clasificar el sedentarismo semanal, con alta sensibilidad (adecuado para screening) y reglas interpretables clínicamente.
+
+\textbf{Objetivos específicos:}
+\begin{enumerate}
+    \item Preprocesar datos de Apple Watch con imputación jerárquica sin leak temporal.
+    \item Crear variables derivadas normalizadas por antropometría y exposición.
+    \item Descubrir estructura latente mediante clustering no supervisado (K-means).
+    \item Diseñar funciones de membresía triangulares por percentiles de la cohorte.
+    \item Definir reglas difusas basadas en conocimiento clínico y estructura de clusters.
+    \item Validar sistema fuzzy vs. clustering, buscando umbral $\tau$ que maximiza F1-score.
+    \item Caracterizar heterogeneidad inter-sujeto y proponer estrategias de personalización.
+\end{enumerate}
+
+% ============================================================================
+% 2. DATOS Y COHORTE
+% ============================================================================
+
+\section{Datos y Cohorte}
+
+\subsection{Características de la Cohorte}
+
+La Tabla~\ref{tab:cohorte} describe las características antropométricas de los 10 participantes.
+
+\begin{table}[h]
+\centering
+\caption{Características Antropométricas y Seguimiento de la Cohorte}
+\label{tab:cohorte}
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Usuario} & \textbf{Sexo} & \textbf{Edad} & \textbf{Peso} & \textbf{Estatura} & \textbf{TMB} & \textbf{Días} & \textbf{Semanas} \\
+ &  & (años) & (kg) & (cm) & (kcal/día) & monitor. & válidas \\
+\midrule
+u1 (ale) & M & 34 & 68 & 170 & 1411 & 1048 & 149 \\
+u2 (brenda) & M & 37 & 76 & 169 & 1476 & 56 & 7 \\
+u3 (christina) & M & 39 & 77 & 164 & 1445 & 1001 & 141 \\
+u4 (edson) & H & 25 & 100 & 180 & 2013 & 110 & 14 \\
+u5 (esmeralda) & M & 28 & 64 & 160 & 1329 & 104 & 14 \\
+u6 (fidel) & H & 34 & 100 & 180 & 1958 & 1967 & 278 \\
+u7 (kevin) & H & 32 & 92 & 156 & 1717 & 812 & 114 \\
+u8 (legarda) & H & 29 & 92 & 181 & 1893 & 1345 & 191 \\
+u9 (lmartinez) & H & 32 & 124 & 185 & 2241 & 2070 & 298 \\
+u10 (vane) & M & 28 & 58 & 164 & 1304 & 925 & 131 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Observaciones:}
+\begin{itemize}
+    \item Rango de TMB: 1,304--2,241 kcal/día (variabilidad 72\%).
+    \item Duración de seguimiento: 56--2,070 días (heterogeneidad temporal alta).
+    \item Usuarios u2, u4, u5: $<20$ semanas válidas (contribuyen $\sim$2.6\% del dataset).
+\end{itemize}
+
+\subsection{Variables Semanales para Modelado}
+
+La unidad de análisis final es la \textbf{semana} (7 días consecutivos, válida si $\geq 5$ días con uso $\geq 8$h/día). Se calculan 8 features robustos (medianas e IQR) por variable clave:
+
+\begin{itemize}[itemsep=0pt]
+    \item \texttt{Actividad\_relativa\_p50}, \texttt{Actividad\_relativa\_iqr}
+    \item \texttt{Superavit\_calorico\_basal\_p50}, \texttt{Superavit\_calorico\_basal\_iqr}
+    \item \texttt{HRV\_SDNN\_p50}, \texttt{HRV\_SDNN\_iqr}
+    \item \texttt{Delta\_cardiaco\_p50}, \texttt{Delta\_cardiaco\_iqr}
+\end{itemize}
+
+\textbf{Rationale de usar medianas/IQR:} Robustas a outliers diarios (errores de sensor, eventos únicos). Capturan tendencia central y variabilidad sin asumir normalidad. IQR como proxy de intermitencia conductual (alto IQR = días muy dispares).
+
+% ============================================================================
+% 3. PIPELINE METODOLÓGICO
+% ============================================================================
+
+\section{Pipeline Metodológico}
+
+La Figura~\ref{fig:pipeline} esquematiza las 5 fases del procesamiento.
+
+\begin{figure}[h]
+\centering
+\fbox{\parbox{0.95\textwidth}{
+\textbf{FASE 1:} Preprocesamiento Diario + Imputación Jerárquica\\
+$\downarrow$\\
+\textbf{FASE 2:} Creación de Variables Derivadas\\
+$\downarrow$\\
+\textbf{FASE 3:} Agregación Semanal Robusta (p50, IQR)\\
+$\downarrow$\\
+\textbf{FASE 4:} Clustering No Supervisado (K=2, verdad operativa)\\
+$\downarrow$\\
+\textbf{FASE 5:} Sistema Difuso + Validación vs. Clusters
+}}
+\caption{Pipeline de procesamiento de datos (5 fases)}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Fase 1: Preprocesamiento e Imputación Jerárquica}
+
+\subsubsection{Gates de Clasificación de Días}
+
+\textbf{Gate 1 (Hard No-Wear):}
+\begin{equation}
+\text{hard\_nowear} = (\text{Total\_hrs\_monitorizadas} < 8) \lor (\text{Hrs\_sin\_registro} > 16)
+\end{equation}
+\textbf{Acción:} NO imputar. Dejar NaN y marcar fuente = ``sin\_imputar\_hard''.
+
+\textbf{Gate 2 (Soft Low-Activity):}
+\begin{equation}
+\text{soft\_lowact} = \neg\text{hard\_nowear} \land (8 \leq \text{Total\_hrs} < 12) \land (\text{pasos} < 800)
+\end{equation}
+\textbf{Acción:} Imputar con baseline fisiológica $\FCw_{\text{imput}} = \FCr + \Delta^*$, donde:
+\begin{equation}
+\Delta^* = \text{median}\{\FCw_{\text{obs}}[i] - \FCr[i] : i \in \text{días\_observados}\}
+\end{equation}
+
+\textbf{Gate 3 (Normal):} Método primario = rolling mediana del pasado (ventana=7 días, soporte$\geq 4$). Si soporte insuficiente, fallback a baseline $\FCr + \Delta^*$.
+
+\begin{nota}
+\textbf{Garantía de no-leakage:} Rolling mediana solo usa valores $[t-w, t-1]$ (pasado). Cuantiles acumulados calculados sobre datos $[0, t-1]$ sin incluir $t$.
+\end{nota}
+
+\subsection{Fase 2: Variables Derivadas}
+
+Tras imputación jerárquica, se calculan:
+\begin{align}
+\text{Actividad\_relativa} &= \frac{\text{min\_mov}}{60 \times \text{hrs\_monitor}} \\
+\TMB &= f(\text{sexo}, \text{peso}, \text{altura}, \text{edad}) \quad \text{(Mifflin-St Jeor)} \\
+\text{Superavit\_cal\_basal} &= \frac{\text{Gasto\_activo} \times 100}{\TMB}
+\end{align}
+
+\textbf{Reemplazos:} Eliminar \texttt{min\_totales\_en\_movimiento} y \texttt{Gasto\_calorico\_activo} originales para evitar multicolinealidad (VIF$>10$ si se mantienen ambos).
+
+\subsection{Fase 3: Agregación Semanal}
+
+Para cada variable clave, se calculan \textbf{p50} (mediana) y \textbf{IQR} (rango intercuartílico) por semana. El dataset final semanal contiene 1,385 semanas, de las cuales 1,337 son válidas tras filtrar:
+\begin{itemize}
+    \item Semanas con $<3$ días monitoreados.
+    \item Semanas con $>60\%$ de imputación en FC\_al\_caminar.
+\end{itemize}
+
+\subsection{Fase 4: Clustering K-Means}
+
+\textbf{Configuración:}
+\begin{itemize}
+    \item Algoritmo: K-Means (sklearn, init=`k-means++', random\_state=42).
+    \item Features: 8 variables semanales escaladas con RobustScaler.
+    \item K-sweep: $K \in \{2, 3, 4, 5, 6\}$.
+    \item Métricas: Silhouette, Davies-Bouldin, estabilidad ARI (20 bootstraps).
+\end{itemize}
+
+\textbf{Selección de K:} $K=2$ (mejor Silhouette=0.232). La Tabla~\ref{tab:k_sweep} resume el K-sweep.
+
+\begin{table}[h]
+\centering
+\caption{Resultados del K-sweep para Clustering}
+\label{tab:k_sweep}
+\small
+\begin{tabular}{ccccl}
+\toprule
+\textbf{K} & \textbf{Silhouette} & \textbf{Davies-Bouldin} & \textbf{ARI} & \textbf{Tamaños} \\
+\midrule
+2 & \textbf{0.232} & 2.058 & 0.565 & \{0: 402, 1: 935\} \\
+3 & 0.195 & 1.721 & 0.654 & \{0: 685, 1: 235, 2: 417\} \\
+4 & 0.192 & 1.422 & 0.735 & \{0: 238, 1: 662, 2: 435, 3: 2\} \\
+5 & 0.148 & 1.444 & 0.446 & \{0: 213, 1: 375, 2: 544, 3: 1, 4: 204\} \\
+6 & 0.159 & 1.430 & 0.777 & \{0: 204, 1: 456, 2: 200, 3: 337, 4: 139, 5: 1\} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Perfiles clínicos de K=2:}
+\begin{itemize}
+    \item \textbf{Cluster 0 (Bajo Sedentarismo):} 402 semanas (30\%). Actividad\_rel=0.160, Superávit=45.4\%, HRV=47.7 ms.
+    \item \textbf{Cluster 1 (Alto Sedentarismo):} 935 semanas (70\%). Actividad\_rel=0.116, Superávit=25.4\%, HRV=49.5 ms.
+\end{itemize}
+
+\subsection{Fase 5: Sistema de Inferencia Difusa}
+
+\subsubsection{Variables Lingüísticas de Entrada}
+
+Se definen 4 variables de entrada, cada una con 3 etiquetas (Baja/Media/Alta), usando funciones de membresía \textbf{triangulares} derivadas por percentiles de la cohorte.
+
+\textbf{Ejemplo (Actividad\_relativa\_p50):}
+\begin{align}
+\mu_{\text{Baja}}(x) &: \text{Triangular}(p_{10}, p_{25}, p_{40}) \\
+\mu_{\text{Media}}(x) &: \text{Triangular}(p_{35}, p_{50}, p_{65}) \\
+\mu_{\text{Alta}}(x) &: \text{Triangular}(p_{60}, p_{75}, p_{90})
+\end{align}
+
+Las Figuras~\ref{fig:mf_actividad}--\ref{fig:mf_delta} muestran las funciones de membresía para las 4 variables.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{../analisis_u/fuzzy/plots/MF_Actividad_relativa_p50.png}
+\caption{Funciones de membresía para Actividad\_relativa\_p50}
+\label{fig:mf_actividad}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{../analisis_u/fuzzy/plots/MF_Superavit_calorico_basal_p50.png}
+\caption{Funciones de membresía para Superávit\_calórico\_basal\_p50}
+\label{fig:mf_superavit}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{../analisis_u/fuzzy/plots/MF_HRV_SDNN_p50.png}
+\caption{Funciones de membresía para HRV\_SDNN\_p50}
+\label{fig:mf_hrv}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{../analisis_u/fuzzy/plots/MF_Delta_cardiaco_p50.png}
+\caption{Funciones de membresía para Delta\_cardiaco\_p50}
+\label{fig:mf_delta}
+\end{figure}
+
+\subsubsection{Base de Reglas Difusas}
+
+Se definen 5 reglas tipo Mamdani (operador AND = mínimo, OR = máximo):
+
+\begin{enumerate}
+    \item \textbf{R1:} SI Actividad es \textit{Baja} Y Superávit es \textit{Bajo} ENTONCES Sedentarismo es \textit{Alto}.
+    \item \textbf{R2:} SI Actividad es \textit{Alta} Y Superávit es \textit{Alto} ENTONCES Sedentarismo es \textit{Bajo}.
+    \item \textbf{R3:} SI HRV es \textit{Baja} Y Delta es \textit{Alta} ENTONCES Sedentarismo es \textit{Alto}.
+    \item \textbf{R4:} SI Actividad es \textit{Media} Y HRV es \textit{Media} ENTONCES Sedentarismo es \textit{Medio}.
+    \item \textbf{R5:} SI Actividad es \textit{Baja} Y Superávit es \textit{Medio} ENTONCES Sedentarismo es \textit{Medio-Alto} (peso 0.7).
+\end{enumerate}
+
+\subsubsection{Defuzzificación}
+
+Salida: Sedentarismo\_score $\in [0, 1]$. Método: centroide (centro de gravedad del área agregada). Binarización con umbral $\tau=0.30$ (maximiza F1 vs. clusters).
+
+\begin{equation}
+\hat{y}_i = \begin{cases} 1 \, (\text{Alto Sed}) & \text{si Score}_i \geq \tau \\ 0 \, (\text{Bajo Sed}) & \text{si Score}_i < \tau \end{cases}
+\end{equation}
+
+% ============================================================================
+% 4. RESULTADOS
+% ============================================================================
+
+\section{Resultados}
+
+\subsection{Distribución del Score Difuso}
+
+La Figura~\ref{fig:score_hist} muestra el histograma del Sedentarismo\_score.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\textwidth]{../analisis_u/fuzzy/plots/sedentarismo_score_histogram.png}
+\caption{Distribución del Sedentarismo\_score (N=1,385 semanas)}
+\label{fig:score_hist}
+\end{figure}
+
+\textbf{Estadísticas:} Media=0.571 $\pm$ 0.235, Rango=[0.000, 1.000] $\rightarrow$ distribución no degenerada.
+
+\subsection{Validación vs. Clustering}
+
+\subsubsection{Búsqueda de Umbral Óptimo}
+
+Grid search $\tau \in [0.05, 0.95]$ con paso 0.05; métrica objetivo = max(F1). \textbf{Resultado:} $\tau=0.30$.
+
+\subsubsection{Métricas Globales}
+
+La Tabla~\ref{tab:metricas_globales} resume las métricas de validación.
+
+\begin{table}[h]
+\centering
+\caption{Métricas de Validación Fuzzy vs. Clustering (N=1,337)}
+\label{tab:metricas_globales}
+\begin{tabular}{lc}
+\toprule
+\textbf{Métrica} & \textbf{Valor} \\
+\midrule
+Umbral óptimo ($\tau$) & 0.300 \\
+Accuracy & 0.740 \\
+F1-Score & \textbf{0.840} \\
+Precision & 0.737 \\
+Recall (Sensibilidad) & \textbf{0.976} \\
+MCC & 0.294 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Matriz de Confusión}
+
+La Tabla~\ref{tab:confusion} y Figura~\ref{fig:confusion} muestran la matriz de confusión.
+
+\begin{table}[h]
+\centering
+\caption{Matriz de Confusión (Cluster vs. Fuzzy)}
+\label{tab:confusion}
+\begin{tabular}{l|cc|c}
+\toprule
+ & \textbf{Fuzzy: Bajo} & \textbf{Fuzzy: Alto} & \textbf{Total} \\
+\midrule
+\textbf{Cluster: Bajo (0)} & TN = 77 & FP = 325 & 402 \\
+\textbf{Cluster: Alto (1)} & FN = 22 & TP = 913 & 935 \\
+\midrule
+\textbf{Total} & 99 & 1,238 & 1,337 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{../analisis_u/fuzzy/plots/confusion_matrix.png}
+\caption{Matriz de confusión visual}
+\label{fig:confusion}
+\end{figure}
+
+\textbf{Interpretación:}
+\begin{itemize}
+    \item \textbf{TN (77):} Semanas correctamente identificadas como Bajo Sedentarismo.
+    \item \textbf{TP (913):} Semanas correctamente identificadas como Alto Sedentarismo.
+    \item \textbf{FP (325):} Cluster dice ``Bajo'', fuzzy dice ``Alto'' $\rightarrow$ sobrediagnóstico (política conservadora).
+    \item \textbf{FN (22):} Cluster dice ``Alto'', fuzzy dice ``Bajo'' $\rightarrow$ subdiagnóstico (bajo, deseable minimizar).
+\end{itemize}
+
+\subsubsection{Curva Precision-Recall}
+
+La Figura~\ref{fig:pr_curve} muestra la curva PR para distintos valores de $\tau$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\textwidth]{../analisis_u/fuzzy/plots/pr_curve.png}
+\caption{Curva Precision-Recall. Punto óptimo: $\tau=0.30$ (F1=0.84)}
+\label{fig:pr_curve}
+\end{figure}
+
+\subsection{Análisis por Usuario}
+
+La Tabla~\ref{tab:per_user} resume la concordancia por usuario.
+
+\begin{table}[h]
+\centering
+\caption{Concordancia Fuzzy vs. Clustering por Usuario}
+\label{tab:per_user}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Usuario} & \textbf{N} & \textbf{Acc} & \textbf{F1} & \textbf{Rec} & \textbf{TP} & \textbf{FP} \\
+\midrule
+u1 (ale) & 149 & 0.993 & 0.997 & 1.000 & 148 & 1 \\
+u2 (brenda) & 7 & 0.429 & 0.600 & 0.500 & 3 & 1 \\
+u3 (christina) & 141 & 0.277 & 0.215 & 0.875 & 14 & 100 \\
+u4 (edson) & 14 & 0.714 & 0.833 & 1.000 & 10 & 4 \\
+u5 (esmeralda) & 14 & 0.714 & 0.818 & 1.000 & 9 & 4 \\
+u6 (fidel) & 278 & 0.817 & 0.898 & 0.982 & 224 & 47 \\
+u7 (kevin) & 114 & 0.947 & 0.973 & 1.000 & 108 & 6 \\
+u8 (legarda) & 191 & 0.440 & 0.462 & 0.868 & 46 & 100 \\
+u9 (lmartinez) & 298 & 0.856 & 0.919 & 0.976 & 245 & 37 \\
+u10 (vane) & 131 & 0.809 & 0.895 & 1.000 & 106 & 25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Concordancia media:} 70.0\% (rango: 27.7\%--99.3\%).
+
+\textbf{Usuarios con alta concordancia ($>$90\%):} u1 (ale), u7 (kevin) $\rightarrow$ Patrones estables.
+
+\textbf{Usuarios con baja concordancia ($<$50\%):} u3 (christina), u8 (legarda) $\rightarrow$ Alta variabilidad intra-semanal.
+
+% ============================================================================
+% 5. DISCUSIÓN
+% ============================================================================
+
+\section{Discusión}
+
+\subsection{Validez Clínica del Sistema Fuzzy}
+
+\textbf{1. Alta sensibilidad (Recall=97.6\%):} Minimiza falsos negativos (FN=22/935=2.4\%). Solo $\sim$2\% de semanas verdaderamente sedentarias pasan desapercibidas. \textbf{Implicación:} Apto para cribado poblacional; casos positivos fuzzy pueden confirmarse con evaluación clínica adicional.
+
+\textbf{2. Trade-off Precision vs. Recall:} Precision=73.7\% implica que $\sim$26\% de clasificaciones ``Alto Sedentarismo'' son FP (cluster los marcó como ``Bajo''). \textbf{Justificación:} En salud pública, preferible alertar de más (con confirmación posterior) que pasar por alto casos de riesgo.
+
+\textbf{3. Roles fisiológicos confirmados:} Actividad\_relativa y Superávit\_calórico\_basal son principales discriminadores (pesos altos en reglas R1, R2, R5). HRV\_SDNN complementario; HRV baja + actividad baja refuerza clasificación de Alto Sedentarismo (R3).
+
+\subsection{Heterogeneidad Inter-Sujeto}
+
+\textbf{Observación:} Concordancia usuario-específica varía 27.7\%--99.3\%.
+
+\textbf{Hipótesis explicativas:}
+\begin{enumerate}
+    \item \textbf{Variabilidad intra-semanal (IQR alto):} Usuarios con alta intermitencia (días muy activos vs. muy sedentarios) $\rightarrow$ clustering agrupa por ``promedios'', fuzzy captura extremos.
+    \item \textbf{Tamaño de muestra desigual:} u2, u4, u5 tienen $<20$ semanas $\rightarrow$ estadística poco robusta.
+    \item \textbf{Perfiles extremos:} u1 (ale): 99.3\% concordancia $\rightarrow$ patrón muy estable. u8 (legarda): 44.0\% concordancia $\rightarrow$ perfil atípico (actividad moderada-baja pero HRV alta).
+\end{enumerate}
+
+\textbf{Estrategias de mitigación:}
+\begin{itemize}
+    \item $\tau$ personalizado por usuario (requiere $\geq 30$ semanas).
+    \item Reglas moduladas por IQR: atenuar peso de R1 en alta intermitencia.
+    \item Validación en subpoblaciones (por sexo, rango de TMB).
+\end{itemize}
+
+\subsection{Comparación con Clustering}
+
+El sistema fuzzy ofrece \textbf{transparencia y auditabilidad} necesarias para aplicaciones clínicas, sin perder concordancia significativa con estructura data-driven del clustering (F1=0.84). Ventaja sobre K-means: reglas directamente revisables por clínico, ajuste local de MF sin reentrenar todo el modelo.
+
+% ============================================================================
+% 6. FORTALEZAS Y LIMITACIONES
+% ============================================================================
+
+\section{Fortalezas Metodológicas}
+
+\begin{enumerate}
+    \item \textbf{Convergencia supervisado--no supervisado:} Sistema fuzzy interpretable converge con estructura data-driven (F1=0.84) $\rightarrow$ validación cruzada robusta.
+    \item \textbf{MF por percentiles (data-driven):} Anclaje a distribución observada $\rightarrow$ robustez ante outliers. Fácil recalibración en nueva cohorte (recalcular percentiles, mantener estructura triangular).
+    \item \textbf{Trazabilidad completa:} Auditorías de imputación (\texttt{FC\_walk\_imputacion\_V3.csv} con fuentes y flags), logs por paso, reproducibilidad garantizada (semillas fijas, config en YAML).
+    \item \textbf{Garantías de no-leakage:} Rolling mediana solo hacia atrás, cuantiles acumulados sin incluir $t$, auditoría temporal explícita en logs.
+\end{enumerate}
+
+\section{Limitaciones y Mitigación}
+
+\begin{enumerate}
+    \item \textbf{Falsos positivos (FP=325):} Requiere zona gris (scores 0.40--0.60) con etiqueta ``Indeterminado'' + evaluación clínica.
+    \item \textbf{Cohorte pequeña (N=10):} Validación externa necesaria antes de despliegue clínico (cohorte $\geq 20$ usuarios, $\geq 1000$ semanas).
+    \item \textbf{Silhouette moderado (K=2: 0.232):} Refleja continuo fisiológico (no frontera ``dura''). K=2 preferido por interpretabilidad clínica clara sobre complejidad algorítmica.
+    \item \textbf{Escalado global:} Recalibración anual o por cohorte para evitar arrastre por valores extremos históricos.
+\end{enumerate}
+
+% ============================================================================
+% 7. CONCLUSIONES
+% ============================================================================
+
+\section{Conclusiones}
+
+\begin{enumerate}
+    \item \textbf{Sistema fuzzy validado:} Convergencia robusta con clustering K=2 (F1=0.84, Recall=97.6\%). Reglas interpretables capturan estructura real del sedentarismo en la cohorte.
+    
+    \item \textbf{Política conservadora efectiva:} Alta sensibilidad minimiza falsos negativos, adecuado para screening poblacional con confirmación clínica posterior. Trade-off FP aceptado (26\%).
+    
+    \item \textbf{Variables fisiológicamente relevantes:} Actividad\_relativa y Superávit\_calórico\_basal (principales discriminadores) + HRV\_SDNN y Delta\_cardiaco (complementarios) $\rightarrow$ integración multivariada robusta.
+    
+    \item \textbf{Heterogeneidad manejable:} Concordancia usuario-específica 27.7\%--99.3\% $\rightarrow$ personalización futura necesaria ($\tau$ ajustable, reglas moduladas por IQR).
+    
+    \item \textbf{Trazabilidad y reproducibilidad:} Pipeline completo documentado, auditorías de imputación, fácil recalibración en nueva cohorte (recalcular percentiles de MF).
+\end{enumerate}
+
+% ============================================================================
+% 8. PRÓXIMOS PASOS
+% ============================================================================
+
+\section{Próximos Pasos}
+
+\subsection{Corto Plazo}
+\begin{enumerate}
+    \item Personalización de $\tau$ por usuario o subpoblaciones.
+    \item Reglas moduladas por IQR para capturar intermitencia.
+    \item Análisis de sensibilidad de MF (variar percentiles $\pm 5\%$, medir impacto en F1).
+\end{enumerate}
+
+\subsection{Mediano-Largo Plazo}
+\begin{enumerate}
+    \item Validación externa en nueva cohorte ($\geq 20$ usuarios, $\geq 1000$ semanas).
+    \item Integración de nuevas variables: sueño (duración, eficiencia), estrés percibido.
+    \item Modelado temporal avanzado: ARIMA/LSTM para predecir ``próxima semana será Alto Sedentarismo''.
+    \item Implementación de dashboard clínico (FastAPI + React + Plotly).
+    \item Publicación científica en revista de salud digital (\textit{JMIR mHealth}, \textit{Digital Health}).
+\end{enumerate}
+
+% ============================================================================
+% BIBLIOGRAFÍA
+% ============================================================================
+
+\bibliographystyle{plain}
+\bibliography{referencias}
+
+% ============================================================================
+% APÉNDICES
+% ============================================================================
+
+\appendix
+
+\section{Pseudocódigo del Sistema Fuzzy}
+
+\begin{algorithm}
+\caption{Sistema de Inferencia Difusa para Sedentarismo}
+\begin{algorithmic}[1]
+\Require $X_{n \times 8}$ (features semanales), $\text{MF\_config}$ (funciones de membresía), $\text{rules}$ (5 reglas), $\tau=0.30$
+\Ensure $\hat{y} \in \{0,1\}^n$ (clasificación binaria)
+\For{$i = 1$ \textbf{to} $n$}
+    \State $\mathbf{x}_i \gets X[i, :]$ \Comment{Fila $i$ de features}
+    \State // \textbf{Fuzzificación}
+    \For{cada variable $v$ en \{Actividad, Superávit, HRV, Delta\}}
+        \For{cada etiqueta $\ell$ en \{Baja, Media, Alta\}}
+            \State $\mu_{v,\ell}(\mathbf{x}_i) \gets \text{TriangularMF}(\mathbf{x}_i[v], \text{MF\_config}[v][\ell])$
+        \EndFor
+    \EndFor
+    \State // \textbf{Activación de Reglas}
+    \For{cada regla $r \in \text{rules}$}
+        \State $w_r \gets \min\{\mu_{v,\ell}(\mathbf{x}_i) : (v,\ell) \in \text{antecedentes}(r)\}$ \Comment{AND = mínimo}
+    \EndFor
+    \State // \textbf{Agregación}
+    \State $s_{\text{Bajo}} \gets \max\{w_r : \text{conseq}(r) = \text{Bajo}\}$ \Comment{OR = máximo}
+    \State $s_{\text{Medio}} \gets \max\{w_r : \text{conseq}(r) = \text{Medio}\}$
+    \State $s_{\text{Alto}} \gets \max\{w_r : \text{conseq}(r) = \text{Alto}\}$
+    \State // \textbf{Defuzzificación (centroide)}
+    \State $\text{Score}_i \gets \frac{s_{\text{Bajo}} \cdot 0.2 + s_{\text{Medio}} \cdot 0.5 + s_{\text{Alto}} \cdot 0.8}{s_{\text{Bajo}} + s_{\text{Medio}} + s_{\text{Alto}}}$
+    \State // \textbf{Binarización}
+    \State $\hat{y}_i \gets \mathbb{1}[\text{Score}_i \geq \tau]$
+\EndFor
+\State \Return $\hat{y}$
+\end{algorithmic}
+\end{algorithm}
+
+\section{Reproducibilidad}
+
+Todos los artefactos están disponibles en:
+\begin{itemize}
+    \item \textbf{Configuración fuzzy:} \texttt{fuzzy\_config/fuzzy\_membership\_config.yaml}
+    \item \textbf{Salidas fuzzy:} \texttt{analisis\_u/fuzzy/fuzzy\_output.csv}
+    \item \textbf{Evaluación:} \texttt{analisis\_u/fuzzy/09\_eval\_fuzzy\_vs\_cluster.txt}
+    \item \textbf{Semanal consolidado:} \texttt{weekly\_consolidado.csv}
+    \item \textbf{Clustering:} \texttt{analisis\_u/clustering/cluster\_assignments.csv}
+\end{itemize}
+
+Semillas fijas: \texttt{random\_state=42} en todos los modelos. Logs de auditoría por paso.
+
+\end{document}
+
+
+

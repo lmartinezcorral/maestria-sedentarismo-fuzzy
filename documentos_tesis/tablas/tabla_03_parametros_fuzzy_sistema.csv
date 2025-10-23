@@ -1,0 +1,14 @@
+Parámetro,Valor,Descripción
+Numero_Variables_Entrada,4,Variables p50: Actividad relativa Superavit calórico HRV SDNN Delta cardiaco
+Numero_MF_Por_Variable,3,Bajo Medio Alto (triangulares)
+Total_Etiquetas_Entrada,12,4 variables × 3 MF
+Numero_Reglas_Fuzzy,5,R1-R5 (Mamdani)
+Clases_Salida,3,"Sedentarismo: Bajo Medio Alto"
+Metodo_Defuzzificacion,Centroide,"Centroides: 0.2 0.5 0.8"
+Umbral_Binario_Optimo_tau,0.30,Maximiza F1-Score
+Percentiles_MF_Bajo,"p10 p25 p40",Entrenado en datos completos
+Percentiles_MF_Medio,"p35 p50 p65",Entrenado en datos completos
+Percentiles_MF_Alto,"p60 p75 p90",Entrenado en datos completos
+Tipo_Inferencia,Mamdani,AND=min OR=max
+Operador_Agregacion,Suma,Voto difuso acumulado
+

@@ -1,0 +1,435 @@
+%!TEX program = pdflatex
+% ============================================================================
+% POSTER ACADÉMICO: Sistema de Inferencia Difusa para Sedentarismo
+% Template usando tikzposter
+% ============================================================================
+
+\documentclass[25pt, a0paper, portrait]{tikzposter}
+
+% ============================================================================
+% PAQUETES
+% ============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{tabularx}
+
+% ============================================================================
+% CONFIGURACIÓN DEL POSTER
+% ============================================================================
+
+% Tema del poster (opciones: Default, Rays, Basic, Simple, Envelope, Wave, Board, Autumn, Desert)
+\usetheme{Autumn}
+
+% Colores (opciones: Default, Australia, Britain, Sweden, Spain, Russia, Denmark, Germany)
+\usecolorstyle[colorPalette=BrownBlueOrange]{Germany}
+
+% Título y autores
+\title{Sistema de Inferencia Difusa para Evaluación del Comportamiento Sedentario mediante Datos de Wearables}
+
+\author{Luis Ángel Martínez}
+
+\institute{Maestría en Ciencias, Semestre 3 \\ Universidad [Nombre] \\ luis.martinez@institution.edu}
+
+\titlegraphic{\includegraphics[width=0.08\textwidth]{logo_universidad.png}}
+
+% ============================================================================
+% INICIO DEL DOCUMENTO
+% ============================================================================
+
+\begin{document}
+
+\maketitle
+
+% ============================================================================
+% COLUMNA IZQUIERDA
+% ============================================================================
+
+\begin{columns}
+
+\column{0.33} % Primera columna (33%)
+
+% ----------------------------------------------------------------------------
+% BLOQUE 1: INTRODUCCIÓN Y OBJETIVOS
+% ----------------------------------------------------------------------------
+
+\block{1. Introducción y Motivación}{
+\textbf{Contexto:} El sedentarismo es un factor de riesgo cardiovascular crítico. Los datos de wearables (Apple Watch) permiten evaluación objetiva en vida libre.
+
+\vspace{0.5cm}
+
+\textbf{Desafío:} 400 kcal gastadas $\neq$ impacto fisiológico equivalente entre usuarios con distinto metabolismo basal (TMB).
+
+\vspace{0.5cm}
+
+\textbf{Solución:} Variables derivadas normalizadas por antropometría y exposición.
+
+\vspace{1cm}
+
+\textbf{OBJETIVO PRINCIPAL:}
+
+\begin{itemize}
+    \item Desarrollar y validar un sistema de inferencia difusa tipo Mamdani para clasificar el sedentarismo semanal
+    \item Contrastar con verdad operativa de clustering no supervisado (K-means)
+    \item Alta sensibilidad (screening poblacional) + reglas interpretables
+\end{itemize}
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 2: DATOS Y COHORTE
+% ----------------------------------------------------------------------------
+
+\block{2. Datos y Cohorte}{
+
+\textbf{Cohorte:} 10 adultos (5M/5H), seguimiento multianual
+
+\textbf{Unidad de análisis:} 1,337 semanas válidas (agregación diaria $\rightarrow$ semanal)
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Usuario} & \textbf{Sexo} & \textbf{Edad} & \textbf{Peso} & \textbf{TMB} & \textbf{Semanas} \\
+ &  & (años) & (kg) & (kcal/d) & válidas \\
+\midrule
+u1 (ale) & M & 34 & 68 & 1411 & 149 \\
+u6 (fidel) & H & 34 & 100 & 1958 & 278 \\
+u9 (lmartinez) & H & 32 & 124 & 2241 & 298 \\
+u10 (vane) & M & 28 & 58 & 1304 & 131 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+\textbf{Rango de TMB:} 1,304--2,241 kcal/día (variabilidad 72\%)
+
+\textbf{Variables base:} Actividad física, FC (reposo/caminata), HRV (SDNN), gasto calórico, horas monitoreadas
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 3: VARIABLES DERIVADAS CLAVE
+% ----------------------------------------------------------------------------
+
+\block{3. Variables Derivadas Clave}{
+
+\textbf{1. Actividad\_relativa} (normalizada por exposición):
+\begin{equation*}
+\text{Actividad\_relativa} = \frac{\text{min\_movimiento}}{60 \times \text{hrs\_monitoreadas}}
+\end{equation*}
+
+\textit{Rationale:} Corrige por tiempo de uso del reloj.
+
+\vspace{0.5cm}
+
+\textbf{2. Superávit\_calórico\_basal} (ajustado por TMB):
+\begin{equation*}
+\text{Superávit} = \frac{\text{Gasto\_activo} \times 100}{\text{TMB}}
+\end{equation*}
+
+Donde TMB (Mifflin-St Jeor):
+\begin{align*}
+\text{Hombres:} & \quad \text{TMB} = 10 \cdot \text{peso} + 6.25 \cdot \text{altura} - 5 \cdot \text{edad} + 5 \\
+\text{Mujeres:} & \quad \text{TMB} = 10 \cdot \text{peso} + 6.25 \cdot \text{altura} - 5 \cdot \text{edad} - 161
+\end{align*}
+
+\textit{Rationale:} Ajusta por metabolismo basal individual.
+
+\vspace{0.5cm}
+
+\textbf{3. HRV\_SDNN} (variabilidad cardíaca):
+\begin{itemize}
+    \item Alta HRV ($>60$ ms): Tono vagal saludable
+    \item Baja HRV ($<40$ ms): Desacondicionamiento, estrés
+\end{itemize}
+
+\vspace{0.5cm}
+
+\textbf{4. Delta\_cardiaco} (respuesta al esfuerzo):
+\begin{equation*}
+\Delta_{\text{cardiaco}} = \text{FC}_{\text{caminata}} - \text{FC}_{\text{reposo}}
+\end{equation*}
+}
+
+% ============================================================================
+% COLUMNA CENTRAL
+% ============================================================================
+
+\column{0.34} % Segunda columna (34%)
+
+% ----------------------------------------------------------------------------
+% BLOQUE 4: PIPELINE METODOLÓGICO
+% ----------------------------------------------------------------------------
+
+\block{4. Pipeline Metodológico (5 Fases)}{
+
+\begin{center}
+\fbox{\parbox{0.9\linewidth}{
+\textbf{FASE 1:} Preprocesamiento + Imputación Jerárquica\\
+\textit{Gates: Hard no-wear, Soft low-activity, Normal}\\
+\textit{Rolling mediana (solo pasado, sin leak temporal)}\\[0.3cm]
+$\downarrow$\\[0.3cm]
+\textbf{FASE 2:} Variables Derivadas\\
+\textit{Actividad\_relativa, Superávit\_calórico (reemplazan originales)}\\[0.3cm]
+$\downarrow$\\[0.3cm]
+\textbf{FASE 3:} Agregación Semanal\\
+\textit{8 features: p50 (mediana) + IQR por variable}\\[0.3cm]
+$\downarrow$\\[0.3cm]
+\textbf{FASE 4:} Clustering K-Means (Verdad Operativa)\\
+\textit{K=2 óptimo (Silhouette=0.232)}\\[0.3cm]
+$\downarrow$\\[0.3cm]
+\textbf{FASE 5:} Sistema Difuso + Validación\\
+\textit{4 entradas $\times$ 3 etiquetas, 5 reglas, $\tau=0.30$}
+}}
+\end{center}
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 5: CLUSTERING K=2
+% ----------------------------------------------------------------------------
+
+\block{5. Clustering K-Means (Verdad Operativa)}{
+
+\textbf{K-sweep (K=2..6):} K=2 óptimo
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{cccl}
+\toprule
+\textbf{K} & \textbf{Silhouette} & \textbf{Davies-B} & \textbf{Tamaños} \\
+\midrule
+\textbf{2} & \textbf{0.232} & 2.058 & \{0: 402, 1: 935\} \\
+3 & 0.195 & 1.721 & \{0: 685, 1: 235, 2: 417\} \\
+4 & 0.192 & 1.422 & 4 clusters \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+\textbf{Perfiles de K=2:}
+
+\begin{itemize}
+    \item \textbf{Cluster 0 (Bajo Sedentarismo):} 402 semanas (30\%)
+    \begin{itemize}
+        \item Actividad\_rel = 0.160, Superávit = 45.4\%
+    \end{itemize}
+    \item \textbf{Cluster 1 (Alto Sedentarismo):} 935 semanas (70\%)
+    \begin{itemize}
+        \item Actividad\_rel = 0.116, Superávit = 25.4\%
+    \end{itemize}
+\end{itemize}
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 6: FUNCIONES DE MEMBRESÍA
+% ----------------------------------------------------------------------------
+
+\block{6. Funciones de Membresía (Triangulares por Percentiles)}{
+
+\begin{center}
+\includegraphics[width=0.48\linewidth]{../analisis_u/fuzzy/plots/MF_Actividad_relativa_p50.png}
+\includegraphics[width=0.48\linewidth]{../analisis_u/fuzzy/plots/MF_Superavit_calorico_basal_p50.png}
+
+\vspace{0.3cm}
+
+\includegraphics[width=0.48\linewidth]{../analisis_u/fuzzy/plots/MF_HRV_SDNN_p50.png}
+\includegraphics[width=0.48\linewidth]{../analisis_u/fuzzy/plots/MF_Delta_cardiaco_p50.png}
+\end{center}
+
+\vspace{0.3cm}
+
+\textbf{Diseño data-driven:} Percentiles p10-p25-p40, p35-p50-p65, p60-p75-p90
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 7: SISTEMA DIFUSO
+% ----------------------------------------------------------------------------
+
+\block{7. Sistema de Inferencia Difusa (5 Reglas Mamdani)}{
+
+\textbf{Entradas (4):} Actividad\_relativa, Superávit\_calórico, HRV\_SDNN, Delta\_cardiaco
+
+\vspace{0.3cm}
+
+\textbf{Reglas (ejemplos):}
+
+\begin{enumerate}
+    \item SI Actividad es \textit{Baja} Y Superávit es \textit{Bajo} $\Rightarrow$ Sedentarismo \textit{Alto}
+    \item SI Actividad es \textit{Alta} Y Superávit es \textit{Alto} $\Rightarrow$ Sedentarismo \textit{Bajo}
+    \item SI HRV es \textit{Baja} Y Delta es \textit{Alta} $\Rightarrow$ Sedentarismo \textit{Alto}
+    \item SI Actividad es \textit{Media} Y HRV es \textit{Media} $\Rightarrow$ Sedentarismo \textit{Medio}
+    \item SI Actividad es \textit{Baja} Y Superávit es \textit{Medio} $\Rightarrow$ Sedentarismo \textit{Medio-Alto}
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\textbf{Defuzzificación:} Centroide $\rightarrow$ Score $\in [0, 1]$
+
+\textbf{Binarización:} $\tau = 0.30$ (maximiza F1 vs. clusters)
+}
+
+% ============================================================================
+% COLUMNA DERECHA
+% ============================================================================
+
+\column{0.33} % Tercera columna (33%)
+
+% ----------------------------------------------------------------------------
+% BLOQUE 8: RESULTADOS - MÉTRICAS
+% ----------------------------------------------------------------------------
+
+\block{8. Resultados: Métricas de Validación}{
+
+\begin{center}
+\Large
+\textbf{F1-Score: 0.840}\\[0.3cm]
+\textbf{Recall: 97.6\%}\\[0.3cm]
+\textbf{Accuracy: 74.0\%}\\[0.3cm]
+\normalsize
+Precision: 73.7\% \quad MCC: 0.294 \quad $\tau = 0.30$
+\end{center}
+
+\vspace{0.5cm}
+
+\textbf{Matriz de Confusión:}
+
+\begin{center}
+\begin{tabular}{l|cc|c}
+\toprule
+ & \textbf{Fuzzy: Bajo} & \textbf{Fuzzy: Alto} & \textbf{Total} \\
+\midrule
+\textbf{Cluster: Bajo} & TN = 77 & FP = 325 & 402 \\
+\textbf{Cluster: Alto} & FN = 22 & TP = 913 & 935 \\
+\midrule
+\textbf{Total} & 99 & 1,238 & 1,337 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{../analisis_u/fuzzy/plots/confusion_matrix.png}
+\end{center}
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 9: CURVAS Y DISTRIBUCIÓN
+% ----------------------------------------------------------------------------
+
+\block{9. Curva Precision-Recall y Distribución de Scores}{
+
+\begin{center}
+\includegraphics[width=0.48\linewidth]{../analisis_u/fuzzy/plots/pr_curve.png}
+\includegraphics[width=0.48\linewidth]{../analisis_u/fuzzy/plots/score_distribution_by_cluster.png}
+\end{center}
+
+\vspace{0.3cm}
+
+\textbf{Punto óptimo:} $\tau=0.30$ maximiza F1 (balance Precision-Recall)
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 10: CONCORDANCIA POR USUARIO
+% ----------------------------------------------------------------------------
+
+\block{10. Concordancia por Usuario (Heterogeneidad)}{
+
+\textbf{Concordancia media:} 70.0\% (rango: 27.7\%--99.3\%)
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Usuario} & \textbf{Concordancia} & \textbf{F1} & \textbf{Recall} \\
+\midrule
+u1 (ale) & \textbf{99.3\%} & 0.997 & 1.000 \\
+u7 (kevin) & \textbf{94.7\%} & 0.973 & 1.000 \\
+u6 (fidel) & 81.7\% & 0.898 & 0.982 \\
+u10 (vane) & 80.9\% & 0.895 & 1.000 \\
+u3 (christina) & 27.7\% & 0.215 & 0.875 \\
+u8 (legarda) & 44.0\% & 0.462 & 0.868 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+
+\textbf{Alta concordancia ($>90\%$):} Patrones estables (u1, u7)
+
+\textbf{Baja concordancia ($<50\%$):} Alta variabilidad intra-semanal (u3, u8)
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 11: CONCLUSIONES
+% ----------------------------------------------------------------------------
+
+\block{11. Conclusiones y Próximos Pasos}{
+
+\textbf{CONCLUSIONES:}
+
+\begin{enumerate}
+    \item \textbf{Sistema validado:} Convergencia robusta con clustering (F1=0.84, Recall=97.6\%)
+    \item \textbf{Alta sensibilidad:} Minimiza falsos negativos $\rightarrow$ Screening poblacional
+    \item \textbf{Variables relevantes:} Actividad\_relativa y Superávit\_calórico (principales discriminadores)
+    \item \textbf{Interpretabilidad:} Reglas auditables por clínicos vs. caja negra
+    \item \textbf{Trazabilidad:} Pipeline documentado, auditorías, reproducibilidad
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\textbf{PRÓXIMOS PASOS:}
+
+\begin{itemize}
+    \item \textbf{Corto plazo:} Personalización de $\tau$ por usuario, reglas moduladas por IQR
+    \item \textbf{Mediano plazo:} Validación externa (cohorte $\geq 20$ usuarios), integración de sueño/estrés
+    \item \textbf{Largo plazo:} Dashboard clínico, publicación científica, despliegue operativo
+\end{itemize}
+}
+
+% ----------------------------------------------------------------------------
+% BLOQUE 12: REFERENCIAS Y CONTACTO
+% ----------------------------------------------------------------------------
+
+\block{12. Referencias y Contacto}{
+
+\small
+
+\textbf{Referencias:}
+
+[1] Troiano et al. (2008). Physical activity measured by accelerometer. \textit{Med Sci Sports Exerc}, 40(1):181-188.
+
+[2] Thayer et al. (2010). Heart rate variability and neuroimaging. \textit{Neurosci Biobehav Rev}, 36(2):747-756.
+
+[3] Mifflin et al. (1990). Predictive equation for resting energy expenditure. \textit{Am J Clin Nutr}, 51(2):241-247.
+
+[4] Mamdani \& Assilian (1975). Linguistic synthesis with fuzzy logic. \textit{Int J Man Mach Stud}, 7(1):1-13.
+
+\vspace{0.5cm}
+
+\textbf{Contacto:}
+
+Luis Ángel Martínez \\ Maestría en Ciencias, Semestre 3 \\ \texttt{luis.martinez@institution.edu}
+
+\vspace{0.3cm}
+
+\textbf{Repositorio:} \texttt{github.com/usuario/sistema-difuso-sedentarismo}
+
+\normalsize
+}
+
+\end{columns}
+
+\end{document}
+
+
+
+
+

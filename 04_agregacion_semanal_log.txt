@@ -1,0 +1,213 @@
+================================================================================
+AGREGACIÓN SEMANAL - PASO 4
+================================================================================
+Inicio: 2025-10-16 17:03:05
+Directorio base: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset
+Directorio salida: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal
+
+
+================================================================================
+Usuario u1 (ale)
+================================================================================
+  ✅ Dataset cargado: 1048 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 1048 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 159
+     - Días promedio/semana: 6.6
+     - Semanas baja cobertura (<3 días): 1
+     - % imputada FC_walk (promedio): 30.9%
+  ✅ Guardado: weekly_u1.csv
+
+================================================================================
+Usuario u2 (brenda)
+================================================================================
+  ✅ Dataset cargado: 50 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 50 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 8
+     - Días promedio/semana: 6.2
+     - Semanas baja cobertura (<3 días): 0
+     - % imputada FC_walk (promedio): 30.5%
+  ✅ Guardado: weekly_u2.csv
+
+================================================================================
+Usuario u3 (christina)
+================================================================================
+  ✅ Dataset cargado: 980 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 980 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 141
+     - Días promedio/semana: 7.0
+     - Semanas baja cobertura (<3 días): 0
+     - % imputada FC_walk (promedio): 17.2%
+  ✅ Guardado: weekly_u3.csv
+
+================================================================================
+Usuario u4 (edson)
+================================================================================
+  ✅ Dataset cargado: 96 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 96 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 15
+     - Días promedio/semana: 6.4
+     - Semanas baja cobertura (<3 días): 1
+     - % imputada FC_walk (promedio): 11.9%
+  ✅ Guardado: weekly_u4.csv
+
+================================================================================
+Usuario u5 (esmeralda)
+================================================================================
+  ✅ Dataset cargado: 96 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 646 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 15
+     - Días promedio/semana: 6.4
+     - Semanas baja cobertura (<3 días): 1
+     - % imputada FC_walk (promedio): 18.6%
+  ✅ Guardado: weekly_u5.csv
+
+================================================================================
+Usuario u6 (fidel)
+================================================================================
+  ✅ Dataset cargado: 1861 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 1861 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 303
+     - Días promedio/semana: 6.1
+     - Semanas baja cobertura (<3 días): 11
+     - % imputada FC_walk (promedio): 35.5%
+  ✅ Guardado: weekly_u6.csv
+
+================================================================================
+Usuario u7 (kevin)
+================================================================================
+  ✅ Dataset cargado: 799 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 799 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 117
+     - Días promedio/semana: 6.8
+     - Semanas baja cobertura (<3 días): 1
+     - % imputada FC_walk (promedio): 23.8%
+  ✅ Guardado: weekly_u7.csv
+
+================================================================================
+Usuario u8 (legarda)
+================================================================================
+  ✅ Dataset cargado: 1332 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 1332 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 192
+     - Días promedio/semana: 6.9
+     - Semanas baja cobertura (<3 días): 1
+     - % imputada FC_walk (promedio): 17.3%
+  ✅ Guardado: weekly_u8.csv
+
+================================================================================
+Usuario u9 (lmartinez)
+================================================================================
+  ✅ Dataset cargado: 2070 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 2070 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 302
+     - Días promedio/semana: 6.9
+     - Semanas baja cobertura (<3 días): 2
+     - % imputada FC_walk (promedio): 26.5%
+  ✅ Guardado: weekly_u9.csv
+
+================================================================================
+Usuario u10 (vane)
+================================================================================
+  ✅ Dataset cargado: 853 días
+  ✅ Delta_cardiaco derivado
+  ✅ Auditoría cargada: 853 registros
+  ✅ Agregación completada:
+     - Semanas generadas: 133
+     - Días promedio/semana: 6.4
+     - Semanas baja cobertura (<3 días): 1
+     - % imputada FC_walk (promedio): 32.0%
+  ✅ Guardado: weekly_u10.csv
+
+================================================================================
+GENERANDO CONSOLIDADO
+================================================================================
+✅ Consolidado guardado: weekly_consolidado.csv
+   Registros totales: 1385 semanas
+   Usuarios cubiertos: 10/10
+   Columnas: 60
+
+================================================================================
+GENERANDO CLUSTER INPUTS
+================================================================================
+✅ Cluster inputs guardado: cluster_inputs_weekly.csv
+   Registros: 1385
+   Features para clustering: 8
+   Columnas totales: 14
+   Columnas: ['usuario_id', 'usuario_alias', 'semana_inicio', 'dias_monitoreados', 'flag_baja_cobertura', 'pct_imputada_FC_walk', 'Actividad_relativa_p50', 'Actividad_relativa_iqr', 'Superavit_calorico_basal_p50', 'Superavit_calorico_basal_iqr', 'HRV_SDNN_p50', 'HRV_SDNN_iqr', 'Delta_cardiaco_p50', 'Delta_cardiaco_iqr']
+
+================================================================================
+RESUMEN POR USUARIO
+================================================================================
+Usuario      Alias        Status   Semanas  Días/sem   %BajaCob   %Imput    
+--------------------------------------------------------------------------------
+u1           ale          OK       159      6.6        0.6        30.9      
+u2           brenda       OK       8        6.2        0.0        30.5      
+u3           christina    OK       141      7.0        0.0        17.2      
+u4           edson        OK       15       6.4        6.7        11.9      
+u5           esmeralda    OK       15       6.4        6.7        18.6      
+u6           fidel        OK       303      6.1        3.6        35.5      
+u7           kevin        OK       117      6.8        0.9        23.8      
+u8           legarda      OK       192      6.9        0.5        17.3      
+u9           lmartinez    OK       302      6.9        0.7        26.5      
+u10          vane         OK       133      6.4        0.8        32.0      
+
+Usuarios procesados exitosamente: 10/10
+Total de semanas generadas: 1385
+
+================================================================================
+TOP 10 SEMANAS - MAYOR ACTIVIDAD_RELATIVA_IQR
+================================================================================
+usuario_id semana_inicio  Actividad_relativa_iqr  Actividad_relativa_p50
+        u6    2024-12-03                1.011538                0.156944
+        u7    2023-05-16                0.502231                0.170370
+        u6    2019-07-30                0.254312                0.179167
+        u9    2022-03-15                0.219528                0.178431
+       u10    2024-01-02                0.204968                0.186944
+        u3    2024-05-28                0.198192                0.194118
+        u6    2019-07-09                0.191111                0.143333
+       u10    2023-12-05                0.190666                0.148485
+        u6    2024-07-09                0.186731                0.165385
+        u3    2023-04-04                0.185924                0.084375
+
+================================================================================
+TOP 10 SEMANAS - MAYOR HRV_SDNN_IQR
+================================================================================
+usuario_id semana_inicio  HRV_SDNN_iqr  HRV_SDNN_p50
+        u9    2018-12-11     61.045564     60.705800
+        u3    2022-09-27     45.516904     52.653350
+        u8    2021-08-31     44.798527     61.647550
+        u9    2019-11-12     40.751571     71.880800
+        u3    2025-01-07     38.697230     42.071833
+        u3    2022-08-30     38.588139     49.074820
+        u9    2021-02-23     38.518343     47.017925
+        u9    2020-03-10     38.445900     54.876225
+        u9    2021-05-25     38.276046     60.069960
+        u8    2023-05-09     37.856246     56.708163
+
+================================================================================
+AGREGACIÓN SEMANAL COMPLETADA
+================================================================================
+Fin: 2025-10-16 17:03:55
+
+📂 Archivos generados:
+   - 10 archivos weekly_uN.csv
+   - 1 weekly_consolidado.csv (1385 semanas)
+   - 1 cluster_inputs_weekly.csv (1385 semanas)

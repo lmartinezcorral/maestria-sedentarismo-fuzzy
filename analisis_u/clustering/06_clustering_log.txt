@@ -1,0 +1,119 @@
+================================================================================
+CLUSTERING SEMANAL - PASO 6
+================================================================================
+Inicio: 2025-10-16 18:32:31
+Archivo entrada: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\cluster_inputs_weekly.csv
+
+📂 Cargando datos...
+✅ Datos cargados: 1385 semanas
+   Columnas: ['usuario_id', 'usuario_alias', 'semana_inicio', 'dias_monitoreados', 'flag_baja_cobertura', 'pct_imputada_FC_walk', 'Actividad_relativa_p50', 'Actividad_relativa_iqr', 'Superavit_calorico_basal_p50', 'Superavit_calorico_basal_iqr', 'HRV_SDNN_p50', 'HRV_SDNN_iqr', 'Delta_cardiaco_p50', 'Delta_cardiaco_iqr']
+✅ Las 8 features están presentes
+
+🔍 Aplicando filtros de calidad...
+  Filtrado de calidad:
+    - Original: 1385 semanas
+    - Tras filtro dias≥3: 1366 (19 eliminadas)
+    - Tras filtro pct_imputada≤60%: 1337 (29 eliminadas)
+✅ Semanas válidas para clustering: 1337
+
+  Semanas por usuario tras filtrado:
+    u1: 149 semanas
+    u10: 131 semanas
+    u2: 7 semanas
+    u3: 141 semanas
+    u4: 14 semanas
+    u5: 14 semanas
+    u6: 278 semanas
+    u7: 114 semanas
+    u8: 191 semanas
+    u9: 298 semanas
+
+🔧 Preparando features...
+✅ Features escaladas con RobustScaler
+   Shape: (1337, 8)
+
+================================================================================
+BÚSQUEDA DE K ÓPTIMO
+================================================================================
+
+  Evaluando K=2...
+    - Calculando estabilidad (20 bootstraps)...
+    - Silhouette: 0.232
+    - Davies-Bouldin: 2.058
+    - Estabilidad (ARI promedio): 0.565
+    - Tamaños: {0: 402, 1: 935}
+
+  Evaluando K=3...
+    - Calculando estabilidad (20 bootstraps)...
+    - Silhouette: 0.195
+    - Davies-Bouldin: 1.721
+    - Estabilidad (ARI promedio): 0.654
+    - Tamaños: {0: 685, 1: 235, 2: 417}
+
+  Evaluando K=4...
+    - Calculando estabilidad (20 bootstraps)...
+    - Silhouette: 0.192
+    - Davies-Bouldin: 1.422
+    - Estabilidad (ARI promedio): 0.735
+    - Tamaños: {0: 238, 1: 662, 2: 435, 3: 2}
+
+  Evaluando K=5...
+    - Calculando estabilidad (20 bootstraps)...
+    - Silhouette: 0.148
+    - Davies-Bouldin: 1.444
+    - Estabilidad (ARI promedio): 0.446
+    - Tamaños: {0: 213, 1: 375, 2: 544, 3: 1, 4: 204}
+
+  Evaluando K=6...
+    - Calculando estabilidad (20 bootstraps)...
+    - Silhouette: 0.159
+    - Davies-Bouldin: 1.430
+    - Estabilidad (ARI promedio): 0.777
+    - Tamaños: {0: 204, 1: 456, 2: 200, 3: 337, 4: 139, 5: 1}
+
+  📊 Selección de K óptimo:
+     K elegido: 2
+     Silhouette: 0.232
+     Estabilidad: 0.565
+
+✅ Métricas guardadas: model_selection_metrics.csv
+
+================================================================================
+GUARDANDO RESULTADOS (K=2)
+================================================================================
+✅ Asignaciones guardadas: cluster_assignments.csv
+   1337 semanas asignadas
+✅ Centroides guardados: cluster_centroids.csv
+✅ Perfiles clínicos guardados: cluster_profiles.csv
+
+================================================================================
+GENERANDO VISUALIZACIONES
+================================================================================
+  ✅ Gráfico PCA guardado: pca_scatter.png
+  ⚠️  umap-learn no disponible, se omite gráfico UMAP
+
+================================================================================
+INSIGHTS CLÍNICOS
+================================================================================
+
+Cluster 0 (402 semanas, 10 usuarios):
+  - Actividad relativa: 0.160 (mediana)
+  - HRV SDNN: 47.7 ms (mediana)
+  - Superávit calórico: 45.4% TMB (mediana)
+
+Cluster 1 (935 semanas, 10 usuarios):
+  - Actividad relativa: 0.116 (mediana)
+  - HRV SDNN: 49.5 ms (mediana)
+  - Superávit calórico: 25.4% TMB (mediana)
+
+================================================================================
+CLUSTERING COMPLETADO
+================================================================================
+Fin: 2025-10-16 18:32:40
+
+📂 Salidas generadas:
+   - model_selection_metrics.csv (5 filas)
+   - cluster_assignments.csv (1337 semanas)
+   - cluster_centroids.csv (2 centroides)
+   - cluster_profiles.csv (2 perfiles)
+   - Visualizaciones PCA/UMAP en cluster_viz/

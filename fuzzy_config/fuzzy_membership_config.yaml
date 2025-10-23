@@ -1,0 +1,130 @@
+Actividad_relativa_p50:
+  direction: higher_better
+  labels:
+  - Baja
+  - Media
+  - Alta
+  membership_functions:
+    Baja:
+      percentiles: &id001
+      - 10
+      - 25
+      - 40
+      values:
+      - 0.0702380952380952
+      - 0.0954545454545454
+      - 0.11740692640692636
+      type: triangular
+    Media:
+      percentiles: &id002
+      - 35
+      - 50
+      - 65
+      values:
+      - 0.1108695652173913
+      - 0.1309523809523809
+      - 0.15378917378917376
+      type: triangular
+    Alta:
+      percentiles: &id003
+      - 60
+      - 75
+      - 90
+      values:
+      - 0.1477777777777777
+      - 0.1653846153846153
+      - 0.1949477124183006
+      type: triangular
+Superavit_calorico_basal_p50:
+  direction: higher_better
+  labels:
+  - Baja
+  - Media
+  - Alta
+  membership_functions:
+    Baja:
+      percentiles: *id001
+      values:
+      - 17.179945460943
+      - 22.12879310344828
+      - 25.76426115448968
+      type: triangular
+    Media:
+      percentiles: *id002
+      values:
+      - 24.48119050510746
+      - 28.39616285554936
+      - 33.452841048522025
+      type: triangular
+    Alta:
+      percentiles: *id003
+      values:
+      - 31.59458337981037
+      - 39.04379252649191
+      - 51.031467826519595
+      type: triangular
+HRV_SDNN_p50:
+  direction: higher_better
+  labels:
+  - Baja
+  - Media
+  - Alta
+  membership_functions:
+    Baja:
+      percentiles: *id001
+      values:
+      - 30.724249500000003
+      - 36.2839
+      - 44.46637166666667
+      type: triangular
+    Media:
+      percentiles: *id002
+      values:
+      - 41.5502
+      - 49.08068333333333
+      - 54.58566814285715
+      type: triangular
+    Alta:
+      percentiles: *id003
+      values:
+      - 52.64108
+      - 58.24823333333333
+      - 64.35926000000002
+      type: triangular
+Delta_cardiaco_p50:
+  direction: lower_better
+  labels:
+  - Baja_Carga
+  - Media_Carga
+  - Alta_Carga
+  membership_functions:
+    Baja_Carga:
+      percentiles:
+      - 10
+      - 25
+      - 40
+      values:
+      - 33.0
+      - 37.5
+      - 41.0
+      type: triangular
+    Media_Carga:
+      percentiles:
+      - 35
+      - 50
+      - 65
+      values:
+      - 39.5
+      - 43.0
+      - 46.0
+      type: triangular
+    Alta_Carga:
+      percentiles:
+      - 60
+      - 75
+      - 90
+      values:
+      - 45.0
+      - 48.25
+      - 54.0
+      type: triangular

@@ -1,0 +1,99 @@
+================================================================================
+REPORTE: VARIABLES DERIVADAS AGREGADAS
+================================================================================
+
+Archivos procesados: 10/10
+
+--------------------------------------------------------------------------------
+DETALLES POR USUARIO
+--------------------------------------------------------------------------------
+
+u1 (ale):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u1.csv
+  Procesado: True
+  Registros: 1048
+  TMB: 1411.50 kcal/día
+  Actividad_relativa (media): 0.0869
+  Superavit_calorico_basal (media): 22.08%
+
+u2 (brenda):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u2.csv
+  Procesado: True
+  Registros: 50
+  TMB: 1470.25 kcal/día
+  Actividad_relativa (media): 0.1504
+  Superavit_calorico_basal (media): 28.36%
+
+u3 (christina):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u3.csv
+  Procesado: True
+  Registros: 980
+  TMB: 1439.00 kcal/día
+  Actividad_relativa (media): 0.1320
+  Superavit_calorico_basal (media): 47.71%
+
+u4 (edson):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u4.csv
+  Procesado: True
+  Registros: 96
+  TMB: 2005.00 kcal/día
+  Actividad_relativa (media): 0.1852
+  Superavit_calorico_basal (media): 21.38%
+
+u5 (esmeralda):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u5.csv
+  Procesado: True
+  Registros: 96
+  TMB: 1339.00 kcal/día
+  Actividad_relativa (media): 0.1852
+  Superavit_calorico_basal (media): 32.02%
+
+u6 (fidel):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u6.csv
+  Procesado: True
+  Registros: 1861
+  TMB: 1960.00 kcal/día
+  Actividad_relativa (media): 0.1886
+  Superavit_calorico_basal (media): 22.62%
+
+u7 (kevin):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u7.csv
+  Procesado: True
+  Registros: 799
+  TMB: 1740.00 kcal/día
+  Actividad_relativa (media): 0.1248
+  Superavit_calorico_basal (media): 21.11%
+
+u8 (legarda):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u8.csv
+  Procesado: True
+  Registros: 1332
+  TMB: 1911.25 kcal/día
+  Actividad_relativa (media): 0.1660
+  Superavit_calorico_basal (media): 49.00%
+
+u9 (lmartinez):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u9.csv
+  Procesado: True
+  Registros: 2070
+  TMB: 2241.25 kcal/día
+  Actividad_relativa (media): 0.1171
+  Superavit_calorico_basal (media): 36.70%
+
+u10 (vane):
+  Archivo: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\DB_final_v3_u10.csv
+  Procesado: True
+  Registros: 853
+  TMB: 1304.00 kcal/día
+  Actividad_relativa (media): 0.1040
+  Superavit_calorico_basal (media): 27.14%
+
+--------------------------------------------------------------------------------
+RESUMEN
+--------------------------------------------------------------------------------
+Total procesados: 10/10
+
+✅ TODAS LAS VARIABLES DERIVADAS AGREGADAS EXITOSAMENTE
+   Próximo paso: Paso 3 - Análisis de Variabilidad Dual
+
+================================================================================

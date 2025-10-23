@@ -1,0 +1,181 @@
+================================================================================
+REPORTE FINAL: CONTROL DE INSUMOS COMPLETO
+================================================================================
+Fecha: 2025-10-16 14:10
+Pipeline: Sedentarismo con Lógica Difusa
+Estado: ✅ INSUMOS 100% COMPLETOS
+
+================================================================================
+1. AUDITORÍAS FC_WALK_IMPUTACION_V3 (analisis_u/)
+================================================================================
+
+✅ 10/10 AUDITORÍAS COMPLETAS
+
+u1  - ale        : FC_walk_imputacion_V3_u1.csv  (1048 registros, 70.0% obs)
+u2  - brenda     : FC_walk_imputacion_V3_u2.csv  (  50 registros, 68.0% obs)
+u3  - christina  : FC_walk_imputacion_V3_u3.csv  ( 980 registros, 83.0% obs)
+u4  - edson      : FC_walk_imputacion_V3_u4.csv  (  96 registros, 89.6% obs)
+u5  - esmeralda  : FC_walk_imputacion_V3_u5.csv  ( 646 registros, 87.9% obs) *
+u6  - fidel      : FC_walk_imputacion_V3_u6.csv  (1861 registros, 64.4% obs)
+u7  - kevin      : FC_walk_imputacion_V3_u7.csv  ( 799 registros, 76.6% obs)
+u8  - legarda    : FC_walk_imputacion_V3_u8.csv  (1332 registros, 61.5% obs)
+u9  - lmartinez  : FC_walk_imputacion_V3_u9.csv  (2070 registros, 63.8% obs)
+u10 - vane       : FC_walk_imputacion_V3_u10.csv ( 853 registros, 68.1% obs)
+
+* Nota: u5 (esmeralda) copiada desde ruta especial:
+  apple_health_export_esmeralda/apple_health_export/ (nivel adicional)
+
+Total registros en auditorías: 9,735
+
+Calidad de imputación promedio:
+  - Observados (FC_walk): 72.2%
+  - Rolling mediana: 19.1%
+  - Hard no-wear: 4.3%
+  - Baseline FCr: 4.2%
+  - Baseline lowAct: 0.2%
+
+================================================================================
+2. DATASETS DE TRABAJO (DB_final_v3_uN.csv)
+================================================================================
+
+✅ 10/10 DATASETS CON VARIABLES DERIVADAS COMPLETAS
+
+u1  - ale        : 1048 registros | TMB=1411.5 | Act_rel=0.087 | Sup_cal=22.1%
+u2  - brenda     :   50 registros | TMB=1470.2 | Act_rel=0.150 | Sup_cal=28.4%
+u3  - christina  :  980 registros | TMB=1439.0 | Act_rel=0.132 | Sup_cal=47.7%
+u4  - edson      :   96 registros | TMB=2005.0 | Act_rel=0.185 | Sup_cal=21.4%
+u5  - esmeralda  :   96 registros | TMB=1339.0 | Act_rel=0.185 | Sup_cal=32.0%
+u6  - fidel      : 1861 registros | TMB=1960.0 | Act_rel=0.189 | Sup_cal=22.6%
+u7  - kevin      :  799 registros | TMB=1740.0 | Act_rel=0.125 | Sup_cal=21.1%
+u8  - legarda    : 1332 registros | TMB=1911.2 | Act_rel=0.166 | Sup_cal=49.0%
+u9  - lmartinez  : 2070 registros | TMB=2241.2 | Act_rel=0.117 | Sup_cal=36.7%
+u10 - vane       :  853 registros | TMB=1304.0 | Act_rel=0.104 | Sup_cal=27.1%
+
+Total registros diarios: 9,185
+Columnas por archivo: 14 (11 base + 2 derivadas + 1 metadata TMB)
+
+Variables derivadas agregadas:
+  ✅ Actividad_relativa = min_totales_en_movimiento / (60 × Total_hrs_monitorizadas)
+  ✅ Superavit_calorico_basal = (Gasto_calorico_activo × 100) / TMB
+  ✅ TMB (metadata) = calculada por sexo según Mifflin-St Jeor
+
+Sustituciones realizadas (evitar multicolinealidad):
+  ❌ Eliminado: min_totales_en_movimiento (→ Actividad_relativa)
+  ❌ Eliminado: Gasto_calorico_activo (→ Superavit_calorico_basal)
+
+Rangos de fechas:
+  Fecha más antigua: 2018-10-31 (u9 - lmartinez)
+  Fecha más reciente: 2028-02-11 (u8 - legarda) *posible error de registro futuro
+  
+Calidad de datos:
+  ✅ 0 NaNs en todas las variables de modelado
+  ✅ Rangos fisiológicos validados (por metodología de DB_CREATE_V3)
+
+================================================================================
+3. COMPARACIÓN HOMBRES vs MUJERES
+================================================================================
+
+HOMBRES (5 usuarios): u4, u6, u7, u8, u9
+  TMB Media: 1971.5 kcal/día (rango: 1740.0 - 2241.2)
+  Actividad_relativa Media: 0.156 (moderada)
+  Superavit_calorico_basal Media: 30.2%
+  Total registros: 6,158
+
+MUJERES (5 usuarios): u1, u2, u3, u5, u10
+  TMB Media: 1392.7 kcal/día (rango: 1304.0 - 1470.2)
+  Actividad_relativa Media: 0.118 (baja-moderada)
+  Superavit_calorico_basal Media: 31.5%
+  Total registros: 3,027
+
+Observación: Hombres tienen mayor TMB (como esperado) pero actividad relativa
+también mayor. Mujeres tienen mayor superávit calórico relativo a su TMB.
+
+================================================================================
+4. ARCHIVOS GENERADOS EN ESTE PROCESO
+================================================================================
+
+Scripts de control:
+  ✅ 00_control_insumos.py
+  ✅ 00b_copiar_auditoria_esmeralda.py (específico para u5)
+  ✅ 01_agregar_variables_derivadas.py
+
+Logs y reportes:
+  ✅ control_insumos_log.txt
+  ✅ reporte_variables_derivadas.txt
+  ✅ 00c_reporte_final_control_insumos.txt (este archivo)
+
+Datos procesados:
+  ✅ analisis_u/FC_walk_imputacion_V3_u{1-10}.csv (10 archivos)
+  ✅ DB_final_v3_u{1-10}.csv (10 archivos actualizados con derivadas)
+
+================================================================================
+5. ESTADO DEL PIPELINE - PRÓXIMOS PASOS
+================================================================================
+
+✅ PASO 1: Consolidación Diaria (DB_CREATE_V3) - COMPLETO
+✅ PASO 2: Variables Derivadas - COMPLETO
+✅ OPCIÓN A: Control de Insumos - COMPLETO
+
+🟢 LISTO PARA PASO 3: Análisis de Variabilidad Dual
+
+Próximas tareas según 00_metodologia_y_plan_pipeline.md:
+
+[ ] Paso 3: Análisis de Variabilidad Dual
+    - Script: analisis_variabilidad_dual.py
+    - Outputs: variabilidad_observada.csv, variabilidad_operativa.csv, gráficos
+
+[ ] Paso 4: Agregación Semanal
+    - Script: agregacion_semanal_v1.py
+    - Output: DB_semanal_features.csv
+
+[ ] Paso 5: Caracterización de Missingness y ACF
+    - Script: analisis_missingness_acf.py
+    - Outputs: missingness_summary.csv, acf_plots/
+
+[ ] Paso 6-13: Según Roadmap en metodología
+
+================================================================================
+6. NOTAS TÉCNICAS Y CONSIDERACIONES
+================================================================================
+
+Ruta especial de esmeralda:
+  La carpeta de esmeralda tiene estructura diferente:
+  apple_health_export_esmeralda/apple_health_export/FC_walk_imputacion_V3.csv
+  (nivel adicional de directorio)
+  
+  Se manejó con script específico 00b_copiar_auditoria_esmeralda.py
+
+Integridad de datos:
+  - Todos los archivos DB_final_v3_uN.csv pasaron por DB_CREATE_V3.ipynb
+  - Imputación jerárquica con gates (hard no-wear, soft low-act, normal)
+  - Rolling mediana solo hacia atrás (sin leak temporal)
+  - Winsorización p1-p99 por mes (estabilizador operativo)
+
+Variables a usar en modelado fuzzy (post-agregación semanal):
+  1. Actividad_relativa_p50 (mediana semanal)
+  2. Superavit_calorico_basal_p50
+  3. HRV_SDNN_p50
+  4. Delta_cardiaco_p50 (FC_walk - FCr)
+  5. Calidad_señal_semanal (% no-wear, hrs monitoreadas)
+
+Archivos INMUTABLES (zona roja - solo lectura):
+  apple_health_export/apple_health_export_*/DB_final_v3.csv
+  apple_health_export/apple_health_export_*/FC_walk_imputacion_V3.csv
+
+Archivos de TRABAJO (zona verde - modificables):
+  4 semestre_dataset/DB_final_v3_u{1-10}.csv
+  4 semestre_dataset/analisis_u/*
+
+================================================================================
+FIN DEL REPORTE
+================================================================================
+
+Estado: ✅ INSUMOS 100% LISTOS
+Próximo paso: Paso 3 - Análisis de Variabilidad Dual
+
+Comando para continuar:
+  python analisis_variabilidad_dual.py (cuando esté creado)
+
+================================================================================
+
+

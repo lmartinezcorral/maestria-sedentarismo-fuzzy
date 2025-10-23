@@ -1,0 +1,162 @@
+[2025-10-17 16:30:25] 
+================================================================================
+FUZZY SETUP - PASO 7A: DERIVACIÓN DE FUNCIONES DE MEMBRESÍA
+================================================================================
+[2025-10-17 16:30:25] Inicio: 2025-10-17 16:30:25
+[2025-10-17 16:30:25] Archivo entrada: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\analisis_u\semanal\weekly_consolidado.csv
+[2025-10-17 16:30:25] Directorio salida: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\fuzzy_config
+[2025-10-17 16:30:25] 
+================================================================================
+1. CARGANDO DATOS SEMANALES
+================================================================================
+[2025-10-17 16:30:25] ✅ Datos cargados: 1385 semanas
+[2025-10-17 16:30:25]    Columnas disponibles: ['usuario_id', 'usuario_alias', 'semana_inicio', 'dias_monitoreados', 'flag_baja_cobertura', 'Actividad_relativa_count', 'Actividad_relativa_mean', 'Actividad_relativa_p25', 'Actividad_relativa_p50', 'Actividad_relativa_p75', 'Actividad_relativa_iqr', 'Actividad_relativa_std', 'Actividad_relativa_cv', 'Actividad_relativa_ac1', 'Superavit_calorico_basal_count', 'Superavit_calorico_basal_mean', 'Superavit_calorico_basal_p25', 'Superavit_calorico_basal_p50', 'Superavit_calorico_basal_p75', 'Superavit_calorico_basal_iqr', 'Superavit_calorico_basal_std', 'Superavit_calorico_basal_cv', 'Superavit_calorico_basal_ac1', 'HRV_SDNN_count', 'HRV_SDNN_mean', 'HRV_SDNN_p25', 'HRV_SDNN_p50', 'HRV_SDNN_p75', 'HRV_SDNN_iqr', 'HRV_SDNN_std', 'HRV_SDNN_cv', 'HRV_SDNN_ac1', 'FCr_promedio_diario_count', 'FCr_promedio_diario_mean', 'FCr_promedio_diario_p25', 'FCr_promedio_diario_p50', 'FCr_promedio_diario_p75', 'FCr_promedio_diario_iqr', 'FCr_promedio_diario_std', 'FCr_promedio_diario_cv', 'FCr_promedio_diario_ac1', 'FC_al_caminar_promedio_diario_count', 'FC_al_caminar_promedio_diario_mean', 'FC_al_caminar_promedio_diario_p25', 'FC_al_caminar_promedio_diario_p50', 'FC_al_caminar_promedio_diario_p75', 'FC_al_caminar_promedio_diario_iqr', 'FC_al_caminar_promedio_diario_std', 'FC_al_caminar_promedio_diario_cv', 'FC_al_caminar_promedio_diario_ac1', 'Delta_cardiaco_count', 'Delta_cardiaco_mean', 'Delta_cardiaco_p25', 'Delta_cardiaco_p50', 'Delta_cardiaco_p75', 'Delta_cardiaco_iqr', 'Delta_cardiaco_std', 'Delta_cardiaco_cv', 'Delta_cardiaco_ac1', 'pct_imputada_FC_walk']
+[2025-10-17 16:30:25] 
+✅ Features disponibles para MF: 4/4
+[2025-10-17 16:30:25]    - Actividad_relativa_p50 (higher_better)
+[2025-10-17 16:30:25]    - Superavit_calorico_basal_p50 (higher_better)
+[2025-10-17 16:30:25]    - HRV_SDNN_p50 (higher_better)
+[2025-10-17 16:30:25]    - Delta_cardiaco_p50 (lower_better)
+[2025-10-17 16:30:25] 
+================================================================================
+2. CALCULANDO ESCALADORES ROBUSTOS (p5-p95)
+================================================================================
+[2025-10-17 16:30:25] ✅ Actividad_relativa_p50:
+[2025-10-17 16:30:25]    Min (p5): 0.0564
+[2025-10-17 16:30:25]    Max (p95): 0.2165
+[2025-10-17 16:30:25]    N: 1385
+[2025-10-17 16:30:25] ✅ Superavit_calorico_basal_p50:
+[2025-10-17 16:30:25]    Min (p5): 14.0331
+[2025-10-17 16:30:25]    Max (p95): 56.9188
+[2025-10-17 16:30:25]    N: 1385
+[2025-10-17 16:30:25] ✅ HRV_SDNN_p50:
+[2025-10-17 16:30:25]    Min (p5): 28.5726
+[2025-10-17 16:30:25]    Max (p95): 68.6334
+[2025-10-17 16:30:25]    N: 1385
+[2025-10-17 16:30:25] ✅ Delta_cardiaco_p50:
+[2025-10-17 16:30:25]    Min (p5): 31.0000
+[2025-10-17 16:30:25]    Max (p95): 59.0000
+[2025-10-17 16:30:25]    N: 1385
+[2025-10-17 16:30:25] 
+✅ Guardado: feature_scalers.json
+[2025-10-17 16:30:25] 
+================================================================================
+3. DERIVANDO FUNCIONES DE MEMBRESÍA (MF)
+================================================================================
+[2025-10-17 16:30:25] 
+📊 Procesando: Actividad_relativa_p50 (higher_better)
+[2025-10-17 16:30:25]    Baja: p[10, 25, 40] = ['0.070', '0.095', '0.117']
+[2025-10-17 16:30:25]    Media: p[35, 50, 65] = ['0.111', '0.131', '0.154']
+[2025-10-17 16:30:25]    Alta: p[60, 75, 90] = ['0.148', '0.165', '0.195']
+[2025-10-17 16:30:25] 
+📊 Procesando: Superavit_calorico_basal_p50 (higher_better)
+[2025-10-17 16:30:25]    Baja: p[10, 25, 40] = ['17.180', '22.129', '25.764']
+[2025-10-17 16:30:25]    Media: p[35, 50, 65] = ['24.481', '28.396', '33.453']
+[2025-10-17 16:30:25]    Alta: p[60, 75, 90] = ['31.595', '39.044', '51.031']
+[2025-10-17 16:30:25] 
+📊 Procesando: HRV_SDNN_p50 (higher_better)
+[2025-10-17 16:30:25]    Baja: p[10, 25, 40] = ['30.724', '36.284', '44.466']
+[2025-10-17 16:30:25]    Media: p[35, 50, 65] = ['41.550', '49.081', '54.586']
+[2025-10-17 16:30:25]    Alta: p[60, 75, 90] = ['52.641', '58.248', '64.359']
+[2025-10-17 16:30:25] 
+📊 Procesando: Delta_cardiaco_p50 (lower_better)
+[2025-10-17 16:30:25]    Baja_Carga: p[10, 25, 40] = ['33.000', '37.500', '41.000']
+[2025-10-17 16:30:25]    Media_Carga: p[35, 50, 65] = ['39.500', '43.000', '46.000']
+[2025-10-17 16:30:25]    Alta_Carga: p[60, 75, 90] = ['45.000', '48.250', '54.000']
+[2025-10-17 16:30:26] 
+================================================================================
+4. VALIDANDO FUNCIONES DE MEMBRESÍA
+================================================================================
+[2025-10-17 16:30:26] 
+✅ Validando: Actividad_relativa_p50
+[2025-10-17 16:30:26]    ✅ Baja: Monotónica
+[2025-10-17 16:30:26]    ✅ Media: Monotónica
+[2025-10-17 16:30:26]    ✅ Alta: Monotónica
+[2025-10-17 16:30:26]    ✅ Cobertura: solapamiento razonable (ratio=0.79)
+[2025-10-17 16:30:26] 
+✅ Validando: Superavit_calorico_basal_p50
+[2025-10-17 16:30:26]    ✅ Baja: Monotónica
+[2025-10-17 16:30:26]    ✅ Media: Monotónica
+[2025-10-17 16:30:26]    ✅ Alta: Monotónica
+[2025-10-17 16:30:26]    ✅ Cobertura: solapamiento razonable (ratio=0.82)
+[2025-10-17 16:30:26] 
+✅ Validando: HRV_SDNN_p50
+[2025-10-17 16:30:26]    ✅ Baja: Monotónica
+[2025-10-17 16:30:26]    ✅ Media: Monotónica
+[2025-10-17 16:30:26]    ✅ Alta: Monotónica
+[2025-10-17 16:30:26]    ✅ Cobertura: solapamiento razonable (ratio=0.84)
+[2025-10-17 16:30:26] 
+✅ Validando: Delta_cardiaco_p50
+[2025-10-17 16:30:26]    ✅ Baja_Carga: Monotónica
+[2025-10-17 16:30:26]    ✅ Media_Carga: Monotónica
+[2025-10-17 16:30:26]    ✅ Alta_Carga: Monotónica
+[2025-10-17 16:30:26]    ✅ Cobertura: solapamiento razonable (ratio=0.91)
+[2025-10-17 16:30:26] 
+================================================================================
+5. GUARDANDO CONFIGURACIÓN FUZZY
+================================================================================
+[2025-10-17 16:30:26] ✅ Guardado: fuzzy_membership_config.yaml
+[2025-10-17 16:30:26] 
+================================================================================
+6. GENERANDO PLOTS DE FUNCIONES DE MEMBRESÍA
+================================================================================
+[2025-10-17 16:30:26] 
+📈 Graficando: Actividad_relativa_p50
+[2025-10-17 16:30:27]    ✅ Guardado: mf_Actividad_relativa_p50.png
+[2025-10-17 16:30:27] 
+📈 Graficando: Superavit_calorico_basal_p50
+[2025-10-17 16:30:28]    ✅ Guardado: mf_Superavit_calorico_basal_p50.png
+[2025-10-17 16:30:28] 
+📈 Graficando: HRV_SDNN_p50
+[2025-10-17 16:30:29]    ✅ Guardado: mf_HRV_SDNN_p50.png
+[2025-10-17 16:30:29] 
+📈 Graficando: Delta_cardiaco_p50
+[2025-10-17 16:30:30]    ✅ Guardado: mf_Delta_cardiaco_p50.png
+[2025-10-17 16:30:30] 
+================================================================================
+7. RESUMEN EJECUTIVO
+================================================================================
+[2025-10-17 16:30:30] 
+✅ FUNCIONES DE MEMBRESÍA DERIVADAS:
+[2025-10-17 16:30:30]    - Total features: 4
+[2025-10-17 16:30:30]    - Features:
+[2025-10-17 16:30:30]      • Actividad_relativa_p50
+[2025-10-17 16:30:30]      • Superavit_calorico_basal_p50
+[2025-10-17 16:30:30]      • HRV_SDNN_p50
+[2025-10-17 16:30:30]      • Delta_cardiaco_p50
+[2025-10-17 16:30:30] 
+✅ ARCHIVOS GENERADOS:
+[2025-10-17 16:30:30]    - fuzzy_membership_config.yaml
+[2025-10-17 16:30:30]    - feature_scalers.json
+[2025-10-17 16:30:30]    - 4 plots en plots/
+[2025-10-17 16:30:30]    - 07_fuzzy_setup_log.txt
+[2025-10-17 16:30:30] 
+📊 PERCENTILES USADOS:
+[2025-10-17 16:30:30]    Actividad_relativa_p50:
+[2025-10-17 16:30:30]      Baja: [10, 25, 40] → ['0.07', '0.10', '0.12']
+[2025-10-17 16:30:30]      Media: [35, 50, 65] → ['0.11', '0.13', '0.15']
+[2025-10-17 16:30:30]      Alta: [60, 75, 90] → ['0.15', '0.17', '0.19']
+[2025-10-17 16:30:30]    Superavit_calorico_basal_p50:
+[2025-10-17 16:30:30]      Baja: [10, 25, 40] → ['17.18', '22.13', '25.76']
+[2025-10-17 16:30:30]      Media: [35, 50, 65] → ['24.48', '28.40', '33.45']
+[2025-10-17 16:30:30]      Alta: [60, 75, 90] → ['31.59', '39.04', '51.03']
+[2025-10-17 16:30:30]    HRV_SDNN_p50:
+[2025-10-17 16:30:30]      Baja: [10, 25, 40] → ['30.72', '36.28', '44.47']
+[2025-10-17 16:30:30]      Media: [35, 50, 65] → ['41.55', '49.08', '54.59']
+[2025-10-17 16:30:30]      Alta: [60, 75, 90] → ['52.64', '58.25', '64.36']
+[2025-10-17 16:30:30]    Delta_cardiaco_p50:
+[2025-10-17 16:30:30]      Baja_Carga: [10, 25, 40] → ['33.00', '37.50', '41.00']
+[2025-10-17 16:30:30]      Media_Carga: [35, 50, 65] → ['39.50', '43.00', '46.00']
+[2025-10-17 16:30:30]      Alta_Carga: [60, 75, 90] → ['45.00', '48.25', '54.00']
+[2025-10-17 16:30:30] 
+✅ VALIDACIONES PASADAS:
+[2025-10-17 16:30:30]    - ✅ Sin NaNs en cálculo de percentiles
+[2025-10-17 16:30:30]    - ✅ Monotonicidad verificada
+[2025-10-17 16:30:30]    - ✅ Cobertura razonable
+[2025-10-17 16:30:30] 
+================================================================================
+FUZZY SETUP COMPLETADO
+================================================================================
+[2025-10-17 16:30:30] Fin: 2025-10-17 16:30:30
+[2025-10-17 16:30:30] 
+✅ Configuración lista para inferencia difusa (ejecutar 08_fuzzy_inference.py)

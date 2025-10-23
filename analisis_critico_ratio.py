@@ -182,3 +182,5 @@ if __name__ == "__main__":
     analisis_critico_ratio()
 
 
+
+

@@ -1,0 +1,6 @@
+,Act_Baja,Act_Media,Act_Alta,Sup_Baja,Sup_Media,Sup_Alta,HRV_Baja,HRV_Media,HRV_Alta,DC_Baja,DC_Media,DC_Alta
+R1,1,0,0,1,0,0,0,0,0,0,0,0
+R2,0,0,1,0,0,1,0,0,0,0,0,0
+R3,0,0,0,0,0,0,1,0,0,1,0,0
+R4,0,1,0,0,0,0,0,1,0,0,0,0
+R5,1,0,0,0,1,0,0,0,0,0,0,0

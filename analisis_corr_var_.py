@@ -51,17 +51,27 @@ def robust_mad(x: pd.Series) -> float:
 
 
 def make_heatmap(corr: pd.DataFrame, title: str, outpath: str):
-    """Guarda un heatmap de la matriz de correlación."""
-    plt.figure(figsize=(12, 10))
+    """Guarda un heatmap de la matriz de correlación con valores anotados."""
+    plt.figure(figsize=(14, 12))
     if HAVE_SEABORN:
-        sns.heatmap(corr, annot=False, cmap="coolwarm",
-                    vmin=-1, vmax=1, square=True, cbar=True)
+        # Anotar con valores (fmt=".2f" para 2 decimales)
+        sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm",
+                    vmin=-1, vmax=1, square=True, cbar=True,
+                    cbar_kws={"shrink": 0.8}, annot_kws={"size": 8})
     else:
         plt.imshow(corr, vmin=-1, vmax=1, cmap="coolwarm")
         plt.colorbar()
         plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
         plt.yticks(range(len(corr.index)), corr.index)
-    plt.title(title)
+        # Anotar manualmente sin seaborn
+        for i in range(len(corr.index)):
+            for j in range(len(corr.columns)):
+                val = corr.iloc[i, j]
+                if not np.isnan(val):
+                    plt.text(j, i, f'{val:.2f}', ha='center', va='center',
+                             color='white' if abs(val) > 0.5 else 'black',
+                             fontsize=8)
+    plt.title(title, fontsize=14, pad=15)
     plt.tight_layout()
     plt.savefig(outpath, dpi=150)
     plt.close()
