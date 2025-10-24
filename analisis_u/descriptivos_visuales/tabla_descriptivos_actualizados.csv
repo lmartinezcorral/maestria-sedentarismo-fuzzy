@@ -1,0 +1,9 @@
+Variable,n,Media,DE,CV (%),Mediana,Q1,Q3,IQR,Min,Max,Test Normalidad,p-valor
+Pasos Diarios,9185,6001.63,3283.59,54.7,5489.0,3779.0,7657.0,3878.0,11.48,25511.7,Kolmogorov-Smirnov,< 0.001
+Calorías Activas (kcal),9185,595.87,450.65,75.6,517.72,322.09,767.4,445.31,0.07,18313.13,Kolmogorov-Smirnov,< 0.001
+FC Reposo (lpm),9185,54.24,8.72,16.1,53.0,48.0,59.0,11.0,37.0,142.61,Kolmogorov-Smirnov,< 0.001
+FC al Caminar (lpm),9185,97.77,12.38,12.7,97.75,90.5,105.0,14.5,50.0,159.0,Kolmogorov-Smirnov,< 0.001
+HRV SDNN (ms),9185,49.39,17.17,34.8,48.36,36.17,60.4,24.23,9.84,135.44,Kolmogorov-Smirnov,< 0.001
+Hrs Monitorizadas,9185,15.42,5.21,33.8,15.0,13.0,18.0,5.0,1.0,65.0,Kolmogorov-Smirnov,< 0.001
+Actividad Relativa (prop.),9185,0.14,0.1,73.2,0.13,0.08,0.18,0.09,0.0,2.15,Kolmogorov-Smirnov,< 0.001
+Superávit Calórico (%),9185,32.64,23.03,70.6,28.0,19.87,40.91,21.04,0.0,817.09,Kolmogorov-Smirnov,< 0.001
