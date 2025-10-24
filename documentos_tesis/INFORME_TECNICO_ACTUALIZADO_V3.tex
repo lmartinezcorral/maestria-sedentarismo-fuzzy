@@ -1334,6 +1334,58 @@ r_{xy} = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n
 \label{fig:features_correlacion_heatmap}
 \end{figure}
 
+\subsection{Matrices de Correlación por Usuario}
+
+Para evaluar la heterogeneidad de patrones de correlación entre participantes, se calcularon matrices de correlación de Pearson individuales (nivel diario, todas las variables biométricas). A continuación se presentan los heatmaps para los 10 usuarios:
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u1_heatmap_pearson.png}
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u2_heatmap_pearson.png}
+\caption{Heatmap de Correlación de Pearson (datos diarios): Usuarios 1 y 2. Se observan patrones individuales de asociación entre variables biométricas, reflejando la heterogeneidad fisiológica inter-sujeto.}
+\label{fig:corr_heatmap_u1_u2}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u3_heatmap_pearson.png}
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u4_heatmap_pearson.png}
+\caption{Heatmap de Correlación de Pearson (datos diarios): Usuarios 3 y 4.}
+\label{fig:corr_heatmap_u3_u4}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u5_heatmap_pearson.png}
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u6_heatmap_pearson.png}
+\caption{Heatmap de Correlación de Pearson (datos diarios): Usuarios 5 y 6.}
+\label{fig:corr_heatmap_u5_u6}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u7_heatmap_pearson.png}
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u8_heatmap_pearson.png}
+\caption{Heatmap de Correlación de Pearson (datos diarios): Usuarios 7 y 8.}
+\label{fig:corr_heatmap_u7_u8}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u9_heatmap_pearson.png}
+\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u10_heatmap_pearson.png}
+\caption{Heatmap de Correlación de Pearson (datos diarios): Usuarios 9 y 10.}
+\label{fig:corr_heatmap_u9_u10}
+\end{figure}
+
+\textbf{Hallazgos clave:}
+\begin{itemize}[noitemsep]
+    \item Las matrices individuales muestran \textbf{patrones heterogéneos} de correlación entre usuarios
+    \item Algunos usuarios exhiben correlaciones fuertes entre actividad y variables cardiovasculares (e.g., u3, u7)
+    \item Otros muestran independencia relativa (e.g., u1, u5), justificando el enfoque personalizado del sistema difuso
+    \item Esta variabilidad inter-sujeto refuerza la decisión de usar \textbf{medianas semanales} en lugar de promedios globales
+\end{itemize}
+
 \section{Análisis de Multicolinealidad (VIF)}
 
 \subsection{Factor de Inflación de la Varianza}
@@ -2449,138 +2501,6 @@ Apropiado para objetivo & \textcolor{red}{NO} & \textcolor{orange}{Parcial} & \t
     \item Esta defensa metodológica es \textbf{publicable} y reconocida en revistas de alto impacto (e.g., \textit{NeuroImage}, \textit{Nature Methods}).
 \end{enumerate}
 \end{conclusionbox}
-
-% ============================================
-% APÉNDICE: FIGURAS Y VISUALIZACIONES
-% ============================================
-\chapter*{Apéndice A: Figuras y Visualizaciones}
-\addcontentsline{toc}{chapter}{Apéndice A: Figuras y Visualizaciones}
-
-\section*{A.1. Análisis de Autocorrelación Temporal (Cap. 6)}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/acf_Actividad_relativa_p50_u1.png}
-\includegraphics[width=0.48\textwidth]{figuras/pacf_Actividad_relativa_p50_u1.png}
-\caption{ACF y PACF: Actividad Relativa p50 - Usuario 1}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/acf_Superavit_calorico_basal_p50_u1.png}
-\includegraphics[width=0.48\textwidth]{figuras/pacf_Superavit_calorico_basal_p50_u1.png}
-\caption{ACF y PACF: Superávit Calórico Basal p50 - Usuario 1}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/acf_HRV_SDNN_p50_u1.png}
-\includegraphics[width=0.48\textwidth]{figuras/pacf_HRV_SDNN_p50_u1.png}
-\caption{ACF y PACF: HRV SDNN p50 - Usuario 1}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/acf_Delta_cardiaco_p50_u1.png}
-\includegraphics[width=0.48\textwidth]{figuras/pacf_Delta_cardiaco_p50_u1.png}
-\caption{ACF y PACF: Delta Cardiaco p50 - Usuario 1}
-\end{figure}
-
-\clearpage
-
-\section*{A.2. Análisis de Variabilidad Semanal (Cap. 8)}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u1.png}
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u2.png}
-\caption{Variabilidad Semanal por Variable: Usuarios 1 y 2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u3.png}
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u4.png}
-\caption{Variabilidad Semanal por Variable: Usuarios 3 y 4}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u5.png}
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u6.png}
-\caption{Variabilidad Semanal por Variable: Usuarios 5 y 6}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u7.png}
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u8.png}
-\caption{Variabilidad Semanal por Variable: Usuarios 7 y 8}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u9.png}
-\includegraphics[width=0.48\textwidth]{figuras/variabilidad_variables_u10.png}
-\caption{Variabilidad Semanal por Variable: Usuarios 9 y 10}
-\end{figure}
-
-\clearpage
-
-\section*{A.3. Matrices de Correlación (Cap. 9)}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u1_heatmap_pearson.png}
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u2_heatmap_pearson.png}
-\caption{Heatmap de Correlación de Pearson: Usuarios 1 y 2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u3_heatmap_pearson.png}
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u4_heatmap_pearson.png}
-\caption{Heatmap de Correlación de Pearson: Usuarios 3 y 4}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u5_heatmap_pearson.png}
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u6_heatmap_pearson.png}
-\caption{Heatmap de Correlación de Pearson: Usuarios 5 y 6}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u7_heatmap_pearson.png}
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u8_heatmap_pearson.png}
-\caption{Heatmap de Correlación de Pearson: Usuarios 7 y 8}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u9_heatmap_pearson.png}
-\includegraphics[width=0.48\textwidth]{figuras/DB_final_v3_u10_heatmap_pearson.png}
-\caption{Heatmap de Correlación de Pearson: Usuarios 9 y 10}
-\end{figure}
-
-\clearpage
-
-\section*{A.4. Análisis de Clusters y Robustez (Cap. 10-12)}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.85\textwidth]{figuras/cluster_profiles_boxplots.png}
-\caption{Perfiles de Cluster: Boxplots de Variables por Cluster (K=2)}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.85\textwidth]{figuras/comparativa_f1_scores.png}
-\caption{Comparación de F1-Scores: Modelo Completo (4V) vs Modelo Reducido (2V)}
-\end{figure}
-
-\clearpage
 
 % ============================================
 % BIBLIOGRAFÍA
