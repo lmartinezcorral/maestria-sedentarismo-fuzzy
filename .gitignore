@@ -75,3 +75,22 @@ figures/
 # Archivos de análisis temporales
 analysis_temp/
 temp_analysis/
+
+# ==============================================
+# DIRECTORIOS HISTÓRICOS (MANTENER EN LOCAL)
+# ==============================================
+# Nota: Estos directorios contienen trabajo preliminar, experimentos
+# fallidos documentados y análisis exploratorios que informaron
+# decisiones metodológicas, pero NO deben publicarse en GitHub
+
+# Modelado preliminar (ANNs, LSTM, FCM para SF-36)
+Modelado/
+
+# Análisis HRV detallado con seudónimos originales
+HRV_analisis/
+
+# Documentos de lectura y contexto teórico (algunos con derechos de autor)
+documentos_lectura/
+
+# Informe de auditoría interna
+INFORME_AUDITORIA_CRITICA_PROYECTO.md
