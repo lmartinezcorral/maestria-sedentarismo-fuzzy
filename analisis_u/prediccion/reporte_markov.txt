@@ -1,19 +1,19 @@
-[2025-10-23 06:05:18] ====================================================================================================
-[2025-10-23 06:05:18] PREDICCIÓN MARKOV + SEMÁFORO - PASO 12
-[2025-10-23 06:05:18] ====================================================================================================
-[2025-10-23 06:05:18] ✅ Datos cargados: 1385 semanas, 10 usuarios
-[2025-10-23 06:05:18] 🟢 Umbral verde (≤): 0.3300 | 🔴 Umbral rojo (≥): 0.6700
-[2025-10-23 06:05:18] ✅ Guardado semáforo semanal: semaforo_semanal.csv
-[2025-10-23 06:05:18] ✅ Guardada matriz de transición global (conteos): matriz_transicion_global.csv
-[2025-10-23 06:05:18] ✅ Guardada matriz de transición global (probs): matriz_transicion_global_probs.csv
-[2025-10-23 06:05:18] ✅ Guardada matriz de transición por usuario: matriz_transicion_por_usuario.csv
-[2025-10-23 06:05:18] ✅ Guardado backtest 1-paso (1375 transiciones): predicciones_backtest.csv
-[2025-10-23 06:05:18] 🎯 Precisión 1-paso (global): 0.640
-[2025-10-23 06:05:18] ✅ Guardado: prediccion_proxima_semana_por_usuario.csv
-[2025-10-23 06:05:18] 
-[2025-10-23 06:05:18] 📊 RESUMEN MATRIZ GLOBAL (Probs):
-[2025-10-23 06:05:18]   P(verde→verde)=0.28, P(verde→amarillo)=0.55, P(verde→rojo)=0.17
-[2025-10-23 06:05:18]   P(amarillo→verde)=0.07, P(amarillo→amarillo)=0.72, P(amarillo→rojo)=0.21
-[2025-10-23 06:05:18]   P(rojo→verde)=0.03, P(rojo→amarillo)=0.48, P(rojo→rojo)=0.49
-[2025-10-23 06:05:18] 
-[2025-10-23 06:05:18] ✅ Proceso completado. Artefactos en analisis_u/prediccion/
+[2025-10-24 08:18:14] ====================================================================================================
+[2025-10-24 08:18:14] PREDICCIÓN MARKOV + SEMÁFORO - PASO 12
+[2025-10-24 08:18:14] ====================================================================================================
+[2025-10-24 08:18:15] ✅ Datos cargados: 1385 semanas, 10 usuarios
+[2025-10-24 08:18:15] 🟢 Umbral verde (≤): 0.3300 | 🔴 Umbral rojo (≥): 0.6700
+[2025-10-24 08:18:15] ✅ Guardado semáforo semanal: semaforo_semanal.csv
+[2025-10-24 08:18:15] ✅ Guardada matriz de transición global (conteos): matriz_transicion_global.csv
+[2025-10-24 08:18:15] ✅ Guardada matriz de transición global (probs): matriz_transicion_global_probs.csv
+[2025-10-24 08:18:15] ✅ Guardada matriz de transición por usuario: matriz_transicion_por_usuario.csv
+[2025-10-24 08:18:15] ✅ Guardado backtest 1-paso (1375 transiciones): predicciones_backtest.csv
+[2025-10-24 08:18:15] 🎯 Precisión 1-paso (global): 0.640
+[2025-10-24 08:18:15] ✅ Guardado: prediccion_proxima_semana_por_usuario.csv
+[2025-10-24 08:18:15] 
+[2025-10-24 08:18:15] 📊 RESUMEN MATRIZ GLOBAL (Probs):
+[2025-10-24 08:18:15]   P(verde→verde)=0.28, P(verde→amarillo)=0.55, P(verde→rojo)=0.17
+[2025-10-24 08:18:15]   P(amarillo→verde)=0.07, P(amarillo→amarillo)=0.72, P(amarillo→rojo)=0.21
+[2025-10-24 08:18:15]   P(rojo→verde)=0.03, P(rojo→amarillo)=0.48, P(rojo→rojo)=0.49
+[2025-10-24 08:18:15] 
+[2025-10-24 08:18:15] ✅ Proceso completado. Artefactos en analisis_u/prediccion/
