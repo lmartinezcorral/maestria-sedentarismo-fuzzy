@@ -1,0 +1,113 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Planteamiento del Problema e Hipótesis Inicial}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Contexto Epidemiológico y Clínico}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Hipótesis Inicial y Objetivo Primario}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Objetivo Primario (Fase Inicial)}{6}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}Marco de los 6 Pasos: Planteamiento}{6}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Selección del Dispositivo Wearable y Diseño de la Cohorte}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Evaluación de Dispositivos Wearables}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Criterios de Selección}{7}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Análisis Comparativo}{7}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Diseño de la Cohorte}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Tamaño Muestral y Justificación}{8}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Criterios de Inclusión/Exclusión}{9}{subsection.2.2.2}%
+\contentsline {chapter}{\numberline {3}Protocolo de Convocatoria, Recepción y Preprocesamiento de Datos}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Protocolo de Recolección de Datos}{10}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Diseño del Protocolo}{10}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Estructura de Datos Crudos}{10}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Pipeline de Preprocesamiento}{11}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Conversión XML $\to $ CSV}{11}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Auditoría de Calidad de Datos}{12}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Análisis Exploratorio de Datos (EDA) y Validación del SF-36}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Caracterización de Variables Biométricas}{13}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Tipología y Distribuciones}{13}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Gráficos Exploratorios}{15}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Validación Psicométrica del SF-36}{15}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Estructura del Cuestionario}{15}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Pivote Metodológico: Del Enfoque Supervisado al Data-Driven}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Análisis de Correlación SF-36 vs Biométricos}{21}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Hipótesis y Pruebas Iniciales}{21}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Modelado con Redes Neuronales Artificiales (ANN)}{22}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Arquitectura y Entrenamiento}{22}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}Reformulación: Nuevo Enfoque Data-Driven}{23}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Nueva Hipótesis}{23}{subsection.5.3.1}%
+\contentsline {chapter}{\numberline {6}Estrategia de Imputación Jerárquica para Datos Faltantes}{25}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Diagnóstico de Missingness}{25}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Mecanismos de Datos Faltantes}{25}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Estrategia de Imputación Jerárquica}{26}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Principios de Diseño}{26}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Algoritmo de Imputación}{27}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Resultados de Imputación}{28}{subsection.6.2.3}%
+\contentsline {chapter}{\numberline {7}Ingeniería de Características: Variables Derivadas con Normalización Antropométrica}{29}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Problema de Comparabilidad Inter-Sujeto}{29}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Heterogeneidad Antropométrica}{29}{subsection.7.1.1}%
+\contentsline {section}{\numberline {7.2}Variable 1: Actividad Relativa}{30}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Definición y Justificación}{30}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Distribución y Validación}{30}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Variable 2: Superávit Calórico Basal}{31}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Cálculo de TMB}{31}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Definición de Superávit}{31}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Variables 3 y 4: Perfiles Cardiovasculares}{31}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Delta Cardíaco}{31}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}HRV SDNN}{32}{subsection.7.4.2}%
+\contentsline {chapter}{\numberline {8}Agregación Temporal y Análisis Dual de Variabilidad}{33}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Justificación de la Agregación Semanal}{33}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Ventana de Agregación}{33}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Estadísticos Calculados por Semana}{33}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Análisis Dual de Variabilidad}{34}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Definición de Variabilidad Observada vs Operativa}{34}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Comparación Observada vs Operativa}{34}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Gráficos de Variabilidad}{35}{subsection.8.3.3}%
+\contentsline {section}{\numberline {8.4}Agregación Semanal: Resultados Finales}{37}{section.8.4}%
+\contentsline {chapter}{\numberline {9}Análisis de Correlación, Multicolinealidad y Reducción Dimensional (PCA)}{38}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Análisis de Correlación entre Variables Semanales}{38}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Matriz de Correlación}{38}{subsection.9.1.1}%
+\contentsline {section}{\numberline {9.2}Análisis de Multicolinealidad (VIF)}{39}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}Factor de Inflación de la Varianza}{39}{subsection.9.2.1}%
+\contentsline {section}{\numberline {9.3}Análisis de Componentes Principales (PCA)}{43}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Reducción Dimensional y Visualización}{43}{subsection.9.3.1}%
+\contentsline {chapter}{\numberline {10}Clustering No Supervisado: Verdad Operativa (K-Means, K=2)}{47}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Justificación del Clustering como Verdad Operativa}{47}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}Selección del Algoritmo}{47}{subsection.10.1.1}%
+\contentsline {section}{\numberline {10.2}Barrido de $K$ (K-Sweep) y Selección del Número Óptimo de Clusters}{48}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Perfiles de Cluster: Análisis Estadístico Detallado}{49}{section.10.3}%
+\contentsline {subsection}{\numberline {10.3.1}Asignación de Etiquetas Clínicas}{49}{subsection.10.3.1}%
+\contentsline {subsection}{\numberline {10.3.2}Estadísticos Descriptivos por Cluster}{49}{subsection.10.3.2}%
+\contentsline {subsection}{\numberline {10.3.3}Pruebas de Comparación Estadística}{50}{subsection.10.3.3}%
+\contentsline {chapter}{\numberline {11}Sistema de Inferencia Difusa Mamdani}{53}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Diseño del Sistema de Inferencia Difusa}{53}{section.11.1}%
+\contentsline {subsection}{\numberline {11.1.1}Arquitectura General}{53}{subsection.11.1.1}%
+\contentsline {section}{\numberline {11.2}Funciones de Pertenencia (Membership Functions)}{54}{section.11.2}%
+\contentsline {subsection}{\numberline {11.2.1}Diseño de MF Triangulares Basadas en Percentiles}{54}{subsection.11.2.1}%
+\contentsline {section}{\numberline {11.3}Base de Reglas Difusas}{57}{section.11.3}%
+\contentsline {subsection}{\numberline {11.3.1}Reglas Clínicas IF-THEN}{57}{subsection.11.3.1}%
+\contentsline {subsection}{\numberline {11.3.2}Formalización Matricial}{58}{subsection.11.3.2}%
+\contentsline {section}{\numberline {11.4}Proceso de Inferencia Mamdani}{58}{section.11.4}%
+\contentsline {subsection}{\numberline {11.4.1}Paso 1: Fuzzificación}{58}{subsection.11.4.1}%
+\contentsline {subsection}{\numberline {11.4.2}Paso 2: Activación de Reglas (AND = mínimo)}{58}{subsection.11.4.2}%
+\contentsline {subsection}{\numberline {11.4.3}Paso 3: Agregación}{59}{subsection.11.4.3}%
+\contentsline {subsection}{\numberline {11.4.4}Paso 4: Defuzzificación (Centroide Discreto)}{59}{subsection.11.4.4}%
+\contentsline {subsection}{\numberline {11.4.5}Paso 5: Binarización}{59}{subsection.11.4.5}%
+\contentsline {chapter}{\numberline {12}Validación Cruzada y Análisis de Robustez}{60}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Validación por Concordancia: Fuzzy vs Clustering}{60}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}Métricas de Desempeño}{60}{subsection.12.1.1}%
+\contentsline {section}{\numberline {12.2}Validación Cruzada Leave-One-User-Out (LOUO)}{61}{section.12.2}%
+\contentsline {subsection}{\numberline {12.2.1}Justificación de LOUO}{61}{subsection.12.2.1}%
+\contentsline {section}{\numberline {12.3}Análisis de Sensibilidad}{63}{section.12.3}%
+\contentsline {subsection}{\numberline {12.3.1}Sensibilidad al Umbral $\tau $}{63}{subsection.12.3.1}%
+\contentsline {subsection}{\numberline {12.3.2}Sensibilidad a Parámetros de MF}{64}{subsection.12.3.2}%
+\contentsline {section}{\numberline {12.4}Análisis de Robustez: Modelo 4V vs Modelo 2V}{64}{section.12.4}%
+\contentsline {subsection}{\numberline {12.4.1}Motivación del Análisis}{64}{subsection.12.4.1}%
+\contentsline {chapter}{\numberline {13}Justificación Metodológica: Por Qué NO Split Train/Test 80/20}{67}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Problemática del Split Tradicional en Datos Longitudinales}{67}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Razón 1: Fuga Temporal (Temporal Leakage)}{68}{section.13.2}%
+\contentsline {subsection}{\numberline {13.2.1}Naturaleza de los Datos}{68}{subsection.13.2.1}%
+\contentsline {section}{\numberline {13.3}Razón 2: Insuficiencia de Poder Estadístico}{69}{section.13.3}%
+\contentsline {subsection}{\numberline {13.3.1}Split por Usuario vs Split por Semanas}{69}{subsection.13.3.1}%
+\contentsline {section}{\numberline {13.4}Razón 3: Objetivo Descriptivo vs Predictivo}{70}{section.13.4}%
+\contentsline {subsection}{\numberline {13.4.1}Naturaleza del Estudio}{70}{subsection.13.4.1}%
+\contentsline {section}{\numberline {13.5}Alternativas Metodológicas Implementadas}{70}{section.13.5}%
+\contentsline {subsection}{\numberline {13.5.1}Estrategia de Validación Adoptada}{70}{subsection.13.5.1}%
+\contentsline {subsection}{\numberline {13.5.2}Leave-One-User-Out (LOUO) Cross-Validation}{71}{subsection.13.5.2}%
+\contentsline {section}{\numberline {13.6}Resumen de Defensa Metodológica}{71}{section.13.6}%
+\contentsline {chapter}{Apéndice A: Figuras y Visualizaciones}{72}{chapter*.48}%
