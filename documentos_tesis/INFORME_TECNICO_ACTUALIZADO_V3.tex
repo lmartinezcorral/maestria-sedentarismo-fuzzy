@@ -1837,16 +1837,16 @@ donde $(a, b, c)$ son los parámetros del triángulo (izquierda, pico, derecha).
 
 Columnas: 12 etiquetas (4 variables $\times$ 3 niveles: Baja, Media, Alta)
 
-\begin{equation*}
-\mat{B} = 
-\begin{bmatrix}
-1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\
-0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1
-\end{bmatrix}
-\end{equation*}
+Representación compacta (5 reglas):
+\begin{itemize}[noitemsep]
+    \item \textbf{Regla 1}: Act\_B + Sup\_B $\to$ Sed\_ALTO
+    \item \textbf{Regla 2}: Act\_B + HRV\_A $\to$ Sed\_BAJO
+    \item \textbf{Regla 3}: Act\_A + Delta\_A $\to$ Sed\_ALTO
+    \item \textbf{Regla 4}: Act\_M + Sup\_M $\to$ Sed\_MEDIO
+    \item \textbf{Regla 5}: Sup\_A + HRV\_A $\to$ Sed\_BAJO
+\end{itemize}
+
+\textit{Nota:} La matriz binaria completa $\mat{B} \in \{0,1\}^{5 \times 12}$ está disponible en \texttt{formalizacion\_matematica/matriz\_B\_antecedentes.csv} para reproducibilidad.
 
 \textbf{Matriz de Consecuentes $\mat{C}_{\text{out}} \in \{0,1\}^{5 \times 3}$}:
 

@@ -85,7 +85,7 @@
 \contentsline {section}{\numberline {11.4}Proceso de Inferencia Mamdani}{58}{section.11.4}%
 \contentsline {subsection}{\numberline {11.4.1}Paso 1: Fuzzificación}{58}{subsection.11.4.1}%
 \contentsline {subsection}{\numberline {11.4.2}Paso 2: Activación de Reglas (AND = mínimo)}{58}{subsection.11.4.2}%
-\contentsline {subsection}{\numberline {11.4.3}Paso 3: Agregación}{59}{subsection.11.4.3}%
+\contentsline {subsection}{\numberline {11.4.3}Paso 3: Agregación}{58}{subsection.11.4.3}%
 \contentsline {subsection}{\numberline {11.4.4}Paso 4: Defuzzificación (Centroide Discreto)}{59}{subsection.11.4.4}%
 \contentsline {subsection}{\numberline {11.4.5}Paso 5: Binarización}{59}{subsection.11.4.5}%
 \contentsline {chapter}{\numberline {12}Validación Cruzada y Análisis de Robustez}{60}{chapter.12}%
