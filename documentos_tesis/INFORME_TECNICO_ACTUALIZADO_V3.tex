@@ -1263,6 +1263,28 @@ Los datos diarios presentan una variabilidad excesiva ($\text{CV} > 50\%$) atrib
 La agregación a nivel semanal (7 días continuos) utilizando estadísticos robustos (mediana, IQR) capturará el \textit{patrón habitual} de comportamiento, reduciendo ruido y mejorando estabilidad para clustering/modelado.
 \end{hipotesisbox}
 
+\begin{estadisticobox}
+\textbf{Método de agregación}:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Ventana}: 7 días consecutivos (Lunes-Domingo)
+    \item \textbf{Estadístico principal}: Mediana (p50) - robusto ante outliers
+    \item \textbf{Estadísticos auxiliares}: p10, p90, IQR - capturan dispersión
+    \item \textbf{Criterio de validez}: $\geq 5$ días con datos completos (71\% completitud)
+\end{itemize}
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si CV diario $> 50\%$ $\to$ \textbf{Justifica} agregación temporal (ruido excesivo)
+    \item Si agregación semanal reduce CV $< 30\%$ $\to$ \textbf{Aceptar} como nivel de análisis
+    \item Si $< 5$ días en semana $\to$ \textbf{Excluir} semana (completitud insuficiente)
+    \item Si agregación mensual similar a semanal $\to$ \textbf{Preferir} semanal (mayor $n$ muestral)
+\end{itemize}
+\end{reglabox}
+
 \subsection{Ventana de Agregación}
 
 \begin{equation}
@@ -1284,9 +1306,34 @@ x^{(k)}_{\text{p90}} &= \text{percentil}_{90}(x)
 
 Resultado: Dataset semanal con $n_{\text{semanas}}=1,337$ (válidas) y 16 features (4 variables $\times$ 4 estadísticos).
 
+\begin{decisionbox}
+\textbf{Decisión:}
+
+Se selecciona agregación semanal (vs. diaria o mensual) por:
+\begin{itemize}[noitemsep]
+    \item Balance ruido-información: Reduce CV diario de $> 50\%$ a $\approx 30\%$ semanal
+    \item Tamaño muestral: 1,337 semanas válidas (suficiente para clustering y modelado)
+    \item Interpretabilidad: La semana es unidad temporal natural (ciclo laboral)
+\end{itemize}
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+La agregación semanal con estadísticos robustos (mediana, IQR) captura patrones habituales de comportamiento sedentario, eliminando ruido diario sin pérdida de información crítica para el análisis multivariado posterior.
+\end{conclusionbox}
+
 \section{Análisis Dual de Variabilidad}
 
 \subsection{Definición de Variabilidad Observada vs Operativa}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué analizar variabilidad dual?} La imputación de datos faltantes (Cap 6) podría introducir artefactos que distorsionen la dispersión natural. Comparar variabilidad observada (pre-imputación) vs. operativa (post-imputación) valida que el proceso de imputación no altera dramáticamente las distribuciones.
+
+Hipótesis: $|\Delta\text{CV}| < 10\%$ entre observado y operativo, confirmando que la imputación preserva características estadísticas originales.
+\end{hipotesisbox}
 
 \begin{estadisticobox}
 \textbf{Variabilidad Observada (datos crudos, sin imputar):}
@@ -1307,6 +1354,17 @@ Refleja la variabilidad utilizada en el análisis final.
 \text{CV}_{\text{op}}^{(u,v)} = \frac{\sigma_{\text{op}}(v, u)}{\mu_{\text{op}}(v, u)} \times 100\%
 \end{equation}
 \end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si $|\Delta\text{CV}| < 5\%$ $\to$ \textbf{Aceptar} imputación (impacto mínimo)
+    \item Si $5\% \leq |\Delta\text{CV}| < 10\%$ $\to$ \textbf{Aceptar con precaución} (impacto moderado)
+    \item Si $|\Delta\text{CV}| \geq 10\%$ $\to$ \textbf{Revisar} estrategia de imputación (distorsión significativa)
+    \item Si CV\_op $<$ CV\_obs (reducción) $\to$ \textbf{Esperado} (regresión a la media por medianas)
+\end{itemize}
+\end{reglabox}
 
 \subsection{Comparación Observada vs Operativa}
 
@@ -1340,6 +1398,17 @@ La imputación tiene un impacto moderado ($|\Delta\text{CV}| < 5\%$), tendiendo 
 \textbf{Conclusión}: La imputación no distorsiona dramáticamente las distribuciones; los datos operativos son representativos de los observados.
 \end{decisionbox}
 
+\begin{conclusionbox}
+\textbf{Conclusión del análisis dual}:
+
+El análisis de variabilidad dual confirma que:
+\begin{itemize}[noitemsep]
+    \item La imputación tiene impacto moderado ($|\Delta\text{CV}| < 5\%$ en la mayoría de variables)
+    \item La reducción de CV es esperada por efecto de regresión a la media (métodos basados en medianas)
+    \item Los datos operativos preservan la estructura de dispersión original, validando su uso en clustering y modelado difuso
+\end{itemize}
+\end{conclusionbox}
+
 \subsection{Gráficos de Variabilidad}
 
 \begin{figure}[htbp]
@@ -1364,6 +1433,33 @@ La imputación tiene un impacto moderado ($|\Delta\text{CV}| < 5\%$), tendiendo 
 \end{figure}
 
 \section{Agregación Semanal: Resultados Finales}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿El dataset semanal es adecuado para clustering?} Se espera que el dataset generado (1,337 semanas × 16 features) tenga completitud 100\%, rangos fisiológicos plausibles, y variabilidad suficiente (CV $> 20\%$) para identificar patrones.
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Proceso de generación}:
+
+\begin{enumerate}[noitemsep]
+    \item Partir de datos diarios imputados
+    \item Agrupar por usuario + ventana semanal (Lunes-Domingo)
+    \item Calcular p50, p10, p90, IQR para cada variable
+    \item Aplicar filtro: $\geq 5$ días válidos por semana
+\end{enumerate}
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si completitud $= 100\%$ y $n > 1,000$ $\to$ \textbf{Aceptar} para clustering
+    \item Si medianas dentro rangos clínicos $\to$ \textbf{Validar} plausibilidad
+    \item Si CV $< 10\%$ $\to$ \textbf{Revisar} si variable discrimina
+\end{itemize}
+\end{reglabox}
 
 \begin{calculobox}
 \textbf{Dataset semanal generado:}
@@ -1392,6 +1488,19 @@ Delta\_cardiaco         & 36.8 & 14.2 & 8.5  & 78.4 \\
 \label{tab:weekly_stats}
 \end{table}
 \end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+El dataset semanal cumple todos los criterios:
+\begin{itemize}[noitemsep]
+    \item Completitud: 100\% (1,337 semanas sin valores faltantes)
+    \item Tamaño muestral: $n > 1,000$ (adecuado para K-Means y validación LOUO)
+    \item Plausibilidad: Medianas dentro de rangos clínicos (e.g., HRV\_SDNN p50 = 48.2 ms, consistente con literatura)
+\end{itemize}
+
+Se acepta el dataset para clustering (Cap 10) y modelado difuso (Cap 11).
+\end{decisionbox}
 
 \begin{conclusionbox}
 \textbf{Conclusión del capítulo:}
@@ -1757,7 +1866,66 @@ donde $\vect{\mu}_k$ es el centroide del cluster $k$, y $C_k$ es el conjunto de 
 \end{itemize}
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si Silhouette máximo en $K=2$ $\to$ \textbf{Seleccionar} $K=2$ (clasificación binaria sedentario/no sedentario)
+    \item Si curva inercia vs. $K$ muestra codo en $K^*$ $\to$ \textbf{Considerar} $K^*$ como candidato
+    \item Si $K > 4$ $\to$ \textbf{Rechazar} por pérdida de interpretabilidad clínica
+    \item Si Silhouette $< 0.20$ para todo $K$ $\to$ \textbf{Cuestionar} si los datos tienen estructura de clusters
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Preprocesamiento para clustering}:
+
+\begin{enumerate}[noitemsep]
+    \item Selección de features: 4 variables p50 + 4 IQR (8 dimensiones)
+    \item Escalado: RobustScaler (mediana, IQR) para robustez ante outliers
+    \item Inicialización: K-Means++ (reduce dependencia de semilla)
+    \item Repeticiones: 50 inicializaciones, seleccionar mejor inercia
+\end{enumerate}
+\end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión metodológica}:
+
+Se selecciona K-Means con RobustScaler sobre alternativas (DBSCAN, Hierarchical) por:
+\begin{itemize}[noitemsep]
+    \item Necesidad de etiquetas duras (no probabilísticas) para Ground Truth
+    \item Escalabilidad a $n=1,337$ semanas
+    \item Interpretabilidad de centroides (perfil promedio de cada cluster)
+\end{itemize}
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión de la justificación}:
+
+K-Means es apropiado para generar la Verdad Operativa (GO) al producir etiquetas binarias interpretables que representan perfiles de sedentarismo, necesarios para validar el sistema difuso mediante métricas de clasificación supervisada (F1-Score, Recall).
+\end{conclusionbox}
+
 \section{Barrido de $K$ (K-Sweep) y Selección del Número Óptimo de Clusters}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué $K=2$?} Desde una perspectiva clínica, el sedentarismo se conceptualiza binariamente: un individuo es sedentario o activo. Aunque existen estados intermedios, una clasificación dicotómica facilita la toma de decisiones en salud pública (e.g., derivar a intervención o no).
+
+Hipótesis: El coeficiente de Silhouette será máximo en $K=2$, confirmando que los datos se agrupan naturalmente en dos perfiles distintos de comportamiento sedentario.
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Métricas para selección de $K$}:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Silhouette Score}: Rango [-1, 1], valores $> 0.25$ aceptables para datos reales
+    \item \textbf{Inercia (Within-Cluster Sum of Squares)}: Menor es mejor, buscar "codo"
+    \item \textbf{Calinski-Harabasz Index}: Mayor es mejor (ratio varianza inter/intra)
+\end{itemize}
+
+Procedimiento: Ejecutar K-Means para $K \in \{2, 3, 4, 5, 6\}$, calcular métricas, seleccionar $K^*$ óptimo.
+\end{estadisticobox}
 
 \begin{reglabox}
 \textbf{Criterios de selección}:
@@ -1819,7 +1987,39 @@ El Silhouette bajo (0.232) se acepta dado que:
 \end{enumerate}
 \end{decisionbox}
 
+\begin{conclusionbox}
+\textbf{Conclusión del K-Sweep}:
+
+El barrido de $K$ confirma que $K=2$ es óptimo por:
+\begin{itemize}[noitemsep]
+    \item Silhouette máximo (0.232) en $K=2$
+    \item Respaldo de PCA (2 componentes explican 71\% varianza)
+    \item Interpretabilidad clínica (binario: sedentario/no sedentario)
+\end{itemize}
+
+El Silhouette relativamente bajo (0.232) es esperado en datos de vida libre con transiciones graduales entre estados, no invalida la utilidad de la clasificación binaria como Verdad Operativa para validar el sistema difuso.
+\end{conclusionbox}
+
 \section{Perfiles de Cluster: Análisis Estadístico Detallado}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué validar estadísticamente los perfiles de cluster?} Aunque K-Means asigna etiquetas automáticamente, es crítico verificar que los 2 clusters identificados representan perfiles fisiológicamente distintos y no agrupaciones artificiosas por ruido.
+
+Hipótesis: Los clusters diferirán significativamente ($p < 0.001$) en las variables de actividad física (Act\_rel, Sup\_cal), con tamaños de efecto grandes (Cohen's d $> 0.8$), validando la separación clínica.
+\end{hipotesisbox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si Mann-Whitney U test: $p < 0.001$ para variables clave $\to$ \textbf{Aceptar} separación estadística
+    \item Si Cohen's d $> 0.8$ para Act\_rel o Sup\_cal $\to$ \textbf{Confirmar} tamaño efecto grande (diferencia clínica relevante)
+    \item Si alguna variable no discrimina ($p > 0.05$) $\to$ \textbf{Investigar} si es prescindible o tiene rol multivariado
+    \item Si clusters tienen $n < 100$ semanas $\to$ \textbf{Cuestionar} representatividad
+\end{itemize}
+\end{reglabox}
 
 \subsection{Asignación de Etiquetas Clínicas}
 
