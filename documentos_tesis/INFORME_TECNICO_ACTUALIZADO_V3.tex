@@ -3157,11 +3157,31 @@ Delta\_cardiaco         & 0.64 & 0.48 & 0.29 & $< 0.001$ \\
 \textbf{Interpretación}: ACF lag-1 $> 0.6$ confirma que semanas consecutivas están fuertemente correlacionadas. Ljung-Box test rechaza independencia ($p<0.001$).
 \end{calculobox}
 
+\begin{decisionbox}
+\textbf{Decisión:}
+
+La autocorrelación significativa (ACF lag-1 $> 0.6$, Ljung-Box $p < 0.001$) invalida el supuesto de independencia requerido para split aleatorio Train/Test. Dividir semanas aleatoriamente contaminaría el conjunto de test con información del train vía autocorrelación, sesgando las métricas de generalización.
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+El split aleatorio Train/Test 80/20 es \textbf{metodológicamente inválido} en datos longitudinales con autocorrelación temporal. La fuga temporal (temporal leakage) inflaría artificialmente las métricas de validación, generando falsa confianza en la generalización del modelo.
+\end{conclusionbox}
+
 \textit{Ver Figuras}: \texttt{4 semestre\_dataset/analisis\_u/missingness\_y\_acf/acf\_plots/*.png}
 
 \section{Razón 2: Insuficiencia de Poder Estadístico}
 
 \subsection{Split por Usuario vs Split por Semanas}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Y si dividimos por usuarios en lugar de por semanas?} Para evitar fuga temporal, se podría entrenar con 8 usuarios y validar con 2.
+
+Hipótesis alternativa: El split por usuario evita fuga temporal pero introduce problema de poder estadístico: con solo 2 usuarios en test, las métricas tendrán varianza excesiva (CV $> 15\%$), haciendo las conclusiones inestables.
+\end{hipotesisbox}
 
 \begin{estadisticobox}
 \textbf{Alternativa: Split por usuario}:
@@ -3218,9 +3238,41 @@ Evaluamos F1-Score para 10 combinaciones aleatorias de 2 usuarios en test:
 \textbf{Conclusión}: Con $n_{\text{test}}=2$, F1 varía entre 0.58 y 0.91 (CV=16.4\%), inaceptable para conclusiones robustas.
 \end{calculobox}
 
+\begin{decisionbox}
+\textbf{Decisión:}
+
+El split por usuario con $n_{\text{test}}=2$ es \textbf{estadísticamente insuficiente} (CV=16.4\%, intervalos de confianza amplísimos). Requiere $n \geq 30$ para estimaciones estables, inalcanzable con nuestra cohorte ($N=10$).
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+Tanto el split aleatorio (fuga temporal) como el split por usuario (poder insuficiente) son inviables. La validación Leave-One-User-Out (LOUO) es la única alternativa metodológicamente rigurosa para estudios longitudinales con $N < 30$ sujetos.
+\end{conclusionbox}
+
 \section{Razón 3: Objetivo Descriptivo vs Predictivo}
 
 \subsection{Naturaleza del Estudio}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Es necesario split Train/Test para todos los estudios?} No. El split Train/Test se justifica en estudios \textit{predictivos} que buscan generalización a población externa futura. Este estudio es \textit{descriptivo-clasificatorio}, buscando caracterizar patrones internos de la cohorte existente.
+
+Hipótesis: En estudios descriptivos con validación por concordancia (método empírico vs experto), el split Train/Test es innecesario y contraproducente (desperdicia datos, reduce poder).
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Tipología de estudios}:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Predictivo confirmatorio}: Requiere split Train/Test rígido (generalización poblacional)
+    \item \textbf{Descriptivo exploratorio}: Validación por concordancia interna aceptable
+    \item \textbf{Desarrollo de sistema experto}: LOUO valida generalización inter-sujeto
+\end{itemize}
+
+\textbf{Nuestro estudio}: Descriptivo-clasificatorio + desarrollo sistema experto.
+\end{estadisticobox}
 
 \begin{reglabox}
 \textbf{Objetivos del estudio}:
@@ -3245,6 +3297,35 @@ En estudios descriptivos con objetivo de caracterización interna, el split Trai
     \item Contraproducente (desperdicia datos, reduce poder)
 \end{itemize}
 \end{reglabox}
+
+\begin{calculobox}
+\textbf{Comparación objetivos vs método:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Tipo de Estudio} & \textbf{Objetivo} & \textbf{Validación Requerida} \\
+\midrule
+Predictivo poblacional & Generalizar a externos & Split Train/Test + validación externa \\
+Descriptivo exploratorio & Caracterizar cohorte & Concordancia interna + LOUO \\
+\textbf{Este estudio} & \textbf{Clasificar + interpretar} & \textbf{Concordancia + LOUO} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+Dado que el objetivo es descriptivo-clasificatorio (no predictivo poblacional), la validación por concordancia dual (Fuzzy vs Clustering) + LOUO es \textbf{metodológicamente apropiada} y \textbf{estadísticamente robusta}.
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+El split Train/Test 80/20 no es una regla universal aplicable a todo tipo de estudio. Su uso depende del objetivo de investigación. En estudios descriptivos longitudinales con $N < 30$, alternativas como LOUO + concordancia dual son metodológicamente superiores.
+\end{conclusionbox}
 
 \section{Alternativas Metodológicas Implementadas}
 
@@ -3283,6 +3364,46 @@ En estudios descriptivos con objetivo de caracterización interna, el split Trai
 
 \textbf{Resultado}: F1=0.812$\pm$0.067 $\to$ Generalización inter-usuario demostrada con varianza controlada.
 \end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión para validación en estudios longitudinales pequeños:}
+
+\begin{itemize}[noitemsep]
+    \item Si $N < 30$ sujetos y datos longitudinales $\to$ \textbf{Usar LOUO}, no split 80/20
+    \item Si ACF lag-1 $> 0.5$ $\to$ \textbf{Prohibido} split aleatorio por semanas
+    \item Si objetivo es descriptivo (no predictivo poblacional) $\to$ \textbf{Validar} por concordancia dual
+    \item Si LOUO muestra CV(F1) $< 15\%$ $\to$ \textbf{Aceptar} robustez inter-usuario
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Resultados comparativos LOUO vs Split:}
+
+\begin{itemize}[noitemsep]
+    \item LOUO: F1 = 0.812 $\pm$ 0.067 (CV = 8.3\%, 10 folds)
+    \item Split 80/20 usuarios: F1 = 0.73 $\pm$ 0.12 (CV = 16.4\%, simulación)
+    \item Split 80/20 semanas: \textbf{INVÁLIDO} (fuga temporal)
+\end{itemize}
+
+\textbf{Ventaja LOUO}: Reduce varianza a la mitad (CV 8.3\% vs 16.4\%), mejorando confiabilidad de conclusiones.
+\end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión final:}
+
+Se adopta validación dual (concordancia Fuzzy-Clustering) + LOUO cross-validation como estrategia primaria, justificada por:
+\begin{itemize}[noitemsep]
+    \item Rigor metodológico (evita fuga temporal)
+    \item Robustez estadística (10 folds vs 1 split)
+    \item Alineación con objetivo descriptivo-interpretativo
+\end{itemize}
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión del capítulo:}
+
+La validación LOUO con concordancia dual es \textbf{metodológicamente superior} al split Train/Test 80/20 para estudios longitudinales con $N < 30$ sujetos. Esta estrategia es estándar en literatura biomédica para estudios piloto (e.g., Varoquaux, 2018; Poldrack et al., 2020), proporcionando estimaciones robustas de generalización inter-sujeto sin sacrificar poder estadístico.
+\end{conclusionbox}
 
 \section{Resumen de Defensa Metodológica}
 
