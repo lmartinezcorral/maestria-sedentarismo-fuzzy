@@ -306,11 +306,45 @@ Matriz de decisión multicriterio con pesos asignados según importancia para el
 \end{itemize}
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si score ponderado $> 8.0$ $\to$ \textbf{Seleccionar} dispositivo como estándar
+    \item Si validación en literatura ($\geq 3$ estudios) $\to$ \textbf{Priorizar}
+    \item Si exportación de datos $<$ API completa $\to$ \textbf{Penalizar}
+    \item Si costo $> \$500$ USD $\to$ \textbf{Considerar} impacto en reclutamiento
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Cálculo del score ponderado:}
+
+\begin{equation}
+\text{Score}_{\text{dispositivo}} = \sum_{i=1}^{4} w_i \cdot \text{calificación}_i
+\end{equation}
+
+Ejemplo Apple Watch:
+\begin{itemize}[noitemsep]
+    \item Validez sensores: $0.35 \times 10 = 3.5$
+    \item Exportabilidad: $0.30 \times 10 = 3.0$
+    \item Consistencia: $0.20 \times 9 = 1.8$
+    \item Penetración: $0.15 \times 8 = 1.2$
+    \item \textbf{Total: 9.5/10}
+\end{itemize}
+\end{calculobox}
+
 \begin{decisionbox}
 \textbf{Decisión:}
 
 Se seleccionó el \textbf{Apple Watch} (Series 3 o superior) como dispositivo estándar del estudio, adoptando un enfoque \textit{Bring Your Own Device} (BYOD) para maximizar adherencia y minimizar el efecto Hawthorne.
 \end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+La selección del Apple Watch se justifica por su ecosistema cerrado (HealthKit XML estandarizado), validaciones previas en literatura (concordancia $> 90\%$ con gold-standard para FC, pasos), y alta penetración en la población objetivo (jóvenes adultos urbanos), facilitando el reclutamiento BYOD.
+\end{conclusionbox}
 
 \section{Diseño de la Cohorte}
 
@@ -332,6 +366,34 @@ Con $N=10$ y $T \approx 130$ semanas (promedio), se alcanzarían $\approx 1300$ 
     \item Validación cruzada Leave-One-Subject-Out
 \end{itemize}
 \end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Cálculo de tamaño muestral:}
+
+Para estudios longitudinales, el tamaño muestral se basa en observaciones totales, no solo sujetos:
+
+\begin{equation}
+n_{\text{total}} = N_{\text{sujetos}} \times T_{\text{tiempo}}
+\end{equation}
+
+Con $N=10$ y seguimiento promedio de 130 semanas/usuario:
+\begin{equation}
+n_{\text{total}} \approx 10 \times 130 = 1,300 \text{ observaciones semanales}
+\end{equation}
+
+Esto supera el mínimo recomendado para clustering ($n > 500$) y permite validación LOUO robusta.
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si $n_{\text{total}} > 1,000$ observaciones $\to$ \textbf{Aceptar} tamaño muestral
+    \item Si $N < 8$ sujetos $\to$ \textbf{Rechazar} (LOUO insuficiente)
+    \item Si distribución sexo desbalanceada ($> 70/30$) $\to$ \textbf{Revisar} representatividad
+    \item Si tasa abandono $> 30\%$ $\to$ \textbf{Cuestionar} viabilidad protocolo
+\end{itemize}
+\end{reglabox}
 
 \subsection{Criterios de Inclusión/Exclusión}
 
@@ -367,6 +429,12 @@ Se convocó a 15 candidatos, de los cuales:
 \end{itemize}
 \end{calculobox}
 
+\begin{decisionbox}
+\textbf{Decisión:}
+
+La cohorte final de $N=10$ (tasa completitud 83\%, abandono 17\%) cumple el criterio de $n_{\text{total}} > 1,000$ observaciones. La distribución sexo balanceada (50/50) y rango etario/IMC representativo de población adulta joven justifican su validez para análisis exploratorio.
+\end{decisionbox}
+
 \begin{conclusionbox}
 \textbf{Conclusión metodológica:}
 
@@ -395,6 +463,52 @@ Para garantizar la integridad, trazabilidad y ética de los datos biométricos s
 \end{enumerate}
 \end{hipotesisbox}
 
+\begin{estadisticobox}
+\textbf{Método de recolección:}
+
+\begin{itemize}[noitemsep]
+    \item Convocatoria abierta (correo institucional, redes sociales académicas)
+    \item Sesión presencial individual para firma de consentimiento y entrega de instructivo
+    \item Exportación por parte del participante (HealthKit $\to$ export.zip)
+    \item Recepción vía correo encriptado o USB físico
+    \item Aplicación del SF-36 (presencial o Google Forms)
+\end{itemize}
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si participante no firma consentimiento $\to$ \textbf{Excluir} (ética)
+    \item Si datos históricos $< 6$ meses $\to$ \textbf{Excluir} (sesgo adaptación)
+    \item Si SF-36 no completado $\to$ \textbf{Excluir} (hipótesis inicial requería CVRS)
+    \item Si export.zip corrupto o incompleto $\to$ \textbf{Solicitar reenvío}
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Resultados del protocolo:}
+
+\begin{itemize}[noitemsep]
+    \item 15 candidatos convocados
+    \item 12 cumplieron criterios (80\%)
+    \item 10 completaron protocolo (67\% retención final)
+    \item Causas de exclusión: 1 sin SF-36, 2 abandonos voluntarios, 2 datos insuficientes
+\end{itemize}
+\end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+El protocolo generó 10 paquetes de datos completos (export.zip + SF-36), con tasa de retención del 67\% (aceptable para estudios voluntarios longitudinales). Se procede con el preprocesamiento (sección siguiente).
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+El protocolo estandarizado garantizó trazabilidad, ética, y calidad de datos, cumpliendo con los estándares de investigación biomédica (consentimiento informado, anonimización, almacenamiento seguro). La tasa de completitud (67\%) es consistente con estudios BYOD en población no clínica.
+\end{conclusionbox}
+
 \subsection{Estructura de Datos Crudos}
 
 Los datos exportados de Apple Health siguen el esquema XML:
@@ -414,6 +528,14 @@ Los datos exportados de Apple Health siguen el esquema XML:
 \section{Pipeline de Preprocesamiento}
 
 \subsection{Conversión XML $\to$ CSV}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué parseo personalizado?} Los archivos XML exportados por Apple Health contienen datos heterogéneos (múltiples dispositivos, zonas horarias, granularidades). Un parseo genérico incluiría datos irrelevantes (iPhone, eventos atípicos), introduciendo ruido.
+
+Hipótesis: Un pipeline de parseo selectivo (filtrar por fuente, zona horaria, agregación diaria) generará datasets limpios y comparables entre usuarios, con completitud $> 90\%$.
+\end{hipotesisbox}
 
 \begin{estadisticobox}
 \textbf{Método:}
@@ -461,6 +583,28 @@ Para cada usuario y día:
 \text{HRV\_SDNN}_{\text{día}} &= \text{mean}\{\text{SDNN}(t) : t \in [00:00, 23:59]\}
 \end{align}
 \end{calculobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si completitud post-parseo $> 90\%$ $\to$ \textbf{Aceptar} pipeline
+    \item Si missingness $< 20\%$ por variable $\to$ \textbf{Confirmar} calidad adecuada
+    \item Si valores fuera de rangos fisiológicos (e.g., FC $> 200$ lpm) $\to$ \textbf{Marcar} para limpieza posterior
+\end{itemize}
+\end{reglabox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+El pipeline de parseo selectivo generó 10 datasets individuales con completitud promedio del 94.7\%, cumpliendo el criterio objetivo ($> 90\%$). Se procede con auditoría de calidad para caracterizar patrones de missingness.
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+El parseo XML personalizado es robusto y reproducible, generando datasets diarios limpios con estructura homogénea entre usuarios, listos para análisis exploratorio (Cap 4) e imputación (Cap 6).
+\end{conclusionbox}
 
 \subsection{Auditoría de Calidad de Datos}
 
