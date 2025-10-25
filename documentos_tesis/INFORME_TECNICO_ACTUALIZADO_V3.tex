@@ -1530,6 +1530,23 @@ Para evaluar la heterogeneidad de patrones de correlación entre participantes, 
     \item Esta variabilidad inter-sujeto refuerza la decisión de usar \textbf{medianas semanales} en lugar de promedios globales
 \end{itemize}
 
+\begin{decisionbox}
+\textbf{Decisión:}
+
+La correlación moderada Act\_rel--Sup\_cal ($r=0.68$) no constituye multicolinealidad severa (umbral: $r > 0.80$). Las correlaciones bajas con variables cardiovasculares ($r < 0.35$) confirman que las 4 variables capturan dominios distintos del sedentarismo. Se procede con todas las variables sin eliminación.
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+El análisis de correlación global y por usuario revela:
+\begin{itemize}[noitemsep]
+    \item Ausencia de colinealidad severa entre variables semanales
+    \item Independencia relativa de HRV\_SDNN (dominio autonómico) vs. actividad física (dominio metabólico)
+    \item Heterogeneidad inter-sujeto en patrones de correlación, justificando modelado basado en lógica difusa (flexible) vs. regresión lineal (asume relaciones homogéneas)
+\end{itemize}
+\end{conclusionbox}
+
 \section{Análisis de Multicolinealidad (VIF)}
 
 \subsection{Factor de Inflación de la Varianza}
@@ -1559,6 +1576,16 @@ donde $R^2_j$ es el coeficiente de determinación de la regresión de la variabl
 \end{itemize}
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión:}
+
+\begin{itemize}[noitemsep]
+    \item Si VIF $< 5$ para todas las variables $\to$ \textbf{Aceptar} conjunto completo (multicolinealidad aceptable)
+    \item Si alguna VIF $\geq 5$ $\to$ \textbf{Eliminar} variable con mayor VIF, recalcular
+    \item Si correlación Pearson $|r| < 0.80$ pero VIF $> 5$ $\to$ \textbf{Revisar} relaciones no lineales
+\end{itemize}
+\end{reglabox}
+
 \begin{calculobox}
 \textbf{Resultados VIF:}
 
@@ -1586,6 +1613,17 @@ Delta\_cardiaco\_p50         & 1.14 & \textcolor{green}{Excelente} \\
 
 Las 4 variables p50 son adecuadas para el análisis de clustering y modelado difuso. Aunque Act\_rel y Sup\_cal están correlacionadas ($r=0.68$), su VIF bajo ($<2.0$) confirma que aportan información complementaria sin redundancia excesiva.
 \end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+El análisis VIF confirma la ausencia de multicolinealidad severa en el conjunto de 4 variables semanales. Valores VIF $< 2.0$ para todas las variables indican que:
+\begin{itemize}[noitemsep]
+    \item Cada variable aporta información única y no redundante
+    \item No es necesario eliminar variables por colinealidad
+    \item El modelo difuso posterior podrá usar las 4 variables sin inestabilidad numérica
+\end{itemize}
+\end{conclusionbox}
 
 \section{Análisis de Componentes Principales (PCA)}
 
