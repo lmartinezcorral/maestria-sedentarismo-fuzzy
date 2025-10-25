@@ -737,6 +737,19 @@ Las métricas biométricas agregadas (media de 4 semanas) correlacionan signific
 \end{itemize}
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si $|r| \geq 0.60$ y $p < 0.0016$ (Bonferroni) $\to$ \textbf{Aceptar} H$_1$ (correlación fuerte)
+    \item Si $|r| < 0.30$ para mayoría pares $\to$ \textbf{Rechazar} H$_1$ (correlación débil)
+    \item Si $< 3$ pares significativos $\to$ \textbf{Cuestionar} viabilidad enfoque supervisado
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Resultados de correlación:}
+
 \begin{table}[H]
 \centering
 \caption{Matriz de Correlación: Biométricos Agregados vs SF-36 ($N=10$)}
@@ -758,14 +771,52 @@ Min sedentarios       & -0.29 & --- & -0.16 & -0.35 & -0.18 & -0.24 & -0.13 & -0
 \end{table}
 
 \begin{decisionbox}
-\textbf{Decisión estadística:}
+\textbf{Decisión:}
 
 \textbf{Se rechaza H$_1$}. Las correlaciones observadas son débiles a moderadas ($0.09 \leq |r| \leq 0.45$) y ninguna sobrevive la corrección Bonferroni. La asociación es insuficiente para justificar un modelo predictivo.
 \end{decisionbox}
 
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+Las correlaciones débiles entre SF-36 y biométricos ($r < 0.50$, $p > 0.0016$) cuestionan la viabilidad del enfoque supervisado inicial. Sin embargo, antes de abandonar completamente esta vía, se exploró modelado no lineal (ANN) como prueba definitiva.
+\end{conclusionbox}
+
 \section{Modelado con Redes Neuronales Artificiales (ANN)}
 
 \subsection{Arquitectura y Entrenamiento}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué probar ANN tras correlaciones débiles?} Las relaciones lineales (Spearman) pueden no capturar interacciones no lineales complejas. Las ANN, mediante capas ocultas con activaciones no lineales (ReLU), pueden detectar patrones que el análisis univariado no revela.
+
+Hipótesis: Una ANN con 2 capas ocultas logrará $R^2 \geq 0.70$ en validación, demostrando que existen relaciones no lineales explotables entre biométricos y SF-36.
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Arquitectura y configuración:}
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Entrada}: 16 features biométricos
+    \item \textbf{Capas ocultas}: [32 ReLU] $\to$ [16 ReLU]
+    \item \textbf{Salida}: 7 dimensiones SF-36
+    \item \textbf{Optimizador}: Adam ($\alpha=0.001$)
+    \item \textbf{Validación}: 5-fold cross-validation
+    \item \textbf{Exploraciones}: 20 configuraciones distintas probadas
+\end{itemize}
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si $R^2_{\text{val}} \geq 0.70$ $\to$ \textbf{Aceptar} ANN como modelo predictivo
+    \item Si $R^2_{\text{val}} < 0$ (negativo) $\to$ \textbf{Rechazar} ANN (sobreajuste severo)
+    \item Si MAE $> 20$ puntos SF-36 $\to$ \textbf{Rechazar} (error inaceptable clínicamente)
+    \item Si train $R^2 > 0.90$ pero val $R^2 < 0$ $\to$ \textbf{Confirmar} overfitting
+\end{itemize}
+\end{reglabox}
 
 A pesar de las correlaciones débiles, se procedió a entrenar ANNs como prueba definitiva:
 
@@ -843,6 +894,41 @@ Los datos biométricos contienen patrones latentes que permiten clasificar objet
 \end{itemize}
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si enfoque dual (clustering + fuzzy) converge (F1 $> 0.80$) $\to$ \textbf{Aceptar} reformulación
+    \item Si Silhouette clustering $> 0.20$ $\to$ \textbf{Validar} que datos tienen estructura de grupos
+    \item Si reglas fuzzy son clínicamente interpretables $\to$ \textbf{Confirmar} utilidad para decisión clínica
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Pipeline reformulado:}
+
+\begin{enumerate}[noitemsep]
+    \item Preprocesamiento robusto (Cap 3, 6, 7)
+    \item Agregación temporal semanal (Cap 8)
+    \item Clustering K-Means $\to$ Ground Truth (Cap 10)
+    \item Sistema fuzzy Mamdani (Cap 11)
+    \item Validación cruzada (Cap 12)
+\end{enumerate}
+
+\textbf{Ventaja metodológica:} Ambos métodos son \textit{no supervisados}, eliminando dependencia de etiquetas externas (SF-36) que demostraron ser no confiables.
+\end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+Se aprueba el pivote metodológico por:
+\begin{itemize}[noitemsep]
+    \item Evidencia empírica robusta de inviabilidad del enfoque supervisado (correlaciones débiles + ANN fallidas)
+    \item Respaldo teórico: Enfoque data-driven es apropiado para descubrimiento de patrones en datos de vida libre
+    \item Alineación con comité tutorial: Validación interna (concordancia) es aceptable para estudios piloto
+\end{itemize}
+\end{decisionbox}
+
 \begin{conclusionbox}
 \textbf{Conclusión del pivote:}
 
@@ -878,6 +964,18 @@ Los datos faltantes en wearables no son MCAR (Missing Completely At Random), sin
 \end{itemize}
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si Test Little MCAR: $p < 0.05$ $\to$ \textbf{Rechazar} MCAR (missingness sistemático)
+    \item Si missingness $> 15\%$ en variable crítica $\to$ \textbf{Requerir} imputación robusta
+    \item Si patrón temporal (ACF lag-1 significativo) $\to$ \textbf{Usar} imputación que preserve autocorrelación
+    \item Si missingness $< 5\%$ $\to$ \textbf{Considerar} eliminación directa (listwise deletion)
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
 \textbf{Análisis de Autocorrelación Temporal:}
 
 Se calcularon funciones ACF/PACF para evaluar dependencias temporales en las variables semanales. A continuación, se muestran ejemplos para el usuario u1:
@@ -889,8 +987,61 @@ Se calcularon funciones ACF/PACF para evaluar dependencias temporales en las var
 \caption{Funciones ACF y PACF para HRV\_SDNN\_p50 (usuario u1). Se observa decaimiento lento en ACF, indicando persistencia temporal (memoria de sistema cardiovascular). PACF muestra pico significativo en lag-1, sugiriendo proceso AR(1).}
 \label{fig:acf_pacf_hrv_u1}
 \end{figure}
+\end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+El test Little MCAR rechaza la hipótesis de missing completamente aleatorio ($p < 0.001$). Las ACF/PACF muestran autocorrelación temporal significativa (lag-1). \textbf{Conclusión}: Se requiere imputación forward-only que preserve dependencias temporales, no métodos globales como KNN o MICE (violarían causalidad).
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión del diagnóstico}:
+
+Los datos faltantes presentan:
+\begin{itemize}[noitemsep]
+    \item Mecanismo MAR/MNAR (no MCAR)
+    \item Tasas moderadas (4-15\% según variable)
+    \item Autocorrelación temporal (ACF lag-1 significativo)
+\end{itemize}
+
+Estos hallazgos justifican una estrategia de imputación jerárquica forward-only con validación de plausibilidad fisiológica.
+\end{conclusionbox}
 
 \section{Estrategia de Imputación Jerárquica}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué imputación jerárquica?} Un método único (e.g., mediana global) ignora la estructura temporal y heterogeneidad inter-usuario. Una jerarquía de 5 métodos (del más específico al más general) preservará patrones individuales y temporales mejor que métodos simples.
+
+Hipótesis: Imputación jerárquica forward-only logrará $> 90\%$ imputaciones mediante métodos específicos del usuario (M1-M3), minimizando el uso de medianas globales (M5), resultando en datos imputados con plausibilidad fisiológica.
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Jerarquía de 5 métodos}:
+
+\begin{enumerate}[noitemsep]
+    \item \textbf{M1}: Media móvil 7 días previos (temporal + individual)
+    \item \textbf{M2}: Mediana del mismo día de semana último mes (patrón semanal)
+    \item \textbf{M3}: Mediana histórica del usuario (individual)
+    \item \textbf{M4}: Estimación por ecuación Tanaka para FC\_reposo (fisiológica)
+    \item \textbf{M5}: Mediana global (último recurso)
+\end{enumerate}
+
+\textbf{Criterio}: Se aplica el primer método disponible según datos disponibles.
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si M1-M3 imputan $> 90\%$ casos $\to$ \textbf{Aceptar} preservación de patrones individuales
+    \item Si M5 (global) $> 10\%$ $\to$ \textbf{Revisar} estrategia (exceso de interpolación global)
+    \item Si valores imputados fuera rango fisiológico $\to$ \textbf{Reemplazar} por mediana usuario
+    \item Si no hay datos históricos para M1-M4 $\to$ \textbf{Aceptar} M5 como último recurso
+\end{itemize}
+\end{reglabox}
 
 \subsection{Principios de Diseño}
 
