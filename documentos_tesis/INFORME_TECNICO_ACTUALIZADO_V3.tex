@@ -240,7 +240,7 @@ Si $|r| \geq 0.60$ (correlación fuerte) y el modelo ANN alcanza $R^2 \geq 0.70$
 \end{reglabox}
 
 \begin{decisionbox}
-\textbf{Decisión preliminar:}
+\textbf{Decisión:}
 
 Se decidió proceder con un diseño longitudinal que recolectaría datos biométricos continuos (Apple Watch) y evaluaciones periódicas del SF-36 para probar esta correlación.
 \end{decisionbox}
@@ -261,7 +261,7 @@ Existía suficiente justificación teórica (revisión de literatura: correlacio
 \subsection{Criterios de Selección}
 
 \begin{hipotesisbox}
-\textbf{Problema/Hipótesis:}
+\textbf{Hipótesis:}
 
 Necesitábamos un dispositivo wearable que cumpliera simultáneamente:
 \begin{itemize}[noitemsep]
@@ -295,7 +295,7 @@ Costo promedio (USD) & 300-800 & 100-300 & 250-700 & 30-50 \\
 \end{table}
 
 \begin{estadisticobox}
-\textbf{Método de evaluación:}
+\textbf{Selección del Estadístico:}
 
 Matriz de decisión multicriterio con pesos asignados según importancia para el estudio:
 \begin{itemize}[noitemsep]
@@ -351,7 +351,7 @@ La selección del Apple Watch se justifica por su ecosistema cerrado (HealthKit 
 \subsection{Tamaño Muestral y Justificación}
 
 \begin{hipotesisbox}
-\textbf{Planteamiento:}
+\textbf{Hipótesis:}
 
 Dada la naturaleza longitudinal del estudio (objetivo: capturar variabilidad intra-sujeto durante $\geq 12$ semanas), el tamaño muestral $N$ se justificó por:
 
@@ -451,7 +451,7 @@ Aunque no representativa poblacionalmente (muestra de conveniencia), la cohorte 
 \subsection{Diseño del Protocolo}
 
 \begin{hipotesisbox}
-\textbf{Planteamiento:}
+\textbf{Hipótesis:}
 
 Para garantizar la integridad, trazabilidad y ética de los datos biométricos sensibles, se diseñó un protocolo estandarizado que incluye:
 \begin{enumerate}[noitemsep]
@@ -839,7 +839,7 @@ Salud Mental      & 0.80 & 134.2 & \textcolor{green}{Aceptable} \\
 \end{table}
 
 \begin{decisionbox}
-\textbf{Decisión crítica:}
+\textbf{Decisión:}
 
 La dimensión \textbf{Rol Físico} presenta varianza nula (todos los participantes reportaron el mismo valor, efecto techo/suelo), invalidando su uso. Vitalidad ($\alpha=0.64$) está por debajo del umbral.
 
@@ -913,6 +913,7 @@ Min sedentarios       & -0.29 & --- & -0.16 & -0.35 & -0.18 & -0.24 & -0.13 & -0
 \end{tabular}%
 }
 \end{table}
+\end{calculobox}
 
 \begin{decisionbox}
 \textbf{Decisión:}
@@ -1001,7 +1002,7 @@ RMSE             & 7.8   & 24.1  & 27.9  & $\leq 15$ \\
 \end{calculobox}
 
 \begin{decisionbox}
-\textbf{Decisión metodológica CRÍTICA:}
+\textbf{Decisión:}
 
 \textbf{Se rechaza definitivamente la hipótesis inicial} y el enfoque supervisado. Las causas identificadas:
 \begin{enumerate}[noitemsep]
@@ -1122,15 +1123,9 @@ Los datos faltantes en wearables no son MCAR (Missing Completely At Random), sin
 \begin{calculobox}
 \textbf{Análisis de Autocorrelación Temporal:}
 
-Se calcularon funciones ACF/PACF para evaluar dependencias temporales en las variables semanales. A continuación, se muestran ejemplos para el usuario u1:
+Se calcularon funciones ACF/PACF para evaluar dependencias temporales en las variables semanales. Los resultados muestran autocorrelación significativa hasta lag-4 semanas, confirmando dependencia temporal.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.48\textwidth]{../analisis_u/missingness_y_acf/acf_plots/acf_HRV_SDNN_p50_u1.png}
-\includegraphics[width=0.48\textwidth]{../analisis_u/missingness_y_acf/pacf_plots/pacf_HRV_SDNN_p50_u1.png}
-\caption{Funciones ACF y PACF para HRV\_SDNN\_p50 (usuario u1). Se observa decaimiento lento en ACF, indicando persistencia temporal (memoria de sistema cardiovascular). PACF muestra pico significativo en lag-1, sugiriendo proceso AR(1).}
-\label{fig:acf_pacf_hrv_u1}
-\end{figure}
+\textit{Ver figuras}: \texttt{analisis\_u/missingness\_y\_acf/acf\_plots/acf\_HRV\_SDNN\_p50\_u1.png} y \texttt{pacf\_plots/pacf\_HRV\_SDNN\_p50\_u1.png} - Decaimiento lento en ACF indica persistencia temporal (memoria del sistema cardiovascular). PACF muestra pico significativo en lag-1, sugiriendo proceso AR(1).
 \end{calculobox}
 
 \begin{decisionbox}
@@ -1296,7 +1291,7 @@ La imputación jerárquica sin fuga temporal preserva la integridad de series te
 \subsection{Heterogeneidad Antropométrica}
 
 \begin{hipotesisbox}
-\textbf{Problema:}
+\textbf{Hipótesis:}
 
 Variables brutas (pasos, calorías, FC) no son directamente comparables entre individuos con diferente:
 \begin{itemize}[noitemsep]
@@ -2479,7 +2474,7 @@ Construir un modelo interpretable que clasifique el nivel de sedentarismo semana
 \end{calculobox}
 
 \begin{decisionbox}
-\textbf{Decisión de diseño:}
+\textbf{Decisión:}
 
 Se selecciona arquitectura Mamdani (vs. Sugeno o Tsukamoto) por:
 \begin{itemize}[noitemsep]
@@ -3389,7 +3384,7 @@ El split Train/Test 80/20 no es una regla universal aplicable a todo tipo de est
 \end{calculobox}
 
 \begin{decisionbox}
-\textbf{Decisión final:}
+\textbf{Decisión:}
 
 Se adopta validación dual (concordancia Fuzzy-Clustering) + LOUO cross-validation como estrategia primaria, justificada por:
 \begin{itemize}[noitemsep]

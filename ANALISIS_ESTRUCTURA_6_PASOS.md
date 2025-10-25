@@ -379,3 +379,4 @@ Luis detectó inconsistencia en los títulos de los bloques de los 6 pasos entre
 
 **Próximo paso**: Luis debe confirmar estrategia de corrección antes de implementar.
 
+
