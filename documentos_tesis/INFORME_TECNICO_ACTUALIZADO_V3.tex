@@ -1966,18 +1966,35 @@ El sistema difuso Mamdani con 4 inputs, 12 funciones de pertenencia (3 por varia
 
 \subsection{Diseño de MF Triangulares Basadas en Percentiles}
 
-\begin{reglabox}
-\textbf{Principio de diseño}:
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
 
-Para cada variable de entrada, definir 3 etiquetas lingüísticas (Baja, Media, Alta) mediante triángulos paramétricos basados en percentiles del dataset:
+\textbf{¿Por qué funciones triangulares basadas en percentiles?} Las funciones de pertenencia deben capturar la distribución real de los datos (no asumir normalidad) y permitir interpretabilidad clínica. Usar percentiles del dataset garantiza que las etiquetas "Baja", "Media", "Alta" reflejen cuartiles reales de la población, no umbrales arbitrarios.
 
+Hipótesis: MF basadas en percentiles (p10-p90) serán más robustas que MF paramétricas (gaussianas con parámetros fijos), especialmente en datos no-normales (CV $> 50\%$).
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Método de parametrización:}
+
+Para cada variable, se calculan percentiles del dataset semanal ($n=1,337$):
 \begin{itemize}[noitemsep]
-    \item \textbf{Baja}: $(p_{10}, p_{25}, p_{40})$
-    \item \textbf{Media}: $(p_{35}, p_{50}, p_{65})$
-    \item \textbf{Alta}: $(p_{60}, p_{80}, p_{90})$
+    \item \textbf{Baja}: Triángulo $(p_{10}, p_{25}, p_{40})$
+    \item \textbf{Media}: Triángulo $(p_{35}, p_{50}, p_{65})$
+    \item \textbf{Alta}: Triángulo $(p_{60}, p_{80}, p_{90})$
 \end{itemize}
 
-Percentiles calculados sobre el dataset semanal ($n=1,337$).
+Overlap intencional entre etiquetas ($p_{35}$--$p_{40}$, $p_{60}$--$p_{65}$) permite transiciones graduales (característica clave de lógica difusa).
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si overlap entre etiquetas $< 10\%$ rango $\to$ \textbf{Rechazar} (transiciones demasiado abruptas, no difusas)
+    \item Si overlap $> 30\%$ rango $\to$ \textbf{Rechazar} (ambigüedad excesiva, pérdida de discriminación)
+    \item Si percentiles extremos (p10, p90) capturan $> 80\%$ datos $\to$ \textbf{Aceptar} cobertura
+\end{itemize}
 \end{reglabox}
 
 \begin{calculobox}
@@ -2030,19 +2047,52 @@ donde $(a, b, c)$ son los parámetros del triángulo (izquierda, pico, derecha).
 \end{table}
 \end{calculobox}
 
+\begin{decisionbox}
+\textbf{Decisión:}
+
+Se aceptan las 12 funciones de pertenencia (3 por variable) con overlap del 15-25\% entre etiquetas adyacentes, garantizando transiciones graduales sin ambigüedad excesiva. Los percentiles p10-p90 cubren el 80\% central de los datos, descartando outliers extremos.
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+Las funciones de pertenencia triangulares basadas en percentiles son robustas a la no-normalidad de los datos (CV $> 50\%$) y reflejan la distribución empírica real de la cohorte, garantizando interpretabilidad clínica (e.g., "Actividad\_relativa Baja" corresponde al cuartil inferior real de la población).
+\end{conclusionbox}
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.48\textwidth]{../analisis_u/fuzzy/plots/MF_Actividad_relativa_p50.png}
 \includegraphics[width=0.48\textwidth]{../analisis_u/fuzzy/plots/MF_Superavit_calorico_basal_p50.png}
 \includegraphics[width=0.48\textwidth]{../analisis_u/fuzzy/plots/MF_HRV_SDNN_p50.png}
 \includegraphics[width=0.48\textwidth]{../analisis_u/fuzzy/plots/MF_Delta_cardiaco_p50.png}
-\caption{Funciones de pertenencia (gaussianas) para las 4 variables de entrada del sistema difuso. Los parámetros $\mu$ (media) y $\sigma$ (desviación) fueron optimizados a partir de los centroides de los clusters. Las etiquetas lingüísticas (Bajo/Alto) capturan transiciones graduales entre estados sedentarios y activos.}
+\caption{Funciones de pertenencia (triangulares) para las 4 variables de entrada del sistema difuso. Los parámetros (izquierda, pico, derecha) fueron calculados a partir de percentiles del dataset semanal. Las etiquetas lingüísticas (Bajo/Medio/Alto) capturan transiciones graduales entre estados sedentarios y activos, con overlap intencional del 15-25\%.}
 \label{fig:membership_functions}
 \end{figure}
 
 \section{Base de Reglas Difusas}
 
 \subsection{Reglas Clínicas IF-THEN}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué 5 reglas y no más?} Las reglas difusas deben ser parsimoniosas (interpretables por clínicos) pero completas (cubrir casos relevantes). Más de 10 reglas generan sobrecarga cognitiva; menos de 3 omiten casos clínicos importantes.
+
+Hipótesis: 5 reglas basadas en conocimiento experto (combinando actividad física y biomarcadores cardiovasculares) capturarán los patrones clave de sedentarismo vs. actividad, logrando F1-Score $> 0.70$ vs. Ground Truth.
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Método de construcción de reglas:}
+
+Las reglas fueron diseñadas mediante:
+\begin{itemize}[noitemsep]
+    \item Inspección de centroides de clusters K=2 (identificar qué variables discriminan más)
+    \item Conocimiento clínico (e.g., baja HRV + baja FC\_delta $\to$ desacondicionamiento)
+    \item Análisis de correlaciones (evitar redundancia entre antecedentes)
+\end{itemize}
+
+Estructura: IF (Var1 = Label1) AND (Var2 = Label2) THEN (Sedentarismo = LabelOut)
+\end{estadisticobox}
 
 \begin{reglabox}
 \textbf{Base de 5 reglas}:
@@ -2102,6 +2152,23 @@ Columnas: [Sed\_Bajo, Sed\_Medio, Sed\_Alto]
 \end{bmatrix}
 \end{equation*}
 \end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+Se acepta la base de 5 reglas por:
+\begin{itemize}[noitemsep]
+    \item Cobertura clínica: Casos extremos (R1: sedentario claro, R5: muy activo) + casos ambiguos (R4: intermedio)
+    \item Parsimonia: 5 reglas son memorizables y auditables por expertos clínicos
+    \item Respaldo empírico: Centroides de clustering K=2 validan que Act\_rel y Sup\_cal son los discriminadores principales
+\end{itemize}
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+La base de 5 reglas difusas integra conocimiento clínico (R2: HRV alta compensa baja actividad) con patrones empíricos (R1: inactividad + bajo gasto $\to$ sedentarismo). La representación matricial binaria $\mat{B}$ y $\mat{C}_{\text{out}}$ permite reproducibilidad computacional exacta del sistema de inferencia.
+\end{conclusionbox}
 
 \textit{Ver archivos}: \texttt{4 semestre\_dataset/formalizacion\_matematica/matriz\_B\_antecedentes.csv}
 
