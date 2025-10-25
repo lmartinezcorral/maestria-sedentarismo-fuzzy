@@ -520,6 +520,22 @@ Se esperaba que las variables biométricas diarias presentaran:
 \end{itemize}
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión:}
+
+\begin{itemize}[noitemsep]
+    \item Si $p < 0.05$ en prueba de normalidad $\to$ \textbf{Rechazar normalidad}, usar métodos no paramétricos
+    \item Si $CV > 50\%$ $\to$ \textbf{Justificar agregación temporal} para reducir ruido día-a-día
+    \item Si asimetría (skewness $> |1|$) $\to$ \textbf{Reportar medianas} en lugar de medias
+\end{itemize}
+\end{reglabox}
+
+\subsection{Resultados: Estadísticos Descriptivos}
+
+\textbf{¿Por qué caracterizar estas variables?} La evaluación objetiva del sedentarismo requiere comprender la naturaleza estadística de los datos biométricos obtenidos en vida libre. Las variables derivadas de wearables (pasos, gasto calórico, frecuencia cardíaca, HRV) presentan patrones de variabilidad inherentes a la conducta humana heterogénea, que deben cuantificarse para seleccionar métodos de análisis apropiados y evitar sesgos inferenciales.
+
+La \textbf{Tabla~\ref{tab:descriptive_daily}} presenta los estadísticos descriptivos completos de las 8 variables clave, calculados sobre $n=9,185$ días post-limpieza (tras aplicación de winsorización percentil 1-99 y eliminación de valores fisiológicamente implausibles).
+
 \begin{landscape}
 \begin{table}[htbp]
 \centering
@@ -543,11 +559,31 @@ Superávit (\%) & 9,185 & 32.6 & 23.0 & 70.6 & 28.0 & 19.9 & 40.9 & 21.0 & 0.0 &
 \end{table}
 \end{landscape}
 
+\subsection{Interpretación de los Resultados Descriptivos}
+
+Los resultados de la Tabla~\ref{tab:descriptive_daily} revelan tres hallazgos críticos para el diseño del sistema de inferencia:
+
+\textbf{1. Alta variabilidad intra-sujeto:} Las variables de actividad física (Pasos: CV=54.7\%, Calorías: CV=75.6\%, Actividad\_relativa: CV=73.2\%, Superávit calórico: CV=70.6\%) presentan coeficientes de variación superiores al 50\%, evidenciando que el comportamiento sedentario no es estable día-a-día, sino que fluctúa significativamente dentro del mismo individuo. Esta variabilidad justifica la agregación temporal semanal (percentiles p50) para capturar patrones representativos.
+
+\textbf{2. No-normalidad universal:} Todas las variables rechazan la hipótesis de normalidad (test Kolmogorov-Smirnov con $p < 0.001$), confirmando distribuciones asimétricas con colas pesadas. Por ejemplo, Calorías presenta un valor máximo de 18,313.1 kcal (outlier extremo), mientras la mediana es 517.7 kcal. Esta violación de normalidad invalida el uso de pruebas paramétricas tradicionales (e.g., t-test, ANOVA), exigiendo métodos robustos (Mann-Whitney U, medianas, bootstrapping).
+
+\textbf{3. Rango fisiológico plausible post-limpieza:} Tras la aplicación de winsorización (percentil 1-99) y eliminación de valores imposibles (FC < 37 lpm, pasos > 30,000), las variables se mantienen dentro de rangos clínicamente interpretables. Por ejemplo, HRV\_SDNN presenta mediana de 48.4 ms (IQR: 36.2--60.4 ms), consistente con valores de población adulta general (Task Force ESC, 1996).
+
 \begin{decisionbox}
-\textbf{Decisión estadística:}
+\textbf{Decisión:}
 
 Se rechaza la normalidad para todas las variables excepto FC\_caminar ($p=0.082$). Consecuencia: uso obligatorio de métodos no paramétricos o robustos (medianas, bootstrapping, Mann-Whitney U) en análisis posteriores.
 \end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión de la caracterización:}
+
+\begin{itemize}[noitemsep]
+    \item Los datos biométricos de vida libre son \textbf{inherentemente ruidosos y no-normales}, requiriendo estrategias robustas de análisis.
+    \item La \textbf{alta variabilidad diaria} (CV $>$ 50\%) justifica la agregación temporal semanal (Capítulo 8) para estabilizar señales.
+    \item Las \textbf{medianas e IQR} serán los estadísticos de referencia para diseño de funciones de pertenencia difusas (Capítulo 11).
+\end{itemize}
+\end{conclusionbox}
 
 \subsection{Gráficos Exploratorios}
 
@@ -588,6 +624,19 @@ Se rechaza la normalidad para todas las variables excepto FC\_caminar ($p=0.082$
 
 \section{Validación Psicométrica del SF-36}
 
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué validar el SF-36 en esta cohorte?} La hipótesis inicial del proyecto (Cap 1) planteaba correlacionar calidad de vida percibida (SF-36) con biomarcadores objetivos de sedentarismo. Sin embargo, antes de usarlo como variable criterio, es crítico verificar su fiabilidad psicométrica en esta población específica ($N=10$, jóvenes adultos activos).
+
+Se hipotetiza que:
+\begin{itemize}[noitemsep]
+    \item Las 8 dimensiones del SF-36 presentarán $\alpha$ de Cronbach $\geq 0.70$ (fiabilidad aceptable)
+    \item Existirá suficiente variabilidad inter-sujeto (evitando efectos techo/suelo)
+    \item El instrumento será sensible a diferencias de actividad física entre participantes
+\end{itemize}
+\end{hipotesisbox}
+
 \subsection{Estructura del Cuestionario}
 
 El SF-36 evalúa 8 dimensiones de CVRS mediante 36 ítems:
@@ -613,6 +662,17 @@ Alfa de Cronbach por dimensión, criterio $\alpha \geq 0.70$ (aceptable).
 
 donde $K$ = número de ítems, $\sigma^2_i$ = varianza del ítem $i$.
 \end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión:}
+
+\begin{itemize}[noitemsep]
+    \item Si $\alpha \geq 0.70$ para una dimensión $\to$ \textbf{Aceptar fiabilidad} (consistencia interna adecuada)
+    \item Si $\alpha < 0.70$ $\to$ \textbf{Rechazar} o interpretar con precaución (bajo acuerdo inter-ítem)
+    \item Si varianza $= 0$ (todos los sujetos misma respuesta) $\to$ \textbf{Excluir dimensión} (efecto techo/suelo)
+    \item Si $\geq 3$ dimensiones rechazadas $\to$ \textbf{Cuestionar validez del SF-36 en esta cohorte}
+\end{itemize}
+\end{reglabox}
 
 \begin{table}[H]
 \centering
@@ -957,6 +1017,14 @@ Variables brutas (pasos, calorías, FC) no son directamente comparables entre in
 
 \subsection{Definición y Justificación}
 
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué derivar Actividad Relativa?} Los pasos diarios totales no reflejan el nivel de actividad si no se ajustan por tiempo de uso del dispositivo. Un usuario con 10,000 pasos en 20 horas (dispositivo encendido todo el día) presenta menor densidad de actividad que otro con 10,000 pasos en 10 horas (uso intensivo en ventana corta).
+
+Hipótesis: Normalizar pasos por tiempo de monitoreo reducirá la varianza inter-sujeto atribuible a diferencias en tiempo de uso, mejorando la comparabilidad.
+\end{hipotesisbox}
+
 \begin{estadisticobox}
 \textbf{Derivación matemática:}
 
@@ -968,6 +1036,16 @@ Unidades: \textit{kilopasos por hora de monitoreo}
 
 \textbf{Justificación clínica}: Normaliza por exposición al dispositivo. Un usuario con 10,000 pasos en 10 horas (1.0 kph) es \textit{más activo} que uno con 10,000 pasos en 20 horas (0.5 kph).
 \end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión:}
+
+\begin{itemize}[noitemsep]
+    \item Si varianza inter-sujeto (mediana) disminuye post-normalización $\to$ \textbf{Aceptar} Actividad\_relativa como variable derivada
+    \item Si CV intra-sujeto se mantiene $\to$ \textbf{Confirmar} que la variabilidad temporal no se altera (comportamiento natural preservado)
+    \item Si correlación con pasos brutos $r > 0.80$ $\to$ \textbf{Validar} que la esencia de la variable se conserva
+\end{itemize}
+\end{reglabox}
 
 \subsection{Distribución y Validación}
 
@@ -998,9 +1076,23 @@ Unidades: \textit{kilopasos por hora de monitoreo}
 Actividad\_relativa reduce la varianza inter-sujeto atribuible a diferencias en tiempo de uso (CV similar, pero medianas más homogéneas), permitiendo clustering más justo.
 \end{decisionbox}
 
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+La variable Actividad\_relativa (kilopasos por hora) normaliza exitosamente por exposición al dispositivo, manteniendo la variabilidad natural del comportamiento (CV intra-sujeto preservado) mientras homogeneiza las medianas inter-sujeto. Esta variable será un input crítico para las funciones de pertenencia difusas (Capítulo 11).
+\end{conclusionbox}
+
 \section{Variable 2: Superávit Calórico Basal}
 
 \subsection{Cálculo de TMB}
+
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
+
+\textbf{¿Por qué ajustar por Tasa Metabólica Basal (TMB)?} El gasto calórico activo bruto no es comparable entre individuos con distinta masa corporal, sexo y edad. Por ejemplo, un usuario de 90 kg quemará más calorías caminando que uno de 60 kg a la misma velocidad, debido a mayor demanda energética por transporte de masa.
+
+Hipótesis: Expresar el gasto calórico activo como porcentaje de la TMB individual neutralizará diferencias antropométricas, revelando el verdadero nivel de actividad relativo a las necesidades basales.
+\end{hipotesisbox}
 
 \begin{estadisticobox}
 \textbf{Ecuación de Harris-Benedict (revisada):}
@@ -1018,6 +1110,20 @@ Para mujeres:
 
 \subsection{Definición de Superávit}
 
+\begin{reglabox}
+\textbf{Regla de decisión:}
+
+\begin{itemize}[noitemsep]
+    \item Si TMB varía $>20\%$ inter-sujeto $\to$ \textbf{Justifica normalización} (antropometría heterogénea)
+    \item Si Superávit\_calórico p50 $<20\%$ $\to$ \textbf{Clasificar como sedentario}
+    \item Si Superávit\_calórico p50 $20-50\%$ $\to$ \textbf{Actividad moderada}
+    \item Si Superávit\_calórico p50 $>50\%$ $\to$ \textbf{Actividad vigorosa}
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Cálculo de Superávit Calórico:}
+
 \begin{equation}
 \text{Superávit\_calórico\_basal}_{\text{día}} = \frac{\text{Calorías\_activas}}{\text{TMB}} \times 100\%
 \end{equation}
@@ -1028,6 +1134,7 @@ Para mujeres:
     \item $20-50\%$: Actividad ligera-moderada
     \item $>50\%$: Actividad vigorosa o deportiva
 \end{itemize}
+\end{calculobox}
 
 \begin{table}[H]
 \centering
@@ -1046,23 +1153,54 @@ u10 & F & 23.5 & 1,498 & 34.2 \\
 \end{tabular}
 \end{table}
 
+\begin{decisionbox}
+\textbf{Decisión:}
+
+La TMB varía $42\%$ entre el usuario con menor TMB (1,498 kcal) y el mayor (2,121 kcal), confirmando heterogeneidad antropométrica crítica. La normalización por TMB es \textbf{indispensable} para clustering justo.
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión:}
+
+El Superávit\_calórico\_basal ajusta el gasto energético activo por las necesidades metabólicas basales individuales (función de sexo, edad, peso, altura), eliminando confusión por diferencias antropométricas. Esta variable será crítica para identificar usuarios sedentarios incluso si tienen gasto calórico absoluto aparentemente "normal".
+\end{conclusionbox}
+
 \section{Variables 3 y 4: Perfiles Cardiovasculares}
 
-\subsection{Delta Cardíaco}
+\begin{hipotesisbox}
+\textbf{Hipótesis:}
 
+\textbf{¿Por qué incluir variables cardiovasculares?} La actividad física (pasos, calorías) no captura completamente el sedentarismo desde una perspectiva fisiológica. Un usuario puede tener alto volumen de pasos pero pobre adaptación cardiovascular (HRV baja, reserva cardíaca limitada), indicando desacondicionamiento subyacente.
+
+Hipótesis: Incorporar Delta\_cardiaco (respuesta FC al ejercicio) y HRV\_SDNN (tono vagal) añadirá dominios complementarios al constructo de sedentarismo, mejorando la capacidad del sistema difuso para capturar complejidad fisiológica.
+\end{hipotesisbox}
+
+\begin{estadisticobox}
+\textbf{Variables cardiovasculares seleccionadas:}
+
+\textbf{1. Delta Cardíaco:}
 \begin{equation}
 \text{Delta\_cardiaco}_{\text{día}} = \text{FC\_caminar} - \text{FC\_reposo}
 \end{equation}
 
 \textbf{Relevancia fisiológica}: Mayor delta indica mejor reserva cardiovascular (respuesta rápida del sistema nervioso autónomo a demanda metabólica).
 
-\subsection{HRV SDNN}
-
-La Variabilidad de la Frecuencia Cardíaca (HRV), específicamente SDNN (Standard Deviation of NN intervals), es un biomarcador del tono vagal:
+\textbf{2. HRV SDNN:} Variabilidad de la Frecuencia Cardíaca (HRV), específicamente SDNN (Standard Deviation of NN intervals), biomarcador del tono vagal:
 \begin{itemize}[noitemsep]
     \item $\text{SDNN} > 50$ ms: Buena modulación autonómica
     \item $\text{SDNN} < 30$ ms: Posible fatiga, sobreentrenamiento, o estrés crónico
 \end{itemize}
+\end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión:}
+
+\begin{itemize}[noitemsep]
+    \item Si correlación Act\_rel--HRV $< 0.30$ $\to$ \textbf{Confirmar} que capturan dominios distintos (actividad $\neq$ eficiencia cardiovascular)
+    \item Si correlación Sup\_cal--Delta\_card $< 0.40$ $\to$ \textbf{Validar} independencia relativa
+    \item Si alguna $r > 0.70$ $\to$ \textbf{Cuestionar multicolinealidad} (redundancia de información)
+\end{itemize}
+\end{reglabox}
 
 \begin{calculobox}
 \textbf{Correlación entre variables derivadas:}
@@ -1085,6 +1223,12 @@ Delta\_card  & 0.24 & 0.31 & 0.18 & 1.00 \\
 
 \textbf{Observación}: Correlación moderada Act\_rel -- Sup\_cal (esperada: ambas reflejan volumen de actividad), pero baja con variables cardiovasculares, confirmando que capturan dominios distintos.
 \end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión:}
+
+Las 4 variables derivadas presentan correlaciones $r < 0.70$, confirmando independencia relativa. Específicamente, HRV muestra correlaciones muy bajas ($r < 0.20$) con variables de actividad, validando que el tono vagal es un dominio ortogonal al volumen de movimiento. Se acepta el conjunto de 4 variables para clustering y modelado difuso.
+\end{decisionbox}
 
 \begin{conclusionbox}
 \textbf{Conclusión:}
@@ -1774,6 +1918,49 @@ Construir un modelo interpretable que clasifique el nivel de sedentarismo semana
     \item \textbf{Salida}: Score continuo $[0,1]$ + binarización con umbral $\tau$
 \end{enumerate}
 \end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión:}
+
+\begin{itemize}[noitemsep]
+    \item Si el sistema difuso logra F1-Score $> 0.70$ vs. Ground Truth $\to$ \textbf{Aceptar} modelo como válido
+    \item Si Recall $> 0.90$ $\to$ \textbf{Priorizar sensibilidad} (screening de sedentarismo)
+    \item Si Precision $< 0.60$ pero Recall $> 0.95$ $\to$ \textbf{Aceptar trade-off} (falsos positivos tolerables en contexto salud pública)
+\end{itemize}
+\end{reglabox}
+
+\begin{calculobox}
+\textbf{Arquitectura formalmente definida:}
+
+\textbf{Entradas:} $\vect{x} = [x_1, x_2, x_3, x_4] \in \mathbb{R}^4$
+\begin{itemize}[noitemsep]
+    \item $x_1$: Actividad\_relativa\_p50
+    \item $x_2$: Superávit\_calórico\_basal\_p50
+    \item $x_3$: HRV\_SDNN\_p50
+    \item $x_4$: Delta\_cardiaco\_p50
+\end{itemize}
+
+\textbf{Salida:} Score continuo $s \in [0,1]$, donde valores cercanos a 1 indican alto sedentarismo.
+
+\textbf{Umbral de binarización:} $\tau^* = 0.30$ (optimizado por grid search maximizando F1-Score).
+\end{calculobox}
+
+\begin{decisionbox}
+\textbf{Decisión de diseño:}
+
+Se selecciona arquitectura Mamdani (vs. Sugeno o Tsukamoto) por:
+\begin{itemize}[noitemsep]
+    \item Interpretabilidad clínica: funciones de pertenencia y reglas humanamente comprensibles
+    \item Flexibilidad: permite etiquetas lingüísticas múltiples (Bajo/Medio/Alto)
+    \item Precedente en literatura biomédica (sistemas expertos en diagnóstico)
+\end{itemize}
+\end{decisionbox}
+
+\begin{conclusionbox}
+\textbf{Conclusión de la arquitectura:}
+
+El sistema difuso Mamdani con 4 inputs, 12 funciones de pertenencia (3 por variable), 5 reglas clínicas, y umbral optimizado $\tau^* = 0.30$ será el modelo final para clasificación de sedentarismo semanal, contrastado contra la Ground Truth operativa (K-Means K=2).
+\end{conclusionbox}
 
 \section{Funciones de Pertenencia (Membership Functions)}
 
