@@ -2302,6 +2302,17 @@ El sistema difuso, diseñado con conocimiento experto, concordará altamente (F1
 \textbf{Criterio principal}: F1-Score (balance precisión-recall).
 \end{estadisticobox}
 
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si F1-Score $\geq 0.80$ $\to$ \textbf{Aceptar} modelo como válido (concordancia excelente)
+    \item Si Recall $> 0.90$ $\to$ \textbf{Priorizar} como herramienta de screening (alta sensibilidad)
+    \item Si Precision $< 0.60$ pero Recall $> 0.95$ $\to$ \textbf{Aceptar trade-off} (falsos positivos tolerables en salud pública)
+    \item Si MCC $< 0.20$ a pesar de F1 alto $\to$ \textbf{Revisar} desbalanceo de clases
+\end{itemize}
+\end{reglabox}
+
 \begin{calculobox}
 \textbf{Matriz de Confusión}:
 
@@ -2393,6 +2404,17 @@ Split aleatorio por semanas viola independencia (autocorrelación temporal). Spl
 
 \textbf{Métricas finales}: Media $\pm$ DE de las 10 iteraciones.
 \end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si F1 promedio LOUO $\geq 0.75$ $\to$ \textbf{Aceptar} generalización a usuarios no vistos
+    \item Si CV (F1) $< 15\%$ $\to$ \textbf{Confirmar} estabilidad inter-usuario
+    \item Si algún fold tiene F1 $< 0.60$ $\to$ \textbf{Investigar} usuario atípico (posible outlier fisiológico)
+    \item Si Recall promedio $> 0.90$ $\to$ \textbf{Validar} sensibilidad robusta para screening
+\end{itemize}
+\end{reglabox}
 
 \begin{calculobox}
 \textbf{Resultados LOUO}:
@@ -2499,6 +2521,17 @@ Si HRV\_SDNN no discrimina clusters (p=0.562), ¿es su inclusión en el modelo n
     \item Comparar métricas 4V vs 2V
 \end{enumerate}
 \end{estadisticobox}
+
+\begin{reglabox}
+\textbf{Regla de decisión}:
+
+\begin{itemize}[noitemsep]
+    \item Si $\Delta$(F1) entre 4V y 2V $< 5\%$ $\to$ \textbf{Aceptar} parsimonia (usar Modelo 2V)
+    \item Si $\Delta$(F1) $\geq 10\%$ $\to$ \textbf{Rechazar} reducción (variables cardiovasculares aportan valor)
+    \item Si variable no discrimina univariadamente pero $\Delta$(F1 sin ella) $> 20\%$ $\to$ \textbf{Confirmar} contribución sinérgica multivariada
+    \item Si Modelo 2V colapsa (F1 $< 0.60$) $\to$ \textbf{Validar} esencialidad de las 4 variables
+\end{itemize}
+\end{reglabox}
 
 \begin{calculobox}
 \textbf{Resultados comparativos}:
