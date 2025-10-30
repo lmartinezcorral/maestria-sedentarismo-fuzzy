@@ -1,0 +1,149 @@
+================================================================================
+              PLANTILLA DE TESIS LATEX - UACH
+         Facultad de Ingeniería - Posgrado
+================================================================================
+
+¡BIENVENIDO/A! 🎓
+
+Esta plantilla te ayudará a escribir tu tesis de forma profesional y sin
+errores de formato.
+
+================================================================================
+PASOS RÁPIDOS PARA EMPEZAR (5 MINUTOS)
+================================================================================
+
+1. LEE PRIMERO:
+   📖 RESUMEN_EJECUTIVO.md  → Visión general (5 minutos)
+   📗 README_USUARIO.md     → Manual completo (30 minutos)
+
+2. ELIGE TU MÉTODO:
+   
+   🌐 OPCIÓN A: OVERLEAF (Recomendado para principiantes)
+      - NO necesitas instalar nada
+      - 100% online
+      - Lee: GUIA_OVERLEAF.md
+      - Ve a: https://www.overleaf.com
+   
+   💻 OPCIÓN B: INSTALACIÓN LOCAL
+      - Necesitas instalar MiKTeX (~3 GB)
+      - Lee: README_USUARIO.md sección "Instalación"
+
+3. EDITA TUS DATOS:
+   - Abre: plantilla_tesis.tex
+   - Busca: línea ~110 "DATOS DEL AUTOR"
+   - Reemplaza: [TU NOMBRE], [TÍTULO DE TU TESIS], etc.
+
+4. ESCRIBE TU CONTENIDO:
+   - Abre archivos en carpeta "capitulos/"
+   - Reemplaza texto entre [corchetes]
+   - Usa los ejemplos incluidos
+
+5. COMPILA:
+   - Overleaf: Clic en "Recompile"
+   - Local: Doble clic en "compilar.bat"
+
+================================================================================
+ESTRUCTURA DE ARCHIVOS
+================================================================================
+
+plantilla_tesis.tex          ← ARCHIVO PRINCIPAL (empieza aquí)
+referencias.bib              ← Tus referencias bibliográficas
+compilar.bat                 ← Compila automáticamente (Windows)
+
+capitulos/                   ← Tus capítulos (7 archivos .tex)
+  ├── 01_introduccion.tex
+  ├── 02_marco_teorico.tex   ← CON EJEMPLOS de figuras/tablas/ecuaciones
+  ├── 03_estado_del_arte.tex
+  ├── 04_metodologia.tex
+  ├── 05_resultados.tex
+  ├── 06_discusion.tex
+  └── 07_conclusiones.tex
+
+figuras/                     ← Guarda aquí tus imágenes (.png, .jpg, .pdf)
+tablas/                      ← (Opcional) Datos de tablas
+
+================================================================================
+DOCUMENTACIÓN COMPLETA
+================================================================================
+
+📋 RESUMEN_EJECUTIVO.md           → Visión general (léelo primero)
+📗 README_USUARIO.md              → Manual completo (90+ páginas)
+🌐 GUIA_OVERLEAF.md               → Guía para Overleaf (online)
+⚡ GUIA_RAPIDA_REFERENCIA.md      → Cheat sheet (código para copiar/pegar)
+
+================================================================================
+¿NUNCA HAS USADO LATEX?
+================================================================================
+
+¡NO TE PREOCUPES! Esta plantilla está diseñada para principiantes.
+
+✅ 90+ páginas de documentación en español
+✅ Ejemplos completos en cada capítulo
+✅ Soluciones a problemas comunes
+✅ Compatible con Overleaf (sin instalar nada)
+
+TIEMPO DE APRENDIZAJE: 2-3 días para dominar lo básico
+
+================================================================================
+AYUDA RÁPIDA
+================================================================================
+
+¿Cómo insertar una figura?
+   → Lee: capitulos/02_marco_teorico.tex (línea ~30)
+
+¿Cómo crear una tabla?
+   → Lee: capitulos/02_marco_teorico.tex (línea ~50)
+
+¿Cómo escribir ecuaciones?
+   → Lee: capitulos/02_marco_teorico.tex (línea ~80)
+
+¿Cómo citar referencias?
+   → Lee: capitulos/02_marco_teorico.tex (línea ~110)
+
+¿No compila? ¿Errores?
+   → Lee: README_USUARIO.md sección "Problemas Comunes"
+
+================================================================================
+RECURSOS ONLINE
+================================================================================
+
+Overleaf Learn:     https://www.overleaf.com/learn
+LaTeX Wikibook:     https://es.wikibooks.org/wiki/Manual_de_LaTeX
+Stack Exchange:     https://tex.stackexchange.com/
+Buscar símbolos:    http://detexify.kirelabs.org/
+Generar tablas:     https://www.tablesgenerator.com/
+
+================================================================================
+CONTACTO
+================================================================================
+
+Autor:  Luis Ángel Martínez Corral
+Email:  [tu_email@uach.mx]
+Inst.:  Universidad Autónoma de Chihuahua - Facultad de Ingeniería
+
+================================================================================
+LICENCIA
+================================================================================
+
+✅ Uso LIBRE para fines académicos
+✅ Puedes MODIFICAR y COMPARTIR
+✅ Regalo para la comunidad estudiantil UACH
+❌ NO vender
+
+Si te fue útil, menciona al autor en los agradecimientos de tu tesis :)
+
+================================================================================
+¡MUCHO ÉXITO CON TU TESIS! 💪📚
+================================================================================
+
+Recuerda: Los primeros días con LaTeX son los más difíciles.
+Después se vuelve MÁS FÁCIL y RÁPIDO que Word.
+
+¡No te rindas! Tienes toda la documentación necesaria.
+
+SIGUIENTE PASO → Lee RESUMEN_EJECUTIVO.md
+
+================================================================================
+Versión: 1.0 | Octubre 2025
+================================================================================
+

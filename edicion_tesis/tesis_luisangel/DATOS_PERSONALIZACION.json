@@ -1,0 +1,92 @@
+{
+    "universidad": {
+        "nombre": "Universidad Autónoma de Chihuahua",
+        "abreviacion": "UACH",
+        "direccion": "C. Escorza 900, Col. Centro 31000",
+        "ciudad": "Chihuahua, Chih., México",
+        "telefono": "+52 (614) 439 1500"
+    },
+    "facultad": {
+        "nombre": "Facultad de Medicina y Ciencias Biomédicas",
+        "abreviacion": "FMyCB",
+        "direccion": "Circuito Universitario 31109, Campus II",
+        "ciudad": "Chihuahua, Chih., México",
+        "telefono": "+52 (614) 238 6030",
+        "web": "https://uach.mx/fm/",
+        "secretaria": "Secretaría de Investigación y Posgrado"
+    },
+    "programa": {
+        "nombre": "Maestría en Formación e Innovación para Profesionales de la Salud",
+        "grado_otorga": "Maestro en Formación e Innovación para Profesionales de la Salud",
+        "creditos": 103,
+        "modalidad": "Presencial",
+        "duracion": "4 semestres",
+        "inicio": "11 agosto, 2025"
+    },
+    "estudiante": {
+        "nombre_completo": "Luis Angel Martínez Corral",
+        "matricula": "261337",
+        "email": "p261337@uach.mx",
+        "celular": "+52 (614) 344-88-36",
+        "tesis_titulo": "Modelo de Evaluación del Comportamiento Sedentario mediante Lógica Difusa y Datos Biométricos",
+        "fecha_tesis": "27 de Octubre de 2025"
+    },
+    "comite_tutorial": {
+        "secretario": {
+            "nombre": "Dr. Said Alejandro De La Cruz Rey",
+            "cargo": "Secretario de Investigación y Posgrado",
+            "facultad": "Facultad de Medicina y Ciencias Biomédicas",
+            "universidad": "Universidad Autónoma de Chihuahua",
+            "fijo": true,
+            "nota": "NO cambia - mismo para todos"
+        },
+        "coordinador": {
+            "nombre": "DR(A) Haydee Parra Acosta",
+            "cargo": "Coordinador de la Maestría",
+            "fijo": true,
+            "nota": "NO cambia - mismo para todos"
+        },
+        "director": {
+            "nombre": "DR(A) Abimael Guzmán Pando",
+            "cargo": "Director de Tesis",
+            "variable": true,
+            "nota": "Cambia por persona - editar aquí"
+        },
+        "asesores": [
+            {
+                "nombre": "DR(A) David Ricardo López Flores",
+                "cargo": "Asesor(a)",
+                "variable": true
+            },
+            {
+                "nombre": "DR(A) Celia María Quiñonez Cruz",
+                "cargo": "Asesor(a)",
+                "variable": true
+            },
+            {
+                "nombre": "DR(A) Javier Camarillo Cisneros",
+                "cargo": "Asesor(a)",
+                "variable": true
+            }
+        ],
+        "nota": "Puedes agregar o quitar asesores según tu comité"
+    },
+    "tesis": {
+        "lgac": "Formación Biomédica",
+        "sublinea": "Bioinformática y Aplicaciones de Inteligencia Artificial en Salud",
+        "estilo_citas": "APA 7ma",
+        "idioma_principal": "español",
+        "idioma_abstract": "inglés",
+        "ano": "2025"
+    },
+    "ubicaciones": {
+        "figuras": "figuras/logo_uach_portada.png",
+        "referencias": "referencias.bib",
+        "compilador": "compilar.bat"
+    },
+    "notas": [
+        "Este archivo contiene todos los datos necesarios para personalizar la plantilla",
+        "Edita este archivo con tu información y luego actualiza plantilla_tesis.tex",
+        "LGAC determina el estilo de citas: APA para Formación, Vancouver para Salud"
+    ]
+}

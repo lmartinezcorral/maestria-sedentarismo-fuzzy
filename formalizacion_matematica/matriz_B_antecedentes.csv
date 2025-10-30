@@ -1,6 +1,6 @@
-,Act_Baja,Act_Media,Act_Alta,Sup_Baja,Sup_Media,Sup_Alta,HRV_Baja,HRV_Media,HRV_Alta,DC_Baja,DC_Media,DC_Alta
+Regla,Act_B,Act_M,Act_A,Sup_B,Sup_M,Sup_A,HRV_B,HRV_M,HRV_A,Delta_B,Delta_M,Delta_A
 R1,1,0,0,1,0,0,0,0,0,0,0,0
-R2,0,0,1,0,0,1,0,0,0,0,0,0
+R2,1,0,0,0,0,0,0,0,1,0,0,0
 R3,0,0,0,0,0,0,1,0,0,1,0,0
 R4,0,1,0,0,0,0,0,1,0,0,0,0
-R5,1,0,0,0,1,0,0,0,0,0,0,0
+R5,0,0,0,0,0,1,0,0,0,0,0,1

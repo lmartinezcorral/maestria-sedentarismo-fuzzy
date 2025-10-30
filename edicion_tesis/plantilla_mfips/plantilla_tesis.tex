@@ -1,0 +1,329 @@
+% ============================================================================
+% PLANTILLA DE TESIS - FACULTAD DE MEDICINA Y CIENCIAS BIOMÉDICAS
+% Universidad Autónoma de Chihuahua (UACH)
+% Maestría en Formación e Innovación para Profesionales de la Salud
+% ============================================================================
+
+\documentclass[12pt,letterpaper,oneside]{report}
+
+% --------------------- PAQUETES BÁSICOS ---------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{times}  % Times New Roman para todo el documento
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{caption}
+
+% --------------------- FORMATO UACH -------------------------
+\geometry{letterpaper,top=2.5cm,bottom=2.5cm,left=3.0cm,right=2.5cm}
+\onehalfspacing
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% --------------------- DATOS EDITABLES ----------------------
+% Universidad y Facultad
+\newcommand{\miUniversidad}{Universidad Aut\'onoma de Chihuahua}
+\newcommand{\miFacultad}{Facultad de Medicina y Ciencias Biom\'edicas}
+\newcommand{\miSecretaria}{Secretar\'ia de Investigaci\'on y Posgrado}
+
+% Programa y grado
+\newcommand{\miPrograma}{Maestr\'ia en Formaci\'on e Innovaci\'on para Profesionales de la Salud}
+\newcommand{\miGrado}{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}
+
+% T\'itulo y autor (EDITA AQU\'I - reemplaza con tu información)
+\newcommand{\miTitulo}{[NOMBRE DE LA TESIS]}
+\newcommand{\miAutor}{[NOMBRE DEL AUTOR (ESTUDIANTE)]}
+
+% Lugar y fecha
+\newcommand{\miCiudad}{Chihuahua, Chih., M\'exico}
+\newcommand{\miFecha}{[D\'{\i}A] de [Mes] de [A\~NO]}
+
+% Ruta del logo (ya incluido en figuras/)
+\newcommand{\miLogo}{figuras/logo_uach_portada.png}
+
+% --------------------- METADATOS PDF ------------------------
+\hypersetup{
+  pdftitle={\miTitulo},
+  pdfauthor={\miAutor},
+  pdfsubject={\miPrograma},
+  pdfkeywords={tesis, UACH, FMyCB}
+}
+
+\begin{document}
+
+% ===================== PORTADA OFICIAL ======================
+\begin{titlepage}
+    \centering
+    \vspace*{0.5cm}
+    
+    % Universidad - Times 20pt, negrita, centrado, MAYÚSCULAS
+    {\fontsize{20}{24}\selectfont\bfseries \MakeUppercase{\miUniversidad}\\}
+    \vspace{0.2cm}
+    
+    % Facultad - Times 18pt, negrita, centrado, MAYÚSCULAS
+    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miFacultad}\\}
+    \vspace{0.2cm}
+    
+    % Secretaría - Times 18pt, negrita, centrado, MAYÚSCULAS
+    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miSecretaria}\\}
+    \vspace{1.0cm}
+    
+    % Logo sin modificaciones
+    \includegraphics[width=0.22\textwidth]{\miLogo}\\
+    \vspace{1.2cm}
+
+    % NOMBRE DE LA TESIS: (etiqueta en Times 12pt SIN negrita)
+    {\fontsize{12}{14}\selectfont NOMBRE DE LA TESIS:}\\[0.2cm]
+    
+    % Título de la tesis (en Times 12pt en MAYÚSCULAS)
+    {\fontsize{12}{14}\selectfont \MakeUppercase{\miTitulo}}\\[1.2cm]
+
+    % POR: (Times 12pt)
+    {\fontsize{12}{14}\selectfont POR:}\\[0.2cm]
+    
+    % Nombre del autor (Times 12pt en MAYÚSCULAS)
+    {\fontsize{12}{14}\selectfont \MakeUppercase{\miAutor}}\\[1.2cm]
+
+    % Texto introductorio del grado (Times 12pt en MAYÚSCULAS)
+    {\fontsize{12}{14}\selectfont \MakeUppercase{Tesis presentada como requisito para obtener el grado de:}}\\[0.3cm]
+    
+    % Nombre del grado - Times 12pt, sin negrita, centrado, MAYÚSCULAS
+    {\fontsize{12}{14}\selectfont \MakeUppercase{\miGrado}}\\[2.0cm]
+
+    % Fecha: Chihuahua alineado a la izquierda, fecha alineada a la derecha (Times 12pt)
+    \noindent\makebox[\textwidth][s]{%
+        {\fontsize{12}{14}\selectfont \miCiudad}%
+        \hfill%
+        {\fontsize{12}{14}\selectfont \miFecha}%
+    }
+    \vspace{0.8cm}
+\end{titlepage}
+
+% --------------- HOJA DE FIRMAS ---------------
+\newpage
+\thispagestyle{empty}
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+% Título de la tesis (primera línea, tipo oración, izquierda, Times 12pt)
+\noindent
+{\fontsize{12}{14}\selectfont \miTitulo}\\[1.5cm]
+
+% Firmas centradas, Times 12pt, sin negrita
+
+% 1. Secretario de Investigación y Posgrado (Fijo - mismo para todos)
+\centering
+{\fontsize{12}{14}\selectfont 
+Dr. Said Alejandro De La Cruz Rey\\[0.3cm]
+Secretario de Investigaci\'on y Posgrado\\[0.3cm]
+Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
+Universidad Aut\'onoma de Chihuahua}\\[1.2cm]
+
+% 2. Coordinador de la Maestr\'ia (Fijo - mismo para todos)
+{\fontsize{12}{14}\selectfont 
+DR(A) Haydee Parra Acosta\\[0.3cm]
+Coordinador de la Maestr\'ia}\\[1.2cm]
+
+% 3. Director de Tesis (Variable - cambia por persona)
+{\fontsize{12}{14}\selectfont 
+DR(A) Abimael Guzm\'an Pando\\[0.3cm]
+Director de Tesis}\\[1.2cm]
+
+% 4-6. Asesores (Variables - cada quien agrega los suyos)
+{\fontsize{12}{14}\selectfont 
+DR(A) David Ricardo L\'opez Flores\\[0.3cm]
+Asesor(a)}\\[1.0cm]
+
+{\fontsize{12}{14}\selectfont 
+DR(A) Celia Mar\'ia Qui\~nez Cruz\\[0.3cm]
+Asesor(a)}\\[1.0cm]
+
+{\fontsize{12}{14}\selectfont 
+DR(A) Javier Camarillo Cisneros\\[0.3cm]
+Asesor(a)}
+
+% --------------- HOJA DE RESUMEN ---------------
+\newpage
+\pagenumbering{arabic}  % Cambiar a números arábigos
+\setcounter{page}{3}
+
+% Título "Resumen" centrado
+\centering
+{\fontsize{14}{16}\selectfont\bfseries RESUMEN}\\[1cm]
+
+% Resumen en texto justificado (120-250 palabras)
+\begin{flushleft}
+{\fontsize{12}{14}\selectfont
+
+% INSTRUCCIONES: Edita aquí tu resumen (120-250 palabras incluyendo palabras clave)
+
+[Escribe aquí tu resumen con un máximo de 250 palabras. El resumen debe incluir:
+
+1. Contexto del problema
+2. Objetivo del estudio
+3. Metodología empleada
+4. Resultados principales
+5. Conclusiones
+
+Y al final las palabras clave]
+
+\vspace{0.5cm}
+\textbf{Palabras clave:} palabra1, palabra2, palabra3, palabra4, palabra5
+
+}
+\end{flushleft}
+
+% --------------- HOJA DE INFORMACIÓN DEL DOCUMENTO ---------------
+\newpage
+\setcounter{page}{4}
+
+% Sin título (empieza directamente con el contenido)
+\begin{flushleft}
+{\fontsize{12}{14}\selectfont
+
+% Línea de investigación
+L\'inea de investigaci\'on: L\'inea de Generaci\'on y Aplicaci\'on del Conocimiento (LGAC) en Formaci\'on Biom\'edica\\[0.3cm]
+
+Subl\'inea de investigaci\'on: Bioinform\'atica y Aplicaciones de Inteligencia Artificial en Salud\\[0.5cm]
+
+Investigador Estudiante:\\[0.1cm]
+[TU NOMBRE COMPLETO]\\[0.3cm]
+
+Equipo de investigaci\'on:\\[0.1cm]
+Dr. Abimael Guzm\'an Pando\\[0.1cm]
+Dr. David Ricardo L\'opez Flores\\[0.1cm]
+Dra. Celia Mar\'ia Qui\~nez Cruz\\[0.1cm]
+Dr. Javier Camarillo Cisneros\\[0.5cm]
+
+% Afiliación
+Facultad de Medicina y Ciencias Biom\'edicas\\[0.1cm]
+UACH M\'exico\\[0.1cm]
+Web: https://uach.mx/fm/\\[0.1cm]
+Correo: tu\_email@uach.mx\\[0.1cm]
+Chihuahua, M\'exico, 2025\\[0.5cm]
+
+% Copyright
+© Universidad Aut\'onoma de Chihuahua\\[0.1cm]
+© Los autores\\[0.3cm]
+
+Todos los derechos reservados. Se permite la distribuci\'on, uso y copia citando la fuente completa.
+
+}
+\end{flushleft}
+
+% --------------- CARTA AL SECRETARIO DE INVESTIGACIÓN ---------------
+\newpage
+\setcounter{page}{5}
+
+% Logo de la universidad (pequeño, arriba a la izquierda) y fecha a la derecha
+\begin{flushleft}
+\includegraphics[width=0.12\textwidth]{figuras/logo_uach_bn.png}\\
+\end{flushleft}
+
+\begin{flushright}
+{\fontsize{12}{14}\selectfont Chihuahua, Chih., a \underline{\hspace{1.5cm}} de \underline{\hspace{1.5cm}} de 2025}\\[0.3cm]
+\end{flushright}
+
+% Destinatario (quien recibe la carta)
+\begin{flushleft}
+\setlength{\leftskip}{1.2cm}  % Sangría izquierda de 1.2cm
+{\fontsize{12}{14}\selectfont 
+Dr. Said Alejandro de la Cruz Rey\\[0.1cm]
+Secretario de Investigaci\'on y Posgrado\\[0.1cm]
+Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
+
+P {\hspace{0.15cm}} R {\hspace{0.15cm}} E {\hspace{0.15cm}} S {\hspace{0.15cm}} E {\hspace{0.15cm}} N {\hspace{0.15cm}} T {\hspace{0.15cm}} E.-\\[0.3cm]
+}
+\end{flushleft}
+
+% Cuerpo de la carta con formato específico
+\begin{flushleft}
+\setlength{\leftskip}{1.2cm}  % Sangría izquierda en TODO el cuerpo
+\setlength{\parindent}{0cm}   % Sin sangría en párrafos
+\setlength{\parskip}{0.2cm}   % Espacio entre párrafos
+
+{\fontsize{12}{14}\selectfont 
+
+Por medio de la presente nos permitimos informar a usted que el C. [NOMBRE DEL TESISTA], con n\'umero de matr\'icula [MATRÍCULA], ha concluido la elaboraci\'on de la tesis ``[NOMBRE DE LA TESIS]'', como requisito para obtener el grado de: \textbf{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}.\\[0.2cm]
+
+As\'i mismo, manifestamos que la tesis ha sido revisada y aprobada por los abajo firmantes, miembros del Comit\'e de Grado.\\[0.2cm]
+
+Sin otro particular, quedamos de usted.\\[0.5cm]
+
+}
+\end{flushleft}
+
+% Cierre y firma
+\begin{center}
+{\fontsize{12}{14}\selectfont\bfseries ATENTAMENTE}\\[0.3cm]
+{\fontsize{12}{14}\selectfont ``MENTI DA LUCEM, MANIBUS ARTEM''}\\[0.5cm]
+\end{center}
+
+% Firmas con nombres
+\begin{center}
+\begin{tabular}{@{}p{6.5cm}p{6.5cm}@{}}
+\rule{0pt}{10pt}\textbf{Director de Tesis} & \textbf{Co-Director de Tesis}\\[0.3cm]
+
+Dr. Abimael Guzm\'an Pando & Dr. David Ricardo L\'opez Flores\\[0.8cm]
+
+\textbf{Asesor de Tesis} & \textbf{Asesor de Tesis}\\[0.3cm]
+
+Dra. Celia Mar\'ia Qui\~nez Cruz & Dr. Javier Camarillo Cisneros\\[0.3cm]
+\end{tabular}
+\end{center}
+
+% --------------- PÁGINA DE DEDICATORIA Y AGRADECIMIENTOS ---------------
+\newpage
+\setcounter{page}{6}
+\thispagestyle{empty}
+
+% Dedicatoria
+\begin{center}
+{\fontsize{14}{16}\selectfont\bfseries DEDICATORIA}\\[1.5cm]
+\end{center}
+
+\begin{flushleft}
+{\fontsize{12}{14}\selectfont 
+
+Dedico este trabajo a \underline{\hspace{3cm}} por \underline{\hspace{3cm}}\\[2cm]
+
+}
+\end{flushleft}
+
+% Agradecimientos
+\begin{center}
+{\fontsize{14}{16}\selectfont\bfseries AGRADECIMIENTOS}\\[1.5cm]
+\end{center}
+
+\begin{flushleft}
+{\fontsize{12}{14}\selectfont 
+
+Se agradece a:\\[0.5cm]
+
+[Escribe aquí tus agradecimientos a las personas que apoyaron tu trabajo]
+
+}
+\end{flushleft}
+
+% --------------- ÍNDICE DE CONTENIDOS ---------------
+\newpage
+\setcounter{page}{7}
+\thispagestyle{plain}
+
+\tableofcontents
+
+% --------------- INICIO DEL CONTENIDO ----------------
+% Aquí comenzarán los capítulos
+
+% \mainmatter  % Descomentar cuando se incluyan los capítulos
+% \include{capitulos/01_introduccion}
+
+\end{document}

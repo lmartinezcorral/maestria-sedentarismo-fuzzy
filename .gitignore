@@ -94,3 +94,72 @@ documentos_lectura/
 
 # Informe de auditoría interna
 INFORME_AUDITORIA_CRITICA_PROYECTO.md
+
+# ==============================================
+# ARCHIVOS LaTeX TEMPORALES Y COMPILACIÓN
+# ==============================================
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# ==============================================
+# ARCHIVOS CON CREDENCIALES Y API KEYS
+# ==============================================
+# Scripts con API keys de Gemini
+**/HERRAMIENTA_BIBLIOGRAFIA_LATEX/generar_referencias.py
+**/HERRAMIENTA_BIBLIOGRAFIA_LATEX/generar_referencias_mejorado.py
+**/HERRAMIENTA_BIBLIOGRAFIA_LATEX/generar_referencias_portable.py
+
+# Scripts con credenciales MySQL (si existen)
+*mysql*.py
+*database_config*.py
+
+# ==============================================
+# ARCHIVOS XML EXTENSOS DE EDICIÓN
+# ==============================================
+# Archivos XML de editores (muy grandes)
+*.xml
+
+# ==============================================
+# VERSIONES ANTIGUAS Y BACKUPS
+# ==============================================
+# Mantener solo versiones actuales
+*_v[0-9].py
+*_v[0-9][0-9].py
+*_backup_*.py
+*_old.py
+*_anterior.py
+
+# ==============================================
+# ARCHIVOS DE RESUMEN Y MARKDOWN TEMPORALES
+# ==============================================
+RESUMEN_*.md
+GUIA_*.md
+ACTUALIZACION_*.md
+ANALISIS_*.md
+CASOS_*.md
+EXPLICACION_*.md
+PROMPT_*.md
+RESPUESTA_*.md
+TABLA_*.md
+
+# ==============================================
+# SCRIPTS LOCALES DE UTILERÍA
+# ==============================================
+# Scripts para tareas específicas locales
+correlacion_*.py
+generar_pca*.py
+visualizar_*.py
+fuzzy_inference_simple.py
+crear_zip_bibliografia.py
+
+# ==============================================
+# ARCHIVOS COMPRIMIDOS DE HERRAMIENTAS
+# ==============================================
+*.zip

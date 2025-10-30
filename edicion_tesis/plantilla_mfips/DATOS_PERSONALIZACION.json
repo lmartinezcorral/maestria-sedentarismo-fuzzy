@@ -1,0 +1,73 @@
+{
+  "universidad": {
+    "nombre": "Universidad Autónoma de Chihuahua",
+    "abreviacion": "UACH",
+    "direccion": "C. Escorza 900, Col. Centro 31000",
+    "ciudad": "Chihuahua, Chih., México",
+    "telefono": "+52 (614) 439 1500"
+  },
+  "facultad": {
+    "nombre": "Facultad de Medicina y Ciencias Biomédicas",
+    "abreviacion": "FMyCB",
+    "direccion": "Circuito Universitario 31109, Campus II",
+    "ciudad": "Chihuahua, Chih., México",
+    "telefono": "+52 (614) 238 6030",
+    "secretaria": "Secretaría de Investigación y Posgrado"
+  },
+  "programa": {
+    "nombre": "Maestría en Formación e Innovación para Profesionales de la Salud",
+    "grado_otorga": "Maestro en Formación e Innovación para Profesionales de la Salud",
+    "creditos": 103,
+    "modalidad": "Presencial",
+    "duracion": "4 semestres",
+    "inicio": "11 agosto, 2025"
+  },
+  "estudiante": {
+    "nombre_completo": "Luis Ángel Martínez Corral",
+    "matricula": "p261337",
+    "email": "p261337@uach.mx",
+    "celular": "+52 (614) 344-88-36",
+    "tesis_titulo": "[FALTA TÍTULO]",
+    "fecha_tesis": "[DÍA] de [MES] de [AÑO]"
+  },
+  "comite_tutorial": {
+    "director": {
+      "nombre": "[FALTA NOMBRE]",
+      "título": "Dr./Dra.",
+      "institucion": "[FALTA]"
+    },
+    "codirector": {
+      "nombre": "[FALTA NOMBRE]",
+      "título": "Dr./Dra.",
+      "institucion": "[FALTA]",
+      "aplica": false
+    },
+    "asesor1": {
+      "nombre": "[FALTA NOMBRE]",
+      "título": "Dr./Dra.",
+      "institucion": "[FALTA]"
+    },
+    "asesor2": {
+      "nombre": "[FALTA NOMBRE]",
+      "título": "Dr./Dra.",
+      "institucion": "[FALTA]"
+    }
+  },
+  "tesis": {
+    "lgac": "[Formación Biomédica / Salud]",
+    "estilo_citas": "[APA 7ma / Vancouver]",
+    "idioma_principal": "español",
+    "idioma_abstract": "inglés"
+  },
+  "ubicaciones": {
+    "figuras": "figuras/logo_uach_portada.png",
+    "referencias": "referencias.bib",
+    "compilador": "compilar.bat"
+  },
+  "notas": [
+    "Este archivo contiene todos los datos necesarios para personalizar la plantilla",
+    "Edita este archivo con tu información y luego actualiza plantilla_tesis.tex",
+    "LGAC determina el estilo de citas: APA para Formación, Vancouver para Salud"
+  ]
+}
+

@@ -1,0 +1,92 @@
+================================================================================
+   HERRAMIENTA DE BIBLIOGRAFÍA PARA LATEX - UACH
+   Facultad de Medicina y Ciencias Biomédicas
+================================================================================
+
+¡BIENVENIDO!
+
+Esta herramienta te permitirá generar automáticamente todas tus referencias
+bibliográficas en formato BibTeX para tu tesis en LaTeX.
+
+================================================================================
+  ¿QUÉ NECESITAS?
+================================================================================
+
+✅ Tus archivos PDF de referencias académicas
+✅ Conexión a internet
+✅ Python instalado (el .bat lo verifica automáticamente)
+
+================================================================================
+  INICIO RÁPIDO (3 pasos)
+================================================================================
+
+1. Coloca tus archivos PDF en esta misma carpeta
+
+2. Haz doble clic en GENERAR_REFERENCIAS.bat
+
+3. Espera a que termine (2-5 minutos por PDF)
+
+¡Listo! Tendrás tus archivos:
+   • referencias.csv - Tabla con todas las referencias
+   • referencias.bib - Archivo BibTeX para LaTeX
+
+================================================================================
+  CÓMO USAR EN TU TESIS
+================================================================================
+
+1. Copia el archivo referencias.bib a tu carpeta de tesis
+
+2. En tu archivo .tex, agrega:
+   \bibliography{referencias}
+
+3. Para citar un artículo, usa:
+   \cite{autor2024}
+
+================================================================================
+  VENTAJAS DE ESTA HERRAMIENTA
+================================================================================
+
+✅ RÁPIDA: 2-5 minutos por PDF
+✅ AUTOMÁTICA: No escribes las referencias manualmente
+✅ PRECISA: Usa inteligencia artificial
+✅ GRATIS: No requiere suscripciones
+✅ PORTABLE: Solo necesitas tus PDFs
+✅ SIN MYSQL: No necesitas bases de datos
+
+================================================================================
+  SOLUCIÓN DE PROBLEMAS
+================================================================================
+
+❌ "Python no está instalado"
+   → Ve a https://www.python.org/downloads/
+   → Instala Python y marca "Add Python to PATH"
+
+❌ "No hay conexión a internet"
+   → Verifica tu conexión a internet
+   → La herramienta necesita internet para funcionar
+
+❌ "No se encontraron archivos PDF"
+   → Coloca tus PDFs en esta misma carpeta
+   → Vuelve a ejecutar GENERAR_REFERENCIAS.bat
+
+❌ Error al procesar un PDF
+   → La herramienta continuará con los demás PDFs
+   → Revisa el archivo generado y edita manualmente si es necesario
+
+================================================================================
+  SOPORTE
+================================================================================
+
+Si tienes dudas o problemas:
+
+📧 Email: p261337@uach.mx
+📱 Teléfono: +52 (614) 344-88-36
+
+================================================================================
+
+Desarrollado por: Luis Angel Martínez Corral
+Maestría en Formación e Innovación para Profesionales de la Salud
+Facultad de Medicina y Ciencias Biomédicas - UACH
+Octubre 2025
+
+================================================================================

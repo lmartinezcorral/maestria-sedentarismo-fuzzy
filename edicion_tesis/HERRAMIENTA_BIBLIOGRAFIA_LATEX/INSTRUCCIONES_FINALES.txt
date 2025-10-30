@@ -1,0 +1,144 @@
+================================================================================
+   HERRAMIENTA DE BIBLIOGRAFÍA PARA LATEX - UACH
+   Facultad de Medicina y Ciencias Biomédicas
+   VERSIÓN FINAL PORTABLE
+================================================================================
+
+¡BIENVENIDO!
+
+Esta herramienta te permitirá generar automáticamente todas tus referencias
+bibliográficas en formato BibTeX para tu tesis en LaTeX.
+
+================================================================================
+  ARCHIVOS INCLUIDOS
+================================================================================
+
+📄 GENERAR_REFERENCIAS_SIMPLE.bat
+   - VERSIÓN RECOMENDADA
+   - Funciona sin internet
+   - Solo requiere Python
+   - Extracción local inteligente
+
+📄 GENERAR_REFERENCIAS.bat
+   - Versión con IA (Gemini)
+   - Requiere internet
+   - Puede fallar si la API cambia
+
+📄 GENERAR_REFERENCIAS_MEJORADO.bat
+   - Versión híbrida (IA + local)
+   - Requiere internet
+   - Más robusta pero compleja
+
+🐍 generar_referencias_simple.py
+   - Script principal (versión simple)
+   - Recomendado para la mayoría de usuarios
+
+🐍 generar_referencias.py
+   - Script con IA (Gemini)
+   - Para usuarios avanzados
+
+🐍 generar_referencias_mejorado.py
+   - Script híbrido
+   - Para usuarios experimentados
+
+📋 INSTRUCCIONES.txt
+   - Manual de usuario básico
+
+📋 README.md
+   - Documentación técnica
+
+================================================================================
+  INICIO RÁPIDO (3 pasos)
+================================================================================
+
+1. Coloca tus archivos PDF en esta misma carpeta
+
+2. Haz doble clic en GENERAR_REFERENCIAS_SIMPLE.bat
+
+3. Espera a que termine (1-2 minutos por PDF)
+
+¡Listo! Tendrás tus archivos:
+   • referencias.csv - Tabla con todas las referencias
+   • referencias.bib - Archivo BibTeX para LaTeX
+
+================================================================================
+  CÓMO USAR EN TU TESIS
+================================================================================
+
+1. Copia el archivo referencias.bib a tu carpeta de tesis
+
+2. En tu archivo .tex, agrega:
+   \bibliography{referencias}
+
+3. Para citar un artículo, usa:
+   \cite{autor2024}
+
+================================================================================
+  VENTAJAS DE CADA VERSIÓN
+================================================================================
+
+✅ VERSIÓN SIMPLE (RECOMENDADA):
+   • Funciona sin internet
+   • Solo requiere Python
+   • Instalación automática de dependencias
+   • Extracción inteligente de metadatos
+   • Rápida y confiable
+
+⚠️ VERSIÓN CON IA:
+   • Requiere internet
+   • Puede fallar si la API cambia
+   • Más precisa en algunos casos
+   • Más lenta
+
+⚠️ VERSIÓN MEJORADA:
+   • Híbrida (IA + local)
+   • Más compleja
+   - Requiere internet
+   • Puede fallar
+
+================================================================================
+  SOLUCIÓN DE PROBLEMAS
+================================================================================
+
+❌ "Python no está instalado"
+   → Ve a https://www.python.org/downloads/
+   → Instala Python y marca "Add Python to PATH"
+
+❌ "No se encontraron archivos PDF"
+   → Coloca tus PDFs en esta misma carpeta
+   → Vuelve a ejecutar el .bat
+
+❌ Error al procesar un PDF
+   → La herramienta continuará con los demás PDFs
+   → Revisa el archivo generado y edita manualmente si es necesario
+
+❌ Los metadatos no son perfectos
+   → Es normal, la herramienta hace su mejor esfuerzo
+   → Puedes editar los archivos generados manualmente
+
+================================================================================
+  CONSEJOS PARA MEJORES RESULTADOS
+================================================================================
+
+✅ Usa archivos PDF de buena calidad
+✅ Asegúrate de que los PDFs contengan texto (no solo imágenes)
+✅ Los PDFs de revistas científicas funcionan mejor
+✅ Si un PDF no se procesa bien, puedes editarlo manualmente
+
+================================================================================
+  SOPORTE
+================================================================================
+
+Si tienes dudas o problemas:
+
+📧 Email: p261337@uach.mx
+📱 Teléfono: +52 (614) 344-88-36
+
+================================================================================
+
+Desarrollado por: Luis Angel Martínez Corral
+Maestría en Formación e Innovación para Profesionales de la Salud
+Facultad de Medicina y Ciencias Biomédicas - UACH
+Octubre 2025
+
+================================================================================
