@@ -26,9 +26,9 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: Paso 2: Generar bibliografía con bibtex
-echo [2/4] Generando bibliografia (bibtex)...
-bibtex %ARCHIVO%
+:: Paso 2: Generar bibliografía con biber (biblatex)
+echo [2/4] Generando bibliografia (biber)...
+biber %ARCHIVO%
 if errorlevel 1 (
     echo.
     echo ADVERTENCIA: Hubo problemas con la bibliografia
@@ -46,7 +46,7 @@ pdflatex -interaction=nonstopmode %ARCHIVO%.tex > nul
 :: Limpiar archivos auxiliares (opcional)
 echo.
 echo Limpiando archivos temporales...
-del %ARCHIVO%.aux %ARCHIVO%.log %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.bbl %ARCHIVO%.blg 2>nul
+del %ARCHIVO%.aux %ARCHIVO%.log %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.bbl %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
 
 echo.
 echo ========================================
