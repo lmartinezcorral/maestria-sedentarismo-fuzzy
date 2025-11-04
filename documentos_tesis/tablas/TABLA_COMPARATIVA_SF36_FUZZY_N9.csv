@@ -1,0 +1,9 @@
+Nombre,Usuario_ID,Fuzzy_mean,Pct_semanas_sedentarias,Clasificacion,SCORE_SF36_GLOBAL,SCORE_FF,SCORE_SG,SCORE_SM
+Edson Gerardo Solís Martinez,u4,0.7,100.0,SEDENTARIO,87.85,100,65,100
+Esmeralda Blanco Enríquez,u5,0.67,93.33,SEDENTARIO,87.5,100,65,100
+Luis Fidel Martinez Gonzalez,u6,0.64,97.69,SEDENTARIO,61.22,95,55,20
+Luis Angel Martinez Corral,u1,0.64,100.0,SEDENTARIO,65.49,95,50,80
+Alejandra González Chávez,u9,0.55,94.7,SEDENTARIO,66.52,100,65,68
+María Cristina Tarango Peña,u3,0.46,80.85,ACTIVO,75.83,95,35,60
+Luis Armando Legarda Adame,u8,0.39,76.56,ACTIVO,84.72,100,65,80
+Brenda Susana Gutiérrez Peña,u2,0.35,62.5,ACTIVO,65.6,80,30,44

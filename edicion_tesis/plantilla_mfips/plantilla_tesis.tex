@@ -15,10 +15,13 @@
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{fancyhdr}
+\usepackage{natbib}  % Soporte de citas y bibliografía
 \usepackage{hyperref}
+\usepackage{ragged2e} % Para \justifying (texto justificado)
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{caption}
+\usepackage{cleveref}
 
 % --------------------- FORMATO UACH -------------------------
 \geometry{letterpaper,top=2.5cm,bottom=2.5cm,left=3.0cm,right=2.5cm}
@@ -27,6 +30,7 @@
 \fancyhf{}
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
+\setlength{\parindent}{1.2cm} % Sangría general de párrafos (excepto después de títulos)
 
 % --------------------- DATOS EDITABLES ----------------------
 % Universidad y Facultad
@@ -38,13 +42,13 @@
 \newcommand{\miPrograma}{Maestr\'ia en Formaci\'on e Innovaci\'on para Profesionales de la Salud}
 \newcommand{\miGrado}{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}
 
-% T\'itulo y autor (EDITA AQU\'I - reemplaza con tu información)
-\newcommand{\miTitulo}{[NOMBRE DE LA TESIS]}
-\newcommand{\miAutor}{[NOMBRE DEL AUTOR (ESTUDIANTE)]}
+% T\'itulo y autor (PERSONALIZA CON TUS DATOS)
+\newcommand{\miTitulo}{[T\'itulo de tu Tesis]}
+\newcommand{\miAutor}{[Tu Nombre Completo]}
 
 % Lugar y fecha
 \newcommand{\miCiudad}{Chihuahua, Chih., M\'exico}
-\newcommand{\miFecha}{[D\'{\i}A] de [Mes] de [A\~NO]}
+\newcommand{\miFecha}{[D\'ia] de [Mes] de 2025}
 
 % Ruta del logo (ya incluido en figuras/)
 \newcommand{\miLogo}{figuras/logo_uach_portada.png}
@@ -54,10 +58,12 @@
   pdftitle={\miTitulo},
   pdfauthor={\miAutor},
   pdfsubject={\miPrograma},
-  pdfkeywords={tesis, UACH, FMyCB}
+  pdfkeywords={tesis, UACH, FMyCB},
+  hidelinks
 }
 
 \begin{document}
+\justifying % justificar todo el documento
 
 % ===================== PORTADA OFICIAL ======================
 \begin{titlepage}
@@ -195,7 +201,7 @@ L\'inea de investigaci\'on: L\'inea de Generaci\'on y Aplicaci\'on del Conocimie
 Subl\'inea de investigaci\'on: Bioinform\'atica y Aplicaciones de Inteligencia Artificial en Salud\\[0.5cm]
 
 Investigador Estudiante:\\[0.1cm]
-[TU NOMBRE COMPLETO]\\[0.3cm]
+Luis Angel Mart\'inez Corral\\[0.3cm]
 
 Equipo de investigaci\'on:\\[0.1cm]
 Dr. Abimael Guzm\'an Pando\\[0.1cm]
@@ -207,7 +213,7 @@ Dr. Javier Camarillo Cisneros\\[0.5cm]
 Facultad de Medicina y Ciencias Biom\'edicas\\[0.1cm]
 UACH M\'exico\\[0.1cm]
 Web: https://uach.mx/fm/\\[0.1cm]
-Correo: tu\_email@uach.mx\\[0.1cm]
+Correo: p261337@uach.mx\\[0.1cm]
 Chihuahua, M\'exico, 2025\\[0.5cm]
 
 % Copyright
@@ -252,7 +258,7 @@ P {\hspace{0.15cm}} R {\hspace{0.15cm}} E {\hspace{0.15cm}} S {\hspace{0.15cm}} 
 
 {\fontsize{12}{14}\selectfont 
 
-Por medio de la presente nos permitimos informar a usted que el C. [NOMBRE DEL TESISTA], con n\'umero de matr\'icula [MATRÍCULA], ha concluido la elaboraci\'on de la tesis ``[NOMBRE DE LA TESIS]'', como requisito para obtener el grado de: \textbf{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}.\\[0.2cm]
+Por medio de la presente nos permitimos informar a usted que el C. Luis Angel Mart\'inez Corral, con n\'umero de matr\'icula 261337, ha concluido la elaboraci\'on de la tesis ``Modelo de Evaluaci\'on del Comportamiento Sedentario mediante L\'ogica Difusa y Datos Biom\'etricos'', como requisito para obtener el grado de: \textbf{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}.\\[0.2cm]
 
 As\'i mismo, manifestamos que la tesis ha sido revisada y aprobada por los abajo firmantes, miembros del Comit\'e de Grado.\\[0.2cm]
 
@@ -317,8 +323,14 @@ Se agradece a:\\[0.5cm]
 \newpage
 \setcounter{page}{7}
 \thispagestyle{plain}
-
+\renewcommand{\contentsname}{}
+\begin{center}
+{\fontsize{12}{14}\selectfont\bfseries \'Indice de contenidos}\\[0.6cm]
+\end{center}
+\begingroup
+\let\clearpage\relax % evita salto de página que inserta el índice por defecto
 \tableofcontents
+\endgroup
 
 % --------------- INICIO DEL CONTENIDO ----------------
 % Aquí comenzarán los capítulos

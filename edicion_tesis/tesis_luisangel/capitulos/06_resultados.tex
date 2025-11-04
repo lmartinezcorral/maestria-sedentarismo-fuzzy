@@ -1,401 +1,210 @@
-% ============================================================================
-% CAPÍTULO 6: RESULTADOS
-% ============================================================================
-%
-% REQUISITOS SEGÚN LA FACULTAD:
-%
-% Este apartado debe presentar:
-%
-% 1. RESULTADOS DEL PROCESO DE VALIDACIÓN DEL INSTRUMENTO:
-%    • Validación por juicio de expertos
-%    • Confiabilidad y consistencia interna
-%    • Otras técnicas de validación empleadas
-%
-% 2. CARACTERIZACIÓN DE LA POBLACIÓN Y/O UNIDADES DE ANÁLISIS
-%
-% 3. RESULTADOS ACORDES AL PLAN DE ANÁLISIS:
-%    • Análisis univariado (frecuencias y análisis de medias)
-%    • Análisis bivariado (comparación, correlación, regresión lineal)
-%    • Análisis multivariado (regresión múltiple y AFE)
-%
-% 4. INCLUIR UN CUADRO O FIGURA POR PÁGINA ACORDE AL FORMATO APA
-%
-% 5. IDENTIFICAR LOS HALLAZGOS MÁS IMPORTANTES
-%
-% 6. NO REPETIR LOS RESULTADOS EN EL TEXTO SI ESTÁN EN UN CUADRO O GRÁFICA
-%
-% 7. TESIS: En un párrafo se describe la principal aportación de la investigación
-%    derivado de la constatación de la hipótesis + un diagrama que explique la tesis
-%
-% ============================================================================
-
 \chapter{Resultados}
-\label{cap:resultados}
+\label{chap:resultados}
 
-% INSTRUCCIONES GENERALES:
-% - Presenta resultados OBJETIVOS (sin interpretación)
-% - La interpretación va en DISCUSIÓN
-% - Usa tablas y figuras con formato APA
-% - NO repitas en texto lo que está en tablas/figuras
-% - Identifica y resalta hallazgos importantes
-% - Al final: presenta tu TESIS con diagrama
+Este capítulo presenta los hallazgos empíricos del estudio, siguiendo la secuencia del pipeline metodológico. Se inicia con la caracterización de la cohorte y el análisis de la variabilidad de los datos, lo cual fundamenta las decisiones de preprocesamiento. A continuación, se detalla el proceso de establecimiento de la ``verdad operativa'' mediante el análisis de conglomerados. Posteriormente, se presenta el rendimiento del sistema de inferencia difusa en su validación contra esta referencia. Finalmente, se expone un análisis de robustez que revela la contribución sinérgica de las variables al modelo.
 
-En este capítulo se presentan los resultados obtenidos de acuerdo con los objetivos planteados y el plan de análisis descrito en la metodología.
+% ============================================================================
+\section{Caracterización de la Cohorte y Análisis de Variabilidad de Datos}
+\label{sec:caracterizacion_cohorte}
+% ============================================================================
 
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.1: Validación de Instrumentos
-% ----------------------------------------------------------------------------
-\section{Resultados de Validación de Instrumentos}
-\label{sec:validacion_resultados}
+La cohorte final del estudio estuvo compuesta por 10 participantes adultos (5 mujeres, 5 hombres) con un seguimiento longitudinal multianual, acumulando un total de 9,185 días de registro. Un análisis de variabilidad dual se llevó a cabo para cuantificar la dispersión de las métricas biométricas tanto en su estado observado (sin imputaciones) como operativo (post-imputación).
 
-% SOLO SI APLICA: Si validaste o adaptaste instrumentos
-
-\subsection{Validación de Contenido (Juicio de Expertos)}
-\label{subsec:resultados_juicio_expertos}
-
-[Si realizaste validación por expertos, presenta los resultados]
-
-Se sometió el instrumento a evaluación de \textit{[n]} expertos. La \Cref{tab:validacion_expertos} muestra los resultados del Índice de Validez de Contenido (IVC) por ítem.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Índice de Validez de Contenido por ítem}
-    \label{tab:validacion_expertos}
-    \small
-    \begin{tabular}{@{}clcccc@{}}
-        \toprule
-        \textbf{Ítem} & \textbf{Enunciado} & \textbf{Claridad} & \textbf{Pertinencia} & \textbf{Suficiencia} & \textbf{IVC} \\
-        \midrule
-        1 & \textit{[Enunciado resumido]} & 0.90 & 0.95 & 0.85 & 0.90 \\
-        2 & \textit{[...]} & ... & ... & ... & ... \\
-        \midrule
-        \multicolumn{5}{l}{\textbf{IVC Global del Instrumento}} & \textbf{[valor]} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-El IVC global del instrumento fue de \textit{[valor]}, considerado \textit{[excelente/aceptable según criterio > 0.80]}.
-
-\subsection{Análisis de Confiabilidad}
-\label{subsec:resultados_confiabilidad}
-
-[Presenta resultados de confiabilidad]
-
-\textbf{Consistencia Interna (Alfa de Cronbach):}
-
-La \Cref{tab:alfa_cronbach} presenta los valores de confiabilidad del instrumento.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Confiabilidad del instrumento (Alfa de Cronbach)}
-    \label{tab:alfa_cronbach}
-    \begin{tabular}{@{}lcc@{}}
-        \toprule
-        \textbf{Dimensión} & \textbf{N° Ítems} & \textbf{Alfa de Cronbach} \\
-        \midrule
-        Dimensión 1 & [n] & [valor] \\
-        Dimensión 2 & [n] & [valor] \\
-        Dimensión 3 & [n] & [valor] \\
-        \midrule
-        \textbf{Escala Global} & \textbf{[total]} & \textbf{[valor]} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-Todos los valores de $\alpha$ fueron superiores a 0.70, indicando consistencia interna aceptable.
-
-\subsection{Validación de Constructo (si aplica)}
-\label{subsec:resultados_constructo}
-
-[Si hiciste AFE con muestra amplia]
-
-Se realizó Análisis Factorial Exploratorio (AFE). La prueba de Kaiser-Meyer-Olkin (KMO = \textit{[valor]}) y la prueba de esfericidad de Bartlett ($\chi^2$ = \textit{[valor]}, $p < 0.001$) indicaron adecuación de los datos para el análisis factorial.
-
-Se extrajeron \textit{[n]} factores que explicaron el \textit{[\%]} de la varianza total.
-
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.2: Caracterización de la Población
-% ----------------------------------------------------------------------------
-\section{Caracterización de la Población de Estudio}
-\label{sec:caracterizacion_poblacion}
-
-\subsection{Características Sociodemográficas}
-\label{subsec:caracteristicas_sociodemograficas}
-
-La muestra estuvo conformada por \textit{n = [número]} participantes. La \Cref{tab:sociodemograficos} presenta las características sociodemográficas.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Características sociodemográficas de la población de estudio (N=[n])}
-    \label{tab:sociodemograficos}
-    \begin{tabular}{@{}lcc@{}}
-        \toprule
-        \textbf{Variable} & \textbf{n} & \textbf{\%} \\
-        \midrule
-        \textbf{Sexo} & & \\
-        \quad Hombre & [n] & [\%] \\
-        \quad Mujer & [n] & [\%] \\
-        \midrule
-        \textbf{Edad (años)} & & \\
-        \quad 18-29 & [n] & [\%] \\
-        \quad 30-39 & [n] & [\%] \\
-        \quad 40-49 & [n] & [\%] \\
-        \quad $\geq$50 & [n] & [\%] \\
-        \quad Media (DE) & \multicolumn{2}{c}{[media] $\pm$ [DE]} \\
-        \midrule
-        \textbf{Escolaridad} & & \\
-        \quad Primaria & [n] & [\%] \\
-        \quad Secundaria & [n] & [\%] \\
-        \quad Preparatoria & [n] & [\%] \\
-        \quad Licenciatura o más & [n] & [\%] \\
-        \midrule
-        \textbf{[Otra variable]} & & \\
-        \quad [Categoría 1] & [n] & [\%] \\
-        \quad [Categoría 2] & [n] & [\%] \\
-        \bottomrule
-    \end{tabular}
-    \\[5pt]
-    \footnotesize{\textit{Nota:} DE = Desviación Estándar}
-\end{table}
-
-La mayoría de los participantes fueron \textit{[describe brevemente el hallazgo más relevante sin repetir todos los números]}.
-
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.3: Análisis Univariado
-% ----------------------------------------------------------------------------
-\section{Análisis Descriptivo de Variables (Análisis Univariado)}
-\label{sec:analisis_univariado}
-
-\subsection{Variables Cuantitativas}
-\label{subsec:variables_cuantitativas}
-
-La \Cref{tab:descriptivos_cuantitativos} presenta las medidas de tendencia central y dispersión de las variables cuantitativas.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Estadísticos descriptivos de variables cuantitativas}
-    \label{tab:descriptivos_cuantitativos}
-    \begin{tabular}{@{}lccccc@{}}
-        \toprule
-        \textbf{Variable} & \textbf{Media} & \textbf{DE} & \textbf{Mediana} & \textbf{Mín} & \textbf{Máx} \\
-        \midrule
-        [Variable 1] & [valor] & [valor] & [valor] & [valor] & [valor] \\
-        [Variable 2] & [valor] & [valor] & [valor] & [valor] & [valor] \\
-        [Variable 3] & [valor] & [valor] & [valor] & [valor] & [valor] \\
-        \bottomrule
-    \end{tabular}
-    \\[5pt]
-    \footnotesize{\textit{Nota:} DE = Desviación Estándar; Mín = Mínimo; Máx = Máximo}
-\end{table}
-
-[Describe brevemente los hallazgos más relevantes]
-
-\subsection{Variables Cualitativas}
-\label{subsec:variables_cualitativas}
-
-[Presenta frecuencias y porcentajes de tus variables principales]
-
-La \Cref{fig:distribucion_variable1} muestra la distribución de \textit{[variable principal]}.
+Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, indicando una alta irregularidad en los patrones de actividad.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{figuras/distribucion_variable1.png}
-    \caption{Distribución de [nombre de la variable]}
-    \label{fig:distribucion_variable1}
+    \includegraphics[width=0.95\textwidth]{figuras/coeficiente_de_variacion.png}
+    \caption{Mapa de calor de variabilidad (Coeficiente de Variación) por usuario y variable}
+    \label{fig:mapa_calor_variabilidad}
 \end{figure}
 
-Se observó que \textit{[hallazgo principal sin repetir los números exactos de la gráfica]}.
+Como se observa en el mapa de calor de variabilidad, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. De igual manera, la comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación mostró que el proceso de imputación, si bien necesario, tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras que la incrementa ligeramente en otras.
 
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.4: Análisis Bivariado
-% ----------------------------------------------------------------------------
-\section{Análisis de Relaciones entre Variables (Análisis Bivariado)}
-\label{sec:analisis_bivariado}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figuras/variabilidadoperativa_vs_observada.png}
+    \caption{Comparación de variabilidad entre datos observados y operativos (post-imputación)}
+    \label{fig:variabilidad_comparativa}
+\end{figure}
 
-\subsection{Relación entre Variable Dependiente e Independientes}
-\label{subsec:relacion_variables_principales}
+Esta alta variabilidad natural de los datos recopilados en condiciones de vida libre justificó la decisión metodológica de agregar los datos a nivel semanal utilizando estadísticos robustos (mediana e IQR), con el fin de amortiguar el ruido diario y analizar patrones de comportamiento más estables y sostenidos.
 
-[Aquí presentas las relaciones entre tus variables principales]
+% ============================================================================
+\section{Establecimiento de la Verdad Operativa: Análisis de Conglomerados}
+\label{sec:verdad_operativa_clustering}
+% ============================================================================
 
-\textbf{[Variable Independiente 1] vs [Variable Dependiente]:}
+Previo al análisis de conglomerados, se verificó la ausencia de multicolinealidad severa entre las ocho características semanales seleccionadas. Todas las variables presentaron un Factor de Inflación de la Varianza (VIF) inferior a 2.0, lo que confirma su idoneidad para el modelado.
 
-La \Cref{tab:relacion_vi1_vd} muestra la relación entre \textit{[VI1]} y \textit{[VD]}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figuras/matriz_correlacion_features_clustering.png}
+    \caption{Matriz de correlación de características para clustering (verificación de multicolinealidad)}
+    \label{fig:matriz_correlacion}
+\end{figure}
+
+Posteriormente, se realizó un barrido de $K$ (de 2 a 6 conglomerados) para determinar la partición más adecuada de los datos. El coeficiente de Silhouette alcanzó su máximo en $K=2$, indicando que la estructura más clara y estable en los datos correspondía a dos perfiles de comportamiento distintos.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figuras/PCA_elbow_vs_shilloete.png}
+    \caption{Análisis de determinación de K óptimo: Método del codo (Elbow) y Coeficiente de Silhouette}
+    \label{fig:silhouette_elbow}
+\end{figure}
+
+El análisis de componentes principales (PCA) confirmó visualmente la tendencia de los datos a separarse en dos grupos a lo largo del primer componente principal, el cual estaba fuertemente influenciado por las variables de actividad y gasto calórico.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figuras/PCA_biplot.png}
+    \caption{Análisis de Componentes Principales (PCA) mostrando la separación en dos conglomerados}
+    \label{fig:pca_biplot}
+\end{figure}
+
+Los perfiles de estos dos conglomerados se analizaron estadísticamente para su caracterización clínica. El Conglomerado 0 (``Bajo Sedentarismo'') presentó valores de mediana significativamente más altos en Actividad\_relativa\_p50 y Superavit\_calorico\_basal\_p50 en comparación con el Conglomerado 1 (``Alto Sedentarismo''). Las diferencias fueron estadísticamente irrefutables ($p < .001$) y con un tamaño del efecto grande (Cohen's $d > 0.9$). Curiosamente, la HRV\_SDNN no mostró una diferencia significativa entre ambos grupos.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figuras/perfiles_de_clusters.png}
+    \caption{Perfiles de los dos conglomerados según las 4 variables principales (Actividad relativa, Superávit calórico, HRV-SDNN, Delta cardíaco)}
+    \label{fig:perfiles_clusters}
+\end{figure}
+
+La \Cref{tab:distribucion_clusters_usuario} muestra la distribución de semanas asignadas a cada conglomerado por usuario.
 
 \begin{table}[htbp]
-    \centering
-    \caption{Relación entre [VI1] y [VD]}
-    \label{tab:relacion_vi1_vd}
-    \begin{tabular}{@{}lccccc@{}}
-        \toprule
-        \textbf{[VI1]} & \multicolumn{2}{c}{\textbf{[VD Categoría 1]}} & \multicolumn{2}{c}{\textbf{[VD Categoría 2]}} & \textbf{Valor p} \\
-        \cmidrule(lr){2-3} \cmidrule(lr){4-5}
-         & n & \% & n & \% & \\
-        \midrule
-        [Categoría A] & [n] & [\%] & [n] & [\%] & \multirow{3}{*}{[valor p]} \\
-        [Categoría B] & [n] & [\%] & [n] & [\%] & \\
-        [Categoría C] & [n] & [\%] & [n] & [\%] & \\
-        \bottomrule
-    \end{tabular}
-    \\[5pt]
-    \footnotesize{\textit{Nota:} Prueba de $\chi^2$. Significancia estadística: $p < 0.05$}
+\centering
+\caption{Distribución de Semanas por Conglomerado y Usuario}
+\label{tab:distribucion_clusters_usuario}
+\small
+\begin{tabular}{@{}lcccr@{}}
+\toprule
+\textbf{Usuario} & \textbf{Cluster Alto Sed (\%)} & \textbf{Cluster Bajo Sed (\%)} & \textbf{Diferencia absoluta (\%)} \\
+\midrule
+u1  & 99.3 & 0.7  & 98.7 \\
+u2  & 85.7 & 14.3 & 71.4 \\
+u3  & 11.3 & 88.7 & 77.3 \\
+u4  & 71.4 & 28.6 & 42.9 \\
+u5  & 64.3 & 35.7 & 28.6 \\
+u6  & 82.0 & 18.0 & 64.0 \\
+u7  & 94.7 & 5.3  & 89.5 \\
+u8  & 27.7 & 72.3 & 44.5 \\
+u9  & 84.2 & 15.8 & 68.5 \\
+u10 & 80.9 & 19.1 & 61.8 \\
+\bottomrule
+\end{tabular}
 \end{table}
 
-Se encontró una relación \textit{[estadísticamente significativa/no significativa]} entre \textit{[VI1]} y \textit{[VD]} ($\chi^2$ = \textit{[valor]}, $p$ = \textit{[valor]}).
+La asignación de cada una de las 1,337 semanas válidas a uno de estos dos conglomerados se constituyó como la ``verdad operativa'': una clasificación objetiva y empírica utilizada como referencia para la validación del sistema de inferencia difusa.
 
-\subsection{Correlaciones entre Variables Cuantitativas}
-\label{subsec:correlaciones}
+% ============================================================================
+\section{Rendimiento del Sistema de Inferencia Difusa}
+\label{sec:rendimiento_sistema_difuso}
+% ============================================================================
 
-[Si tienes correlaciones]
+El rendimiento del modelo difuso se evaluó mediante su concordancia con la clasificación de la verdad operativa. Tras una búsqueda del umbral de decisión ($\tau$) que maximizara el F1-Score, se estableció un valor óptimo de $\tau = 0.30$. Con este umbral, el sistema difuso alcanzó un rendimiento global robusto, con un F1-Score de 0.840, una Exactitud de 0.740 y una alta Sensibilidad (Recall) de 0.976.
 
-La \Cref{tab:matriz_correlaciones} presenta la matriz de correlaciones entre las variables cuantitativas.
+El análisis por participante reveló una heterogeneidad en el rendimiento, con un F1-Score que osciló entre 0.215 y 0.997. Usuarios con patrones de comportamiento más estables mostraron una concordancia muy alta (ej. u1, u7), mientras que aquellos con mayor variabilidad intra-semanal presentaron mayores discrepancias, evidenciando áreas de oportunidad para la personalización futura del modelo.
 
-\begin{table}[htbp]
-    \centering
-    \caption{Matriz de correlaciones (Coeficiente de Pearson/Spearman)}
-    \label{tab:matriz_correlaciones}
-    \begin{tabular}{@{}lcccc@{}}
-        \toprule
-        \textbf{Variable} & \textbf{Variable 1} & \textbf{Variable 2} & \textbf{Variable 3} & \textbf{Variable 4} \\
-        \midrule
-        Variable 1 & 1.00 & & & \\
-        Variable 2 & [r]* & 1.00 & & \\
-        Variable 3 & [r] & [r]** & 1.00 & \\
-        Variable 4 & [r]* & [r] & [r]** & 1.00 \\
-        \bottomrule
-    \end{tabular}
-    \\[5pt]
-    \footnotesize{* $p < 0.05$; ** $p < 0.01$}
+La \Cref{tab:rendimiento_louo} presenta los resultados de la validación cruzada Leave-One-User-Out (LOUO) por usuario.
+
+\begin{table}[p]
+\centering
+\caption{Rendimiento del Sistema Difuso por Usuario (Validación LOUO)}
+\label{tab:rendimiento_louo}
+\scriptsize
+\begin{longtable}{@{}lcccccccccccc@{}}
+\toprule
+\textbf{Usuario} & \textbf{Semanas} & \textbf{\% Obs.*} & \textbf{Acc} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} & \textbf{MCC} & \textbf{$\tau$} & \textbf{TP} & \textbf{FP} & \textbf{TN} & \textbf{FN} \\
+\midrule
+\endfirsthead
+\multicolumn{13}{c}{\tablename\ \thetable{} -- continuación} \\
+\toprule
+\textbf{Usuario} & \textbf{Semanas} & \textbf{\% Obs.*} & \textbf{Acc} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} & \textbf{MCC} & \textbf{$\tau$} & \textbf{TP} & \textbf{FP} & \textbf{TN} & \textbf{FN} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{13}{r}{Continúa en la siguiente página} \\
+\endfoot
+\bottomrule
+\endlastfoot
+u1  & 149 & 100 & 0.993 & 0.993 & 1.000 & 0.997 & 0.000 & 0.3 & 148 & 1   & 0  & 0 \\
+u2  & 7   & 100 & 0.429 & 0.750 & 0.500 & 0.600 & -0.354 & 0.3 & 3   & 1   & 0  & 3 \\
+u3  & 141 & 100 & 0.277 & 0.123 & 0.875 & 0.215 & 0.060 & 0.3 & 14  & 100 & 25 & 2 \\
+u4  & 14  & 100 & 0.714 & 0.714 & 1.000 & 0.833 & 0.000 & 0.3 & 10  & 4   & 0  & 0 \\
+u5  & 14  & 100 & 0.714 & 0.692 & 1.000 & 0.818 & 0.372 & 0.3 & 9   & 4   & 1  & 0 \\
+u6  & 278 & 100 & 0.817 & 0.827 & 0.982 & 0.898 & 0.104 & 0.3 & 224 & 47  & 3  & 4 \\
+u7  & 114 & 100 & 0.947 & 0.947 & 1.000 & 0.973 & 0.000 & 0.3 & 108 & 6   & 0  & 0 \\
+u8  & 191 & 100 & 0.440 & 0.315 & 0.868 & 0.462 & 0.151 & 0.3 & 46  & 100 & 38 & 7 \\
+u9  & 298 & 100 & 0.856 & 0.869 & 0.976 & 0.919 & 0.305 & 0.3 & 245 & 37  & 10 & 6 \\
+u10 & 131 & 100 & 0.809 & 0.809 & 1.000 & 0.895 & 0.000 & 0.3 & 106 & 25  & 0  & 0 \\
+\end{longtable}
+\begin{flushleft}
+\small
+\textit{Nota:} \% Obs.* = Porcentaje de datos observados (sin imputación). Acc = Accuracy, Prec = Precision, Rec = Recall, MCC = Matthews Correlation Coefficient, $\tau$ = umbral de decisión óptimo, TP = Verdaderos Positivos, FP = Falsos Positivos, TN = Verdaderos Negativos, FN = Falsos Negativos.
+\end{flushleft}
 \end{table}
 
-Se encontraron correlaciones significativas entre \textit{[menciona las más relevantes]}.
+La \Cref{tab:caracteristicas_usuario} presenta las características biométricas semanales por usuario (mediana $\pm$ desviación estándar).
 
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.5: Análisis Multivariado
-% ----------------------------------------------------------------------------
-\section{Análisis Multivariado}
-\label{sec:analisis_multivariado}
-
-[Presenta tus modelos de regresión o análisis factorial]
-
-\subsection{Modelo de Regresión [Lineal/Logística]}
-\label{subsec:regresion}
-
-Para identificar los predictores de \textit{[variable dependiente]}, se realizó un análisis de regresión \textit{[lineal múltiple/logística]}.
-
-La \Cref{tab:regresion} presenta los resultados del modelo final.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Modelo de regresión [tipo] para predecir [variable dependiente]}
-    \label{tab:regresion}
-    \begin{tabular}{@{}lcccc@{}}
-        \toprule
-        \textbf{Variable} & \textbf{Coeficiente B} & \textbf{Error Estándar} & \textbf{IC 95\%} & \textbf{Valor p} \\
-        \midrule
-        (Constante) & [valor] & [valor] & [[inf] - [sup]] & [p] \\
-        [Predictor 1] & [valor] & [valor] & [[inf] - [sup]] & [p]* \\
-        [Predictor 2] & [valor] & [valor] & [[inf] - [sup]] & [p]** \\
-        [Predictor 3] & [valor] & [valor] & [[inf] - [sup]] & [p] \\
-        \midrule
-        \multicolumn{5}{l}{$R^2$ ajustado = [valor] / $F$ = [valor], $p < 0.001$} \\
-        \bottomrule
-    \end{tabular}
-    \\[5pt]
-    \footnotesize{* $p < 0.05$; ** $p < 0.01$. IC = Intervalo de Confianza}
+\begin{landscape}
+\begin{table}[p]
+\centering
+\caption{Características Biométricas Semanales por Usuario (Mediana $\pm$ DE)}
+\label{tab:caracteristicas_usuario}
+\tiny
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+\textbf{Usuario} & \textbf{Act\_rel\_p50} & \textbf{Act\_rel\_iqr} & \textbf{Sup\_cal\_p50} & \textbf{Sup\_cal\_iqr} & \textbf{HRV\_p50} & \textbf{HRV\_iqr} & \textbf{Delta\_FC\_p50} & \textbf{Delta\_FC\_iqr} & \textbf{Score\_fuzzy} \\
+\midrule
+u1  & 0.083 ($\pm$0.029) & 0.041 ($\pm$0.027) & 22.839 ($\pm$5.172)  & 9.327 ($\pm$5.760)   & 54.995 ($\pm$6.304) & 11.373 ($\pm$4.877) & 37.046 ($\pm$4.039) & 8.615 ($\pm$4.647)  & 0.644 ($\pm$0.211) \\
+u2  & 0.161 ($\pm$0.028) & 0.072 ($\pm$0.043) & 33.069 ($\pm$4.957)  & 16.296 ($\pm$6.997)  & 40.651 ($\pm$6.816) & 7.654 ($\pm$2.997)  & 40.711 ($\pm$4.800) & 9.118 ($\pm$6.176)  & 0.334 ($\pm$0.334) \\
+u3  & 0.145 ($\pm$0.049) & 0.096 ($\pm$0.038) & 46.009 ($\pm$11.031) & 25.709 ($\pm$14.350) & 34.696 ($\pm$8.376) & 12.893 ($\pm$7.845) & 57.413 ($\pm$8.047) & 11.451 ($\pm$4.718) & 0.465 ($\pm$0.250) \\
+u4  & 0.163 ($\pm$0.057) & 0.089 ($\pm$0.039) & 21.362 ($\pm$6.943)  & 7.941 ($\pm$3.238)   & 38.662 ($\pm$6.757) & 11.192 ($\pm$7.132) & 49.250 ($\pm$4.205) & 12.780 ($\pm$6.044) & 0.719 ($\pm$0.196) \\
+u5  & 0.163 ($\pm$0.057) & 0.089 ($\pm$0.039) & 31.987 ($\pm$10.396) & 11.891 ($\pm$4.848)  & 38.662 ($\pm$6.757) & 11.192 ($\pm$7.132) & 49.250 ($\pm$4.205) & 12.780 ($\pm$6.044) & 0.683 ($\pm$0.271) \\
+u6  & 0.175 ($\pm$0.037) & 0.070 ($\pm$0.067) & 23.772 ($\pm$6.138)  & 11.973 ($\pm$6.419)  & 33.882 ($\pm$4.741) & 8.661 ($\pm$4.479)  & 46.296 ($\pm$6.173) & 9.523 ($\pm$4.477)  & 0.638 ($\pm$0.221) \\
+u7  & 0.118 ($\pm$0.038) & 0.054 ($\pm$0.052) & 20.218 ($\pm$4.929)  & 8.763 ($\pm$5.960)   & 46.169 ($\pm$7.903) & 13.076 ($\pm$6.134) & 38.499 ($\pm$4.882) & 8.382 ($\pm$4.037)  & 0.735 ($\pm$0.243) \\
+u8  & 0.166 ($\pm$0.027) & 0.049 ($\pm$0.023) & 47.287 ($\pm$14.047) & 27.491 ($\pm$12.703) & 62.822 ($\pm$7.063) & 14.273 ($\pm$6.826) & 35.075 ($\pm$5.101) & 10.307 ($\pm$5.315) & 0.385 ($\pm$0.214) \\
+u9  & 0.111 ($\pm$0.028) & 0.049 ($\pm$0.028) & 35.047 ($\pm$7.665)  & 14.946 ($\pm$14.963) & 55.583 ($\pm$10.210) & 15.152 ($\pm$7.463) & 45.301 ($\pm$4.819) & 8.411 ($\pm$4.422) & 0.552 ($\pm$0.180) \\
+u10 & 0.091 ($\pm$0.033) & 0.054 ($\pm$0.037) & 25.162 ($\pm$9.817)  & 15.957 ($\pm$11.648) & 52.707 ($\pm$6.727) & 11.811 ($\pm$5.773) & 41.633 ($\pm$5.305) & 10.129 ($\pm$4.776) & 0.612 ($\pm$0.184) \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\scriptsize
+\textit{Nota:} Act\_rel = Actividad relativa, Sup\_cal = Superávit calórico basal, HRV = Variabilidad de frecuencia cardiaca (SDNN), Delta\_FC = Delta cardíaco, Score\_fuzzy = Puntuación del sistema difuso. Valores expresados como mediana ($\pm$ desviación estándar).
+\end{flushleft}
 \end{table}
+\end{landscape}
 
-El modelo explicó el \textit{[\%]} de la varianza de \textit{[variable dependiente]} ($R^2$ ajustado = \textit{[valor]}). Los predictores significativos fueron \textit{[lista]}.
+% ============================================================================
+\section{Análisis de Robustez y Contribución Sinérgica de las Variables}
+\label{sec:analisis_robustez}
+% ============================================================================
 
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.6: Resultados por Objetivo Específico
-% ----------------------------------------------------------------------------
-\section{Resultados por Objetivo Específico}
-\label{sec:resultados_por_objetivo}
+Para evaluar la importancia relativa de las variables en el modelo, se realizó un análisis de sensibilidad comparando el rendimiento del modelo completo (4 variables de entrada) con un modelo reducido (2 variables de entrada), que excluía las variables cardiovasculares (HRV\_SDNN y Delta\_cardiaco).
 
-[Organiza tus resultados según tus objetivos específicos]
+El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420).
 
-\subsection{Objetivo Específico 1: \textit{[Enunciado del OE1]}}
-\label{subsec:resultados_oe1}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figuras/analisis_robustez.png}
+    \caption{Análisis de robustez: Comparación de rendimiento entre Modelo completo (4 variables) y Modelo reducido (2 variables)}
+    \label{fig:analisis_robustez}
+\end{figure}
 
-[Presenta los resultados que responden a este objetivo]
+Este análisis demostró que, aunque la HRV\_SDNN no era un discriminador potente a nivel univariado, su inclusión en el sistema difuso es crítica. Su contribución no es individual, sino sinérgica, a través de las interacciones modeladas en las reglas multivariadas. Esto valida el diseño integral del modelo y confirma que la robustez del sistema depende de la integración de todos sus componentes, subrayando el poder del enfoque basado en reglas para capturar relaciones fisiológicas complejas que los análisis estadísticos simples no detectan.
 
-\subsection{Objetivo Específico 2: \textit{[Enunciado del OE2]}}
-\label{subsec:resultados_oe2}
-
-[Presenta los resultados que responden a este objetivo]
-
-[Continúa con todos tus objetivos específicos]
-
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.7: Síntesis de Hallazgos Principales
-% ----------------------------------------------------------------------------
-\section{Síntesis de Hallazgos Principales}
-\label{sec:sintesis_hallazgos}
-
-Los hallazgos más relevantes de esta investigación fueron:
-
-\begin{enumerate}
-    \item \textbf{Hallazgo 1:} \textit{[Descripción concisa]}
-    \item \textbf{Hallazgo 2:} \textit{[Descripción concisa]}
-    \item \textbf{Hallazgo 3:} \textit{[Descripción concisa]}
-    \item \textbf{Hallazgo 4:} \textit{[Descripción concisa]}
-\end{enumerate}
-
-% ----------------------------------------------------------------------------
-% SECCIÓN 6.8: TESIS (Obligatoria según la facultad)
-% ----------------------------------------------------------------------------
+% ============================================================================
 \section{Tesis}
 \label{sec:tesis}
+% ============================================================================
 
-% INSTRUCCIONES:
-% - Describe en UN PÁRRAFO la principal aportación de tu investigación
-% - Debe derivarse de la constatación de tu hipótesis
-% - Incluye un DIAGRAMA que explique visualmente tu tesis
-
-Con base en los resultados obtenidos y la constatación de la hipótesis de investigación, se establece la siguiente tesis:
-
-\begin{center}
-\fbox{%
-\parbox{0.9\textwidth}{%
-\textbf{TESIS:}
-
-\textit{[Escribe aquí en un párrafo la principal aportación de tu investigación. Debe ser la conclusión central que se deriva de tus resultados y que responde a tu hipótesis]}
-
-\textbf{Ejemplo:}
-
-\textit{La implementación de [intervención/modelo propuesto] resulta en una mejora significativa de [variable de resultado] en [población específica], mediada por [mecanismo identificado]. Esta relación se mantiene incluso controlando por [variables confusoras], lo cual demuestra que [conclusión teórica o práctica principal].}
-}%
-}
-\end{center}
-
-\subsection{Diagrama Explicativo de la Tesis}
-\label{subsec:diagrama_tesis}
-
-La \Cref{fig:diagrama_tesis} presenta un modelo visual que sintetiza la tesis de esta investigación.
+La principal aportación de esta investigación es el desarrollo y la validación de un sistema experto, basado en lógica difusa, capaz de clasificar con alta fiabilidad (F1-Score = 0.840) los patrones de comportamiento sedentario semanal a partir de datos biométricos multivariados, longitudinales y recopilados en condiciones de vida libre. La constatación de la hipótesis de investigación se demuestra al confirmar que el modelo interpretable, fundamentado en reglas de conocimiento clínico, converge significativamente con una clasificación objetiva derivada de un análisis de conglomerados no supervisado. Fundamentalmente, el estudio revela que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa, un hallazgo que subraya la superioridad de los modelos sistémicos sobre los análisis univariados tradicionales para la evaluación de comportamientos complejos en salud.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{figuras/diagrama_tesis.png}
-    \caption{Modelo explicativo de la tesis: relación entre [variables principales]}
+    \includegraphics[width=0.95\textwidth]{figuras/diagrama_de_tesis.png}
+    \caption{Diagrama conceptual del sistema de evaluación del comportamiento sedentario mediante lógica difusa}
     \label{fig:diagrama_tesis}
 \end{figure}
-
-[Explica brevemente el diagrama]
-
-El diagrama muestra que \textit{[explica las flechas, relaciones, mediadores, moderadores que aparecen en tu diagrama]}.
-
-% ============================================================================
-% NOTAS FINALES:
-% ============================================================================
-%
-% RECUERDA:
-% 1. Resultados OBJETIVOS (sin interpretación)
-% 2. NO repetir en texto lo que está en tablas/figuras
-% 3. Resaltar hallazgos IMPORTANTES
-% 4. Incluir la TESIS con su diagrama (obligatorio)
-% 5. Todas las tablas/figuras con formato APA
-% 6. Organizar por objetivos específicos
-% 7. Incluir todos los niveles de análisis (univariado, bivariado, multivariado)
-%
-% ============================================================================
-

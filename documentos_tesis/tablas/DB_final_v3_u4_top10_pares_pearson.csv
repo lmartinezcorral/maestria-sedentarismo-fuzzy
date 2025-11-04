@@ -1,0 +1,11 @@
+archivo,var1,var2,pearson,spearman,abs_pearson
+DB_final_v3_u4,Total_hrs_monitorizadas,Hrs_sin_registro,-1.0,-1.0,1.0
+DB_final_v3_u4,distancia_caminada_en_km,Numero_pasos_por_dia,0.9980445937458585,0.9967444384156267,0.9980445937458585
+DB_final_v3_u4,min_totales_en_movimiento,Numero_pasos_por_dia,0.9222473629504095,0.9220005377598437,0.9222473629504095
+DB_final_v3_u4,min_totales_en_movimiento,distancia_caminada_en_km,0.9206875112011955,0.9183581435394154,0.9206875112011955
+DB_final_v3_u4,Numero_horas_con_deambulacion,Hrs_sin_registro,-0.8610908034550869,-0.8863841777709007,0.8610908034550869
+DB_final_v3_u4,Numero_horas_con_deambulacion,Total_hrs_monitorizadas,0.8610908034550869,0.8863841777709007,0.8610908034550869
+DB_final_v3_u4,distancia_caminada_en_km,Gasto_calorico_activo,0.8055984221850832,0.8268583830710797,0.8055984221850832
+DB_final_v3_u4,Numero_pasos_por_dia,Gasto_calorico_activo,0.805048565719767,0.8260851871947911,0.805048565719767
+DB_final_v3_u4,min_totales_en_movimiento,Gasto_calorico_activo,0.7762617666297567,0.7659405634141941,0.7762617666297567
+DB_final_v3_u4,Numero_horas_con_deambulacion,Gasto_calorico_activo,0.7440791302294785,0.7463714334101614,0.7440791302294785

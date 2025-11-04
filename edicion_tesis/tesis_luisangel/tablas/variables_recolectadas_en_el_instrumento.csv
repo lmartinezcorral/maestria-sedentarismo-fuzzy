@@ -1,0 +1,26 @@
+Variable;Independiente/ dependiente;Tipo de Variable;Escala de Medición;Descripción / Observaciones
+Sexo;Independiente;Categórica;Nominal;Indica el sexo biológico de la persona (p. ej., Masculino / Femenino).
+Edad;Independiente;Numérica;Discreta/Continua;"Años cumplidos. Suele considerarse discreta (entera); sin embargo, para algunos análisis se maneja como aproximación continua."
+Peso (kg);Independiente;Numérica;Continua;Medición del peso corporal en kilogramos.
+Estatura (m);Independiente;Numérica;Continua;Medición de la talla en metros.
+Número de horas con deambulación;Independiente;Numérica;Discreta/Continua;Horas (o fracción) en las que el usuario registra algún tipo de desplazamiento (de pie, caminando).
+Número horas estacionarias;Independiente;Numérica;Discreta/Continua;Horas (o fracción) en las que el usuario permanece en posición estacionaria.
+Total de horas monitorizadas;Independiente;Numérica;Discreta/Continua;Horas totales en las cuales el Apple Watch registra actividad (pueden ser horas efectivas de uso diario).
+Horas sin registro;Independiente;Numérica;Discreta/Continua;Horas no registradas por el dispositivo (por ejemplo, si el usuario no lo llevaba puesto).
+Minutos totales en movimiento;Independiente;Numérica;Discreta (minutos);Total de minutos en movimiento (podría convertirse a horas si fuera necesario).
+Total de minutos de ejercicio diario;Independiente;Numérica;Discreta (minutos);Minutos diarios destinados a actividad física clasificada como “ejercicio” (según los criterios del Apple Watch).
+Distancia caminada en kms;Independiente;Numérica;Continua;Distancia recorrida a pie medida en kilómetros (con decimales).
+Número de pasos por día;Independiente;Numérica;Discreta;Conteo total de pasos diarios.
+Frecuencia cardiaca al caminar promedio diario (lpm);Independiente;Numérica;Continua;Este valor refleja el estado del sistema cardiovascular durante períodos de inactividad o descanso y se considera un indicador clave de la salud general y la condición física. 
+Frecuencia cardiaca de reposo promedio diario (lpm);Independiente;Numérica;Continua;Frecuencia cardíaca de reposo promedio diario.
+Gasto calórico activo (kcal);Independiente;Numérica;Continua;Estimación del gasto calórico activo según el Apple Watch, en kilocalorías.
+Función física (SF-36);Dependiente;Numérica (Escala);Continua;Dimensión del SF-36 (puntaje 0 a 100). Evalúa la capacidad para realizar actividades físicas.
+Rol físico (SF-36);Dependiente;Numérica (Escala);Continua;Dimensión del SF-36 que evalúa las limitaciones físicas en la vida diaria.
+Dolor corporal (SF-36);Dependiente;Numérica (Escala);Continua;Percibe la intensidad y frecuencia del dolor, afecta la calidad de vida.
+Salud general (SF-36);Dependiente;Numérica (Escala);Continua;Percepción global de salud, síntoma de la salud percibida.
+Vitalidad (SF-36);Dependiente;Numérica (Escala);Continua;Evalúa energía, fatiga y cansancio.
+Función social (SF-36);Dependiente;Numérica (Escala);Continua;Valora el grado de limitación en las relaciones sociales por problemas de salud.
+Rol emocional (SF-36);Dependiente;Numérica (Escala);Continua;Evalúa las limitaciones en las actividades diarias por problemas emocionales.
+Salud mental (SF-36);Dependiente;Numérica (Escala);Continua;Mide depresión, ansiedad, pérdida de control emocional y bienestar general.
+Puntuación Global (SF-36);Dependiente;Numérica (Escala);Continua;Resultado agregado de todos los componentes del SF-36 (promedio final o score total).
+Estimación del algoritmo de lógica difusa;Dependiente;Numérica;Continua ;Resultado obtenido por el algoritmo de Inteligencia artificial que integra las características identificadas para el CS y para la AF.

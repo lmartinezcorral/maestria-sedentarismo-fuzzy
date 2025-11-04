@@ -1,293 +1,61 @@
+\chapter{Delimitación del Objeto de Estudio}
+\label{chap:delimitacion}
+
 % ============================================================================
-% CAPÍTULO 4: JUSTIFICACIÓN
-% ============================================================================
-%
-% REQUISITOS SEGÚN LA FACULTAD:
-%
-% Redacta la justificación de TU INVESTIGACIÓN (no del tema).
-% Considera los siguientes criterios:
-%
-% 1. CONVENIENCIA: ¿Qué tan conveniente es la investigación?; esto es, ¿para qué sirve?
-%
-% 2. RELEVANCIA SOCIAL: ¿Cuál es su trascendencia para la sociedad?, ¿quiénes se
-%    beneficiarán con los resultados de la investigación?, ¿de qué modo? En resumen,
-%    ¿qué alcance o proyección social tiene?
-%
-% 3. IMPLICACIONES PRÁCTICAS: ¿Ayudará a resolver algún problema real?, ¿tiene
-%    implicaciones trascendentales para una amplia gama de problemas prácticos?
-%
-% 4. VALOR TEÓRICO: Con la investigación, ¿se llenará algún vacío de conocimiento?,
-%    ¿se podrán generalizar los resultados a principios más amplios?, ¿la información
-%    que se obtenga puede servir para revisar, desarrollar o apoyar una teoría?,
-%    ¿se podrá conocer en mayor medida el comportamiento de una o de diversas
-%    variables o la relación entre ellas?, ¿se ofrece la posibilidad de una exploración
-%    fructífera de algún fenómeno o ambiente?, ¿qué se espera saber con los resultados
-%    que no se sabía antes?, ¿se pueden sugerir ideas, recomendaciones o hipótesis
-%    para futuros estudios?
-%
-% 5. UTILIDAD METODOLÓGICA: ¿La investigación puede ayudar a crear un nuevo
-%    instrumento para recolectar o analizar datos?, ¿contribuye a la definición de
-%    un concepto, variable o relación entre variables?, ¿pueden lograrse con ella
-%    mejoras en la forma de experimentar con una o más variables?, ¿sugiere cómo
-%    estudiar más adecuadamente una población?
+\section{Problema de Investigación}
+\label{sec:problema_investigacion}
 % ============================================================================
 
-\chapter{Justificación}
-\label{cap:justificacion}
+El comportamiento sedentario, definido como cualquier actividad en vigilia caracterizada por un gasto energético $\leq$1.5 equivalentes metabólicos (METs) en una postura sentada, reclinada o acostada, se ha consolidado como un determinante de salud pública de primer orden. Evidencia reciente de meta-análisis a gran escala confirma su asociación independiente con un mayor riesgo de mortalidad por todas las causas, incidencia de enfermedades cardiovasculares y diabetes mellitus tipo 2 \citep{Katzmarzyk2023Sedentary,Santos2023Sedentary}. La evaluación precisa de este comportamiento es, por tanto, un pilar para la estratificación del riesgo y el diseño de intervenciones efectivas. Sin embargo, los métodos de evaluación convencionales presentan una dicotomía metodológica que limita su aplicabilidad y precisión. Los instrumentos subjetivos, como los cuestionarios de autoinforme, aunque escalables, adolecen de sesgos de memoria y deseabilidad social que comprometen su validez \citep{Healy2024ValiditySedentary,Lu2022MeasurementSedentary}. En contraparte, las técnicas objetivas de referencia, como la calorimetría indirecta o la actigrafía de grado investigativo, se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento en condiciones de vida libre \citep{Migueles2022AccelerometerData}.
 
-% INSTRUCCIONES GENERALES:
-% - Justifica tu INVESTIGACIÓN, no el tema en general
-% - Responde ESPECÍFICAMENTE a cada uno de los 5 criterios
-% - Sé concreto: menciona quiénes, cómo, cuándo, dónde
-% - Conecta con tu problema, pregunta y objetivos
-% - Extensión típica: 5-8 páginas
+La ubicuidad de los dispositivos portátiles de consumo ha generado una oportunidad sin precedentes para la monitorización objetiva, continua y longitudinal del comportamiento en el entorno ecológico del individuo. No obstante, la transición de la recolección masiva de datos a la generación de conocimiento clínicamente accionable presenta un desafío metodológico significativo. El reto principal reside en traducir flujos de datos multivariados y heterogéneos ---actividad física, patrones de frecuencia cardíaca, variabilidad de la frecuencia cardíaca (VFC) y gasto energético--- en una clasificación del sedentarismo que sea fisiológicamente significativa e individualizada \citep{Deka2023MachineLearning}. Los modelos de inteligencia artificial basados en aprendizaje profundo, comúnmente denominados ``de caja negra'', aunque han demostrado una alta precisión en la clasificación de actividades, a menudo carecen de la interpretabilidad necesaria para su adopción en la práctica clínica, donde la auditabilidad de una recomendación es un imperativo ético y profesional \citep{Vellido2020ExplainableAI}.
 
-[Párrafo introductorio explicando por qué es importante realizar ESTA investigación específica]
+Este vacío metodológico ---la ausencia de un sistema que integre de forma sinérgica múltiples biomarcadores de vida libre en una clasificación del sedentarismo que sea robusta, empíricamente validada e interpretable--- constituye el núcleo del problema que se aborda en esta investigación. Los análisis estadísticos univariados han resultado insuficientes para capturar las complejas interacciones no lineales entre la actividad física, la función autonómica y la respuesta metabólica \citep{Aubert2022HeartRate}. Por ejemplo, la relación entre la VFC y la actividad física es intrínsecamente no lineal y dependiente del contexto, lo que requiere enfoques de modelado que puedan manejar la incertidumbre y la vaguedad inherentes a los sistemas biológicos \citep{Deka2023MachineLearning}.
 
-La realización de esta investigación se justifica por las siguientes razones:
+Para resolver este problema, esta investigación desarrolló un modelo de evaluación basado en un sistema de inferencia difusa tipo Mamdani. Este enfoque se apartó de una hipótesis inicial centrada en correlacionar datos objetivos con percepciones subjetivas, para en su lugar, validar el sistema experto contra una ``verdad operativa'' derivada de los propios datos mediante un análisis de conglomerados no supervisado. De este modo, el estudio se enfocó en resolver el problema fundamental de crear un clasificador objetivo, interpretable y validado para el comportamiento sedentario en condiciones de vida libre, utilizando datos longitudinales recopilados a través de dispositivos de consumo.
 
-% ----------------------------------------------------------------------------
-% CRITERIO 1: CONVENIENCIA
-% ----------------------------------------------------------------------------
-\section{Conveniencia}
-\label{sec:conveniencia}
+% ============================================================================
+\section{Pregunta de Investigación}
+\label{sec:pregunta_investigacion}
+% ============================================================================
 
-% Pregunta clave: ¿Para qué sirve esta investigación?
+¿De qué manera un modelo basado en lógica difusa puede clasificar el comportamiento sedentario, utilizando datos biométricos recopilados en condiciones de vida libre por dispositivos ``wearables''?
 
-Esta investigación es conveniente porque \textit{[explica para qué sirve específicamente]}.
+% ============================================================================
+\section{Hipótesis}
+\label{sec:hipotesis}
+% ============================================================================
 
-\textbf{Utilidad específica:}
+\subsection{Hipótesis Conceptual (HC)}
+\label{subsec:hipotesis_conceptual}
 
-\begin{itemize}
-    \item Permitirá \textit{[utilidad 1]}
-    \item Proporcionará \textit{[utilidad 2]}
-    \item Facilitará \textit{[utilidad 3]}
-\end{itemize}
+La clasificación del comportamiento sedentario generada por el sistema de inferencia difusa, basado en reglas que integran biomarcadores de actividad y función cardiovascular, exhibe una alta concordancia con la clasificación objetiva obtenida mediante un análisis de conglomerados no supervisado sobre los mismos datos.
 
-Los resultados de este estudio servirán para \textit{[aplicación concreta]}, lo cual es necesario porque \textit{[razón específica]}.
+\subsection{Hipótesis Nula ($H_0$)}
+\label{subsec:hipotesis_nula}
 
-% ----------------------------------------------------------------------------
-% CRITERIO 2: RELEVANCIA SOCIAL
-% ----------------------------------------------------------------------------
-\section{Relevancia Social}
-\label{sec:relevancia_social}
+No existe una concordancia estadísticamente significativa entre la clasificación del comportamiento sedentario generada por el sistema de inferencia difusa y la clasificación obtenida mediante el análisis de conglomerados. Cualquier concordancia observada no es superior a la que se obtendría por azar.
 
-% Preguntas clave:
-% - ¿Cuál es su trascendencia para la sociedad?
-% - ¿Quiénes se beneficiarán?
-% - ¿De qué modo?
-% - ¿Qué alcance o proyección social tiene?
+% ============================================================================
+\section{Objetivo General}
+\label{sec:objetivo_general}
+% ============================================================================
 
-\subsection{Trascendencia Social}
+Construir y validar un modelo interpretable, basado en lógica difusa, para la clasificación del comportamiento sedentario a partir de datos biométricos de wearables recopilados en condiciones de vida libre.
 
-Esta investigación tiene relevancia social porque \textit{[explica la trascendencia]}.
-
-\subsection{Beneficiarios Directos}
-
-Los beneficiarios directos de esta investigación son:
+% ============================================================================
+\section{Objetivos Específicos}
+\label{sec:objetivos_especificos}
+% ============================================================================
 
 \begin{enumerate}
-    \item \textbf{[Grupo beneficiario 1]:} Se beneficiarán mediante \textit{[cómo específicamente]}. Se estima que \textit{[número/proporción de personas]} podrían beneficiarse.
+    \item Analizar los datos biométricos longitudinales para derivar un conjunto de variables semanales que representen cuantitativamente los patrones de actividad física y función cardiovascular de la cohorte de estudio.
     
-    \item \textbf{[Grupo beneficiario 2]:} Obtendrán \textit{[beneficio específico]} a través de \textit{[mecanismo]}.
+    \item Identificar los perfiles de comportamiento sedentario inherentes a los datos mediante la aplicación de un algoritmo de agrupamiento no supervisado, para establecer una clasificación de referencia empírica.
     
-    \item \textbf{[Grupo beneficiario 3]:} \textit{[Descripción del beneficio]}.
+    \item Diseñar un sistema de inferencia difusa que modele la relación entre las variables biométricas y los perfiles de comportamiento, estableciendo reglas lingüísticas con fundamento fisiológico.
+    
+    \item Evaluar el desempeño del sistema de inferencia difusa mediante la determinación de su nivel de concordancia con los perfiles de comportamiento identificados por el método de agrupamiento.
+    
+    \item Examinar la contribución de los componentes del modelo a través de un análisis de sensibilidad para determinar la importancia relativa de sus variables de entrada en el rendimiento clasificatorio.
 \end{enumerate}
-
-\subsection{Beneficiarios Indirectos}
-
-Adicionalmente, se beneficiarán de forma indirecta:
-
-\begin{itemize}
-    \item \textit{[Grupo indirecto 1]}: mediante \textit{[forma de beneficio]}
-    \item \textit{[Grupo indirecto 2]}: a través de \textit{[mecanismo]}
-\end{itemize}
-
-\subsection{Alcance y Proyección Social}
-
-El alcance social de esta investigación se proyecta a nivel:
-
-\begin{itemize}
-    \item \textbf{Local:} \textit{[Impacto en Chihuahua/comunidad específica]}
-    \item \textbf{Regional:} \textit{[Posible extensión a otras regiones]}
-    \item \textbf{Nacional:} \textit{[Aplicabilidad en México]}
-    \item \textbf{Internacional:} \textit{[Potencial contribución global, si aplica]}
-\end{itemize}
-
-% ----------------------------------------------------------------------------
-% CRITERIO 3: IMPLICACIONES PRÁCTICAS
-% ----------------------------------------------------------------------------
-\section{Implicaciones Prácticas}
-\label{sec:implicaciones_practicas}
-
-% Preguntas clave:
-% - ¿Ayudará a resolver algún problema real?
-% - ¿Tiene implicaciones trascendentales para problemas prácticos?
-
-\subsection{Resolución de Problemas Reales}
-
-Esta investigación ayudará a resolver el problema real de \textit{[problema específico]} que actualmente afecta a \textit{[población/contexto]}.
-
-\textbf{Problemas prácticos que se abordan:}
-
-\begin{enumerate}
-    \item \textbf{Problema práctico 1:} \textit{[Descripción]}
-    
-    \textbf{Solución propuesta:} Los resultados permitirán \textit{[cómo ayudará a resolver]}.
-    
-    \item \textbf{Problema práctico 2:} \textit{[Descripción]}
-    
-    \textbf{Solución propuesta:} \textit{[Contribución específica]}.
-\end{enumerate}
-
-\subsection{Aplicaciones Prácticas Inmediatas}
-
-Los resultados podrán aplicarse inmediatamente en:
-
-\begin{itemize}
-    \item \textit{[Aplicación práctica 1]}: En el contexto de \textit{[dónde/cuándo]}
-    \item \textit{[Aplicación práctica 2]}: Para \textit{[qué propósito específico]}
-    \item \textit{[Aplicación práctica 3]}: Beneficiando a \textit{[quiénes]}
-\end{itemize}
-
-\subsection{Trascendencia para Problemas Amplios}
-
-Más allá del problema específico, esta investigación tiene implicaciones para:
-
-\begin{itemize}
-    \item \textit{[Problema más amplio 1]}
-    \item \textit{[Problema más amplio 2]}
-    \item \textit{[Problema más amplio 3]}
-\end{itemize}
-
-% ----------------------------------------------------------------------------
-% CRITERIO 4: VALOR TEÓRICO
-% ----------------------------------------------------------------------------
-\section{Valor Teórico}
-\label{sec:valor_teorico}
-
-% Preguntas clave:
-% - ¿Se llenará algún vacío de conocimiento?
-% - ¿Se podrán generalizar resultados?
-% - ¿Servirá para revisar/desarrollar/apoyar una teoría?
-% - ¿Qué se sabrá que no se sabía antes?
-% - ¿Se pueden sugerir hipótesis para futuros estudios?
-
-\subsection{Vacíos de Conocimiento que se Llenarán}
-
-Esta investigación llenará los siguientes vacíos de conocimiento:
-
-\begin{enumerate}
-    \item \textbf{Vacío 1:} Actualmente no se conoce \textit{[qué específicamente]}. Esta investigación aportará \textit{[qué nuevo conocimiento]}.
-    
-    \item \textbf{Vacío 2:} Existe poca evidencia sobre \textit{[aspecto]}. Los resultados proporcionarán \textit{[contribución]}.
-\end{enumerate}
-
-\subsection{Contribución al Desarrollo Teórico}
-
-Los resultados de esta investigación contribuirán a:
-
-\begin{itemize}
-    \item \textbf{Revisar:} la teoría de \textit{[nombre]} al \textit{[cómo contribuirá]}
-    \item \textbf{Desarrollar:} el concepto de \textit{[concepto]} mediante \textit{[aportación]}
-    \item \textbf{Apoyar:} el modelo de \textit{[modelo]} al proporcionar \textit{[evidencia]}
-\end{itemize}
-
-\subsection{Conocimiento Nuevo que se Generará}
-
-Con esta investigación se espera saber:
-
-\begin{itemize}
-    \item \textit{[Conocimiento nuevo 1]} que actualmente no se conoce
-    \item \textit{[Conocimiento nuevo 2]} sobre el comportamiento de \textit{[variables]}
-    \item \textit{[Conocimiento nuevo 3]} respecto a la relación entre \textit{[variables]}
-\end{itemize}
-
-\subsection{Generación de Hipótesis Futuras}
-
-Los resultados permitirán sugerir:
-
-\begin{itemize}
-    \item Nuevas hipótesis sobre \textit{[tema]}
-    \item Líneas de investigación futuras en \textit{[área]}
-    \item Recomendaciones para estudios posteriores que aborden \textit{[aspecto]}
-\end{itemize}
-
-% ----------------------------------------------------------------------------
-% CRITERIO 5: UTILIDAD METODOLÓGICA
-% ----------------------------------------------------------------------------
-\section{Utilidad Metodológica}
-\label{sec:utilidad_metodologica}
-
-% Preguntas clave:
-% - ¿Ayudará a crear un nuevo instrumento?
-% - ¿Contribuye a definir conceptos/variables/relaciones?
-% - ¿Mejoras en la forma de experimentar?
-% - ¿Sugiere cómo estudiar mejor una población?
-
-\subsection{Aportaciones Metodológicas}
-
-Esta investigación tiene utilidad metodológica porque:
-
-\textbf{Instrumentos:}
-
-\begin{itemize}
-    \item Se desarrollará/validará \textit{[instrumento específico]} para \textit{[propósito]}
-    \item Se adaptará \textit{[instrumento existente]} al contexto de \textit{[población/región]}
-\end{itemize}
-
-\textbf{Definiciones operacionales:}
-
-\begin{itemize}
-    \item Contribuirá a definir operacionalmente \textit{[concepto/variable]} en el contexto de \textit{[población]}
-    \item Clarificará la relación entre \textit{[variables]}
-\end{itemize}
-
-\textbf{Mejoras metodológicas:}
-
-\begin{itemize}
-    \item Propondrá una mejora en la forma de medir \textit{[variable]} mediante \textit{[método]}
-    \item Sugerirá una estrategia más eficiente para \textit{[proceso metodológico]}
-\end{itemize}
-
-\subsection{Replicabilidad y Transferibilidad}
-
-La metodología empleada podrá ser:
-
-\begin{itemize}
-    \item \textbf{Replicada} en \textit{[otros contextos/poblaciones]}
-    \item \textbf{Adaptada} para estudiar \textit{[problemas similares]}
-    \item \textbf{Transferida} a investigaciones sobre \textit{[temas relacionados]}
-\end{itemize}
-
-% ----------------------------------------------------------------------------
-% SÍNTESIS DE LA JUSTIFICACIÓN
-% ----------------------------------------------------------------------------
-\section{Síntesis de la Justificación}
-\label{sec:sintesis_justificacion}
-
-En síntesis, esta investigación se justifica plenamente porque:
-
-\begin{enumerate}
-    \item \textbf{Es conveniente} para \textit{[síntesis de conveniencia]}
-    \item \textbf{Tiene relevancia social} al beneficiar a \textit{[síntesis de beneficiarios]}
-    \item \textbf{Tiene implicaciones prácticas} al resolver \textit{[síntesis de problemas]}
-    \item \textbf{Tiene valor teórico} al aportar \textit{[síntesis de conocimiento nuevo]}
-    \item \textbf{Tiene utilidad metodológica} al desarrollar/validar \textit{[síntesis de aportación metodológica]}
-\end{enumerate}
-
-Por todo lo anterior, la realización de esta investigación es pertinente, necesaria y oportuna para \textit{[conclusión final]}.
-
-% ============================================================================
-% NOTAS FINALES:
-% ============================================================================
-%
-% RECUERDA:
-% 1. Justifica TU INVESTIGACIÓN, no el tema en general
-% 2. Sé ESPECÍFICO en cada criterio
-% 3. Responde TODAS las preguntas de cada criterio
-% 4. Conecta con tu problema, pregunta y objetivos
-% 5. Menciona beneficiarios CONCRETOS (números si es posible)
-% 6. Las implicaciones prácticas deben ser REALES y ALCANZABLES
-%
-% ============================================================================

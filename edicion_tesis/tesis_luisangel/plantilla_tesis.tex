@@ -15,13 +15,17 @@
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{fancyhdr}
-\usepackage{natbib}  % Soporte de citas y bibliografía
+% --------------------- BIBLIOGRAFÍA (APA 7) -----------------
+\usepackage[style=apa,backend=biber,natbib]{biblatex}
+\addbibresource{referencias.bib}  % Archivo de referencias BibTeX
 \usepackage{hyperref}
 \usepackage{ragged2e} % Para \justifying (texto justificado)
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{multirow}
 \usepackage{caption}
 \usepackage{cleveref}
+\usepackage{pdflscape}  % Para tablas en orientación horizontal (landscape)
 
 % --------------------- FORMATO UACH -------------------------
 \geometry{letterpaper,top=2.5cm,bottom=2.5cm,left=3.0cm,right=2.5cm}
@@ -336,19 +340,19 @@ Se agradece a:\\[0.5cm]
 % Aquí comenzarán los capítulos
 
 \include{capitulos/01_introduccion}
-% \include{capitulos/02_marco_teorico_antecedentes}
-% \include{capitulos/03_delimitacion}
-% \include{capitulos/04_justificacion}
-% \include{capitulos/05_materiales_metodos}
-% \include{capitulos/06_resultados}
-% \include{capitulos/07_discusion}
-% \include{capitulos/08_conclusiones}
-% \include{capitulos/09_anexos}
+\include{capitulos/02_marco_teorico_antecedentes}
+\include{capitulos/03_delimitacion}
+\include{capitulos/04_justificacion}
+\include{capitulos/05_materiales_metodos}
+\include{capitulos/06_resultados}
+\include{capitulos/07_discusion}
+\include{capitulos/08_conclusiones}
+\include{capitulos/09_anexos}
 
 % ----------------- BIBLIOGRAFÍA -----------------
 \clearpage
 \renewcommand{\refname}{}
-\bibliographystyle{apalike}
-\bibliography{referencias}
+% Imprimir referencias en formato APA 7
+\printbibliography[heading=bibintoc,title={Referencias}]
 
 \end{document}
