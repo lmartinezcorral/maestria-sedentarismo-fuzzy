@@ -327,13 +327,18 @@ Se agradece a:\\[0.5cm]
 \newpage
 \setcounter{page}{7}
 \thispagestyle{plain}
+% Eliminar COMPLETAMENTE el nombre por defecto
 \renewcommand{\contentsname}{}
-\begin{center}
-{\fontsize{12}{14}\selectfont\bfseries \'Indice de contenidos}\\[0.6cm]
-\end{center}
+% Título manual centrado (sin entorno center que añade espacio)
+\noindent\hfill{\fontsize{12}{14}\selectfont\bfseries \'Indice de contenidos}\hfill\null
+% OPCIÓN 5: Pegado total - SIN espacio entre título y tabla
+\vspace{0pt}
+% Tabla de contenidos sin espacios automáticos
 \begingroup
-\let\clearpage\relax % evita salto de página que inserta el índice por defecto
-\tableofcontents
+\let\clearpage\relax
+\makeatletter
+\@starttoc{toc} % Comando de bajo nivel, sin espacios extra
+\makeatother
 \endgroup
 
 % --------------- INICIO DEL CONTENIDO ----------------
