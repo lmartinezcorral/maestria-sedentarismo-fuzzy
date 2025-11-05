@@ -23,7 +23,7 @@ El enfoque metodológico se apartó del diseño correlacional original, que plan
     \item \textbf{Autopercepción vs. comportamiento objetivo:} Prince et al. \cite{Prince2008} demuestran que autorreportes y mediciones objetivas representan constructos relacionados pero no intercambiables, con concordancia limitada (Kappa<0.50) debido a sesgos de deseabilidad social y error de memoria.
 \end{enumerate}
 
-En su lugar, se adoptó una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante clustering K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por Gonçalves et al. \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del dataset longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
+En su lugar, se adoptó una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por Gonçalves et al. \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
 
 % ============================================================================
 \section{Población de Estudio}
@@ -45,7 +45,7 @@ Los criterios de selección se basarán en la afinidad de los participantes con 
 \subsection{Tamaño de la Muestra y Tipo de Muestreo}
 \label{subsec:tamano_muestra}
 
-El tamaño de la muestra se determinará tras un sondeo específico para identificar a los estudiantes que cumplan con la posesión o disponibilidad de un Apple Watch, sobre la base de la cifra global de 3340 alumnos. Una vez establecido el número de candidatos potenciales, se definirán los requisitos estadísticos y metodológicos para garantizar la validez del estudio. Se utilizará un muestreo no probabilístico por conveniencia, reclutando a los participantes que cumplan los criterios de selección y expresen voluntariamente su disposición a formar parte del proyecto.
+El tamaño de la muestra se determinó mediante un proceso de reclutamiento dirigido a identificar estudiantes con disponibilidad de Apple Watch, alcanzando una cohorte final de 10 participantes. Se empleó un muestreo no probabilístico por conveniencia, reclutando a los participantes que cumplieron los criterios de selección y expresaron voluntariamente su disposición a formar parte del proyecto.
 
 % ============================================================================
 \section{Definición Operacional de Variables}
@@ -55,7 +55,7 @@ El tamaño de la muestra se determinará tras un sondeo específico para identif
 \subsection{Relación entre Variables}
 \label{subsec:relacion_variables}
 
-La relación de interés en este estudio se centra en analizar si los cambios en los niveles de actividad física (AF) o en el comportamiento sedentario (CS) están asociados con diferencias en la percepción de la calidad de vida relacionada con la salud (CVRS). La hipótesis plantea que un modelo de inteligencia artificial basado en lógica difusa, entrenado con datos biométricos obtenidos de monitores de actividad física portátiles, permitirá predecir con precisión la CVRS en función de los niveles de CS y AF.
+La relación de interés en este estudio se centró en analizar si los patrones de actividad física (AF) y comportamiento sedentario (CS) capturados objetivamente mediante wearables se asocian con diferencias en indicadores de salud. La hipótesis planteó que un modelo de inteligencia artificial basado en lógica difusa, entrenado con datos biométricos obtenidos de monitores portátiles, permitiría clasificar con precisión los niveles de sedentarismo semanales.
 
 Se espera que, a mayor presencia de CS, se observen menores puntuaciones en la percepción de la CVRS, mientras que niveles más altos de AF estarán asociados con puntuaciones más altas en la percepción de la CVRS. Estas predicciones, combinadas con un análisis estadístico basado en los resultados del cuestionario SF-36, buscan identificar correlaciones significativas entre las variables estudiadas, proporcionando evidencia cuantitativa de cómo el CS y la AF influyen en la calidad de vida.
 
@@ -83,7 +83,7 @@ Edad, sexo, peso y estatura, entre otras. Se registran para aislar su efecto sob
 
 La \Cref{tab:variables_instrumento} presenta las variables recolectadas en el instrumento, las cuales corresponden a la recolección de los datos biométricos obtenidos mediante la selección de características del Apple Health, así como la aplicación del cuestionario de salud SF-36 y su correspondiente puntuación y recodificación de valores obtenidos.
 
-\begin{table}[p]
+\begin{table}[h!]
 \centering
 \caption{Variables Recolectadas en el Instrumento}
 \label{tab:variables_instrumento}
@@ -160,7 +160,7 @@ Estimación del algoritmo de lógica difusa & Dependiente & Numérica & Continua
 \label{sec:feature_engineering}
 % ============================================================================
 
-A partir de las métricas diarias registradas por el Apple Watch mediante el ecosistema HealthKit, se derivaron cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO₂max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas \cite{Schrack2018,Ho2022}.
+A partir de las métricas diarias registradas por el Apple Watch mediante el ecosistema HealthKit, se derivaron cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO$_2$max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas \cite{Schrack2018,Ho2022}.
 
 \subsection{Actividad Relativa}
 \label{subsec:actividad_relativa}
@@ -237,7 +237,7 @@ Todas las variables se agregaron a nivel semanal utilizando la mediana (p50) com
 \label{sec:plan_analisis_estadistico}
 % ============================================================================
 
-El pipeline de análisis se estructuró en cinco fases secuenciales, integrando técnicas estadísticas clásicas, aprendizaje no supervisado y sistemas basados en conocimiento experto.
+La secuencia de análisis (\textit{pipeline}) se estructuró en cinco fases secuenciales, integrando técnicas estadísticas clásicas, aprendizaje no supervisado y sistemas basados en conocimiento experto.
 
 \subsection{Fase 1: Caracterización y Análisis de Variabilidad}
 \label{subsec:fase1_caracterizacion}
@@ -305,19 +305,19 @@ Este análisis permitió evaluar si la inclusión de biomarcadores cardiovascula
 \subsection{Selección del Dispositivo}
 \label{subsec:seleccion_dispositivo}
 
-Para la selección del dispositivo de monitoreo, se utilizó una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 \citep{Henriksen2021WearablesPhysicalActivity}. Esta base permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS).
+Para la selección del dispositivo de monitoreo, se utilizó una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 \citep{Henriksen2021ReplicationData}. Esta base permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS).
 
 \subsection{Análisis de Sensores}
 \label{subsec:analisis_sensores}
 
-Del análisis de los 423 dispositivos, se observó que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento, lo que facilita la evaluación de la AF \citep{Henriksen2021WearablesPhysicalActivity}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \citep{Pinto2023Photoplethysmography}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente, alcanzando un 55\% en los dispositivos lanzados en 2016, lo que refleja su creciente relevancia en la monitorización de la salud \citep{Henriksen2018UsingSmartphone}.
+Del análisis de los 423 dispositivos, se observó que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento, lo que facilita la evaluación de la AF \citep{Henriksen2021ReplicationData}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \citep{Pinto2023Physiology}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente, alcanzando un 55\% en los dispositivos lanzados en 2016, lo que refleja su creciente relevancia en la monitorización de la salud \citep{Henriksen2018}.
 
-Otros sensores, como el giroscopio (23.9\%) y el GPS (29.6\%), también destacan por su utilidad. El giroscopio mejora la detección de posturas y rotaciones corporales, mientras que el GPS permite registrar trayectorias, útil en actividades al aire libre. Sensores menos comunes, como el magnetómetro (18.2\%) y el barómetro (13.5\%), tienen aplicaciones específicas, pero son menos relevantes para este estudio \citep{Henriksen2018UsingSmartphone}.
+Otros sensores, como el giroscopio (23.9\%) y el GPS (29.6\%), también destacan por su utilidad. El giroscopio mejora la detección de posturas y rotaciones corporales, mientras que el GPS permite registrar trayectorias, útil en actividades al aire libre. Sensores menos comunes, como el magnetómetro (18.2\%) y el barómetro (13.5\%), tienen aplicaciones específicas, pero son menos relevantes para este estudio \citep{Henriksen2018}.
 
 \subsection{Elección del Apple Watch}
 \label{subsec:eleccion_apple_watch}
 
-El análisis de mercado identificó a Apple como el líder en la categoría de smartwatches, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \citep{Canalys2024Smartwatches}. Esta predominancia y la uniformidad en sus dispositivos justifican la elección del Apple Watch como el dispositivo más adecuado, asegurando una mayor representatividad de datos y compatibilidad con herramientas de análisis avanzadas.
+El análisis de mercado identificó a Apple como el líder en la categoría de smartwatches, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \citep{Canalys2024Wearables}. Esta predominancia y la uniformidad en sus dispositivos justifican la elección del Apple Watch como el dispositivo más adecuado, asegurando una mayor representatividad de datos y compatibilidad con herramientas de análisis avanzadas.
 
 \subsection{Protocolo del Instrumento}
 \label{subsec:protocolo_instrumento}
@@ -331,9 +331,9 @@ Para la implementación del instrumento de realizo un flujo de trabajo como el q
     \label{fig:diagrama_flujo}
 \end{figure}
 
-Recepción y almacenamiento seguro de datos, los participantes generaron un archivo \texttt{export.zip} a través de la aplicación Apple Health en sus dispositivos. Cada archivo fue recibido y almacenado en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente los archivos comprimidos fueron descomprimidos para acceder a los datos en formato XML. Se utilizó el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealthConverter}.
+Recepción y almacenamiento seguro de datos, los participantes generaron un archivo \texttt{export.zip} a través de la aplicación Apple Health en sus dispositivos. Cada archivo fue recibido y almacenado en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente los archivos comprimidos fueron descomprimidos para acceder a los datos en formato XML. Se utilizó el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
 
-Se identificaron los archivos \texttt{ActiveEnergyBurned.csv}, \texttt{AppleExerciseTime.csv}, \texttt{AppleStandHour.csv}, \texttt{AppleStandTime.csv}, \texttt{DistanceWalkingRunning.csv}, \texttt{HeartRate.csv}, \texttt{StepCount.csv}, \texttt{WalkingHeartRateAverage.csv} y extrajeron las siguientes métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealthConverter}. Posteriormente se desarrolló un código personalizado en Python que requirió de las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, se filtraron los registros utilizando la columna \texttt{sourceName}. Se seleccionaron únicamente los datos asociados al dispositivo específico del participante, excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
+Se identificaron los archivos \texttt{ActiveEnergyBurned.csv}, \texttt{AppleExerciseTime.csv}, \texttt{AppleStandHour.csv}, \texttt{AppleStandTime.csv}, \texttt{DistanceWalkingRunning.csv}, \texttt{HeartRate.csv}, \texttt{StepCount.csv}, \texttt{WalkingHeartRateAverage.csv} y extrajeron las siguientes métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente se desarrolló un código personalizado en Python que requirió de las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, se filtraron los registros utilizando la columna \texttt{sourceName}. Se seleccionaron únicamente los datos asociados al dispositivo específico del participante, excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
 
 Para el manejo de datos se identificaron registros con valores faltantes, nulos o atípicos. Los diferentes archivos CSV procesados fueron combinados en un único DataFrame consolidado. Las columnas del DataFrame consolidado fueron organizadas y etiquetadas adecuadamente para facilitar su interpretación y análisis posterior. Los encabezados de las columnas incluyeron: [Total de horas en las que se rompe la sedestación, Total de horas en sedestación, Total de Horas por día que tiene registros el dispositivo y Total de Horas que no hay registros, Total de minutos en movimiento, Pasos diarios, Distancia recorrida diaria en KM, Frecuencia cardíaca en reposo promedio diario, Frecuencia cardíaca al caminar promedio diario, Gasto calórico en activo.] Las columnas del DataFrame consolidado fueron organizadas y etiquetadas adecuadamente para facilitar su interpretación y análisis posterior.
 
@@ -415,9 +415,9 @@ Los criterios de inclusión y exclusión del estudio han sido definidos para ase
 \subsection{Confidencialidad y Privacidad de los Datos}
 \label{subsec:confidencialidad_privacidad}
 
-El manejo de los datos personales se basará en los siguientes principios: \textbf{licitud y transparencia}, los datos se recopilarán y procesarán de manera legal y transparente. Se utilizarán únicamente para los fines específicos del estudio limitando la finalidad los datos, solo se recopilarán los datos necesarios y pertinentes, se garantizará que los datos sean precisos y se mantengan actualizados y se protegerán los datos contra accesos no autorizados, pérdidas o daños garantizando la integridad y confidencialidad. Para ello el control de accesos, solo el equipo de investigación tendrá acceso a los datos, y se gestionarán permisos según roles y responsabilidades.
+El manejo de los datos personales se basó en los siguientes principios: \textbf{licitud y transparencia}, los datos se recopilaron y procesaron de manera legal y transparente. Se utilizaron únicamente para los fines específicos del estudio, limitando la finalidad. Solo se recopilaron los datos necesarios y pertinentes, se garantizó que fueran precisos y actualizados, y se protegieron contra accesos no autorizados, pérdidas o daños, garantizando integridad y confidencialidad. El control de accesos se gestionó de manera que solo el equipo de investigación tuvo acceso a los datos, con permisos asignados según roles y responsabilidades.
 
-Además, se eliminarán identificadores personales para que los datos no puedan asociarse a individuos específicos, se asignarán códigos únicos a los participantes, manteniendo separados los datos identificativos de los datos de investigación. Para transferencia y comunicación de datos se utilizarán canales de seguros y cifrados. Cuando sea estrictamente necesario el acceso de terceros se firmarán Acuerdos de Confidencialidad para permitir que puedan tener acceso a los datos, garantizando la protección y uso adecuado.
+Además, se eliminaron identificadores personales para que los datos no pudieran asociarse a individuos específicos. Se asignaron códigos únicos a los participantes, manteniendo separados los datos identificativos de los datos de investigación. Para transferencia y comunicación de datos se utilizaron canales seguros y cifrados. Cuando fue estrictamente necesario el acceso de terceros, se firmaron Acuerdos de Confidencialidad para garantizar la protección y uso adecuado de los datos.
 
 \subsection{Política de Retención y Eliminación Segura}
 \label{subsec:politica_retencion}
@@ -448,6 +448,6 @@ En el caso del surgimiento de cualquier efecto adverso relacionado con el uso de
 \label{sec:financiamiento_lugar}
 % ============================================================================
 
-El proyecto será financiado con recursos propios, cubriendo los gastos asociados al reclutamiento de participantes, y los costos relacionados con la publicación y difusión de resultados en eventos científicos, según corresponda. Además, se utilizará software libre, específicamente Python y sus bibliotecas (Scikit-learn, Pandas, TensorFlow, y Matplotlib) para la implementación del modelo de IA basado en lógica difusa, análisis de datos biométricos y visualización de resultados.
+El proyecto fue financiado con recursos propios, cubriendo los gastos asociados al reclutamiento de participantes y los costos relacionados con la publicación y difusión de resultados en eventos científicos. Se utilizó software libre, específicamente Python y sus bibliotecas (Scikit-learn, Pandas, NumPy, y Matplotlib) para la implementación del modelo de IA basado en lógica difusa, análisis de datos biométricos y visualización de resultados.
 
 En cuanto al lugar de ejecución, se llevará a cabo en la Facultad de Medicina y Ciencias Biomédicas, en el laboratorio LIIACOM, donde se dispone de la infraestructura y el acompañamiento académico adecuados para la gestión del proyecto. Esta institución brindará las facilidades de espacio, equipo de cómputo y asesoría necesaria para la realización de las etapas de recolección de datos, validación de instrumentos, análisis estadístico y elaboración de informes científicos.

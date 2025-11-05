@@ -338,3 +338,87 @@ Siendo la lógica difusa una herramienta que se utiliza cada vez más en sistema
 Una dirección prominente es la integración de la lógica difusa con otros paradigmas de inteligencia artificial, lo que da lugar a sistemas híbridos más robustos y adaptables. La combinación de la lógica difusa con redes neuronales artificiales, conocida como sistemas neuro-difusos, es una tendencia significativa \citep{Alam2022FuzzyLogicHealthcare,SyaffaZakaria2023NeurofuzzyModels}. Estos sistemas fusionan conjuntos y reglas difusas con capacidades de aprendizaje adaptativo para mejorar la eficiencia del reconocimiento de patrones y la toma de decisiones. Esta sinergia permite el desarrollo automatizado de sistemas difusos, reduciendo el tiempo y el costo, al tiempo que mejora el rendimiento.
 
 El campo avanza hacia la incorporación de técnicas difusas en los modelos de aprendizaje profundo. El objetivo es manejar la incertidumbre, proporcionar modelos interpretables y ofrecer robustez en entornos dinámicos \citep{Tsoukalas1997FuzzyControl,Shetty2018FuzzyLogic,SyaffaZakaria2023NeurofuzzyModels}.
+
+% ============================================================================
+\section{Clustering No Supervisado y Establecimiento de Ground Truth}
+\label{sec:clustering_ground_truth}
+% ============================================================================
+
+\subsection{Clustering como Herramienta de Descubrimiento de Patrones}
+\label{subsec:clustering_herramienta}
+
+El aprendizaje automático no supervisado, específicamente el clustering (agrupamiento), es una técnica de descubrimiento de patrones que particiona un conjunto de datos en grupos homogéneos (clústeres) sin requerir etiquetas predefinidas \citep{Yoo2012DataMining}. En el contexto de wearables y análisis de actividad física, el clustering se ha aplicado principalmente como herramienta de ingeniería de características: los clústeres son el resultado final (descubrimiento de fenotipos) o una característica intermedia para otro modelo, no se utilizan para generar etiquetas de \textit{ground truth} que parametricen un clasificador interpretable.
+
+\subsection{Línea de Base: Umbrales Heurísticos para Sedentarismo}
+\label{subsec:linea_base_umbrales}
+
+El estándar de facto actual en clasificación de sedentarismo se basa en umbrales heurísticos fijos. Razjouyan et al. \citep{Razjouyan2018Frailty} establecen el enfoque más utilizado en evaluación de fragilidad mediante wearables: clasificación mediante Desviación Absoluta Media (MAD) de aceleración con umbrales predefinidos (Sedentario: MAD $< 1.5$ MET; Actividad ligera: $1.5 \leq$ MAD $< 3.0$ MET; Actividad moderada-vigorosa: MAD $\geq 3.0$ MET).
+
+Este enfoque presenta limitaciones: (1) los umbrales (1.5, 3.0 MET) son fijos y no se ajustan por diferencias inter-individuales en capacidad aeróbica, (2) la MAD es un estimador indirecto de gasto energético con validez variable entre dispositivos, y (3) no captura la estructura multivariada de datos de wearables modernos (frecuencia cardíaca + aceleración + contexto).
+
+\subsection{Vacío Metodológico: Clustering + Sistema de Inferencia Difusa}
+\label{subsec:vacio_clustering_fuzzy}
+
+Una revisión exhaustiva de la literatura Q1/Q2 (2018-2025) en la intersección de clustering no supervisado, sistemas de inferencia difusa y clasificación de comportamiento sedentario mediante wearables revela un \textbf{vacío metodológico crítico}: la tubería \textit{Clustering No Supervisado $\rightarrow$ Sistema de Inferencia Difusa} no constituye una práctica estándar establecida.
+
+\textbf{Único precedente identificado:} Gonçalves et al. (2021) implementan K-Means ($k=2$) seguido de un FIS Mamdani para clasificar estabilidad humana a partir de datos cinemáticos, en un capítulo de actas de congreso Springer. La secuencia metodológica sugiere que K-Means estableció las etiquetas binarias (Inestable/Estable) que parametrizaron las reglas del FIS Mamdani.
+
+\textbf{Divergencia conceptual:} La ``lógica difusa'' en reconocimiento de actividad humana (HAR) sigue dos caminos divergentes: (1) \textit{Fuzzy Clustering} (Fuzzy C-Means) como algoritmo de agrupamiento que compite con K-Means, y (2) \textit{Fuzzy Inference Systems} (Mamdani/Takagi-Sugeno) como clasificador interpretable. La literatura no muestra tendencia a \textit{combinar} estos paradigmas en secuencia (K-Means) $\rightarrow$ (FIS), dejando un vacío que este proyecto propone llenar.
+
+% ============================================================================
+\section{Validación Cruzada Leave-One-User-Out en Wearables}
+\label{sec:louo_wearables}
+% ============================================================================
+
+\subsection{LOUO: Estándar para Generalización Inter-Sujeto}
+\label{subsec:louo_estandar}
+
+La validación cruzada tradicional (k-fold) es inapropiada para datos longitudinales de wearables debido a dos problemas críticos: (1) \textbf{temporal leakage} (mezclar observaciones correlacionadas del mismo usuario permite al modelo ``ver el futuro''), y (2) \textbf{identity leakage} (modelos aprenden características idiosincráticas de individuos en lugar de patrones generales).
+
+La validación \textit{Leave-One-User-Out} (LOUO), también conocida como \textit{Leave-One-Subject-Out} (LOSO), es reconocida como el \textbf{estándar metodológico} para evaluar generalización inter-sujeto en wearables. En LOUO, el modelo se entrena con datos de $N-1$ usuarios y se valida con el usuario restante, iterando hasta probar con todos los $N$ usuarios. Esta estrategia simula el despliegue real del sistema en nuevos usuarios, evitando sobreajuste a individuos específicos.
+
+\subsection{LOUO en Cohortes Pequeñas (N $<$ 20)}
+\label{subsec:louo_cohortes_pequenas}
+
+Estudios de alto impacto demuestran la viabilidad de LOUO en cohortes pequeñas con datos longitudinales ricos:
+
+\begin{itemize}
+    \item \textbf{Ricotti et al. (2023, Nature Medicine):} $N=21$ pacientes con distrofia muscular de Duchenne, seguimiento de 12 meses, 17 sensores IMU de cuerpo completo. LOSO + validación externa ($N=44$), $R^2 \approx 0.90$ en predicción de trayectoria motora. Conclusión: \textit{``La inteligencia artificial podría reducir el tamaño de cohorte necesario''} al aprovechar mediciones densas longitudinales.
+    
+    \item \textbf{Crozat et al. (2025, Sensors):} $N=7$ pacientes neurológicos, sesión de 30 min con 7 acelerómetros. LOSO: 86.4\% $\pm$ 5\% de detección de pasos. Argumento: \textit{``LOSO está especialmente indicado en datos de sensores corporales debido a la alta variabilidad entre individuos.''}
+    
+    \item \textbf{Kaveh et al. (2024, Nature Communications):} $N=9$ operadores, ~35h de EEG intraauricular. LOUO: 93.3\% accuracy en usuarios no vistos.
+    
+    \item \textbf{Lu et al. (2018, Sensors):} $N=11$ adultos, protocolo de 3h. LOSO para estimación de VO$_2$: MAE=1.65 mL/kg/min, $R^2=0.92$.
+\end{itemize}
+
+\textbf{Consenso emergente:} Con $N \geq 7$, datos longitudinales ricos y validación LOUO rigurosa, es factible desarrollar modelos con métricas aceptables ($F1 > 0.85$, $R^2 > 0.90$) que generalicen a nuevos usuarios.
+
+% ============================================================================
+\section{Vacíos en la Literatura y Posicionamiento del Proyecto}
+\label{sec:vacios_literatura}
+% ============================================================================
+
+\subsection{Identificación de Vacíos Metodológicos}
+\label{subsec:identificacion_vacios}
+
+Una revisión exhaustiva mediante búsqueda sistemática, análisis de 80+ referencias existentes y exploración de 600+ documentos en repositorio de literatura identificó \textbf{cinco vacíos metodológicos críticos}:
+
+\subsubsection{Vacío 1: Tubería Clustering $\rightarrow$ Sistema de Inferencia Difusa}
+
+La tubería que combina clustering no supervisado para generar ground truth operativa con Sistema de Inferencia Difusa parametrizado por los clústeres presenta un vacío documentable en revistas Q1/Q2 (2018-2025). \textbf{Único precedente:} Gonçalves et al. (2021) en actas de congreso. Esta combinación es lógicamente sólida: el clustering data-driven identifica patrones naturales (objetividad), mientras que el FIS Mamdani proporciona clasificación interpretable (transparencia).
+
+\subsubsection{Vacío 2: Reporte de Variabilidad (SD, CV\%) en LOUO}
+
+De múltiples estudios LOUO revisados, solo Alinia et al. (2020) y Crozat et al. (2025) reportan desviación estándar y coeficiente de variación. Un CV\% bajo ($< 10\%$) indica desempeño homogéneo entre usuarios; un CV\% alto ($> 30\%$) sugiere que el modelo funciona bien solo en subgrupo de la cohorte.
+
+\subsubsection{Vacío 3: Normalización Person-Specific para Sedentarismo}
+
+Aunque \%HRR (Heart Rate Reserve) está validado para actividad moderada-vigorosa (40-89\% HRR), su aplicación al rango completo (0-100\% HRR), incluyendo comportamiento sedentario ($< 30\%$ HRR), carece de documentación sistemática.
+
+\subsection{Síntesis: Posicionamiento del Proyecto}
+\label{subsec:sintesis_posicionamiento}
+
+Este proyecto propone llenar los vacíos identificados mediante un \textbf{enfoque metodológico integrado} que combina: (1) Clustering no supervisado (K-Means) para establecer ground truth operativa data-driven, (2) Sistema de Inferencia Difusa Mamdani parametrizado por clústeres, proporcionando clasificación interpretable, (3) Validación LOUO rigurosa con reporte exhaustivo de variabilidad (F1 $\pm$ SD, CV\%), y (4) Normalización person-specific extendida al rango completo de comportamiento.
+
+Este enfoque integrado no solo llena vacíos individuales, sino que propone una \textit{arquitectura metodológica coherente} que aborda simultáneamente los desafíos de interpretabilidad, validación rigurosa en cohortes pequeñas, normalización individual y manejo de datos complejos en wearables longitudinales.
