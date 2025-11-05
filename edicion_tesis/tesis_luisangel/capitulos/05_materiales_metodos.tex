@@ -2,11 +2,28 @@
 \label{chap:materiales_metodos}
 
 % ============================================================================
-\section{Diseño}
+\section{Diseño del Estudio}
 \label{sec:diseno}
 % ============================================================================
 
-El estudio emplea un enfoque cuantitativo, observacional y transversal, centrado en un análisis correlacional de los datos registrados por Apple Health durante los últimos 30 días sobre la actividad física (AF) y el comportamiento sedentario (CS), en relación con la percepción de la calidad de vida relacionada con la salud (CVRS) evaluada mediante el cuestionario SF-36. La investigación examina la existencia de relaciones estadísticamente significativas entre los patrones de AF/CS y la CVRS en un único punto temporal, sin incluir un seguimiento longitudinal.
+El estudio empleó un diseño cuantitativo, observacional, longitudinal retrospectivo con seguimiento multianual (2021-2024) de una cohorte de 10 participantes adultos. Se basó en la validación convergente de un sistema de inferencia difusa tipo Mamdani contra una clasificación de referencia empírica (verdad operativa, GO) derivada de un análisis de conglomerados no supervisado sobre datos biométricos semanales agregados.
+
+La unidad de análisis correspondió a semanas completas de monitoreo (n=1,337 semanas válidas de 183 totales), donde cada observación semanal integró la mediana (p50) y el rango intercuartílico (IQR) de cuatro variables biométricas derivadas: Actividad Relativa, Superávit Calórico Basal, Variabilidad de Frecuencia Cardíaca (HRV-SDNN) y Delta Cardíaco.
+
+\subsection{Pivote Metodológico}
+\label{subsec:pivote_metodologico}
+
+El enfoque metodológico se apartó del diseño correlacional original, que planteaba relacionar métricas objetivas (biométricas) con percepciones subjetivas de calidad de vida (SF-36). Este pivote se fundamentó en tres razones convergentes documentadas en literatura:
+
+\begin{enumerate}
+    \item \textbf{Limitaciones de potencia estadística:} Con N=10 participantes, el poder para detectar correlaciones moderadas (r<0.70) entre variables biométricas y SF-36 es insuficiente (1-$\beta$<0.50). Healy et al. \cite{Healy2024} reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de wearables en cohortes N<15.
+    
+    \item \textbf{Baja adherencia al cuestionario:} Solo 8 de 10 participantes completaron el SF-36, y el análisis retrospectivo reveló correlaciones mayormente no significativas (p>0.05) excepto para Salud Mental (ver Sección \ref{subsec:sf36_exploratorio}).
+    
+    \item \textbf{Autopercepción vs. comportamiento objetivo:} Prince et al. \cite{Prince2008} demuestran que autorreportes y mediciones objetivas representan constructos relacionados pero no intercambiables, con concordancia limitada (Kappa<0.50) debido a sesgos de deseabilidad social y error de memoria.
+\end{enumerate}
+
+En su lugar, se adoptó una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante clustering K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por Gonçalves et al. \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del dataset longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
 
 % ============================================================================
 \section{Población de Estudio}
@@ -139,29 +156,146 @@ Estimación del algoritmo de lógica difusa & Dependiente & Numérica & Continua
 \end{table}
 
 % ============================================================================
+\section{Ingeniería de Características y Agregación Temporal}
+\label{sec:feature_engineering}
+% ============================================================================
+
+A partir de las métricas diarias registradas por el Apple Watch mediante el ecosistema HealthKit, se derivaron cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO₂max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas \cite{Schrack2018,Ho2022}.
+
+\subsection{Actividad Relativa}
+\label{subsec:actividad_relativa}
+
+Inspirada en el concepto de Reserva de Frecuencia Cardíaca (\%HRR; \cite{Schrack2018}), esta variable normaliza el conteo de pasos por las horas de uso efectivo del dispositivo y un factor de escala (1000), generando un índice de densidad de actividad:
+
+\begin{equation}
+\text{Actividad\_relativa} = \frac{\text{Pasos\_diarios}}{\text{Horas\_con\_datos} \times 1000}
+\label{eq:actividad_relativa}
+\end{equation}
+
+\textbf{Justificación fisiológica:} Schrack et al. \cite{Schrack2018} demuestran que la intensidad \textit{relativa} (ajustada por capacidad individual) es superior a umbrales absolutos para clasificar comportamiento en adultos con heterogeneidad metabólica. Un individuo sedentario con 3,000 pasos/día en 16 horas (Actividad\_rel = 0.188) difiere cualitativamente de un individuo activo con 3,000 pasos en 8 horas (Actividad\_rel = 0.375).
+
+\textbf{Rango observado:} [0.05, 0.25] en esta cohorte. Valores >0.15 indican actividad sostenida (>150 pasos/hora).
+
+\subsection{Superávit Calórico Basal}
+\label{subsec:superavit_calorico}
+
+Normaliza el balance energético diario ajustando por el Metabolismo Basal de Reposo (TMB) individual, estimado mediante las ecuaciones de Harris-Benedict \cite{Harris1918}:
+
+\begin{equation}
+\text{Superávit\_calórico\_basal} = \text{Calorías\_activas\_hr} - \frac{\text{TMB}}{24}
+\label{eq:superavit_calorico}
+\end{equation}
+
+Donde TMB se calcula como:
+\begin{align}
+\text{TMB}_{\text{hombres}} &= 66.5 + (13.75 \times \text{Peso}) + (5.003 \times \text{Altura}) - (6.755 \times \text{Edad}) \\
+\text{TMB}_{\text{mujeres}} &= 655.1 + (9.563 \times \text{Peso}) + (1.850 \times \text{Altura}) - (4.676 \times \text{Edad})
+\end{align}
+
+\textbf{Justificación fisiológica:} Yamada et al. \cite{Yamada2019} reportan que el Gasto Energético de Actividad Física (PAEE = TEE - BMR) es la métrica estándar para evaluar actividad en estudios de agua doblemente marcada (gold standard). Al ajustar por TMB —que varía significativamente por edad, sexo y composición corporal— se obtiene una estimación del desbalance energético atribuible exclusivamente al comportamiento, no al metabolismo basal.
+
+\textbf{Rango observado:} [-50, +80] kcal/hora. Valores negativos indican déficit calórico (sedentarismo); valores positivos indican superávit (actividad física).
+
+\subsection{Delta Cardíaco}
+\label{subsec:delta_cardiaco}
+
+Cuantifica la respuesta cardiovascular al movimiento mediante la diferencia entre frecuencia cardíaca al caminar y frecuencia cardíaca en reposo:
+
+\begin{equation}
+\text{Delta\_cardíaco} = \text{FC\_caminar} - \text{FC\_reposo}
+\label{eq:delta_cardiaco}
+\end{equation}
+
+\textbf{Justificación fisiológica:} La reserva cardíaca disponible es un indicador de condición física cardiovascular. Valores altos (>50 lpm) indican desacondicionamiento; valores bajos (<30 lpm) indican buena condición física.
+
+\textbf{Rango observado:} [25, 60] lpm en esta cohorte.
+
+\subsection{Variabilidad de Frecuencia Cardíaca (HRV-SDNN)}
+\label{subsec:hrv_sdnn}
+
+La desviación estándar de los intervalos NN (SDNN) es un biomarcador del balance autonómico cardiovascular, validado por la Task Force de la European Society of Cardiology \cite{TaskForce1996} y ampliamente utilizado en estudios con wearables \cite{Laborde2017}.
+
+\textbf{Interpretación clínica:} HRV alta (>50 ms) indica predominancia parasimpática (relajación, recuperación); HRV baja (<30 ms) indica estrés crónico, fatiga o sobreentrenamiento.
+
+\textbf{Rango normativo:} [15, 150] ms según Task Force \cite{TaskForce1996}.
+
+\subsection{Agregación Semanal y Justificación de Medianas}
+\label{subsec:agregacion_semanal}
+
+Todas las variables se agregaron a nivel semanal utilizando la mediana (p50) como estimador de tendencia central y el rango intercuartílico (IQR) como medida de dispersión. Esta decisión metodológica se fundamentó en:
+
+\begin{enumerate}
+    \item \textbf{Robustez ante valores atípicos:} La mediana es menos sensible a días con fallas de registro del dispositivo (ej. <10 horas monitoreadas).
+    
+    \item \textbf{Amortiguación del ruido diario:} Datos de vida libre presentan alta variabilidad diaria (CV diario = 45-60\%); la agregación semanal reduce ruido preservando señal (CV semanal = 25-35\%).
+    
+    \item \textbf{Captura de patrones sostenidos:} La ventana de 7 días captura comportamientos habituales (no eventos aislados), alineándose con recomendaciones de la OMS de evaluación de actividad física en períodos semanales \cite{WHO2020}.
+\end{enumerate}
+
+% ============================================================================
 \section{Plan de Análisis Estadístico}
 \label{sec:plan_analisis_estadistico}
 % ============================================================================
 
-\subsection{Caracterización}
-\label{subsec:caracterizacion}
+El pipeline de análisis se estructuró en cinco fases secuenciales, integrando técnicas estadísticas clásicas, aprendizaje no supervisado y sistemas basados en conocimiento experto.
 
-En primer lugar, validaremos el instrumento mediante la revisión de la coherencia interna y la pertinencia de cada ítem; para ello, calcularemos el Alfa de Cronbach y emplearemos el coeficiente V de Aiken con el fin de confirmar la validez de facie y la validez de contenido, cuyas etapas incluyen el diseño, la adaptación, la valoración por expertos y la prueba piloto. Asimismo, describiremos la distribución de las variables a través de frecuencias, medias y desviaciones estándar, con el propósito de identificar posibles valores atípicos, detectar comportamientos anómalos y sentar las bases para el resto de los análisis.
+\subsection{Fase 1: Caracterización y Análisis de Variabilidad}
+\label{subsec:fase1_caracterizacion}
 
-\subsection{Analogía por Atribución (Comparaciones)}
-\label{subsec:analogia_atribucion}
+Se realizó un análisis descriptivo bivariado de la cohorte, calculando estadísticos de tendencia central (media, mediana) y dispersión (desviación estándar, rango intercuartílico, coeficiente de variación) para cada variable biométrica en dos estados: (a) datos observados (sin imputaciones), y (b) datos operativos (post-imputación mediante interpolación lineal para gaps <3 días consecutivos).
 
-A continuación, evaluaremos si existen diferencias significativas entre posibles subgrupos (por ejemplo, sexo o rangos de edad), aplicando pruebas como la t de Student para muestras independientes o ANOVA con comparaciones post hoc (N de Tukey) cuando haya más de dos grupos; esto nos permitirá establecer comparaciones entre distintos niveles o categorías de los participantes y explorar variaciones relevantes de las variables de interés.
+El análisis de variabilidad permitió cuantificar la heterogeneidad inter-sujeto (entre participantes) e intra-sujeto (día a día en un mismo participante), justificando la decisión de agregación temporal semanal (ver Sección \ref{subsec:agregacion_semanal}).
 
-\subsection{Relacional (Correlacional)}
-\label{subsec:relacional_correlacional}
+\subsection{Fase 2: Establecimiento de la Verdad Operativa mediante Clustering}
+\label{subsec:fase2_clustering}
 
-Posteriormente, verificaremos los supuestos de normalidad y homocedasticidad, para luego realizar correlaciones (Pearson o Spearman) entre las métricas derivadas de la actividad física/conducta sedentaria y las dimensiones del SF-36, con el objetivo de determinar la magnitud y dirección de la relación; en caso de requerir un enfoque explicativo adicional, plantearemos modelos de regresión lineal múltiple que permitan estimar la contribución de cada variable independiente a la variabilidad de la percepción de la calidad de vida relacionada con la salud.
+Se aplicó el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas, utilizando las ocho características derivadas (medianas e IQRs de las cuatro variables). La selección del número óptimo de conglomerados (K) se determinó mediante:
 
-\subsection{Integración}
-\label{subsec:integracion}
+\begin{itemize}
+    \item \textbf{Coeficiente de Silhouette:} Cuantifica la cohesión intra-cluster y separación inter-cluster. Valores >0.50 indican estructura bien definida \cite{Rousseeuw1987}.
+    
+    \item \textbf{Criterio de parsimonia:} Preferencia por soluciones simples (K pequeño) que faciliten interpretación clínica.
+    
+    \item \textbf{Análisis de Componentes Principales (PCA):} Visualización de la separabilidad de los clusters en el espacio de las dos primeras componentes principales (que capturan >70\% de la varianza).
+\end{itemize}
 
-Finalmente, integraremos los hallazgos en un análisis más avanzado, donde emplearemos un algoritmo de lógica difusa apoyado en las correlaciones y modelos previos, definiendo las reglas de inferencia y las funciones de membresía para capturar la complejidad de la información; de este modo, elaboraremos diagramas y, si es pertinente, un análisis factorial (KMO, varianza total explicada, rotación) que facilite la interpretación integral de los resultados y el desarrollo de conclusiones sólidas sobre la relación entre actividad física, comportamiento sedentario y calidad de vida.
+Previo al clustering, se verificó la ausencia de multicolinealidad mediante el Factor de Inflación de la Varianza (VIF<5 para todas las variables).
+
+\textbf{Caracterización de perfiles:} Los conglomerados resultantes se caracterizaron estadísticamente mediante pruebas de Mann-Whitney U (para K=2) o Kruskal-Wallis (K>2), cuantificando diferencias entre perfiles con el tamaño del efecto de Cohen (d).
+
+\subsection{Fase 3: Diseño y Configuración del Sistema de Inferencia Difusa}
+\label{subsec:fase3_diseno_fuzzy}
+
+Se diseñó un sistema de inferencia difusa tipo Mamdani de cuatro entradas (las medianas semanales de Actividad Relativa, Superávit Calórico Basal, HRV-SDNN y Delta Cardíaco) y una salida (Índice de Actividad Física, escala [0,1]).
+
+\textbf{Fuzzificación:} Se definieron funciones de pertenencia trapezoidales para tres categorías lingüísticas por variable (\textit{bajo}, \textit{medio}, \textit{alto}), con parámetros ajustados según rangos observados y criterios fisiológicos (ver Sección \ref{sec:base_metodologica_fuzzy}).
+
+\textbf{Base de reglas:} Se establecieron 81 reglas del tipo SI-ENTONCES (3$^4$ combinaciones), incorporando conocimiento experto de fisiología del ejercicio. Ejemplo: ``SI Actividad\_rel es \textit{baja} Y Superávit\_cal es \textit{negativo} ENTONCES Índice\_AF es \textit{bajo}''.
+
+\textbf{Defuzzificación:} Se empleó el método del centroide para convertir la salida difusa en un valor crisp (numérico).
+
+\subsection{Fase 4: Validación del Sistema Difuso mediante Leave-One-User-Out}
+\label{subsec:fase4_validacion_louo}
+
+El desempeño del sistema difuso se evaluó comparando su salida contra la verdad operativa (etiquetas de clustering). Se implementó una validación Leave-One-User-Out (LOUO), estrategia gold standard para cohortes pequeñas (N<20) donde cada fold corresponde a un participante completo \cite{Alinia2020,Crozat2025}.
+
+\textbf{Justificación LOUO:} A diferencia del k-fold tradicional (que particiona aleatoriamente), LOUO preserva la independencia inter-sujeto, evitando data leakage entre entrenamientos y pruebas. Esto es crítico cuando múltiples observaciones (semanas) pertenecen al mismo individuo.
+
+\textbf{Métricas de rendimiento:}
+\begin{itemize}
+    \item \textbf{F1-Score:} Media armónica entre Precisión y Sensibilidad, apropiada para datasets con leve desbalance de clases \cite{Sokolova2009}.
+    \item \textbf{Matthews Correlation Coefficient (MCC):} Métrica robusta que considera verdaderos/falsos positivos y negativos, con rango [-1, +1] \cite{Chicco2020}.
+    \item \textbf{Exactitud (Accuracy):} Proporción de clasificaciones correctas.
+\end{itemize}
+
+El umbral de decisión ($\tau$) para binarizar la salida del sistema difuso se optimizó maximizando el F1-Score en el conjunto total.
+
+\subsection{Fase 5: Análisis de Robustez y Contribución de Variables}
+\label{subsec:fase5_robustez}
+
+Se realizó un experimento de ablación para cuantificar la contribución sinérgica de las variables cardiovasculares (HRV-SDNN, Delta\_cardíaco). Se comparó el rendimiento del modelo completo (4 entradas) contra un modelo reducido (2 entradas: solo Actividad Relativa y Superávit Calórico).
+
+Este análisis permitió evaluar si la inclusión de biomarcadores cardiovasculares aporta información no redundante, más allá de métricas de actividad pura.
 
 % ============================================================================
 \section{Técnicas y Procedimiento}
