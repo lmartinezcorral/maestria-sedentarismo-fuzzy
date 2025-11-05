@@ -15,6 +15,12 @@ echo.
 :: Nombre del archivo principal (sin extensión .tex)
 set ARCHIVO=plantilla_tesis
 
+:: Paso 0: Limpiar archivos auxiliares previos (evita problemas de cache)
+echo [0/4] Limpiando archivos auxiliares previos...
+del %ARCHIVO%.aux %ARCHIVO%.log %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.bbl %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
+del capitulos\*.aux 2>nul
+echo.
+
 :: Paso 1: Primera compilación con pdflatex
 echo [1/4] Primera compilacion (pdflatex)...
 pdflatex -interaction=nonstopmode %ARCHIVO%.tex
@@ -26,9 +32,9 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: Paso 2: Generar bibliografía con bibtex
-echo [2/4] Generando bibliografia (bibtex)...
-bibtex %ARCHIVO%
+:: Paso 2: Generar bibliografía con biber (biblatex)
+echo [2/4] Generando bibliografia (biber)...
+biber %ARCHIVO%
 if errorlevel 1 (
     echo.
     echo ADVERTENCIA: Hubo problemas con la bibliografia
@@ -43,10 +49,11 @@ pdflatex -interaction=nonstopmode %ARCHIVO%.tex > nul
 echo [4/4] Tercera compilacion (finalizando)...
 pdflatex -interaction=nonstopmode %ARCHIVO%.tex > nul
 
-:: Limpiar archivos auxiliares (opcional)
+:: Limpiar archivos auxiliares (conserva .log para debug)
 echo.
-echo Limpiando archivos temporales...
-del %ARCHIVO%.aux %ARCHIVO%.log %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.bbl %ARCHIVO%.blg 2>nul
+echo Limpiando archivos temporales (conservando .log)...
+del %ARCHIVO%.aux %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.bbl %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
+del capitulos\*.aux 2>nul
 
 echo.
 echo ========================================

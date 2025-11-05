@@ -15,10 +15,11 @@
 - **Código:** Lucida Console o Courier New 10 pt (monoespaciada)
 
 ### Márgenes
-- Superior: 2.5 cm
-- Inferior: 2.5 cm
-- Izquierdo: 3.0 cm
-- Derecho: 2.5 cm
+**APA 7 Oficial:** 2.54 cm (1 pulgada) en TODOS los lados
+- Superior: 2.54 cm
+- Inferior: 2.54 cm
+- Izquierdo: 2.54 cm
+- Derecho: 2.54 cm
 
 ### Interlineado
 - **General:** 1.5 líneas (`\onehalfspacing`)

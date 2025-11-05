@@ -1,0 +1,102 @@
+% ============================================================================
+% HOJA DE ESTILOS APA 7 - TESIS MFIPS
+% ============================================================================
+% Archivo de estilos separado (como CSS en HTML)
+% Uso: \usepackage{estilos_apa7} en plantilla_tesis.tex
+% ============================================================================
+
+\ProvidesPackage{estilos_apa7}[2025/11/05 Estilos APA 7 para tesis MFIPS]
+
+% Paquete requerido para formato de títulos
+\RequirePackage{titlesec}
+
+% ============================================================================
+% FORMATO DE TÍTULOS SEGÚN APA 7
+% ============================================================================
+
+% ---------------------------------------------------------------------------
+% CAPÍTULOS (Nivel 1 APA 7)
+% ---------------------------------------------------------------------------
+% Formato: Centrado, Negrita, Título Capitalizado, Times New Roman 12pt
+% SIN la palabra "Capítulo X"
+% ---------------------------------------------------------------------------
+\titleformat{\chapter}[block]
+  {\filcenter\normalfont\fontsize{12}{14}\selectfont\bfseries}
+  {}
+  {0pt}
+  {}
+  
+\titlespacing*{\chapter}
+  {0pt}   % Sangría izquierda
+  {24pt}  % Espacio ANTES del título (2 renglones)
+  {18pt}  % Espacio DESPUÉS del título (1.5 renglones)
+
+% ---------------------------------------------------------------------------
+% SECCIONES (Nivel 2 APA 7)
+% ---------------------------------------------------------------------------
+% Formato: Alineado izquierda, Negrita, Título Capitalizado
+% ---------------------------------------------------------------------------
+\titleformat{\section}
+  {\normalfont\fontsize{12}{14}\selectfont\bfseries}
+  {\thesection}
+  {1em}
+  {}
+
+\titlespacing*{\section}
+  {0pt}
+  {18pt}  % Espacio antes
+  {12pt}  % Espacio después
+
+% ---------------------------------------------------------------------------
+% SUBSECCIONES (Nivel 3 APA 7)
+% ---------------------------------------------------------------------------
+% Formato: Alineado izquierda, Negrita + Cursiva, Título Capitalizado
+% ---------------------------------------------------------------------------
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{14}\selectfont\bfseries\itshape}
+  {\thesubsection}
+  {1em}
+  {}
+
+\titlespacing*{\subsection}
+  {0pt}
+  {12pt}  % Espacio antes
+  {6pt}   % Espacio después
+
+% ---------------------------------------------------------------------------
+% SUBSUBSECCIONES (Nivel 4 APA 7)
+% ---------------------------------------------------------------------------
+% Formato: Alineado izquierda, Negrita, Primera Palabra Mayúscula
+% ---------------------------------------------------------------------------
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{12}{14}\selectfont\bfseries}
+  {\thesubsubsection}
+  {1em}
+  {}
+
+\titlespacing*{\subsubsection}
+  {0pt}
+  {12pt}  % Espacio antes
+  {6pt}   % Espacio después
+
+% ---------------------------------------------------------------------------
+% PÁRRAFOS (Nivel 5 APA 7)
+% ---------------------------------------------------------------------------
+% Formato: Sangría, Negrita, Primera Palabra Mayúscula, termina con punto
+% ---------------------------------------------------------------------------
+\titleformat{\paragraph}[runin]
+  {\normalfont\fontsize{12}{14}\selectfont\bfseries}
+  {}
+  {0pt}
+  {}
+  [.]
+
+\titlespacing*{\paragraph}
+  {\parindent}
+  {12pt}
+  {1em}
+
+% ============================================================================
+% FIN DE HOJA DE ESTILOS
+% ============================================================================
+
