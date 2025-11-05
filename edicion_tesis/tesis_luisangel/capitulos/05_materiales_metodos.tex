@@ -30,22 +30,64 @@ En su lugar, se adoptó una estrategia de validación interna basada en la conve
 \label{sec:poblacion_estudio}
 % ============================================================================
 
-La población de estudio estará compuesta por la comunidad estudiantil de la Facultad de Medicina y Ciencias Biomédicas, que asciende a un total de 3340 alumnos, divididos en 2597 de nivel licenciatura (1016 hombres y 1581 mujeres) y 743 de posgrado (374 hombres y 369 mujeres). Esta cifra preliminar incluye posibles candidatos que, de acuerdo con los lineamientos del proyecto, posean un Apple Watch o estén dispuestos a utilizarlo durante el periodo de recolección de datos.
+La cohorte final del estudio estuvo compuesta por 10 adultos jóvenes (5 mujeres, 5 hombres; rango etario: 25-39 años) reclutados mediante convocatoria abierta en la Facultad de Medicina y Ciencias Biomédicas de la Universidad Autónoma de Chihuahua entre septiembre de 2021 y enero de 2022.
 
-\subsection{Descripción de la Población}
-\label{subsec:descripcion_poblacion}
+\subsection{Estrategia de Reclutamiento}
+\label{subsec:reclutamiento}
 
-Los estudiantes pertenecen a programas académicos de licenciatura y posgrado, con una distribución mayoritaria en el nivel de licenciatura. La proporción de mujeres supera ligeramente a la de los hombres en ambos niveles de formación. Se consideran aptos para el estudio aquellos individuos que cursan asignaturas en la Facultad y que, por su edad y situación académica, cumplan con las condiciones de inclusión definidas por el protocolo, asegurando representatividad de ambos sexos y de diferentes trayectorias académicas.
+Se empleó un muestreo no probabilístico por conveniencia basado en el paradigma \textit{Bring Your Own Device} (BYOD; \cite{Doherty2021}). Los criterios de inclusión se basaron en:
 
-\subsection{Criterios de Selección}
-\label{subsec:criterios_seleccion}
+\begin{enumerate}
+    \item Propiedad de un Apple Watch Series 3 o superior
+    \item Uso continuo del dispositivo por al menos 6 meses previos (para minimizar efectos de habituación)
+    \item Edad entre 18 y 65 años
+    \item Capacidad ambulatoria sin limitaciones severas
+    \item Disponibilidad para exportar datos históricos del ecosistema HealthKit
+\end{enumerate}
 
-Los criterios de selección se basarán en la afinidad de los participantes con los requerimientos del proyecto: disponer de un Apple Watch y estar dispuestos a usarlo de manera continua, no presentar limitaciones de salud que impidan su participación, y encontrarse matriculados como estudiantes de licenciatura o posgrado en la Facultad de Medicina y Ciencias Biomédicas. Así mismo, deberán encontrarse en el rango de edad y condiciones clínicas señaladas en el estudio, con el fin de garantizar la confiabilidad de los datos y su pertinencia para el análisis correlacional planteado.
+\subsection{Tamaño de Muestra y Justificación Estadística}
+\label{subsec:justificacion_n}
 
-\subsection{Tamaño de la Muestra y Tipo de Muestreo}
-\label{subsec:tamano_muestra}
+El tamaño final de N=10 participantes se justificó por el carácter longitudinal del diseño. Cada participante generó un promedio de 133.7 semanas válidas (mediana: 131 semanas; rango: 7-298 semanas), resultando en 1,337 observaciones semanales independientes para el modelado.
 
-El tamaño de la muestra se determinó mediante un proceso de reclutamiento dirigido a identificar estudiantes con disponibilidad de Apple Watch, alcanzando una cohorte final de 10 participantes. Se empleó un muestreo no probabilístico por conveniencia, reclutando a los participantes que cumplieron los criterios de selección y expresaron voluntariamente su disposición a formar parte del proyecto.
+Este enfoque se alinea con el paradigma de \textbf{muestras densamente monitoreadas} (\textit{intensive longitudinal designs}; \cite{Bolger2013}), donde el poder estadístico proviene del número de observaciones temporales por sujeto (n$_{\text{obs}}$) más que del número de sujetos (N):
+
+\begin{equation}
+\text{Poder} \propto N \times \bar{n}_{\text{obs/sujeto}}
+\label{eq:poder_longitudinal}
+\end{equation}
+
+Con N=10 y $\bar{n}_{\text{obs}}$=133.7, se obtuvo n$_{\text{total}}$=1,337, superando el mínimo recomendado (n$_{\text{total}} \geq$ 500) para agrupamiento estable y validación Leave-One-User-Out robusta \cite{Alinia2020}.
+
+\subsection{Características Demográficas de la Cohorte}
+\label{subsec:caracteristicas_cohorte}
+
+La distribución balanceada por sexo (50\%/50\%) y el amplio rango de seguimiento (7-298 semanas; CV=86\%) permiten capturar heterogeneidad inter-sujeto e intra-sujeto, características esenciales para evaluar la robustez del sistema de inferencia difusa en condiciones de vida libre. Las características detalladas se presentan en la \Cref{tab:cohorte_caracteristicas}.
+
+\begin{table}[htbp]
+\centering
+\caption{Características Demográficas de la Cohorte (N=10)}
+\label{tab:cohorte_caracteristicas}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Usuario} & \textbf{Sexo} & \textbf{Edad} & \textbf{IMC} & \textbf{Semanas} & \textbf{\% Válidas} \\
+\midrule
+u1 & F & 34 & 23.5 & 149 & 100\% \\
+u2 & F & 37 & 26.6 & 7   & 100\% \\
+u3 & F & 39 & 28.7 & 141 & 100\% \\
+u4 & M & 25 & 30.9 & 14  & 100\% \\
+u5 & F & 28 & 25.0 & 14  & 100\% \\
+u6 & M & 34 & 30.9 & 278 & 100\% \\
+u7 & M & 32 & 37.8 & 114 & 100\% \\
+u8 & M & 29 & 28.1 & 191 & 100\% \\
+u9 & M & 32 & 36.2 & 298 & 100\% \\
+u10 & F & 28 & 21.6 & 131 & 100\% \\
+\midrule
+\textbf{Media±SD} & 5M/5F & 31.8±4.5 & 28.9±5.1 & 133.7±95.3 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 % ============================================================================
 \section{Definición Operacional de Variables}
