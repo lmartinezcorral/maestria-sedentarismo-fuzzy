@@ -5411,3 +5411,164 @@ tesis_luisangel/notas_proceso/RAYO_INVENTARIO_COMPLETO_ARCHIVOS_6NOV.md
 
 ---
 
+## ⚡ **RAYO VELOZ - OPCIÓN B COMPLETADA: FUENTE ENCONTRADA** (6 Nov 2025, 12:10 hrs)
+
+### **✅ HALLAZGO CRÍTICO: TABLA 6.2 NO ES LOOU**
+
+**Timestamp:** Jueves, 06 de noviembre de 2025, 12:10:45
+
+---
+
+### **🎯 FUENTE DE TABLA 6.2 CONFIRMADA:**
+
+**Archivos encontrados:**
+```
+4 semestre_dataset/tablas_tesis/tabla1_metricas_por_usuario.csv     ⭐⭐⭐
+4 semestre_dataset/tablas_tesis/TABLAS_COMPLETAS_TESIS.md           ⭐⭐
+```
+
+**Fecha creación:** 18 de octubre de 2025  
+**Autor:** Luis Ángel Martínez
+
+---
+
+### **📊 MÉTODO REAL (NO ES LOOU):**
+
+**Lo que dice Tabla 6.2:**
+> "Rendimiento del Sistema Difuso por Usuario (**Validación LOOU**)" ❌
+
+**Lo que REALMENTE es:**
+> "Desglose por Usuario del Análisis Global (τ=0.30 único, sin validación cruzada)" ✅
+
+**Metodología verificada:**
+1. ✅ Sistema fuzzy evaluó TODO el dataset (1,337 semanas)
+2. ✅ Umbral τ=0.30 ÚNICO para todos los usuarios (NO re-optimizado)
+3. ✅ Matriz global: TN=77, FP=325, FN=22, TP=913
+4. ✅ Desglose por usuario de esa matriz global
+
+**Fuente primaria:**
+- Script: `09_fuzzy_vs_clusters_eval.py` (líneas 244-254)
+- Log: `09_eval_fuzzy_vs_cluster.txt` (sección 6, líneas 67-84)
+- CSV: `tabla1_metricas_por_usuario.csv` (10 usuarios)
+
+---
+
+### **🔍 VERIFICACIÓN MATEMÁTICA:**
+
+**Suma de métricas por usuario = Matriz global:**
+```
+TP: 148+3+14+10+9+224+108+46+245+106 = 913 ✅
+FP: 1+1+100+4+4+47+6+100+37+25 = 325 ✅
+TN: 0+0+25+0+1+3+0+38+10+0 = 77 ✅
+FN: 0+3+2+0+0+4+0+7+6+0 = 22 ✅
+```
+
+**COINCIDENCIA PERFECTA** con log `09_eval_fuzzy_vs_cluster.txt`.
+
+---
+
+### **❌ F1=0.847 Y CV=4.8% SON INEXPLICABLES:**
+
+**Cálculo de datos Tabla 6.2:**
+```
+F1 = [0.997, 0.600, 0.215, 0.833, 0.818, 0.898, 0.973, 0.462, 0.919, 0.895]
+
+Promedio: 0.761 (NO 0.847)
+DE: 0.242
+CV: 31.8% (NO 4.8%)
+```
+
+**F1=0.847 y CV=4.8% NO provienen de:**
+- ❌ Tabla 6.2 (promedio real = 0.761)
+- ❌ Log 09_eval (solo reporta concordancia %, no F1 por usuario)
+- ❌ Script LOOU (bug, F1=0.000)
+- ❌ Ningún archivo encontrado en el proyecto
+
+**Posibles fuentes:**
+1. ❓ Estimación teórica/simulada
+2. ❓ Error de transcripción (debería ser 0.761 y 31.8%?)
+3. ❓ Cálculo manual perdido
+4. ❓ Versión antigua de script (no preservada)
+
+---
+
+### **🎯 DIRECTORIO NUEVO DESCUBIERTO:**
+
+**Luis, NO me habías mencionado este directorio:**
+```
+4 semestre_dataset/tablas_tesis/
+├── tabla1_metricas_por_usuario.csv
+├── tabla1_metricas_por_usuario.xlsx
+├── tabla2_distribucion_clusters.csv
+├── tabla2_distribucion_clusters.xlsx
+├── tabla3_estadisticos_semanales.csv
+├── tabla3_estadisticos_semanales.xlsx
+├── TABLAS_COMPLETAS_TESIS.md               (184 líneas, 18-Oct-2025)
+└── tablas_markdown.md
+```
+
+**Contiene:**
+- ✅ 3 tablas completas con métricas por usuario
+- ✅ Versiones CSV y Excel
+- ✅ Documento markdown con interpretación
+- ✅ Fecha: 18 de octubre de 2025
+
+---
+
+### **📋 ACCIÓN INMEDIATA REQUERIDA:**
+
+**OPCIÓN A: Corregir narrativa Cap. 6** (10 min)
+1. Cambiar título Tabla 6.2: "Validación LOOU" → "Desglose por Usuario"
+2. Eliminar fila "F1=0.847, CV=4.8%" de Tabla 6.3
+3. Aclarar que análisis es sobre dataset completo (no LOOU)
+
+**OPCIÓN B: Añadir nota aclaratoria** (5 min)
+- Mantener tabla como está
+- Añadir pie de página explicando que NO es LOOU real
+
+**OPCIÓN C: Script funcionaba antes, encontrar versión** (30 min)
+- Buscar en historial Git versión antigua de script
+- Verificar si generaba métricas 0.847
+
+---
+
+## 📢 MENSAJE PARA LUIS Y ADES
+
+**Luis:**
+- ✅ FUENTE ENCONTRADA: `tablas_tesis/tabla1_metricas_por_usuario.csv`
+- ✅ Datos son VÁLIDOS (18-Oct-2025)
+- ❌ Etiqueta es INCORRECTA (dice LOOU pero NO lo es)
+- ❌ F1=0.847 y CV=4.8% NO se encuentran en el proyecto
+- ❓ ¿Corrijo narrativa Cap. 6 con Opción A?
+
+**Ades:**
+- Tabla 6.2 NO es validación cruzada
+- Es desglose del análisis global
+- Métricas son reales pero etiqueta engañosa
+- Requiere corrección narrativa urgente
+
+**Poseidón:**
+- Tarea P-A2 resuelto
+- Datos son consistentes
+- Solo problema de etiquetado
+
+---
+
+**Documento completo:**
+```
+tesis_luisangel/notas_proceso/RAYO_HALLAZGO_FUENTE_TABLA62_6NOV.md
+```
+
+---
+
+**Estado:** ✅ **Opción B completada** (fuente encontrada)  
+**Siguiente:** ❓ ¿Proceder a Opción A (debugging) o corregir narrativa Cap. 6?
+
+---
+
+**Última actualización:** Jueves, 06 de noviembre de 2025, 12:12:30  
+**Agente:** Rayo Veloz ⚡  
+**Estado:** ✅ Investigación completada | 📋 Decisión requerida
+
+---
+
