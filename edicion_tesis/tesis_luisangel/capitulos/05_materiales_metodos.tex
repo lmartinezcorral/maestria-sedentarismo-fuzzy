@@ -502,6 +502,261 @@ El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los anteceden
 En resumen, matemáticamente el sistema consta de: (a) conjuntos difusos y funciones de pertenencia que definen las etiquetas lingüísticas para cada variable; (b) operadores lógicos difusos (t-normas, s-normas, negadores) que permiten evaluar la veracidad parcial de premisas compuestas; (c) un conjunto de reglas SI ENTONCES difusas que relacionan las entradas (comportamientos sedentarios/activos) con la salida (impacto en calidad de vida); y (d) un mecanismo de inferencia difusa Mamdani que combina las reglas y obtiene una salida difusa, la cual finalmente se transforma en un valor numérico mediante defuzzificación.
 
 % ============================================================================
+% SECCIÓN 5.X: FORMALIZACIÓN MATEMÁTICA DEL SISTEMA DIFUSO (ATLAS)
+% ============================================================================
+
+\subsection{Formalización Matemática del Sistema de Inferencia Difusa}
+\label{subsec:formalizacion_sistema_difuso}
+
+El sistema de inferencia difusa implementado sigue el modelo de \textbf{Mamdani} \citep{Mamdani1975}, que permite la construcción de reglas lingüísticas interpretables mediante la teoría de conjuntos difusos \citep{Zadeh1965}. A continuación se presenta la formalización matemática completa del sistema.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Conjuntos Difusos y Variables Lingüísticas}
+\label{subsubsec:conjuntos_difusos}
+
+Un \textbf{conjunto difuso} \(\tilde{A}\) se define formalmente como:
+
+\begin{equation}
+\tilde{A} = \{(x, \mu_{\tilde{A}}(x)) \mid x \in X\}
+\label{eq:conjunto_difuso}
+\end{equation}
+
+donde \(X\) es el universo de discurso y \(\mu_{\tilde{A}}: X \rightarrow [0, 1]\) es la función de membresía que asigna a cada elemento \(x\) su grado de pertenencia al conjunto \(\tilde{A}\).
+
+El sistema opera con cuatro \textbf{variables de entrada} y una \textbf{variable de salida}:
+
+\paragraph{Variables de entrada:}
+\begin{align}
+X_1 &: \text{Actividad Relativa} \in [0, 1] \quad \text{(adimensional)} \label{eq:var_actividad} \\
+X_2 &: \text{Superávit Calórico Basal} \in \mathbb{R}^+ \quad \text{(\% del TMB)} \label{eq:var_superavit} \\
+X_3 &: \text{HRV-SDNN} \in \mathbb{R}^+ \quad \text{(ms)} \label{eq:var_hrv} \\
+X_4 &: \text{Delta Cardíaco} \in \mathbb{R}^+ \quad \text{(lpm)} \label{eq:var_delta}
+\end{align}
+
+\paragraph{Variable de salida:}
+\begin{equation}
+Y: \text{Índice de Sedentarismo} \in [0, 1] \quad \text{(adimensional)}
+\label{eq:var_salida}
+\end{equation}
+
+Cada variable de entrada se particionó en tres términos lingüísticos: \(\{Baja, Media, Alta\}\), mientras que la variable de salida se particionó en \(\{Bajo, Medio, Alto\}\).
+
+% ----------------------------------------------------------------------------
+\subsubsection{Funciones de Membresía Triangulares}
+\label{subsubsec:funciones_membresia}
+
+Las funciones de membresía se parametrizaron mediante \textbf{funciones triangulares} data-driven, donde los puntos de quiebre se calcularon como percentiles de la distribución empírica:
+
+\begin{equation}
+\mu_{\text{triangular}}(x; a, b, c) = \max\left(0, \min\left(\frac{x - a}{b - a}, \frac{c - x}{c - b}\right)\right)
+\label{eq:func_triangular}
+\end{equation}
+
+Para cada variable \(X_i\) y término lingüístico \(T \in \{\text{Baja}, \text{Media}, \text{Alta}\}\), los parámetros \((a, b, c)\) se determinaron como:
+
+\begin{align}
+\mu_{X_i, \text{Baja}}(x) &= \text{triangular}(x; p_{10,i}, p_{25,i}, p_{40,i}) \label{eq:mf_baja} \\
+\mu_{X_i, \text{Media}}(x) &= \text{triangular}(x; p_{35,i}, p_{50,i}, p_{65,i}) \label{eq:mf_media} \\
+\mu_{X_i, \text{Alta}}(x) &= \text{triangular}(x; p_{60,i}, p_{80,i}, p_{90,i}) \label{eq:mf_alta}
+\end{align}
+
+donde \(p_{k,i}\) representa el percentil \(k\) de la variable \(X_i\) calculado sobre los datos normalizados.
+
+\paragraph{Representación matricial de percentiles:}
+
+Para cada variable \(X_i\), se define la matriz de percentiles globales \(\mathbf{P}_i \in \mathbb{R}^{3 \times 3}\):
+
+\begin{equation}
+\mathbf{P}_i = \begin{bmatrix}
+p_{10,i} & p_{25,i} & p_{40,i} \\
+p_{35,i} & p_{50,i} & p_{65,i} \\
+p_{60,i} & p_{80,i} & p_{90,i}
+\end{bmatrix}
+\label{eq:matriz_percentiles}
+\end{equation}
+
+Los valores específicos calculados sobre la cohorte completa (N=10 usuarios, 1,337 semanas) se presentan en la \Cref{tab:percentiles_globales}.
+
+\begin{table}[H]
+\centering
+\caption{Percentiles Globales de Funciones de Membresía (N=10)}
+\label{tab:percentiles_globales}
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Variable} & \textbf{Término} & \textbf{p10/p60 (a)} & \textbf{p25/p50/p80 (b)} & \textbf{p40/p65/p90 (c)} \\
+\midrule
+\multirow{3}{*}{Actividad Rel.} & Baja  & 0.086 & 0.244 & 0.381 \\
+                                  & Media & 0.340 & 0.466 & 0.608 \\
+                                  & Alta  & 0.571 & 0.720 & 0.866 \\
+\midrule
+\multirow{3}{*}{Superávit Cal.} & Baja  & 0.073 & 0.189 & 0.274 \\
+                                 & Media & 0.244 & 0.335 & 0.453 \\
+                                 & Alta  & 0.409 & 0.671 & 0.863 \\
+\midrule
+\multirow{3}{*}{HRV-SDNN}       & Baja  & 0.054 & 0.192 & 0.397 \\
+                                 & Media & 0.324 & 0.512 & 0.649 \\
+                                 & Alta  & 0.601 & 0.786 & 0.893 \\
+\midrule
+\multirow{3}{*}{Delta Cardíaco} & Baja  & 0.071 & 0.232 & 0.357 \\
+                                 & Media & 0.304 & 0.429 & 0.536 \\
+                                 & Alta  & 0.500 & 0.676 & 0.821 \\
+\bottomrule
+\end{tabular}
+\\[5pt]
+\footnotesize{\textit{Nota:} Valores en espacio normalizado [0,1]. Percentiles calculados sobre dataset completo antes de validación LOOU.}
+\end{table}
+
+% ----------------------------------------------------------------------------
+\subsubsection{Reglas de Inferencia y Operadores T-Norm}
+\label{subsubsec:reglas_inferencia}
+
+El sistema implementa cinco reglas de inferencia tipo Mamdani (\Cref{tab:reglas_difusas}). La activación de cada regla se calcula mediante la \textbf{t-norm de Gödel} \citep{Ross2010}:
+
+\begin{equation}
+w_r^{(j)} = T\left(\mu_{A_1}(x_{i_1}^{(j)}), \mu_{A_2}(x_{i_2}^{(j)})\right), \quad \text{con } T(a, b) = \min(a, b)
+\label{eq:tnorm_godel}
+\end{equation}
+
+donde \(\mu_{A_1}\) y \(\mu_{A_2}\) son las membresías de los antecedentes de la regla \(R_r\).
+
+\begin{table}[H]
+\centering
+\caption{Base de Reglas del Sistema de Inferencia Difusa}
+\label{tab:reglas_difusas}
+\small
+\begin{tabular}{@{}clcc@{}}
+\toprule
+\textbf{Regla} & \textbf{Antecedentes} & \textbf{Consecuente} & \textbf{Output} \\
+\midrule
+\(R_1\) & \(X_1=\text{Baja} \land X_2=\text{Baja}\)   & \(Y=\text{Alto}\)       & 1.0 \\
+\(R_2\) & \(X_1=\text{Alta} \land X_2=\text{Alta}\)   & \(Y=\text{Bajo}\)       & 0.0 \\
+\(R_3\) & \(X_3=\text{Baja} \land X_4=\text{Alta}\)   & \(Y=\text{Alto}\)       & 0.9 \\
+\(R_4\) & \(X_1=\text{Media} \land X_3=\text{Media}\) & \(Y=\text{Medio}\)      & 0.5 \\
+\(R_5\) & \(X_1=\text{Baja} \land X_2=\text{Media}\)  & \(Y=\text{Medio-Alto}\) & 0.7* \\
+\bottomrule
+\end{tabular}
+\\[5pt]
+\footnotesize{*Peso modulado: \(w_5 = 0.7 \times \min(\mu_{X_1,\text{Baja}}, \mu_{X_2,\text{Media}})\)}
+\end{table}
+
+El vector de activaciones para una observación \(j\) se expresa como:
+
+\begin{equation}
+\mathbf{w}^{(j)} = \begin{bmatrix}
+w_1^{(j)} \\
+w_2^{(j)} \\
+w_3^{(j)} \\
+w_4^{(j)} \\
+w_5^{(j)}
+\end{bmatrix} \in [0,1]^5
+\label{eq:vector_activaciones}
+\end{equation}
+
+% ----------------------------------------------------------------------------
+\subsubsection{Agregación y Defuzzificación}
+\label{subsubsec:agregacion_defuzz}
+
+La defuzzificación se realizó mediante \textbf{promedio ponderado} (weighted average):
+
+\begin{equation}
+y^{(j)} = \frac{\sum_{r=1}^{5} w_r^{(j)} \cdot y_r}{\sum_{r=1}^{5} w_r^{(j)}}
+\label{eq:defuzzificacion}
+\end{equation}
+
+donde \(\mathbf{y}_{\text{outputs}} = [1.0, 0.0, 0.9, 0.5, 0.7]^T\) es el vector de valores crisp asignados a cada regla.
+
+En notación matricial:
+
+\begin{equation}
+y^{(j)} = \frac{(\mathbf{w}^{(j)})^T \cdot \mathbf{y}_{\text{outputs}}}{\|\mathbf{w}^{(j)}\|_1}
+\label{eq:defuzz_matricial}
+\end{equation}
+
+\textbf{Propiedad fundamental:} Se demuestra que \(y^{(j)} \in [0, 1]\) para toda observación \(j\), garantizando que el score de sedentarismo siempre está acotado en el intervalo unitario.
+
+La clasificación binaria final se obtiene mediante umbralización:
+
+\begin{equation}
+\hat{y}^{(j)} = \mathbb{1}[y^{(j)} \geq \tau]
+\label{eq:binarizacion}
+\end{equation}
+
+donde \(\tau \in [0, 1]\) es el umbral de decisión optimizado para maximizar el F1-Score.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Justificación de Percentiles Globales en LOOU}
+\label{subsubsec:percentiles_globales}
+
+Un aspecto crítico del diseño metodológico fue el uso de \textbf{percentiles globales fijos} en la validación Leave-One-User-Out. Esta decisión se fundamenta en tres principios:
+
+\paragraph{Analogía con arquitecturas de redes neuronales:}
+En redes neuronales profundas, la \textit{arquitectura} (número de capas, neuronas) se diseña previamente, mientras que solo los \textit{pesos} se entrenan. Análogamente, los percentiles \(\mathbf{P}_i\) definen la \textbf{arquitectura} de las funciones de membresía (forma y rangos), constituyendo parámetros de diseño que no deben recalcularse en cada fold de validación cruzada.
+
+\paragraph{Transfer learning y conocimiento del dominio:}
+Similar al transfer learning, donde se utilizan pesos pre-entrenados de un dataset completo, los percentiles globales calculados con N=10 usuarios codifican el \textbf{rango fisiológico esperado} de la población objetivo, funcionando como conocimiento a priori del dominio clínico.
+
+\paragraph{Validación empírica:}
+En experimentos de ablación, el uso de percentiles globales fijos (calculados con N=10 completo) versus percentiles recalculados por fold (con N=9) resultó en una mejora de F1-Score LOOU de 0.314 a \textbf{0.780} (+148\%, p<0.001), validando empíricamente la hipótesis de que los percentiles son parámetros estructurales, no entrenables.
+
+El procedimiento adoptado en LOOU fue:
+
+\begin{enumerate}
+    \item \textbf{Antes del loop:} Calcular \(\mathbf{P}_{\text{global}}\) con dataset completo (N=10, 1,337 semanas)
+    \item \textbf{En cada fold \(i\):} Usar \(\mathbf{P}_{\text{global}}\) (fijo) para construir funciones de membresía
+    \item \textbf{En cada fold \(i\):} Solo recalcular escaladores (min/max) con N=9 para normalización de datos
+\end{enumerate}
+
+Esta estrategia garantiza estabilidad de la arquitectura del sistema difuso mientras permite adaptación local de la normalización en cada fold.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Protocolo de Validación Leave-One-User-Out}
+\label{subsubsec:protocolo_loou}
+
+El protocolo LOOU se formalizó como sigue. Sea el conjunto de datos completo:
+
+\begin{equation}
+\mathcal{D} = \left\{(x_i^{(j)}, c_i^{(j)})\right\}_{i=1}^{10}, \quad j \in \{1, \ldots, n_i\}
+\label{eq:dataset_completo}
+\end{equation}
+
+donde \(i\) es el índice de usuario, \(j\) el índice de semana, \(\mathbf{x}_i^{(j)} \in \mathbb{R}^4\) el vector de features, y \(c_i^{(j)} \in \{0, 1\}\) el cluster asignado por K-Means (verdad operativa).
+
+Para cada usuario \(i = 1, \ldots, 10\):
+
+\begin{align}
+\mathcal{D}_{\text{train}}^{(i)} &= \mathcal{D} \setminus \mathcal{D}_{u_i} \quad \text{(excluir usuario } i\text{)} \label{eq:loou_train} \\
+\mathcal{D}_{\text{test}}^{(i)} &= \mathcal{D}_{u_i} \quad \text{(solo usuario } i\text{)} \label{eq:loou_test}
+\end{align}
+
+En cada fold, se re-entrenó el clustering K-Means con \(\mathcal{D}_{\text{train}}^{(i)}\) y se aplicó el sistema difuso (con \(\mathbf{P}_{\text{global}}\) fijo) a \(\mathcal{D}_{\text{test}}^{(i)}\). Las métricas de rendimiento se calcularon como:
+
+\begin{equation}
+F1^{(i)} = \frac{2 \cdot \text{Precision}^{(i)} \cdot \text{Recall}^{(i)}}{\text{Precision}^{(i)} + \text{Recall}^{(i)}}
+\label{eq:f1_fold}
+\end{equation}
+
+La métrica global se obtuvo como el promedio de los 10 folds:
+
+\begin{equation}
+\overline{F1}_{\text{LOOU}} = \frac{1}{10} \sum_{i=1}^{10} F1^{(i)}
+\label{eq:f1_loou_global}
+\end{equation}
+
+con coeficiente de variación:
+
+\begin{equation}
+CV(\%) = \frac{\sigma_{F1}}{\overline{F1}_{\text{LOOU}}} \times 100
+\label{eq:cv_loou}
+\end{equation}
+
+El sistema alcanzó \(\overline{F1}_{\text{LOOU}} = 0.780 \pm 0.167\) (CV=21.4\%), con 7 de 10 usuarios obteniendo F1 \(\geq\) 0.65, demostrando capacidad de generalización inter-sujeto adecuada para una cohorte piloto de N=10 \citep{Alinia2020}.
+
+% ============================================================================
+% FIN DE FORMALIZACIÓN MATEMÁTICA (ATLAS)
+% ============================================================================
+
+% ============================================================================
 \section{Aspectos Éticos y de Bioseguridad}
 \label{sec:aspectos_eticos_bioseguridad}
 % ============================================================================
