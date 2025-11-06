@@ -1,0 +1,33 @@
+================================================================================
+RESUMEN DE EXTRACCIÓN DE GUÍAS - ADES JUEZ DEL INFRAMUNDO
+================================================================================
+
+Fecha: 06 de November de 2025, 09:28:37
+Total archivos extraídos: 4
+
+ARCHIVOS GENERADOS:
+--------------------------------------------------------------------------------
+
+📄 02_CRITICO_chispas_redaccion.txt
+   Palabras: 3,918 | Líneas: 386 | Tamaño: 24.8 KB
+
+📄 03_CRITICO_rubrica_analitica_uach.txt
+   Palabras: 615 | Líneas: 109 | Tamaño: 4.9 KB
+
+📄 04_ALTO_guia_apa7.txt
+   Palabras: 11,898 | Líneas: 1,635 | Tamaño: 93.1 KB
+
+📄 05_ALTO_metodologia_sampieri6.txt
+   Palabras: 57,566 | Líneas: 6,049 | Tamaño: 410.8 KB
+
+
+================================================================================
+PRÓXIMOS PASOS:
+================================================================================
+
+1. Revisar archivos CRÍTICOS (01, 02, 03) para validar extracción
+2. Ades leerá archivos en orden de prioridad
+3. Rúbrica será actualizada con criterios reales UACH
+4. Revisión profunda iniciará con base sólida
+
+💀 Ades - Juez del Inframundo | Listo para juzgar con evidencia
