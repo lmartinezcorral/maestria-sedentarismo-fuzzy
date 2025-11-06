@@ -198,11 +198,98 @@ Estimación del algoritmo de lógica difusa & Dependiente & Numérica & Continua
 \end{table}
 
 % ============================================================================
+\section{Preprocesamiento y Análisis Exploratorio de Datos}
+\label{sec:preprocesamiento_eda}
+% ============================================================================
+
+\subsection{Extracción de Variables desde Apple HealthKit}
+\label{subsec:extraccion_variables}
+
+Los archivos \texttt{export.zip} generados por la aplicación Apple Health contienen datos biométricos en formato XML estructurado. Para facilitar su análisis, se empleó el script de código abierto \texttt{apple\_health\_data\_converter.py} \cite{Gaur2024AppleHealth}, el cual convierte los registros XML a archivos CSV tabulares.
+
+Del ecosistema HealthKit se extrajeron inicialmente 9 variables diarias, correspondientes a métricas de actividad física, gasto energético y biomarcadores cardiovasculares (ver \Cref{tab:variables_originales_apple_health}):
+
+\begin{table}[htbp]
+\centering
+\caption{Variables Originales Extraídas de Apple HealthKit}
+\label{tab:variables_originales_apple_health}
+\small
+\begin{tabular}{@{}p{3.2cm}p{1.2cm}p{4cm}p{5cm}@{}}
+\toprule
+\textbf{Variable} & \textbf{Unidad} & \textbf{Tipo HealthKit} & \textbf{Descripción} \\
+\midrule
+Pasos diarios & count & HKQuantityTypeIdentifier\-StepCount & Conteo total de pasos acumulados en 24 horas \\
+Distancia & km & HKQuantityTypeIdentifier\-DistanceWalkingRunning & Distancia recorrida en actividades ambulatorias \\
+Calorías activas & kcal & HKQuantityTypeIdentifier\-ActiveEnergyBurned & Gasto energético activo (excluyendo tasa metabólica basal) \\
+Minutos ejercicio & min & HKQuantityTypeIdentifier\-AppleExerciseTime & Tiempo en actividades $\geq$3 METs \\
+FC reposo & lpm & HKQuantityTypeIdentifier\-RestingHeartRate & Frecuencia cardíaca mínima diaria \\
+FC al caminar & lpm & HKQuantityTypeIdentifier\-WalkingHeartRateAverage & Frecuencia cardíaca promedio en marcha \\
+HRV-SDNN & ms & HKQuantityTypeIdentifier\-HeartRateVariabilitySDNN & Variabilidad de la frecuencia cardíaca \\
+Horas monitoreadas & h & Calculado & Tiempo con señal válida del dispositivo \\
+Horas sedestación & h & HKCategoryTypeIdentifier\-AppleStandHour & Tiempo sin romper sedestación prolongada \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\scriptsize
+\textit{Nota:} HK = HealthKit. METs = Equivalentes Metabólicos. FC = Frecuencia Cardíaca. HRV-SDNN = Heart Rate Variability - Standard Deviation of NN intervals.
+\end{flushleft}
+\end{table}
+
+\subsection{Análisis de Calidad y Variabilidad de Datos}
+\label{subsec:analisis_calidad_datos}
+
+Un análisis exploratorio preliminar reveló tres desafíos metodológicos que motivaron las decisiones de preprocesamiento subsecuentes:
+
+\subsubsection{Heterogeneidad Inter-Sujeto Extrema}
+
+El cálculo del coeficiente de variación (CV) para cada variable a través de los 10 participantes mostró dispersiones superiores al 60\% en 7 de 9 métricas. Como se observa en la \Cref{fig:cv_variables_originales}, variables como \textit{Pasos diarios} presentaron CV=72\%, reflejando diferencias sustanciales en edad, composición corporal, ocupación y nivel de condicionamiento físico entre participantes.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figuras/coeficiente_de_variacion.png}
+    \caption{Coeficiente de Variación de Variables Originales por Usuario}
+    \label{fig:cv_variables_originales}
+\end{figure}
+
+Esta heterogeneidad extrema justifica la normalización individualizada implementada posteriormente en la ingeniería de características (Sección~\ref{sec:feature_engineering}), donde cada variable se ajusta por exposición temporal y metabolismo basal del usuario.
+
+\subsubsection{Datos Faltantes Estratificados por Usuario}
+
+El análisis de datos faltantes (\textit{missingness}) reveló patrones heterogéneos entre participantes: 3 usuarios con menos del 5\% de datos faltantes, 4 usuarios con 10-20\%, y 3 usuarios con más del 20\% (principalmente en FC al caminar y HRV-SDNN, variables dependientes de algoritmos de detección de señal fotopletismográfica).
+
+Se implementó una estrategia de imputación jerárquica priorizando:
+\begin{enumerate}
+    \item Interpolación lineal para gaps menores a 3 días consecutivos
+    \item Mediana móvil de 7 días (ventana retrospectiva) para gaps de 3-7 días
+    \item Imputación por usuario mediante mediana histórica individual para gaps mayores
+\end{enumerate}
+
+Semanas con más del 60\% de datos imputados fueron excluidas del análisis, reduciendo el conjunto de 1,385 semanas observadas a 1,337 semanas válidas (filtrado conservador del 3.5\%).
+
+\subsubsection{Multicolinealidad Moderada entre Variables de Actividad}
+
+El análisis de correlación de Pearson entre las variables originales mostró correlaciones moderadas-altas ($r>0.60$) entre:
+\begin{itemize}
+    \item Pasos diarios $\leftrightarrow$ Distancia recorrida ($r=0.89$)
+    \item Pasos diarios $\leftrightarrow$ Calorías activas ($r=0.72$)
+    \item Minutos ejercicio $\leftrightarrow$ Calorías activas ($r=0.68$)
+\end{itemize}
+
+Esto motivó el diseño de variables derivadas que: (a) reduzcan redundancia informativa, y (b) normalicen por exposición temporal y metabolismo basal, permitiendo comparaciones equitativas entre usuarios con diferentes características antropométricas.
+
+\subsection{Transición a Ingeniería de Características}
+\label{subsec:transicion_feature_engineering}
+
+Los hallazgos del análisis exploratorio —heterogeneidad extrema (CV$>$70\%), datos faltantes estratificados (5\% a 20\%), y multicolinealidad moderada ($r>0.60$)— evidenciaron que las variables originales de HealthKit no son directamente comparables entre usuarios en su forma bruta.
+
+Esta conclusión fundamenta el diseño de las cuatro variables derivadas con normalización fisiológica presentadas en la siguiente sección (Sección~\ref{sec:feature_engineering}), las cuales transforman métricas absolutas en indicadores relativos ajustados por las características individuales de cada participante.
+
+% ============================================================================
 \section{Ingeniería de Características y Agregación Temporal}
 \label{sec:feature_engineering}
 % ============================================================================
 
-A partir de las métricas diarias registradas por el Apple Watch mediante el ecosistema HealthKit, se derivaron cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO$_2$max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas \cite{Schrack2018,Ho2022}.
+A partir de las métricas diarias registradas por el Apple Watch mediante el ecosistema HealthKit, se derivaron cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO$_2$max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018ACSM}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas \cite{Schrack2018,Ho2022}.
 
 \subsection{Actividad Relativa}
 \label{subsec:actividad_relativa}
@@ -364,16 +451,18 @@ El análisis de mercado identificó a Apple como el líder en la categoría de s
 \subsection{Protocolo del Instrumento}
 \label{subsec:protocolo_instrumento}
 
-Para la implementación del instrumento de realizo un flujo de trabajo como el que se describe en la \Cref{fig:diagrama_flujo}, donde se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos Apple Watch, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en Swift, garantizando la integridad, y seguridad de los datos a través de un procedimiento manual estructurado que permita su replicabilidad \citep{Apple2024HealthKit}.
+Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos Apple Watch, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en Swift, garantizando la integridad y seguridad de los datos a través de un procedimiento manual estructurado que permita su replicabilidad \citep{Apple2024HealthKit}.
+
+La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodológico, desde la recepción de archivos \texttt{export.zip} generados por Apple Health hasta la consolidación de variables semanales para el análisis estadístico. El proceso se estructuró en cinco etapas: (1) recepción y almacenamiento seguro, (2) descompresión y conversión XML→CSV, (3) extracción de métricas específicas con filtrado por \texttt{sourceName}, (4) manejo de datos faltantes y valores atípicos, y (5) consolidación en un DataFrame con etiquetas estandarizadas.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{figuras/diagrama_de_flujo_fig3.png}
-    \caption{Diagrama de flujo del proceso de implementación del proyecto de investigación, desde la obtención de datos hasta la selección, extracción, limpieza y procesamiento de las variables}
+    \caption{Diagrama de flujo del proceso metodológico completo}
     \label{fig:diagrama_flujo}
 \end{figure}
 
-Recepción y almacenamiento seguro de datos, los participantes generaron un archivo \texttt{export.zip} a través de la aplicación Apple Health en sus dispositivos. Cada archivo fue recibido y almacenado en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente los archivos comprimidos fueron descomprimidos para acceder a los datos en formato XML. Se utilizó el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
+Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en Swift. Los participantes generaron un archivo \texttt{export.zip} a través de la aplicación Apple Health en sus dispositivos. Cada archivo fue recibido y almacenado en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente los archivos comprimidos fueron descomprimidos para acceder a los datos en formato XML. Se utilizó el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
 
 Se identificaron los archivos \texttt{ActiveEnergyBurned.csv}, \texttt{AppleExerciseTime.csv}, \texttt{AppleStandHour.csv}, \texttt{AppleStandTime.csv}, \texttt{DistanceWalkingRunning.csv}, \texttt{HeartRate.csv}, \texttt{StepCount.csv}, \texttt{WalkingHeartRateAverage.csv} y extrajeron las siguientes métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente se desarrolló un código personalizado en Python que requirió de las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, se filtraron los registros utilizando la columna \texttt{sourceName}. Se seleccionaron únicamente los datos asociados al dispositivo específico del participante, excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
 
@@ -386,23 +475,27 @@ Para el manejo de datos se identificaron registros con valores faltantes, nulos 
 
 Formalmente, la lógica difusa extiende la teoría de conjuntos clásica introduciendo conjuntos difusos (borrosos) cuyos elementos tienen grados de pertenencia en el intervalo $[0,1]$. Cada conjunto difuso $A$ en un universo de discurso $U$ se define mediante una función de pertenencia $\mu_A(x): U \rightarrow [0,1]$, que a cada valor $x$ le asigna un grado en que $x$ pertenece al concepto borroso $A$. Un grado $\mu_A(x) = 1$ indica pertenencia plena, $\mu_A(x) = 0$ indica no pertenencia, y valores intermedios reflejan pertenencia parcial.
 
+Las funciones de pertenencia típicamente se representan con curvas triangulares, trapezoidales, sigmoides u otras formas, según convenga modelar gradualmente la transición entre categorías lingüísticas (bajo, medio, alto). La \Cref{fig:funciones_membresia} muestra las funciones trapezoidales definidas para cada variable de entrada del sistema, con tres categorías lingüísticas por variable cuyos parámetros fueron ajustados según los rangos observados en la cohorte y criterios fisiológicos.
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{figuras/Funciones_de_membresias_trapezoidales_fig4.png}
-    \caption{Funciones de membresías trapezoidales que representan los universos de discurso: Pasos Diarios, Índice de gasto calórico kinestésico, FC al caminar e índice de actividad física}
+    \caption{Funciones de pertenencia trapezoidales de las variables de entrada}
     \label{fig:funciones_membresia}
 \end{figure}
 
-Por ejemplo, podríamos definir un conjunto difuso ``pasos diarios bajos'' donde $\mu_{\text{bajo}}(x) = 0.8$ para $x = 4000$ pasos, significan que 4000 pasos/día se consideran con un 80\% de pertenencia al concepto ``bajo''. Las funciones de pertenencia típicamente se representan con curvas triangulares, trapezoidales, sigmoides u otras formas, como se observa en la \Cref{fig:funciones_membresia} según convenga modelar gradualmente la transición entre bajo, medio, alto, etc.
+Por ejemplo, podríamos definir un conjunto difuso ``pasos diarios bajos'' donde $\mu_{\text{bajo}}(x) = 0.8$ para $x = 4000$ pasos, significando que 4000 pasos/día se consideran con un 80\% de pertenencia al concepto ``bajo''.
 
 Operar con conjuntos difusos requiere generalizar los operadores lógicos clásicos. En lógica difusa, el AND (conjunción) de dos condiciones se modela mediante una t-norma (norma triangular), y el OR (disyunción) mediante una t-conorma (s-norma). Estas operaciones combinan los grados de verdad de los operandos siguiendo ciertas propiedades (conmutatividad, asociatividad, monotonía y existencia de elementos neutro y nulo). La elección más común --por su simplicidad y significado intuitivo-- es usar la mínima (min) como t-norma para AND y la máxima (máx) como s-norma para OR. Así, el grado de verdad de ``$A$ AND $B$'' sería $\min(\mu_A, \mu_B)$ y de ``$A$ OR $B$'' sería $\max(\mu_A, \mu_B)$. De igual forma, la negación (NOT) de un conjunto difuso se define usualmente como el complemento estándar $\mu_{\neg A}(x) = 1 - \mu_A(x)$. Estas operaciones extienden las leyes de De Morgan al caso difuso, permitiendo cálculos lógicos coherentes con valores de verdad parciales.
 
-Con estos elementos, es posible construir reglas difusas del tipo SI-ENTONCES para capturar conocimiento experto. Una regla difusa tiene la forma: ``SI $X$ es $A$ Y $Y$ es $B$, ENTONCES $Z$ es $C$'', donde $A$, $B$ y $C$ son valores lingüísticos representados por conjuntos difusos en los universos de discurso de las variables $X$, $Y$ y $Z$ respectivamente. Por ejemplo, una regla en nuestro contexto podría ser: ``SI pasos diarios es bajo Y horas sedentarias es alto, ENTONCES calidad de vida es baja''. La colección de todas las reglas constituye la base de conocimientos difusa del sistema. El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los antecedentes (inputs) como los consecuentes (output) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo Mamdani produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación como se muestra en la \Cref{fig:salida_difusa}.
+Con estos elementos, es posible construir reglas difusas del tipo SI-ENTONCES para capturar conocimiento experto. Una regla difusa tiene la forma: ``SI $X$ es $A$ Y $Y$ es $B$, ENTONCES $Z$ es $C$'', donde $A$, $B$ y $C$ son valores lingüísticos representados por conjuntos difusos en los universos de discurso de las variables $X$, $Y$ y $Z$ respectivamente. Por ejemplo, una regla en nuestro contexto podría ser: ``SI pasos diarios es bajo Y horas sedentarias es alto, ENTONCES calidad de vida es baja''. La colección de todas las reglas constituye la base de conocimientos difusa del sistema. 
+
+El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los antecedentes (inputs) como los consecuentes (output) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo Mamdani produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación. La \Cref{fig:salida_difusa} ilustra este proceso: el motor de inferencia combina las reglas activadas generando una distribución difusa de salida, la cual se defuzzifica mediante el método del centroide para obtener un valor numérico interpretable.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{figuras/Salida_difusa_figura_5.png}
-    \caption{Salida difusa del sistema de inferencia donde obtenemos el valor crisp del índice de actividad física resultado del proceso de defuzzificación}
+    \caption{Proceso de defuzzificación del sistema de inferencia Mamdani}
     \label{fig:salida_difusa}
 \end{figure}
 

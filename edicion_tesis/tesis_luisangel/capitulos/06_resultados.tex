@@ -10,21 +10,21 @@ Este capítulo presenta los hallazgos empíricos del estudio, siguiendo la secue
 
 La cohorte final del estudio estuvo compuesta por 10 participantes adultos (5 mujeres, 5 hombres) con un seguimiento longitudinal multianual, acumulando un total de 9,185 días de registro. Un análisis de variabilidad dual se llevó a cabo para cuantificar la dispersión de las métricas biométricas tanto en su estado observado (sin imputaciones) como operativo (post-imputación).
 
-Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, indicando una alta irregularidad en los patrones de actividad.
+Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, indicando una alta irregularidad en los patrones de actividad. La \Cref{fig:mapa_calor_variabilidad} muestra la magnitud de esta variabilidad mediante un mapa de calor donde cada celda representa el CV de una variable para un usuario específico. Los tonos más cálidos (rojos) indican mayor dispersión, mientras que los tonos fríos (azules) señalan patrones más estables.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{figuras/coeficiente_de_variacion.png}
-    \caption{Mapa de calor de variabilidad (Coeficiente de Variación) por usuario y variable}
+    \caption{Mapa de calor de variabilidad por usuario y variable}
     \label{fig:mapa_calor_variabilidad}
 \end{figure}
 
-Como se observa en el mapa de calor de variabilidad, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. De igual manera, la comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación mostró que el proceso de imputación, si bien necesario, tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras que la incrementa ligeramente en otras.
+Como se observa, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. La comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación (\Cref{fig:variabilidad_comparativa}) reveló que el proceso de imputación, si bien necesario, tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras que la incrementa ligeramente en otras, evidenciando el efecto estabilizador de la imputación jerárquica aplicada.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{figuras/variabilidadoperativa_vs_observada.png}
-    \caption{Comparación de variabilidad entre datos observados y operativos (post-imputación)}
+    \caption{Comparación de variabilidad observada vs. operativa}
     \label{fig:variabilidad_comparativa}
 \end{figure}
 
@@ -35,39 +35,39 @@ Esta alta variabilidad natural de los datos recopilados en condiciones de vida l
 \label{sec:verdad_operativa_clustering}
 % ============================================================================
 
-Previo al análisis de conglomerados, se verificó la ausencia de multicolinealidad severa entre las ocho características semanales seleccionadas. Todas las variables presentaron un Factor de Inflación de la Varianza (VIF) inferior a 2.0, lo que confirma su idoneidad para el modelado.
+Previo al análisis de conglomerados, se verificó la ausencia de multicolinealidad severa entre las ocho características semanales seleccionadas. La \Cref{fig:matriz_correlacion} muestra la matriz de correlación de Pearson entre variables: todas presentaron un Factor de Inflación de la Varianza (VIF) inferior a 2.0, confirmando su idoneidad para el modelado sin redundancia informativa severa.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{figuras/matriz_correlacion_features_clustering.png}
-    \caption{Matriz de correlación de características para clustering (verificación de multicolinealidad)}
+    \caption{Matriz de correlación de características para clustering}
     \label{fig:matriz_correlacion}
 \end{figure}
 
-Posteriormente, se realizó un barrido de $K$ (de 2 a 6 conglomerados) para determinar la partición más adecuada de los datos. El coeficiente de Silhouette alcanzó su máximo en $K=2$, indicando que la estructura más clara y estable en los datos correspondía a dos perfiles de comportamiento distintos.
+Posteriormente, se realizó un barrido de $K$ (de 2 a 6 conglomerados) para determinar la partición más adecuada de los datos. Como se observa en la \Cref{fig:silhouette_elbow}, el coeficiente de Silhouette alcanzó su máximo en $K=2$ (S=0.232), indicando que la estructura más clara y estable en los datos correspondía a dos perfiles de comportamiento distintos. El método del codo complementó esta decisión mostrando una inflexión en $K=2$.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{figuras/PCA_elbow_vs_shilloete.png}
-    \caption{Análisis de determinación de K óptimo: Método del codo (Elbow) y Coeficiente de Silhouette}
+    \caption{Determinación de K óptimo mediante Silhouette y método del codo}
     \label{fig:silhouette_elbow}
 \end{figure}
 
-El análisis de componentes principales (PCA) confirmó visualmente la tendencia de los datos a separarse en dos grupos a lo largo del primer componente principal, el cual estaba fuertemente influenciado por las variables de actividad y gasto calórico.
+El análisis de componentes principales (PCA) confirmó visualmente esta estructura bimodal. La \Cref{fig:pca_biplot} muestra la proyección de las semanas en el espacio reducido de dos componentes principales: el PC1 (37\% de varianza explicada) separa claramente los dos grupos, estando fuertemente influenciado por las variables de actividad y gasto calórico.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{figuras/PCA_biplot.png}
-    \caption{Análisis de Componentes Principales (PCA) mostrando la separación en dos conglomerados}
+    \caption{Biplot de componentes principales mostrando separación bimodal}
     \label{fig:pca_biplot}
 \end{figure}
 
-Los perfiles de estos dos conglomerados se analizaron estadísticamente para su caracterización clínica. El Conglomerado 0 (``Bajo Sedentarismo'') presentó valores de mediana significativamente más altos en Actividad\_relativa\_p50 y Superavit\_calorico\_basal\_p50 en comparación con el Conglomerado 1 (``Alto Sedentarismo''). Las diferencias fueron estadísticamente irrefutables ($p < .001$) y con un tamaño del efecto grande (Cohen's $d > 0.9$). Curiosamente, la HRV\_SDNN no mostró una diferencia significativa entre ambos grupos.
+Los perfiles de estos dos conglomerados se analizaron estadísticamente para su caracterización clínica. Como ilustra la \Cref{fig:perfiles_clusters}, el Conglomerado 0 (``Bajo Sedentarismo'') presentó valores de mediana significativamente más altos en Actividad\_relativa\_p50 y Superavit\_calorico\_basal\_p50 en comparación con el Conglomerado 1 (``Alto Sedentarismo''). Las diferencias fueron estadísticamente irrefutables ($p < .001$) y con un tamaño del efecto grande (Cohen's $d > 0.9$). Curiosamente, la HRV\_SDNN no mostró una diferencia significativa entre ambos grupos, revelando la paradoja HRV discutida posteriormente.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{figuras/perfiles_de_clusters.png}
-    \caption{Perfiles de los dos conglomerados según las 4 variables principales (Actividad relativa, Superávit calórico, HRV-SDNN, Delta cardíaco)}
+    \caption{Perfiles biométricos de los dos conglomerados identificados}
     \label{fig:perfiles_clusters}
 \end{figure}
 
@@ -225,12 +225,12 @@ u10 & 0.091 ($\pm$0.033) & 0.054 ($\pm$0.037) & 25.162 ($\pm$9.817)  & 15.957 ($
 
 Para evaluar la importancia relativa de las variables en el modelo, se realizó un análisis de sensibilidad comparando el rendimiento del modelo completo (4 variables de entrada) con un modelo reducido (2 variables de entrada), que excluía las variables cardiovasculares (HRV\_SDNN y Delta\_cardiaco).
 
-El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420).
+El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420). La \Cref{fig:analisis_robustez} ilustra esta dependencia crítica mediante un gráfico de barras agrupadas que compara las cuatro métricas principales (F1-Score, Precision, Recall, MCC) entre ambos modelos, evidenciando el impacto devastador de la exclusión de variables cardiovasculares sobre todas las dimensiones del rendimiento.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{figuras/analisis_robustez.png}
-    \caption{Análisis de robustez: Comparación de rendimiento entre Modelo completo (4 variables) y Modelo reducido (2 variables)}
+    \caption{Análisis de robustez: modelo completo vs. modelo reducido}
     \label{fig:analisis_robustez}
 \end{figure}
 
@@ -276,11 +276,13 @@ Healy et al. \cite{Healy2024} reportan hallazgos convergentes: correlaciones dé
 \label{sec:tesis}
 % ============================================================================
 
-La principal aportación de esta investigación es el desarrollo y la validación de un sistema experto, basado en lógica difusa, capaz de clasificar con alta fiabilidad (F1-Score = 0.840) los patrones de comportamiento sedentario semanal a partir de datos biométricos multivariados, longitudinales y recopilados en condiciones de vida libre. La constatación de la hipótesis de investigación se demuestra al confirmar que el modelo interpretable, fundamentado en reglas de conocimiento clínico, converge significativamente con una clasificación objetiva derivada de un análisis de conglomerados no supervisado. Fundamentalmente, el estudio revela que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa, un hallazgo que subraya la superioridad de los modelos sistémicos sobre los análisis univariados tradicionales para la evaluación de comportamientos complejos en salud.
+La principal aportación de esta investigación es el desarrollo y la validación de un sistema experto, basado en lógica difusa, capaz de clasificar con alta fiabilidad (F1-Score = 0.840) los patrones de comportamiento sedentario semanal a partir de datos biométricos multivariados, longitudinales y recopilados en condiciones de vida libre. La constatación de la hipótesis de investigación se demuestra al confirmar que el modelo interpretable, fundamentado en reglas de conocimiento clínico, converge significativamente con una clasificación objetiva derivada de un análisis de conglomerados no supervisado.
+
+Fundamentalmente, el estudio revela que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa, un hallazgo que subraya la superioridad de los modelos sistémicos sobre los análisis univariados tradicionales para la evaluación de comportamientos complejos en salud. La \Cref{fig:diagrama_tesis} sintetiza visualmente el sistema completo, mostrando el flujo desde la captura de datos biométricos mediante wearables hasta la clasificación final mediante el sistema de inferencia difusa.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{figuras/diagrama_de_tesis.png}
-    \caption{Diagrama conceptual del sistema de evaluación del comportamiento sedentario mediante lógica difusa}
+    \caption{Arquitectura del sistema de clasificación de sedentarismo mediante lógica difusa}
     \label{fig:diagrama_tesis}
 \end{figure}
