@@ -93,7 +93,10 @@ def log(msg):
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     log_msg = f"[{timestamp}] {msg}"
     LOG_LINES.append(log_msg)
-    print(msg)
+    # Remover emojis para compatibilidad Windows
+    msg_clean = msg.replace('✅', '[OK]').replace(
+        '❌', '[ERROR]').replace('📊', '[DATA]').replace('📈', '[GRAPH]')
+    print(msg_clean)
 
 
 def print_header(title):
@@ -118,20 +121,25 @@ def triangular(x, a, b, c):
         return (c - x) / (c - b) if (c - b) > 0 else 0.0
 
 
-def calcular_percentiles_mf(df_train, features):
-    """Calcula percentiles para MF solo con datos de entrenamiento"""
+def calcular_percentiles_mf(df_train, features, scalers):
+    """Calcula percentiles para MF sobre datos NORMALIZADOS de entrenamiento"""
     mf_params = {}
 
+    # Normalizar datos de entrenamiento primero
+    df_norm = normalizar_features(df_train, scalers, features)
+
     for feat in features:
-        if feat not in df_train.columns:
+        feat_norm = f'{feat}_norm'
+        if feat_norm not in df_norm.columns:
             continue
 
-        data = df_train[feat].dropna()
+        data = df_norm[feat_norm].dropna()
         if len(data) == 0:
             continue
 
         mf_params[feat] = {}
         for label, percentiles in PERCENTILES_MF.items():
+            # Percentiles sobre datos NORMALIZADOS [0, 1]
             values = [np.percentile(data, p) for p in percentiles]
             mf_params[feat][label] = {
                 'percentiles': percentiles,
@@ -180,19 +188,20 @@ def clustering_train(df_train):
                     n_init=10, max_iter=500)
     labels = kmeans.fit_predict(X_scaled)
 
-    # Determinar cuál cluster es "Alto" (mayor score promedio esperado)
+    # Determinar cuál cluster ORIGINAL es "Alto" (mayor score promedio esperado)
     df_train_copy = df_train.copy()
-    df_train_copy['cluster_temp'] = labels
+    df_train_copy['cluster_temp'] = labels  # Labels ORIGINALES del kmeans
 
     # Usar Actividad_relativa_p50 como proxy (bajo → sedentarismo alto)
     cluster_means = df_train_copy.groupby(
         'cluster_temp')['Actividad_relativa_p50'].mean()
-    cluster_alto = cluster_means.idxmin()  # Cluster con menor actividad → Alto
+    cluster_alto_original = cluster_means.idxmin()  # ID ORIGINAL del cluster alto
 
     # Mapear: 0=Bajo, 1=Alto
-    labels_mapped = np.where(labels == cluster_alto, 1, 0)
+    labels_mapped = np.where(labels == cluster_alto_original, 1, 0)
 
-    return labels_mapped, scaler, kmeans
+    # CORRECCIÓN RAYO+ATLAS: Retornar cluster_alto_original para usar en predict
+    return labels_mapped, scaler, kmeans, cluster_alto_original
 
 
 def clustering_predict(df_test, scaler, kmeans, cluster_alto_original):
@@ -210,52 +219,105 @@ def fuzzy_fuzzify(df, mf_params, scalers):
     """Fuzzifica features"""
     df_norm = normalizar_features(df, scalers, FEATURES_FUZZY)
 
+    # DEBUG
+    print(f"DEBUG fuzzy_fuzzify: df_norm shape = {df_norm.shape}")
+    print(
+        f"DEBUG fuzzy_fuzzify: df_norm columns = {[c for c in df_norm.columns if '_norm' in c]}")
+    print(f"DEBUG fuzzy_fuzzify: mf_params keys = {list(mf_params.keys())}")
+
+    # Verificar rangos de valores normalizados
+    for feat in FEATURES_FUZZY:
+        feat_norm = f'{feat}_norm'
+        if feat_norm in df_norm.columns:
+            print(
+                f"DEBUG {feat}_norm: min={df_norm[feat_norm].min():.3f}, max={df_norm[feat_norm].max():.3f}, mean={df_norm[feat_norm].mean():.3f}")
+
     membresias = {}
     for feat in FEATURES_FUZZY:
         feat_norm = f'{feat}_norm'
-        if feat_norm not in df_norm.columns or feat not in mf_params:
+        if feat_norm not in df_norm.columns:
+            print(f"DEBUG: {feat_norm} NO encontrado en df_norm")
+            continue
+        if feat not in mf_params:
+            print(f"DEBUG: {feat} NO encontrado en mf_params")
             continue
 
         for label in ['Baja', 'Media', 'Alta']:
             if label in mf_params[feat]:
                 a, b, c = mf_params[feat][label]['values']
+                print(f"DEBUG: {feat} {label} = [{a:.3f}, {b:.3f}, {c:.3f}]")
                 col_name = f'{feat}_{label}_memb'
                 membresias[col_name] = df_norm[feat_norm].apply(
                     lambda x: triangular(x, a, b, c))
 
     df_memb = pd.DataFrame(membresias, index=df.index)
+    print(
+        f"DEBUG fuzzy_fuzzify: df_memb shape = {df_memb.shape}, columns = {len(df_memb.columns)}")
     return df_memb
 
 
 def fuzzy_inference(df_memb):
     """Ejecuta inferencia difusa (5 reglas)"""
+    # DEBUG: Verificar columnas disponibles
+    print(
+        f"DEBUG fuzzy_inference: df_memb columns = {df_memb.columns.tolist()}")
+
+    # Verificar que existan las columnas necesarias
+    required_cols = [
+        'Actividad_relativa_p50_Baja_memb',
+        'Actividad_relativa_p50_Media_memb',
+        'Actividad_relativa_p50_Alta_memb',
+        'Superavit_calorico_basal_p50_Baja_memb',
+        'Superavit_calorico_basal_p50_Media_memb',
+        'Superavit_calorico_basal_p50_Alta_memb',
+        'HRV_SDNN_p50_Baja_memb',
+        'HRV_SDNN_p50_Media_memb',
+        'Delta_cardiaco_p50_Baja_memb'
+    ]
+
+    missing = [col for col in required_cols if col not in df_memb.columns]
+    if missing:
+        print(f"ERROR: Columnas faltantes en df_memb: {missing}")
+        return np.zeros(len(df_memb))
+
     # Reglas R1-R5
     w1 = np.minimum(df_memb['Actividad_relativa_p50_Baja_memb'],
                     df_memb['Superavit_calorico_basal_p50_Baja_memb'])
     w2 = np.minimum(df_memb['Actividad_relativa_p50_Alta_memb'],
                     df_memb['Superavit_calorico_basal_p50_Alta_memb'])
+    # CORRECCIÓN ATLAS: R3 debe usar Delta_Alta, no Baja (Bug A1)
     w3 = np.minimum(df_memb['HRV_SDNN_p50_Baja_memb'],
-                    df_memb['Delta_cardiaco_p50_Baja_memb'])
+                    df_memb['Delta_cardiaco_p50_Alta_memb'])
     w4 = np.minimum(df_memb['Actividad_relativa_p50_Media_memb'],
                     df_memb['HRV_SDNN_p50_Media_memb'])
     w5 = np.minimum(df_memb['Actividad_relativa_p50_Baja_memb'],
                     df_memb['Superavit_calorico_basal_p50_Media_memb']) * 0.7
 
-    # Agregación
-    s_bajo = w2
-    s_medio = w4
-    s_alto = w1 + w3 + w5
+    # DEBUG
+    print(
+        f"DEBUG w1: min={w1.min():.3f}, max={w1.max():.3f}, mean={w1.mean():.3f}")
+    print(
+        f"DEBUG w2: min={w2.min():.3f}, max={w2.max():.3f}, mean={w2.mean():.3f}")
 
-    # Defuzzificación
-    s_total = s_bajo + s_medio + s_alto
-    scores = np.where(s_total > 0, (0.2 * s_bajo + 0.5 *
-                      s_medio + 0.8 * s_alto) / s_total, 0.0)
+    # CORRECCIÓN ATLAS: Defuzzificación weighted average (como 08_fuzzy)
+    # Outputs por regla: R1→1.0, R2→0.0, R3→0.9, R4→0.5, R5→0.7
+    outputs = np.array([1.0, 0.0, 0.9, 0.5, 0.7])
+    weights = np.array([w1, w2, w3, w4, w5])
+
+    # Sumar weights por fila
+    w_total = np.sum(weights, axis=0)
+
+    # Defuzzificación: weighted average
+    scores = np.where(w_total > 0,
+                      np.sum(
+                          weights * outputs[:, np.newaxis], axis=0) / w_total,
+                      0.5)
 
     return scores
 
 
 def optimizar_tau(scores_train, y_true_train):
-    """Optimiza umbral τ maximizando F1 en train"""
+    """Optimiza umbral tau maximizando F1 en train"""
     best_tau = 0.30
     best_f1 = 0.0
 
@@ -296,6 +358,34 @@ def main():
     log(f"Usuarios encontrados: {usuarios}")
     log("")
 
+    # ========================================================================
+    # CORRECCIÓN ATLAS A2: CALCULAR PERCENTILES GLOBALES (N=10 completo)
+    # ========================================================================
+    print_header('AJUSTE A2: PERCENTILES GLOBALES FIJOS')
+    log("Calculando percentiles MF con dataset completo (N=10)...")
+
+    # Calcular scalers globales
+    scalers_globales = calcular_min_max(df, FEATURES_FUZZY)
+    log(f"✅ Scalers globales calculados para {len(FEATURES_FUZZY)} features")
+
+    # Calcular percentiles MF globales
+    mf_params_globales = calcular_percentiles_mf(
+        df, FEATURES_FUZZY, scalers_globales)
+    log(f"✅ Percentiles MF globales calculados")
+
+    for feat in FEATURES_FUZZY:
+        if feat in mf_params_globales:
+            log(f"   {feat}:")
+            for label in ['Baja', 'Media', 'Alta']:
+                if label in mf_params_globales[feat]:
+                    vals = mf_params_globales[feat][label]['values']
+                    log(f"      {label}: [{vals[0]:.3f}, {vals[1]:.3f}, {vals[2]:.3f}]")
+
+    log("")
+    log("[IMPORTANTE] Estos percentiles se usaran FIJOS en todos los folds")
+    log("   Solo se recalcularan los scalers (min/max) por fold para normalizacion")
+    log("")
+
     # Resultados por fold
     results_folds = []
 
@@ -315,44 +405,49 @@ def main():
             f"  Train: {len(df_train)} semanas ({len(df_train['usuario_id'].unique())} usuarios)")
         log(f"  Test: {len(df_test)} semanas (1 usuario: {test_user})")
 
-        # 1. Calcular percentiles MF en train
-        log("  [1] Calculando percentiles MF en train...")
-        mf_params_train = calcular_percentiles_mf(df_train, FEATURES_FUZZY)
+        # 1. Calcular scalers PRIMERO (min/max para normalización)
+        log("  [1] Calculando scalers para normalización...")
         scalers_train = calcular_min_max(df_train, FEATURES_FUZZY)
+
+        # CORRECCIÓN ATLAS A2: USAR percentiles GLOBALES fijos (NO recalcular)
+        log("  [1b] USANDO percentiles MF GLOBALES (fijos)...")
+        mf_params_train = mf_params_globales  # ← CAMBIO CRÍTICO
 
         # 2. Entrenar clustering en train
         log("  [2] Entrenando clustering K=2 en train...")
-        y_cluster_train, scaler_cluster, kmeans_model = clustering_train(
+        # CORRECCIÓN RAYO+ATLAS: Recibir cluster_alto_original (4to valor)
+        y_cluster_train, scaler_cluster, kmeans_model, cluster_alto_original = clustering_train(
             df_train)
         df_train['cluster_label'] = y_cluster_train
 
-        # Identificar cluster alto original
-        cluster_alto_original = kmeans_model.predict(
-            scaler_cluster.transform(df_train[FEATURES_CLUSTER].values))
-        cluster_alto_id = 1 if (cluster_alto_original ==
-                                y_cluster_train).mean() > 0.5 else 0
+        log(f"      Cluster Alto ORIGINAL ID = {cluster_alto_original}")
 
         # 3. Fuzzy en train
         log("  [3] Aplicando fuzzy en train...")
         df_memb_train = fuzzy_fuzzify(df_train, mf_params_train, scalers_train)
         scores_train = fuzzy_inference(df_memb_train)
+        log(f"      Scores train: min={scores_train.min():.3f}, max={scores_train.max():.3f}, mean={scores_train.mean():.3f}")
 
-        # 4. Optimizar τ en train
-        log("  [4] Optimizando τ en train...")
+        # 4. Optimizar tau en train
+        log("  [4] Optimizando tau en train...")
         tau_opt, f1_train = optimizar_tau(scores_train, y_cluster_train)
-        log(f"      τ óptimo = {tau_opt:.2f}, F1_train = {f1_train:.3f}")
+        log(f"      tau optimo = {tau_opt:.2f}, F1_train = {f1_train:.3f}")
 
         # 5. Aplicar clustering a test
         log("  [5] Aplicando clustering a test...")
+        # CORRECCIÓN RAYO+ATLAS: Usar cluster_alto_original (no cluster_alto_id)
         y_cluster_test = clustering_predict(
-            df_test, scaler_cluster, kmeans_model, cluster_alto_id)
+            df_test, scaler_cluster, kmeans_model, cluster_alto_original)
         df_test['cluster_label'] = y_cluster_test
 
         # 6. Fuzzy en test
         log("  [6] Aplicando fuzzy en test...")
         df_memb_test = fuzzy_fuzzify(df_test, mf_params_train, scalers_train)
         scores_test = fuzzy_inference(df_memb_test)
+        log(f"      Scores test: min={scores_test.min():.3f}, max={scores_test.max():.3f}, mean={scores_test.mean():.3f}")
         y_pred_test = (scores_test >= tau_opt).astype(int)
+        log(f"      y_pred_test (fuzzy): {np.bincount(y_pred_test)} (0=Bajo, 1=Alto)")
+        log(f"      y_cluster_test (GO): {np.bincount(y_cluster_test)} (0=Bajo, 1=Alto)")
 
         # 7. Evaluar en test
         log("  [7] Evaluando en test...")
@@ -488,6 +583,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
