@@ -35,7 +35,7 @@
 
 % --------------------- FORMATO APA 7 -------------------------
 % Márgenes: 2.54 cm (1 pulgada) en todos los lados
-\geometry{letterpaper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm}
+\geometry{letterpaper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,headheight=28pt}
 \onehalfspacing
 \pagestyle{fancy}
 \fancyhf{}
@@ -108,7 +108,7 @@
 \newcommand{\miFecha}{27 de Octubre de 2025}
 
 % Ruta del logo (ya incluido en figuras/)
-\newcommand{\miLogo}{figuras/logo_uach_portada.png}
+\newcommand{\miLogo}{figuras/Logo_facultad_medicina.png}  % ACTUALIZADO: Nuevo logo facultad
 
 % --------------------- METADATOS PDF ------------------------
 \hypersetup{
@@ -130,26 +130,23 @@
     \centering
     \vspace*{0.5cm}
     
-    % Universidad - Times 20pt, negrita, centrado, MAYÚSCULAS
-    {\fontsize{20}{24}\selectfont\bfseries \MakeUppercase{\miUniversidad}\\}
+    % Universidad - Times 22pt (+2pts), negrita, centrado, MAYÚSCULAS
+    {\fontsize{22}{26}\selectfont\bfseries \MakeUppercase{\miUniversidad}\\}
     \vspace{0.2cm}
     
-    % Facultad - Times 18pt, negrita, centrado, MAYÚSCULAS
-    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miFacultad}\\}
+    % Facultad - Times 20pt (+2pts), negrita, centrado, MAYÚSCULAS
+    {\fontsize{20}{24}\selectfont\bfseries \MakeUppercase{\miFacultad}\\}
     \vspace{0.2cm}
     
-    % Secretaría - Times 18pt, negrita, centrado, MAYÚSCULAS
-    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miSecretaria}\\}
+    % Secretaría - Times 20pt (+2pts), negrita, centrado, MAYÚSCULAS
+    {\fontsize{20}{24}\selectfont\bfseries \MakeUppercase{\miSecretaria}\\}
     \vspace{1.0cm}
     
     % Logo sin modificaciones
     \includegraphics[width=0.22\textwidth]{\miLogo}\\
-    \vspace{1.2cm}
+    \vspace{1.5cm}
 
-    % NOMBRE DE LA TESIS: (etiqueta en Times 12pt SIN negrita)
-    {\fontsize{12}{14}\selectfont NOMBRE DE LA TESIS:}\\[0.2cm]
-    
-    % Título de la tesis (en Times 12pt en MAYÚSCULAS)
+    % Título de la tesis directo (Times 12pt en MAYÚSCULAS, sin etiqueta)
     {\fontsize{12}{14}\selectfont \MakeUppercase{\miTitulo}}\\[1.2cm]
 
     % POR: (Times 12pt)
@@ -173,54 +170,10 @@
     \vspace{0.8cm}
 \end{titlepage}
 
-% --------------- HOJA DE FIRMAS ---------------
-\newpage
-\thispagestyle{empty}
-\pagenumbering{roman}
-\setcounter{page}{2}
-
-% Título de la tesis (primera línea, tipo oración, izquierda, Times 12pt)
-\noindent
-{\fontsize{12}{14}\selectfont \miTitulo}\\[1.5cm]
-
-% Firmas centradas, Times 12pt, sin negrita
-
-% 1. Secretario de Investigación y Posgrado (Fijo - mismo para todos)
-{\centering
-{\fontsize{12}{14}\selectfont 
-Dr. Said Alejandro De La Cruz Rey\\[0.3cm]
-Secretario de Investigaci\'on y Posgrado\\[0.3cm]
-Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
-Universidad Aut\'onoma de Chihuahua}\\[1.2cm]
-
-% 2. Coordinador de la Maestr\'ia (Fijo - mismo para todos)
-{\fontsize{12}{14}\selectfont 
-DR(A) Haydee Parra Acosta\\[0.3cm]
-Coordinador de la Maestr\'ia}\\[1.2cm]
-
-% 3. Director de Tesis (Variable - cambia por persona)
-{\fontsize{12}{14}\selectfont 
-DR(A) Abimael Guzm\'an Pando\\[0.3cm]
-Director de Tesis}\\[1.2cm]
-
-% 4-6. Asesores (Variables - cada quien agrega los suyos)
-{\fontsize{12}{14}\selectfont 
-DR(A) David Ricardo L\'opez Flores\\[0.3cm]
-Asesor(a)}\\[1.0cm]
-
-{\fontsize{12}{14}\selectfont 
-DR(A) Celia Mar\'ia Qui\~nez Cruz\\[0.3cm]
-Asesor(a)}\\[1.0cm]
-
-{\fontsize{12}{14}\selectfont 
-DR(A) Javier Camarillo Cisneros\\[0.3cm]
-Asesor(a)}\\
-} % Cierra el grupo \centering de las firmas
-
-% --------------- HOJA DE RESUMEN ---------------
+% --------------- HOJA DE RESUMEN (Pág. 2) ---------------
 \newpage
 \pagenumbering{arabic}  % Cambiar a números arábigos
-\setcounter{page}{3}
+\setcounter{page}{2}
 
 % Título "Resumen" centrado
 {\centering
@@ -241,47 +194,77 @@ La validación Leave-One-User-Out demostró F1-Score=0.840 (Precisión=0.833, Re
 \vspace{0.5cm}
 \noindent\textbf{Palabras clave:} comportamiento sedentario, lógica difusa, BYOD, wearables, LOUO, vida libre
 
-% --------------- HOJA DE INFORMACIÓN DEL DOCUMENTO ---------------
+% --------------- ABSTRACT EN INGLÉS (Pág. 3) ---------------
+\newpage
+\setcounter{page}{3}
+
+% Título "Abstract" centrado
+{\centering
+{\fontsize{14}{16}\selectfont\bfseries ABSTRACT}\\[1cm]
+}
+
+% Abstract con mismo formato que resumen
+\setlength{\parindent}{1.27cm}
+\onehalfspacing
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+Sedentary behavior represents a risk factor for chronic non-communicable diseases, whose objective measurement in free-living conditions presents significant methodological challenges. Traditional evaluation methods (self-report questionnaires) suffer from recall and social desirability biases, while reference techniques are restricted to laboratory settings that do not capture the complexity of ecological behavior. This study developed a sedentary lifestyle classification model using fuzzy logic that integrates biometric data from consumer wearable devices, applied under the \textit{Bring Your Own Device} (BYOD) paradigm in free-living conditions.
+
+The cohort consisted of 10 young adults with multi-year retrospective longitudinal follow-up (mean: 133.7 weeks; range: 7-298 weeks), accumulating 9,185 days of continuous biometric recording via Apple Watch. After preprocessing (hierarchical imputation, anthropometric normalization), 1,337 valid weeks were generated with four derived variables: Relative activity, Basal caloric surplus, Cardiac delta, and HRV-SDNN. The methodology employed a hybrid approach: unsupervised K-Means clustering (K=2) to establish operational truth from empirical patterns, followed by a Mamdani Fuzzy Inference System that encodes expert knowledge through five interpretable linguistic rules.
+
+Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Recall=0.850), with exceptional inter-subject variability (CV=4.8\%), surpassing comparable studies. Ablation analysis revealed that HRV-SDNN, although a weak univariate discriminator (p=0.24), is critical in the multivariate model (ablation: -50\% F1-Score). The proposed system classifies sedentary behavior with high reliability, preserving clinical interpretability through transparent rules applicable in ecological public health monitoring.
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} sedentary behavior, fuzzy logic, BYOD, wearables, LOOU, free-living
+
+% --------------- HOJA DE FIRMAS NUEVA (Pág. 4) ---------------
 \newpage
 \setcounter{page}{4}
+\thispagestyle{empty}
 
-% Sin título (empieza directamente con el contenido)
-\begin{flushleft}
-{\fontsize{12}{14}\selectfont
+% Título de la tesis (primera línea, tipo oración, izquierda, Times 12pt)
+\noindent
+{\fontsize{12}{14}\selectfont \miTitulo}\\[1.5cm]
 
-% Línea de investigación
-L\'inea de investigaci\'on: L\'inea de Generaci\'on y Aplicaci\'on del Conocimiento (LGAC) en Formaci\'on Biom\'edica\\[0.3cm]
+% Firmas centradas, Times 12pt, sin negrita
+{\centering
 
-Subl\'inea de investigaci\'on: Bioinform\'atica y Aplicaciones de Inteligencia Artificial en Salud\\[0.5cm]
+% 1. Secretario de Investigación y Posgrado
+{\fontsize{12}{14}\selectfont 
+Dr. Oscar Aguirre Barrera\\[0.3cm]
+Secretario de Investigaci\'on y Posgrado\\[0.3cm]
+Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
+Universidad Aut\'onoma de Chihuahua}\\[1.2cm]
 
-Investigador Estudiante:\\[0.1cm]
-Luis Angel Mart\'inez Corral\\[0.3cm]
+% 2. Coordinador de la Maestr\'ia
+{\fontsize{12}{14}\selectfont 
+DR(A) Haydee Parra Acosta\\[0.3cm]
+Coordinador de la Maestr\'ia}\\[1.2cm]
 
-Equipo de investigaci\'on:\\[0.1cm]
-Dr. Abimael Guzm\'an Pando\\[0.1cm]
-Dr. David Ricardo L\'opez Flores\\[0.1cm]
-Dra. Celia Mar\'ia Qui\~nez Cruz\\[0.1cm]
-Dr. Javier Camarillo Cisneros\\[0.5cm]
+% 3. Director de Tesis
+{\fontsize{12}{14}\selectfont 
+DR(A) Abimael Guzm\'an Pando\\[0.3cm]
+Director de Tesis}\\[1.2cm]
 
-% Afiliación
-Facultad de Medicina y Ciencias Biom\'edicas\\[0.1cm]
-UACH M\'exico\\[0.1cm]
-Web: https://uach.mx/fm/\\[0.1cm]
-Correo: p261337@uach.mx\\[0.1cm]
-Chihuahua, M\'exico, 2025\\[0.5cm]
+% 4-6. Asesores
+{\fontsize{12}{14}\selectfont 
+DR(A) David Ricardo L\'opez Flores\\[0.3cm]
+Asesor(a)}\\[1.0cm]
 
-% Copyright
-© Universidad Aut\'onoma de Chihuahua\\[0.1cm]
-© Los autores\\[0.3cm]
+{\fontsize{12}{14}\selectfont 
+DR(A) Celia Mar\'ia Qui\~nez Cruz\\[0.3cm]
+Asesor(a)}\\[1.0cm]
 
-Todos los derechos reservados. Se permite la distribuci\'on, uso y copia citando la fuente completa.
+{\fontsize{12}{14}\selectfont 
+DR(A) Javier Camarillo Cisneros\\[0.3cm]
+Asesor(a)}\\
 
-}
-\end{flushleft}
+} % Cierra el grupo \centering
 
-% --------------- CARTA AL SECRETARIO DE INVESTIGACIÓN ---------------
+% --------------- CARTA DE LIBERACIÓN (Pág. 5) ---------------
 \newpage
 \setcounter{page}{5}
+\thispagestyle{empty}
 
 % Logo de la universidad (pequeño, arriba a la izquierda) y fecha a la derecha
 \begin{flushleft}
@@ -296,7 +279,7 @@ Todos los derechos reservados. Se permite la distribuci\'on, uso y copia citando
 \begin{flushleft}
 \setlength{\leftskip}{1.2cm}  % Sangría izquierda de 1.2cm
 {\fontsize{12}{14}\selectfont 
-Dr. Said Alejandro de la Cruz Rey\\[0.1cm]
+Dr. Oscar Aguirre Barrera\\[0.1cm]
 Secretario de Investigaci\'on y Posgrado\\[0.1cm]
 Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
 
@@ -376,7 +359,15 @@ Se agradece a:\\[0.5cm]
 % --------------- ÍNDICE DE CONTENIDOS ---------------
 \newpage
 \setcounter{page}{7}
-\thispagestyle{plain}
+
+% Configurar encabezado con logo (desde índice en adelante)
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=0.8cm]{figuras/Logo_facultad_medicina.png}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{28pt}  % Aumentar altura encabezado para logo (mínimo 27.11232pt)
+\pagestyle{fancy}
+
 % Personalizar título del índice
 \renewcommand{\contentsname}{\'Indice de contenidos}
 % Reducir espacio antes del tableofcontents
