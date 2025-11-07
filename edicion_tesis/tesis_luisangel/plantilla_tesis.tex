@@ -35,7 +35,7 @@
 
 % --------------------- FORMATO APA 7 -------------------------
 % Márgenes: 2.54 cm (1 pulgada) en todos los lados
-\geometry{letterpaper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,headheight=28pt}
+\geometry{letterpaper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,headheight=36pt}
 \onehalfspacing
 \pagestyle{fancy}
 \fancyhf{}
@@ -55,6 +55,9 @@
   {0pt}     % Sin sangría
   {24pt}    % Espacio ANTES (2 renglones)
   {18pt}    % Espacio DESPUÉS (1.5 renglones)
+
+% Forzar estilo fancy en páginas de capítulo (para que aparezca logo en todas las páginas)
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
 
 % Secciones (Nivel 2): Izquierda, Negrita (NO justificado)
 \titleformat{\section}
@@ -108,7 +111,8 @@
 \newcommand{\miFecha}{27 de Octubre de 2025}
 
 % Ruta del logo (ya incluido en figuras/)
-\newcommand{\miLogo}{figuras/Logo_facultad_medicina.png}  % ACTUALIZADO: Nuevo logo facultad
+\newcommand{\miLogo}{figuras/logo_uach_portada.png}  % Logo UACH para portada
+\newcommand{\miLogoEncabezado}{figuras/Logo_facultad_medicina.png}  % Logo Facultad para encabezados
 
 % --------------------- METADATOS PDF ------------------------
 \hypersetup{
@@ -130,24 +134,27 @@
     \centering
     \vspace*{0.5cm}
     
-    % Universidad - Times 22pt (+2pts), negrita, centrado, MAYÚSCULAS
+    % Universidad - Times 22pt (+2pts solo para este), negrita, centrado, MAYÚSCULAS
     {\fontsize{22}{26}\selectfont\bfseries \MakeUppercase{\miUniversidad}\\}
     \vspace{0.2cm}
     
-    % Facultad - Times 20pt (+2pts), negrita, centrado, MAYÚSCULAS
-    {\fontsize{20}{24}\selectfont\bfseries \MakeUppercase{\miFacultad}\\}
+    % Facultad - Times 18pt (tamaño original), negrita, centrado, MAYÚSCULAS
+    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miFacultad}\\}
     \vspace{0.2cm}
     
-    % Secretaría - Times 20pt (+2pts), negrita, centrado, MAYÚSCULAS
-    {\fontsize{20}{24}\selectfont\bfseries \MakeUppercase{\miSecretaria}\\}
+    % Secretaría - Times 18pt (tamaño original), negrita, centrado, MAYÚSCULAS
+    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miSecretaria}\\}
     \vspace{1.0cm}
     
     % Logo sin modificaciones
     \includegraphics[width=0.22\textwidth]{\miLogo}\\
     \vspace{1.5cm}
 
-    % Título de la tesis directo (Times 12pt en MAYÚSCULAS, sin etiqueta)
-    {\fontsize{12}{14}\selectfont \MakeUppercase{\miTitulo}}\\[1.2cm]
+    % Título de la tesis directo (Times 12pt en MAYÚSCULAS, sin etiqueta, con saltos de línea manuales)
+    {\fontsize{12}{14}\selectfont 
+    MODELO DE EVALUACIÓN DEL COMPORTAMIENTO\\
+    SEDENTARIO MEDIANTE LÓGICA DIFUSA Y\\
+    DATOS BIOMÉTRICOS}\\[1.2cm]
 
     % POR: (Times 12pt)
     {\fontsize{12}{14}\selectfont POR:}\\[0.2cm]
@@ -362,11 +369,12 @@ Se agradece a:\\[0.5cm]
 
 % Configurar encabezado con logo (desde índice en adelante)
 \fancyhf{}
-\fancyhead[L]{\includegraphics[height=0.8cm]{figuras/Logo_facultad_medicina.png}}
+\fancyhead[L]{\includegraphics[height=1.1cm]{\miLogoEncabezado}}  % Logo 30% más grande (0.8→1.1cm)
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{28pt}  % Aumentar altura encabezado para logo (mínimo 27.11232pt)
+\setlength{\headheight}{36pt}  % Aumentar para logo más grande
 \pagestyle{fancy}
+\thispagestyle{fancy}  % Aplicar fancy también a página de índice
 
 % Personalizar título del índice
 \renewcommand{\contentsname}{\'Indice de contenidos}
