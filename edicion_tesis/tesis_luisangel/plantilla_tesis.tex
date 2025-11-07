@@ -249,22 +249,16 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \newpage
 \thispagestyle{empty}
 
-% Encabezado con logos y títulos institucionales EN UNA SOLA LÍNEA
+% Encabezado: logos laterales (altura 3 líneas) + títulos centrados (3 líneas verticales)
 \noindent
-\begin{minipage}[t]{0.20\textwidth}
-    \includegraphics[height=2.5cm]{figuras/logo_uach_bn.png}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.55\textwidth}
-    \centering
-    {\fontsize{12}{14}\selectfont\bfseries  % Tamaño 12, en una línea
-    \miUniversidad{} --- \miFacultad{} --- \miSecretaria}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.20\textwidth}
-    \raggedleft
-    \includegraphics[height=2.5cm]{\miLogoEncabezado}
-\end{minipage}
+\begin{tabular}{@{}m{0.15\textwidth}m{0.65\textwidth}m{0.15\textwidth}@{}}
+\includegraphics[height=2.2cm]{figuras/logo_uach_bn.png} &
+\centering{\fontsize{12}{14}\selectfont\bfseries 
+\miUniversidad\\
+\miFacultad\\
+\miSecretaria} &
+\raggedleft\includegraphics[height=2.2cm]{\miLogoEncabezado} \\
+\end{tabular}
 
 \vspace{1.5cm}
 
