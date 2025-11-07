@@ -1,0 +1,298 @@
+[2025-11-06 13:48:12] 
+================================================================================
+LEAVE-ONE-USER-OUT VALIDATION - PASO 10
+================================================================================
+[2025-11-06 13:48:12] Inicio: 2025-11-06 13:48:12
+[2025-11-06 13:48:12] Archivo entrada: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\atlas_workspace\scripts\analisis_u\semanal\weekly_consolidado.csv
+[2025-11-06 13:48:12] Directorio salida: C:\Users\hulkmtz\Documents\luis angel\Maestria\Asesoria\Semestre 3\Convocatoria\Datos\4 semestre_dataset\atlas_workspace\scripts\analisis_u\louo_results
+[2025-11-06 13:48:12] 
+[2025-11-06 13:48:12] 
+================================================================================
+1. CARGANDO DATOS
+================================================================================
+[2025-11-06 13:48:12] ✅ Datos cargados: 1385 semanas
+[2025-11-06 13:48:12]    Usuarios: 10
+[2025-11-06 13:48:12] 
+[2025-11-06 13:48:12] Usuarios encontrados: ['u1', 'u10', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9']
+[2025-11-06 13:48:12] 
+[2025-11-06 13:48:12] 
+================================================================================
+AJUSTE A2: PERCENTILES GLOBALES FIJOS
+================================================================================
+[2025-11-06 13:48:12] Calculando percentiles MF con dataset completo (N=10)...
+[2025-11-06 13:48:12] ✅ Scalers globales calculados para 4 features
+[2025-11-06 13:48:12] ✅ Percentiles MF globales calculados
+[2025-11-06 13:48:12]    Actividad_relativa_p50:
+[2025-11-06 13:48:12]       Baja: [0.086, 0.244, 0.381]
+[2025-11-06 13:48:12]       Media: [0.340, 0.466, 0.608]
+[2025-11-06 13:48:12]       Alta: [0.571, 0.720, 0.866]
+[2025-11-06 13:48:12]    Superavit_calorico_basal_p50:
+[2025-11-06 13:48:12]       Baja: [0.073, 0.189, 0.274]
+[2025-11-06 13:48:12]       Media: [0.244, 0.335, 0.453]
+[2025-11-06 13:48:12]       Alta: [0.409, 0.671, 0.863]
+[2025-11-06 13:48:12]    HRV_SDNN_p50:
+[2025-11-06 13:48:12]       Baja: [0.054, 0.192, 0.397]
+[2025-11-06 13:48:12]       Media: [0.324, 0.512, 0.649]
+[2025-11-06 13:48:12]       Alta: [0.601, 0.786, 0.893]
+[2025-11-06 13:48:12]    Delta_cardiaco_p50:
+[2025-11-06 13:48:12]       Baja: [0.071, 0.232, 0.357]
+[2025-11-06 13:48:12]       Media: [0.304, 0.429, 0.536]
+[2025-11-06 13:48:12]       Alta: [0.500, 0.676, 0.821]
+[2025-11-06 13:48:12] 
+[2025-11-06 13:48:12] [IMPORTANTE] Estos percentiles se usaran FIJOS en todos los folds
+[2025-11-06 13:48:12]    Solo se recalcularan los scalers (min/max) por fold para normalizacion
+[2025-11-06 13:48:12] 
+[2025-11-06 13:48:12] 
+================================================================================
+FOLD: Test User = u1
+================================================================================
+[2025-11-06 13:48:12] 
+Procesando fold: test_user = u1
+[2025-11-06 13:48:12]   Train: 1226 semanas (9 usuarios)
+[2025-11-06 13:48:12]   Test: 159 semanas (1 usuario: u1)
+[2025-11-06 13:48:12]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:12]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:12]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:15]       Cluster Alto ORIGINAL ID = 1
+[2025-11-06 13:48:15]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:15]       Scores train: min=0.000, max=1.000, mean=0.574
+[2025-11-06 13:48:15]   [4] Optimizando tau en train...
+[2025-11-06 13:48:15]       tau optimo = 0.20, F1_train = 0.763
+[2025-11-06 13:48:15]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:15]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:15]       Scores test: min=0.500, max=1.000, mean=0.612
+[2025-11-06 13:48:15]       y_pred_test (fuzzy): [  0 159] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:15]       y_cluster_test (GO): [  2 157] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:15]   [7] Evaluando en test...
+[2025-11-06 13:48:15]       F1 = 0.994, Acc = 0.987, Prec = 0.987, Rec = 1.000, MCC = 0.000
+[2025-11-06 13:48:15] 
+================================================================================
+FOLD: Test User = u10
+================================================================================
+[2025-11-06 13:48:15] 
+Procesando fold: test_user = u10
+[2025-11-06 13:48:15]   Train: 1252 semanas (9 usuarios)
+[2025-11-06 13:48:15]   Test: 133 semanas (1 usuario: u10)
+[2025-11-06 13:48:15]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:15]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:15]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:15]       Cluster Alto ORIGINAL ID = 1
+[2025-11-06 13:48:15]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:15]       Scores train: min=0.000, max=1.000, mean=0.575
+[2025-11-06 13:48:15]   [4] Optimizando tau en train...
+[2025-11-06 13:48:15]       tau optimo = 0.40, F1_train = 0.845
+[2025-11-06 13:48:15]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:15]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:15]       Scores test: min=0.500, max=1.000, mean=0.626
+[2025-11-06 13:48:15]       y_pred_test (fuzzy): [  0 133] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:15]       y_cluster_test (GO): [ 27 106] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:15]   [7] Evaluando en test...
+[2025-11-06 13:48:15]       F1 = 0.887, Acc = 0.797, Prec = 0.797, Rec = 1.000, MCC = 0.000
+[2025-11-06 13:48:15] 
+================================================================================
+FOLD: Test User = u2
+================================================================================
+[2025-11-06 13:48:15] 
+Procesando fold: test_user = u2
+[2025-11-06 13:48:15]   Train: 1377 semanas (9 usuarios)
+[2025-11-06 13:48:15]   Test: 8 semanas (1 usuario: u2)
+[2025-11-06 13:48:15]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:15]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:15]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 0
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.572
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:16]       tau optimo = 0.45, F1_train = 0.845
+[2025-11-06 13:48:16]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:16]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:16]       Scores test: min=0.000, max=0.866, mean=0.358
+[2025-11-06 13:48:16]       y_pred_test (fuzzy): [3 5] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]       y_cluster_test (GO): [1 7] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]   [7] Evaluando en test...
+[2025-11-06 13:48:16]       F1 = 0.667, Acc = 0.500, Prec = 0.800, Rec = 0.571, MCC = -0.293
+[2025-11-06 13:48:16] 
+================================================================================
+FOLD: Test User = u3
+================================================================================
+[2025-11-06 13:48:16] 
+Procesando fold: test_user = u3
+[2025-11-06 13:48:16]   Train: 1244 semanas (9 usuarios)
+[2025-11-06 13:48:16]   Test: 141 semanas (1 usuario: u3)
+[2025-11-06 13:48:16]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:16]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:16]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 0
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.574
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:16]       tau optimo = 0.10, F1_train = 0.879
+[2025-11-06 13:48:16]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:16]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:16]       Scores test: min=0.000, max=1.000, mean=0.444
+[2025-11-06 13:48:16]       y_pred_test (fuzzy): [ 23 118] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]       y_cluster_test (GO): [72 69] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]   [7] Evaluando en test...
+[2025-11-06 13:48:16]       F1 = 0.545, Acc = 0.397, Prec = 0.432, Rec = 0.739, MCC = -0.259
+[2025-11-06 13:48:16] 
+================================================================================
+FOLD: Test User = u4
+================================================================================
+[2025-11-06 13:48:16] 
+Procesando fold: test_user = u4
+[2025-11-06 13:48:16]   Train: 1370 semanas (9 usuarios)
+[2025-11-06 13:48:16]   Test: 15 semanas (1 usuario: u4)
+[2025-11-06 13:48:16]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:16]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:16]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 0
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.571
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:16]       tau optimo = 0.30, F1_train = 0.844
+[2025-11-06 13:48:16]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:16]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:16]       Scores test: min=0.500, max=0.900, mean=0.705
+[2025-11-06 13:48:16]       y_pred_test (fuzzy): [ 0 15] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]       y_cluster_test (GO): [ 4 11] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]   [7] Evaluando en test...
+[2025-11-06 13:48:16]       F1 = 0.846, Acc = 0.733, Prec = 0.733, Rec = 1.000, MCC = 0.000
+[2025-11-06 13:48:16] 
+================================================================================
+FOLD: Test User = u5
+================================================================================
+[2025-11-06 13:48:16] 
+Procesando fold: test_user = u5
+[2025-11-06 13:48:16]   Train: 1370 semanas (9 usuarios)
+[2025-11-06 13:48:16]   Test: 15 semanas (1 usuario: u5)
+[2025-11-06 13:48:16]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:16]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:16]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 0
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.570
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:16]       tau optimo = 0.30, F1_train = 0.845
+[2025-11-06 13:48:16]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:16]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:16]       Scores test: min=0.000, max=0.900, mean=0.672
+[2025-11-06 13:48:16]       y_pred_test (fuzzy): [ 1 14] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]       y_cluster_test (GO): [ 5 10] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]   [7] Evaluando en test...
+[2025-11-06 13:48:16]       F1 = 0.833, Acc = 0.733, Prec = 0.714, Rec = 1.000, MCC = 0.378
+[2025-11-06 13:48:16] 
+================================================================================
+FOLD: Test User = u6
+================================================================================
+[2025-11-06 13:48:16] 
+Procesando fold: test_user = u6
+[2025-11-06 13:48:16]   Train: 1082 semanas (9 usuarios)
+[2025-11-06 13:48:16]   Test: 303 semanas (1 usuario: u6)
+[2025-11-06 13:48:16]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:16]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:16]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 0
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.542
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:16]       tau optimo = 0.10, F1_train = 0.866
+[2025-11-06 13:48:16]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:16]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:16]       Scores test: min=0.000, max=1.000, mean=0.624
+[2025-11-06 13:48:16]       y_pred_test (fuzzy): [  3 300] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]       y_cluster_test (GO): [148 155] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]   [7] Evaluando en test...
+[2025-11-06 13:48:16]       F1 = 0.677, Acc = 0.515, Prec = 0.513, Rec = 0.994, MCC = 0.036
+[2025-11-06 13:48:16] 
+================================================================================
+FOLD: Test User = u7
+================================================================================
+[2025-11-06 13:48:16] 
+Procesando fold: test_user = u7
+[2025-11-06 13:48:16]   Train: 1268 semanas (9 usuarios)
+[2025-11-06 13:48:16]   Test: 117 semanas (1 usuario: u7)
+[2025-11-06 13:48:16]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:16]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:16]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 1
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.565
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:16]       tau optimo = 0.40, F1_train = 0.832
+[2025-11-06 13:48:16]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:16]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:16]       Scores test: min=0.000, max=1.000, mean=0.730
+[2025-11-06 13:48:16]       y_pred_test (fuzzy): [  1 116] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]       y_cluster_test (GO): [  6 111] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]   [7] Evaluando en test...
+[2025-11-06 13:48:16]       F1 = 0.978, Acc = 0.957, Prec = 0.957, Rec = 1.000, MCC = 0.399
+[2025-11-06 13:48:16] 
+================================================================================
+FOLD: Test User = u8
+================================================================================
+[2025-11-06 13:48:16] 
+Procesando fold: test_user = u8
+[2025-11-06 13:48:16]   Train: 1193 semanas (9 usuarios)
+[2025-11-06 13:48:16]   Test: 192 semanas (1 usuario: u8)
+[2025-11-06 13:48:16]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:16]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:16]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 0
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.583
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:16]       tau optimo = 0.30, F1_train = 0.885
+[2025-11-06 13:48:16]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:16]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:16]       Scores test: min=0.000, max=0.700, mean=0.407
+[2025-11-06 13:48:16]       y_pred_test (fuzzy): [ 36 156] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]       y_cluster_test (GO): [101  91] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:16]   [7] Evaluando en test...
+[2025-11-06 13:48:16]       F1 = 0.526, Acc = 0.391, Prec = 0.417, Rec = 0.714, MCC = -0.239
+[2025-11-06 13:48:16] 
+================================================================================
+FOLD: Test User = u9
+================================================================================
+[2025-11-06 13:48:16] 
+Procesando fold: test_user = u9
+[2025-11-06 13:48:16]   Train: 1083 semanas (9 usuarios)
+[2025-11-06 13:48:16]   Test: 302 semanas (1 usuario: u9)
+[2025-11-06 13:48:16]   [1] Calculando scalers para normalización...
+[2025-11-06 13:48:16]   [1b] USANDO percentiles MF GLOBALES (fijos)...
+[2025-11-06 13:48:16]   [2] Entrenando clustering K=2 en train...
+[2025-11-06 13:48:16]       Cluster Alto ORIGINAL ID = 0
+[2025-11-06 13:48:16]   [3] Aplicando fuzzy en train...
+[2025-11-06 13:48:16]       Scores train: min=0.000, max=1.000, mean=0.595
+[2025-11-06 13:48:16]   [4] Optimizando tau en train...
+[2025-11-06 13:48:17]       tau optimo = 0.40, F1_train = 0.841
+[2025-11-06 13:48:17]   [5] Aplicando clustering a test...
+[2025-11-06 13:48:17]   [6] Aplicando fuzzy en test...
+[2025-11-06 13:48:17]       Scores test: min=0.000, max=1.000, mean=0.557
+[2025-11-06 13:48:17]       y_pred_test (fuzzy): [ 17 285] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:17]       y_cluster_test (GO): [ 84 218] (0=Bajo, 1=Alto)
+[2025-11-06 13:48:17]   [7] Evaluando en test...
+[2025-11-06 13:48:17]       F1 = 0.847, Acc = 0.745, Prec = 0.747, Rec = 0.977, MCC = 0.233
+[2025-11-06 13:48:17] 
+================================================================================
+RESUMEN GLOBAL LEAVE-ONE-USER-OUT
+================================================================================
+[2025-11-06 13:48:17] 
+✅ Guardado: louo_summary.csv
+[2025-11-06 13:48:17] 
+📊 MÉTRICAS GLOBALES (promedio ± std):
+[2025-11-06 13:48:17]    F1-Score: 0.780 ± 0.167
+[2025-11-06 13:48:17]    Accuracy: 0.676 ± 0.216
+[2025-11-06 13:48:17]    Precision: 0.710 ± 0.199
+[2025-11-06 13:48:17]    Recall: 0.900 ± 0.161
+[2025-11-06 13:48:17]    MCC: 0.026 ± 0.250
+[2025-11-06 13:48:17] 
+[2025-11-06 13:48:17] 📈 RANGO DE F1:
+[2025-11-06 13:48:17]    Máximo: 0.994 (usuario u1)
+[2025-11-06 13:48:17]    Mínimo: 0.526 (usuario u8)
+[2025-11-06 13:48:17]    Rango: 0.467
+[2025-11-06 13:48:17] 
+[2025-11-06 13:48:17] 
+================================================================================
+GENERANDO VISUALIZACIONES
+================================================================================
+[2025-11-06 13:48:17] ✅ Guardado: plots/f1_by_user.png

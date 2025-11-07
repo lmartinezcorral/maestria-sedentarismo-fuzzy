@@ -1,0 +1,114 @@
+% ============================================================================
+% TABLA DE NOMENCLATURA (ANEXOS - CAPÍTULO 9)
+% ============================================================================
+% Autor: Atlas (Científico de Datos Jr.)
+% Fecha: Jueves, 06 de noviembre de 2025
+% Para integrar en: capitulos/09_anexos.tex
+% ============================================================================
+
+\section{Nomenclatura y Simbología Matemática}
+\label{sec:nomenclatura}
+
+Esta sección presenta la nomenclatura matemática utilizada en el sistema de inferencia difusa y análisis estadístico.
+
+\subsection{Símbolos Matemáticos Generales}
+
+\begin{table}[H]
+\centering
+\caption{Símbolos y Notación Matemática del Sistema Difuso}
+\label{tab:nomenclatura}
+\small
+\begin{tabular}{@{}p{3cm}p{10cm}@{}}
+\toprule
+\textbf{Símbolo} & \textbf{Descripción} \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{\textbf{Conjuntos y Funciones de Membresía}}} \\
+\(\tilde{A}\) & Conjunto difuso \\
+\(\mu_{\tilde{A}}(x)\) & Función de membresía del conjunto difuso \(\tilde{A}\) \\
+\(X\) & Universo de discurso (conjunto clásico de valores posibles) \\
+\(X_i\) & Variable de entrada \(i\) (\(i \in \{1,2,3,4\}\)) \\
+\(Y\) & Variable de salida (Índice de Sedentarismo) \\
+\(T_i\) & Conjunto de términos lingüísticos de variable \(i\) \\
+\(\mathbf{P}_i\) & Matriz de percentiles \(3 \times 3\) para variable \(X_i\) \\
+\(p_{k,i}\) & Percentil \(k\) de la variable \(X_i\) \\
+\(\mathbf{M}^{(j)}\) & Matriz de membresías \(4 \times 3\) para observación \(j\) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Variables Fisiológicas}}} \\
+\(\text{Act}_{\text{rel}}\) & Actividad Relativa (min movimiento / hrs monitoreadas) \\
+\(\text{Sup}_{\text{cal}}\) & Superávit Calórico Basal (\% del TMB) \\
+\(\text{HRV-SDNN}\) & Variabilidad Cardíaca (desviación estándar intervalos RR) \\
+\(\Delta_{\text{FC}}\) & Delta Cardíaco (FC caminata - FC reposo) \\
+\(\text{TMB}\) & Tasa Metabólica Basal (kcal/día, ec. Mifflin-St Jeor) \\
+\(\text{GCA}\) & Gasto Calórico Activo (kcal/día) \\
+\(\text{FC}\) & Frecuencia Cardíaca (latidos por minuto) \\
+\(\text{IQR}\) & Rango Intercuartílico (Q3 - Q1) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Reglas de Inferencia y Activación}}} \\
+\(R_r\) & Regla de inferencia \(r\) (\(r \in \{1,2,3,4,5\}\)) \\
+\(\mathcal{R}\) & Base de reglas (conjunto de 5 reglas Mamdani) \\
+\(w_r^{(j)}\) & Activación (firing strength) de regla \(R_r\) para observación \(j\) \\
+\(\mathbf{w}^{(j)}\) & Vector de activaciones \(\in \mathbb{R}^5\) \\
+\(T(a, b)\) & T-norm (operador AND fuzzy): \(T(a,b) = \min(a,b)\) \\
+\(y_r\) & Output crisp de la regla \(R_r\) \\
+\(\mathbf{y}_{\text{outputs}}\) & Vector de outputs de reglas \([1.0, 0.0, 0.9, 0.5, 0.7]^T\) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Defuzzificación y Clasificación}}} \\
+\(y^{(j)}\) & Score de sedentarismo defuzzificado para semana \(j\) \\
+\(\hat{y}^{(j)}\) & Clasificación binaria (0=Bajo, 1=Alto sedentarismo) \\
+\(\tau\) & Umbral de decisión para binarización \\
+\(\|\mathbf{w}\|_1\) & Norma L1 del vector (suma de componentes) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Validación LOOU}}} \\
+\(\mathcal{D}\) & Dataset completo (1,337 semanas, 10 usuarios) \\
+\(\mathcal{D}_{\text{train}}^{(i)}\) & Conjunto de entrenamiento en fold \(i\) (9 usuarios) \\
+\(\mathcal{D}_{\text{test}}^{(i)}\) & Conjunto de prueba en fold \(i\) (1 usuario) \\
+\(n_i\) & Número de semanas del usuario \(i\) \\
+\(F1^{(i)}\) & F1-Score en fold \(i\) (usuario \(i\) como test) \\
+\(\overline{F1}_{\text{LOOU}}\) & F1-Score promedio LOOU (10 folds) \\
+\(\sigma_{F1}\) & Desviación estándar de F1-Score entre folds \\
+\(CV\) & Coeficiente de variación (\%) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Clustering (Verdad Operativa)}}} \\
+\(K\) & Número de clusters (K=2) \\
+\(\mathbf{C}_k\) & Centroide del cluster \(k\) (\(k \in \{0,1\}\)) \\
+\(c^{(j)}\) & Cluster asignado a semana \(j\) (verdad operativa) \\
+\(S\) & Silhouette Score (métrica de calidad clustering) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Métricas de Evaluación}}} \\
+\(\text{TP}\) & True Positives (verdaderos positivos) \\
+\(\text{TN}\) & True Negatives (verdaderos negativos) \\
+\(\text{FP}\) & False Positives (falsos positivos) \\
+\(\text{FN}\) & False Negatives (falsos negativos) \\
+\(\text{Precision}\) & Precisión: \(\text{TP}/(\text{TP}+\text{FP})\) \\
+\(\text{Recall}\) & Sensibilidad: \(\text{TP}/(\text{TP}+\text{FN})\) \\
+\(F1\) & F1-Score: \(2 \cdot \text{Prec} \cdot \text{Rec} / (\text{Prec} + \text{Rec})\) \\
+\(\text{MCC}\) & Matthews Correlation Coefficient \\
+\(\text{Acc}\) & Accuracy (exactitud): \((\text{TP}+\text{TN})/N\) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Operadores y Notación Matemática}}} \\
+\(\min(a, b)\) & Mínimo de \(a\) y \(b\) \\
+\(\max(a, b)\) & Máximo de \(a\) y \(b\) \\
+\(\mathbb{E}[\cdot]\) & Valor esperado (esperanza matemática) \\
+\(\mathbb{1}[\cdot]\) & Función indicadora (1 si verdadero, 0 si falso) \\
+\(\|\mathbf{v}\|_2\) & Norma euclidiana (L2) del vector \(\mathbf{v}\) \\
+\(\|\mathbf{v}\|_1\) & Norma L1 (suma de valores absolutos) \\
+\(\mathbb{R}\) & Conjunto de números reales \\
+\(\mathbb{R}^+\) & Conjunto de números reales positivos \\
+\(\mathbb{R}^{n}\) & Espacio euclidiano n-dimensional \\
+\([a, b]\) & Intervalo cerrado de \(a\) a \(b\) \\
+\(\arg\min_x f(x)\) & Argumento que minimiza la función \(f(x)\) \\
+\(\forall\) & Para todo (cuantificador universal) \\
+\(\exists\) & Existe (cuantificador existencial) \\
+\(\in\) & Pertenece a (relación de pertenencia) \\
+\(\subset\) & Subconjunto de \\
+\(\setminus\) & Diferencia de conjuntos \\
+\(\land\) & Conjunción lógica (AND) \\
+\(\Rightarrow\) & Implicación lógica (THEN) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% FIN DE NOMENCLATURA
+% ============================================================================
+

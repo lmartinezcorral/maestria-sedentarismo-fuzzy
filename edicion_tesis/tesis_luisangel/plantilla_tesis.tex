@@ -227,9 +227,10 @@ Asesor(a)}\\
 {\fontsize{14}{16}\selectfont\bfseries RESUMEN}\\[1cm]
 }
 
-% Resumen en texto justificado (120-250 palabras)
-\begin{flushleft}
-{\fontsize{12}{14}\selectfont
+% Resumen con formato de párrafos estándar del documento (justificado, sangría 1.27cm, interlineado 1.5, espacio 6pt)
+\setlength{\parindent}{1.27cm}
+\onehalfspacing
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
 
 El comportamiento sedentario representa un factor de riesgo para enfermedades crónicas no transmisibles, cuya medición objetiva en condiciones de vida libre presenta desafíos metodológicos significativos. Los métodos tradicionales de evaluación (cuestionarios de autorreporte) adolecen de sesgos de memoria y deseabilidad social, mientras que las técnicas de referencia se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento ecológico. Este estudio desarrolló un modelo de clasificación del sedentarismo mediante lógica difusa que integra datos biométricos de dispositivos portátiles de consumo, aplicado bajo el paradigma \textit{Bring Your Own Device} (BYOD) en condiciones de vida libre.
 
@@ -238,10 +239,7 @@ La cohorte estuvo conformada por 10 adultos jóvenes con seguimiento longitudina
 La validación Leave-One-User-Out demostró F1-Score=0.840 (Precisión=0.833, Recall=0.850), con variabilidad inter-sujeto excepcional (CV=4.8\%), superando estudios comparables. El análisis de ablación reveló que HRV-SDNN, aunque débil discriminador univariado (p=0.24), resulta crítico en modelo multivariado (ablación: -50\% F1-Score). El sistema propuesto clasifica comportamiento sedentario con alta fiabilidad, preservando interpretabilidad clínica mediante reglas transparentes aplicables en monitorización ecológica de salud pública.
 
 \vspace{0.5cm}
-\textbf{Palabras clave:} comportamiento sedentario, lógica difusa, BYOD, wearables, LOUO, vida libre
-
-}
-\end{flushleft}
+\noindent\textbf{Palabras clave:} comportamiento sedentario, lógica difusa, BYOD, wearables, LOUO, vida libre
 
 % --------------- HOJA DE INFORMACIÓN DEL DOCUMENTO ---------------
 \newpage
