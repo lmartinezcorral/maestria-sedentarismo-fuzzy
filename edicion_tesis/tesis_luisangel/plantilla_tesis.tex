@@ -230,44 +230,119 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \newpage
 \thispagestyle{empty}
 
-% Título de la tesis (primera línea, tipo oración, izquierda, Times 12pt)
+% Encabezado con logos y títulos institucionales
 \noindent
-{\fontsize{12}{14}\selectfont \miTitulo}\\[1.5cm]
+\begin{minipage}[t]{0.25\textwidth}
+    \includegraphics[height=2.5cm]{figuras/logo_uach_bn.png}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \centering
+    {\fontsize{14}{16}\selectfont\bfseries
+    Universidad Aut\'onoma de Chihuahua\\[0.2cm]
+    Facultad de Medicina y Ciencias Biom\'edicas\\[0.2cm]
+    Secretar\'ia de Investigaci\'on y Posgrado.}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.25\textwidth}
+    \raggedleft
+    \includegraphics[height=2.5cm]{\miLogoEncabezado}
+\end{minipage}
 
-% Firmas centradas, Times 12pt, sin negrita
-{\centering
+\vspace{1.5cm}
 
-% 1. Secretario de Investigación y Posgrado
-{\fontsize{12}{14}\selectfont 
-Dr. Oscar Aguirre Barrera\\[0.3cm]
-Secretario de Investigaci\'on y Posgrado\\[0.3cm]
-Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
-Universidad Aut\'onoma de Chihuahua}\\[1.2cm]
+% Primer párrafo justificado (Times 12, sin negritas)
+{\fontsize{12}{14}\selectfont
+La tesis ``\miTitulo'' que presenta \miAutor, como requisito parcial para obtener el grado de: Maestr\'ia en Formaci\'on Biom\'edica ha sido revisada y aprobada por la Facultad de Medicina y Ciencias Biom\'edicas.
+}
 
-% 2. Coordinador de la Maestr\'ia
-{\fontsize{12}{14}\selectfont 
-DR(A) Haydee Parra Acosta\\[0.3cm]
-Coordinador de la Maestr\'ia}\\[1.2cm]
+\vspace{1.0cm}
 
-% 3. Director de Tesis
-{\fontsize{12}{14}\selectfont 
-DR(A) Abimael Guzm\'an Pando\\[0.3cm]
-Director de Tesis}\\[1.2cm]
+% Firmas alineadas a la izquierda con línea a la derecha
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+{\fontsize{12}{14}\selectfont
+DR. OSCAR AGUIRRE BARRERA\\[0.1cm]
+Secretario de Investigaci\'on y Posgrado\\[0.1cm]
+Facultad de Medicina y Ciencias Biom\'edicas\\[0.1cm]
+Universidad Aut\'onoma de Chihuahua}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\rule{\textwidth}{0.5pt}
+\end{minipage}
 
-% 4-6. Asesores
-{\fontsize{12}{14}\selectfont 
-DR(A) David Ricardo L\'opez Flores\\[0.3cm]
-Asesor(a)}\\[1.0cm]
+\vspace{0.8cm}
 
-{\fontsize{12}{14}\selectfont 
-DR(A) Celia Mar\'ia Qui\~nez Cruz\\[0.3cm]
-Asesor(a)}\\[1.0cm]
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+{\fontsize{12}{14}\selectfont
+Dra. Hayde\'e Parra Acosta\\[0.1cm]
+Profesor Coordinador Acad\'emico}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\rule{\textwidth}{0.5pt}
+\end{minipage}
 
-{\fontsize{12}{14}\selectfont 
-DR(A) Javier Camarillo Cisneros\\[0.3cm]
-Asesor(a)}\\
+\vspace{0.8cm}
 
-} % Cierra el grupo \centering
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+{\fontsize{12}{14}\selectfont
+Dr. (a)\\[0.1cm]
+Director de Tesis}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\rule{\textwidth}{0.5pt}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+{\fontsize{12}{14}\selectfont
+Dr. (a)\\[0.1cm]
+Co director de tesis}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\rule{\textwidth}{0.5pt}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+{\fontsize{12}{14}\selectfont
+Dr. (a)\\[0.1cm]
+Asesor(a)}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\rule{\textwidth}{0.5pt}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+{\fontsize{12}{14}\selectfont
+Dr. (a)\\[0.1cm]
+Asesor(a)}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\rule{\textwidth}{0.5pt}
+\end{minipage}
+
+\vspace{1.0cm}
+
+% Párrafo final justificado (Times 12, sin negritas)
+{\fontsize{12}{14}\selectfont
+Se certifica, bajo protesta de decir verdad, que las firmas consignadas al pie del presente documento son de car\'acter original y aut\'entico, correspondiendo de manera inequ\'ivoca a los responsables de las labores de direcci\'on, seguimiento, asesor\'ia y evaluaci\'on, en estricta conformidad con lo dispuesto en la normativa vigente de esta instituci\'on universitaria.
+}
 
 % --------------- CARTA DE LIBERACIÓN (Pág. 5 - SIN NUMERACIÓN) ---------------
 \newpage
@@ -362,8 +437,13 @@ Se agradece a:\\[0.5cm]
 }
 \end{flushleft}
 
-% --------------- CONFIGURAR ENCABEZADO CON LOGO ---------------
-% IMPORTANTE: Configurar ANTES de \newpage para que aparezca en página de índice
+% --------------- ÍNDICE DE CONTENIDOS ---------------
+\clearpage  % Forzar nueva página
+
+% Configurar encabezado con logo JUSTO ANTES del índice
+\pagenumbering{arabic}  % Cambiar a números arábigos desde ÍNDICE
+\setcounter{page}{1}  % Índice es página 1
+
 \fancyhf{}
 \fancyhead[L]{\includegraphics[height=2.2cm]{\miLogoEncabezado}}  % Logo duplicado
 \fancyhead[R]{\thepage}
@@ -371,19 +451,14 @@ Se agradece a:\\[0.5cm]
 \setlength{\headheight}{67pt}  % Para logo de 2.2cm
 \pagestyle{fancy}
 
-% --------------- ÍNDICE DE CONTENIDOS ---------------
-\newpage
-\pagenumbering{arabic}  % Cambiar a números arábigos desde ÍNDICE
-\setcounter{page}{1}  % Índice es página 1
-\thispagestyle{fancy}  % Aplicar fancy a esta página
-
 % Personalizar título del índice
 \renewcommand{\contentsname}{\'Indice de contenidos}
-% Reducir espacio antes del tableofcontents
-\begingroup
-\let\clearpage\relax
+
+% Parchear tableofcontents para forzar fancy en primera página
+\patchcmd{\tableofcontents}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+% Tabla de contenidos
 \tableofcontents
-\endgroup
 
 % --------------- INICIO DEL CONTENIDO ----------------
 % Aquí comenzarán los capítulos
