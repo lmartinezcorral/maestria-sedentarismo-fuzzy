@@ -35,9 +35,8 @@
 
 % --------------------- FORMATO APA 7 -------------------------
 % Márgenes: 2.54 cm (1 pulgada) en todos los lados
-% headsep controla espacio entre encabezado y contenido
-% includehead=true hace que el encabezado esté dentro del margen top
-\geometry{letterpaper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,headheight=67pt,headsep=10pt,includehead}
+% headheight debe ser suficiente para logo de 2.2cm (~62pt) + margen
+\geometry{letterpaper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,headheight=67pt,headsep=5pt}
 \onehalfspacing
 \pagestyle{fancy}
 \fancyhf{}
@@ -55,7 +54,7 @@
 
 \titlespacing*{\chapter}
   {0pt}     % Sin sangría
-  {-30pt}   % Espacio ANTES negativo para acercar al encabezado
+  {12pt}    % Espacio ANTES (2 renglones)
   {18pt}    % Espacio DESPUÉS (1.5 renglones)
 
 % Forzar estilo fancy en páginas de capítulo (para que aparezca logo en todas las páginas)
@@ -150,7 +149,7 @@
     
     % Logo sin modificaciones
     \includegraphics[width=0.22\textwidth]{\miLogo}\\
-    \vspace{1.5cm}
+    \vspace{2.5cm}
 
     % Título de la tesis directo (Times 12pt en MAYÚSCULAS, sin etiqueta, con saltos de línea manuales)
     {\fontsize{12}{14}\selectfont 
@@ -363,19 +362,20 @@ Se agradece a:\\[0.5cm]
 }
 \end{flushleft}
 
-% --------------- ÍNDICE DE CONTENIDOS (Inicia numeración arábiga) ---------------
-\newpage
-\pagenumbering{arabic}  % Cambiar a números arábigos desde ÍNDICE
-\setcounter{page}{1}  % Índice es página 1
-
-% Configurar encabezado con logo (desde índice en adelante) - Logo duplicado en tamaño
+% --------------- CONFIGURAR ENCABEZADO CON LOGO ---------------
+% IMPORTANTE: Configurar ANTES de \newpage para que aparezca en página de índice
 \fancyhf{}
-\fancyhead[L]{\includegraphics[height=2.2cm]{\miLogoEncabezado}}  % Logo duplicado (1.1→2.2cm)
+\fancyhead[L]{\includegraphics[height=2.2cm]{\miLogoEncabezado}}  % Logo duplicado
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{67pt}  % Para logo de 2.2cm
 \pagestyle{fancy}
-\thispagestyle{fancy}  % Aplicar fancy también a página de índice
+
+% --------------- ÍNDICE DE CONTENIDOS ---------------
+\newpage
+\pagenumbering{arabic}  % Cambiar a números arábigos desde ÍNDICE
+\setcounter{page}{1}  % Índice es página 1
+\thispagestyle{fancy}  % Aplicar fancy a esta página
 
 % Personalizar título del índice
 \renewcommand{\contentsname}{\'Indice de contenidos}
