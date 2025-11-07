@@ -115,6 +115,25 @@
 \newcommand{\miLogo}{figuras/logo_uach_portada.png}  % Logo UACH para portada
 \newcommand{\miLogoEncabezado}{figuras/Logo_facultad_medicina.png}  % Logo Facultad para encabezados
 
+% --------------------- COMITÉ TUTORIAL ----------------------
+\newcommand{\miSecretario}{DR. OSCAR AGUIRRE BARRERA}
+\newcommand{\miSecretarioCargo}{Secretario de Investigaci\'on y Posgrado}
+
+\newcommand{\miCoordinadora}{Dra. Hayde\'e Parra Acosta}
+\newcommand{\miCoordinadoraCargo}{Profesor Coordinador Acad\'emico}
+
+\newcommand{\miDirector}{Dr. Abimael Guzm\'an Pando}
+\newcommand{\miDirectorCargo}{Director de Tesis}
+
+\newcommand{\miCodirector}{Dr. David Ricardo L\'opez Flores}
+\newcommand{\miCodirectorCargo}{Co director de tesis}
+
+\newcommand{\miAsesorUno}{Dra. Celia Mar\'ia Qui\~nez Cruz}
+\newcommand{\miAsesorUnoCargo}{Asesor(a)}
+
+\newcommand{\miAsesorDos}{Dr. Javier Camarillo Cisneros}
+\newcommand{\miAsesorDosCargo}{Asesor(a)}
+
 % --------------------- METADATOS PDF ------------------------
 \hypersetup{
   pdftitle={\miTitulo},
@@ -230,78 +249,76 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \newpage
 \thispagestyle{empty}
 
-% Encabezado con logos y títulos institucionales
+% Encabezado con logos y títulos institucionales EN UNA SOLA LÍNEA
 \noindent
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.20\textwidth}
     \includegraphics[height=2.5cm]{figuras/logo_uach_bn.png}
 \end{minipage}%
 \hfill
-\begin{minipage}[t]{0.45\textwidth}
+\begin{minipage}[t]{0.55\textwidth}
     \centering
-    {\fontsize{12}{14}\selectfont\bfseries  % Tamaño 12, interlineado simple
-    Universidad Aut\'onoma de Chihuahua\\
-    Facultad de Medicina y Ciencias Biom\'edicas\\
-    Secretar\'ia de Investigaci\'on y Posgrado.}
+    {\fontsize{12}{14}\selectfont\bfseries  % Tamaño 12, en una línea
+    \miUniversidad{} --- \miFacultad{} --- \miSecretaria}
 \end{minipage}%
 \hfill
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.20\textwidth}
     \raggedleft
     \includegraphics[height=2.5cm]{\miLogoEncabezado}
 \end{minipage}
 
 \vspace{1.5cm}
 
-% Primer párrafo justificado (Times 12, sin negritas)
+% Primer párrafo justificado SIN SANGRÍA (Times 12, sin negritas)
 {\fontsize{12}{14}\selectfont
-La tesis ``\miTitulo'' que presenta \miAutor, como requisito parcial para obtener el grado de: Maestr\'ia en Formaci\'on Biom\'edica ha sido revisada y aprobada por la Facultad de Medicina y Ciencias Biom\'edicas.
+\noindent La tesis ``\miTitulo'' que presenta \miAutor, como requisito parcial para obtener el grado de: Maestr\'ia en Formaci\'on Biom\'edica ha sido revisada y aprobada por la Facultad de Medicina y Ciencias Biom\'edicas.
 }
 
 \vspace{1.0cm}
 
-% Firmas alineadas a la izquierda con línea AL CALCE (abajo) y a la derecha
+% Firmas usando VARIABLES - línea AL CALCE (abajo) y a la derecha
 {\fontsize{12}{14}\selectfont
 \noindent
-DR. OSCAR AGUIRRE BARRERA\\
-Secretario de Investigaci\'on y Posgrado\\
-Facultad de Medicina y Ciencias Biom\'edicas\\
-Universidad Aut\'onoma de Chihuahua \hfill \rule{5.5cm}{0.5pt}
+\miSecretario\\
+\miSecretarioCargo\\
+\miFacultad\\
+\miUniversidad \hfill \rule{5.5cm}{0.5pt}
 
 \vspace{1.0cm}
 
 \noindent
-Dra. Hayde\'e Parra Acosta\\
-Profesor Coordinador Acad\'emico \hfill \rule{5.5cm}{0.5pt}
+\miCoordinadora\\
+\miCoordinadoraCargo \hfill \rule{5.5cm}{0.5pt}
 
 \vspace{1.0cm}
 
 \noindent
-Dr. Abimael Guzm\'an Pando\\
-Director de Tesis \hfill \rule{5.5cm}{0.5pt}
+\miDirector\\
+\miDirectorCargo \hfill \rule{5.5cm}{0.5pt}
 
 \vspace{1.0cm}
 
 \noindent
-Dr. David Ricardo L\'opez Flores\\
-Co director de tesis \hfill \rule{5.5cm}{0.5pt}
+\miCodirector\\
+\miCodirectorCargo \hfill \rule{5.5cm}{0.5pt}
 
 \vspace{1.0cm}
 
 \noindent
-Dra. Celia Mar\'ia Qui\~nez Cruz\\
-Asesor(a) \hfill \rule{5.5cm}{0.5pt}
+\miAsesorUno\\
+\miAsesorUnoCargo \hfill \rule{5.5cm}{0.5pt}
 
 \vspace{1.0cm}
 
 \noindent
-Dr. Javier Camarillo Cisneros\\
-Asesor(a) \hfill \rule{5.5cm}{0.5pt}
+\miAsesorDos\\
+\miAsesorDosCargo \hfill \rule{5.5cm}{0.5pt}
 }
 
 \vspace{1.0cm}
 
-% Párrafo final justificado (Times 12, sin negritas)
+% Párrafo final justificado SIN SANGRÍA (Times 12, sin negritas)
 {\fontsize{12}{14}\selectfont
-Se certifica, bajo protesta de decir verdad, que las firmas consignadas al pie del presente documento son de car\'acter original y aut\'entico, correspondiendo de manera inequ\'ivoca a los responsables de las labores de direcci\'on, seguimiento, asesor\'ia y evaluaci\'on, en estricta conformidad con lo dispuesto en la normativa vigente de esta instituci\'on universitaria.
+\noindent Se certifica, bajo protesta de decir verdad, que las firmas consignadas al pie del presente documento son de car\'acter original y aut\'entico, correspondiendo de manera inequ\'ivoca a los responsables de las labores de direcci\'on, seguimiento, asesor\'ia y evaluaci\'on, en estricta conformidad con lo dispuesto en la normativa vigente de esta instituci\'on universitaria.
 }
 
 % --------------- CARTA DE LIBERACIÓN (Pág. 5 - SIN NUMERACIÓN) ---------------
