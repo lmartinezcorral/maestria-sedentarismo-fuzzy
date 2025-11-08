@@ -3,6 +3,71 @@
 
 ---
 
+## 🚨 **TAREA URGENTE PARA POSEIDÓN - 08/Nov/2025 18:05**
+
+**De:** Rayo Veloz ⚡  
+**Para:** Poseidón 🔱  
+**Asunto:** Bug de diseño LaTeX - Encabezado Hoja de Firmas (Página 4)
+
+### 📋 **PROBLEMA:**
+Los títulos institucionales en el encabezado de la Hoja de Firmas NO se están separando en 3 líneas independientes, a pesar de usar `\newline` y `\arraybackslash` dentro de una tabla.
+
+### 🎯 **OBJETIVO:**
+Lograr que el encabezado se vea así:
+
+```
+┌─────────────┬────────────────────────────────────────────────────┬─────────────┐
+│             │  Universidad Autónoma de Chihuahua                 │             │
+│ logo_uach   │  Facultad de Medicina y Ciencias Biomédicas       │ logo_medicina│
+│             │  Secretaría de Investigación y Posgrado           │             │
+└─────────────┴────────────────────────────────────────────────────┴─────────────┘
+```
+
+**Logos laterales:** altura 2.2cm (abarcan las 3 líneas)  
+**Títulos:** 3 líneas verticales centradas, fuente 12pt negrita
+
+### 📄 **CÓDIGO ACTUAL (plantilla_tesis.tex, líneas 252-261):**
+
+```latex
+% Encabezado: logos laterales (altura 3 líneas) + títulos centrados (3 líneas verticales)
+\noindent
+\begin{tabular}{@{}m{0.15\textwidth}m{0.65\textwidth}m{0.15\textwidth}@{}}
+\includegraphics[height=2.2cm]{figuras/logo_uach_bn.png} &
+\centering\arraybackslash{\fontsize{12}{14}\selectfont\bfseries 
+Universidad Aut\'onoma de Chihuahua\newline
+Facultad de Medicina y Ciencias Biom\'edicas\newline
+Secretar\'ia de Investigaci\'on y Posgrado} &
+\raggedleft\includegraphics[height=2.2cm]{\miLogoEncabezado} \\
+\end{tabular}
+```
+
+### 🛠️ **LO QUE YA INTENTÉ:**
+1. ✅ `\\` dentro de la tabla → No funcionó
+2. ✅ `\newline` → No funcionó
+3. ✅ `\arraybackslash` → No funcionó
+4. ✅ Limpié archivos auxiliares y recompilé desde cero → No funcionó
+
+### 💡 **ALTERNATIVAS A EXPLORAR:**
+1. **Usar `minipage` dentro de la tabla** (columna central)
+2. **Usar `\parbox` con ajuste de altura**
+3. **Cambiar de `tabular` a `tabularx` o `tabu`**
+4. **Usar `\shortstack` para la columna de títulos**
+5. **Abandonar la tabla y volver a `minipage` con `\hfill`** (OPCIÓN 1 que Luis prefiere evitar)
+
+### 🎯 **TU MISIÓN:**
+1. Analizar el código actual
+2. Proponer una solución LaTeX limpia y elegante
+3. Implementar los cambios
+4. Compilar y verificar que funcione
+5. Documentar la solución para el manual de uso
+
+**Prioridad:** 🔥 ALTA  
+**Deadline:** Hoy mismo  
+
+Luis confía en tu expertise para salir de este bug de diseño. ¡Adelante, Poseidón! 🌊
+
+---
+
 ## 👋 **Presentación de Agentes**
 
 ### **🌩️ Rayo Veloz (Agente de Desarrollo LaTeX)**
