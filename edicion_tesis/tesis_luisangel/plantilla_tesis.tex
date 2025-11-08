@@ -250,11 +250,11 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \thispagestyle{empty}
 
 % Encabezado: logos laterales (altura 3 líneas) + títulos centrados (3 líneas verticales)
-% SOLUCIÓN: minipage permite usar \\ para saltos de línea dentro de celdas de tabla
-% ALINEACIÓN: [t] alinea el top del minipage con el top de los logos
+% SOLUCIÓN: minipage con [t] + columnas p{} para alineación TOP perfecta
+% Los logos usan [t] en includegraphics para alinear con el top de la fila
 \noindent
-\begin{tabular}{@{}m{0.15\textwidth}m{0.65\textwidth}m{0.15\textwidth}@{}}
-\includegraphics[height=2.2cm]{figuras/logo_uach_bn.png} &
+\begin{tabular}{@{}p{0.15\textwidth}p{0.65\textwidth}p{0.15\textwidth}@{}}
+\includegraphics[height=2.2cm,valign=t]{figuras/logo_uach_bn.png} &
 \begin{minipage}[t]{0.65\textwidth}
     \centering
     {\fontsize{12}{14}\selectfont\bfseries
@@ -262,7 +262,7 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
     Facultad de Medicina y Ciencias Biom\'edicas\\
     Secretar\'ia de Investigaci\'on y Posgrado}
 \end{minipage} &
-\raggedleft\includegraphics[height=2.2cm]{\miLogoEncabezado} \\
+\raggedleft\includegraphics[height=2.2cm,valign=t]{\miLogoEncabezado} \\
 \end{tabular}
 
 \vspace{18pt}
@@ -282,31 +282,31 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \miFacultad\\
 \miUniversidad \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{24pt}
+\vspace{12pt}
 
 \noindent
 \miCoordinadora\\
 \miCoordinadoraCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{24pt}
+\vspace{12pt}
 
 \noindent
 \miDirector\\
 \miDirectorCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{24pt}
+\vspace{12pt}
 
 \noindent
 \miCodirector\\
 \miCodirectorCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{24pt}
+\vspace{12pt}
 
 \noindent
 \miAsesorUno\\
 \miAsesorUnoCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{24pt}
+\vspace{12pt}
 
 \noindent
 \miAsesorDos\\
@@ -333,9 +333,8 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 {\fontsize{12}{14}\selectfont Chihuahua, Chih., a \underline{\hspace{1.5cm}} de \underline{\hspace{1.5cm}} de 2025}\\[0.3cm]
 \end{flushright}
 
-% Destinatario (quien recibe la carta)
-\begin{flushleft}
-\setlength{\leftskip}{1.2cm}  % Sangría izquierda de 1.2cm
+% Destinatario (quien recibe la carta) - SIN sangría izquierda, alineado a la izquierda
+\noindent
 {\fontsize{12}{14}\selectfont 
 Dr. Oscar Aguirre Barrera\\[0.1cm]
 Secretario de Investigaci\'on y Posgrado\\[0.1cm]
@@ -343,24 +342,19 @@ Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
 
 P {\hspace{0.15cm}} R {\hspace{0.15cm}} E {\hspace{0.15cm}} S {\hspace{0.15cm}} E {\hspace{0.15cm}} N {\hspace{0.15cm}} T {\hspace{0.15cm}} E.-\\[0.3cm]
 }
-\end{flushleft}
 
-% Cuerpo de la carta con formato específico
-\begin{flushleft}
-\setlength{\leftskip}{1.2cm}  % Sangría izquierda en TODO el cuerpo
-\setlength{\parindent}{0cm}   % Sin sangría en párrafos
+% Cuerpo de la carta - JUSTIFICADO, SIN sangría izquierda
+{\fontsize{12}{14}\selectfont
+\setlength{\parindent}{0cm}   % Sin sangría en primera línea de párrafos
 \setlength{\parskip}{0.2cm}   % Espacio entre párrafos
 
-{\fontsize{12}{14}\selectfont 
+\noindent Por medio de la presente nos permitimos informar a usted que el C. Luis Angel Mart\'inez Corral, con n\'umero de matr\'icula 261337, ha concluido la elaboraci\'on de la tesis ``Modelo de Evaluaci\'on del Comportamiento Sedentario mediante L\'ogica Difusa y Datos Biom\'etricos'', como requisito para obtener el grado de: \textbf{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}.
 
-Por medio de la presente nos permitimos informar a usted que el C. Luis Angel Mart\'inez Corral, con n\'umero de matr\'icula 261337, ha concluido la elaboraci\'on de la tesis ``Modelo de Evaluaci\'on del Comportamiento Sedentario mediante L\'ogica Difusa y Datos Biom\'etricos'', como requisito para obtener el grado de: \textbf{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}.\\[0.2cm]
+As\'i mismo, manifestamos que la tesis ha sido revisada y aprobada por los abajo firmantes, miembros del Comit\'e de Grado.
 
-As\'i mismo, manifestamos que la tesis ha sido revisada y aprobada por los abajo firmantes, miembros del Comit\'e de Grado.\\[0.2cm]
-
-Sin otro particular, quedamos de usted.\\[0.5cm]
+Sin otro particular, quedamos de usted.
 
 }
-\end{flushleft}
 
 % Cierre y firma
 \begin{center}
