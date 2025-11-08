@@ -116,7 +116,7 @@
 \newcommand{\miLogoEncabezado}{figuras/Logo_facultad_medicina.png}  % Logo Facultad para encabezados
 
 % --------------------- COMITÉ TUTORIAL ----------------------
-\newcommand{\miSecretario}{DR. OSCAR AGUIRRE BARRERA}
+\newcommand{\miSecretario}{Dr. Oscar Aguirre Barrera}
 \newcommand{\miSecretarioCargo}{Secretario de Investigaci\'on y Posgrado}
 
 \newcommand{\miCoordinadora}{Dra. Hayde\'e Parra Acosta}
@@ -251,10 +251,11 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 
 % Encabezado: logos laterales (altura 3 líneas) + títulos centrados (3 líneas verticales)
 % SOLUCIÓN: minipage permite usar \\ para saltos de línea dentro de celdas de tabla
+% ALINEACIÓN: [t] alinea el top del minipage con el top de los logos
 \noindent
 \begin{tabular}{@{}m{0.15\textwidth}m{0.65\textwidth}m{0.15\textwidth}@{}}
 \includegraphics[height=2.2cm]{figuras/logo_uach_bn.png} &
-\begin{minipage}[c]{0.65\textwidth}
+\begin{minipage}[t]{0.65\textwidth}
     \centering
     {\fontsize{12}{14}\selectfont\bfseries
     Universidad Aut\'onoma de Chihuahua\\
@@ -264,14 +265,14 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \raggedleft\includegraphics[height=2.2cm]{\miLogoEncabezado} \\
 \end{tabular}
 
-\vspace{1.5cm}
+\vspace{18pt}
 
 % Primer párrafo justificado SIN SANGRÍA (Times 12, sin negritas)
 {\fontsize{12}{14}\selectfont
 \noindent La tesis ``\miTitulo'' que presenta \miAutor, como requisito parcial para obtener el grado de: Maestr\'ia en Formaci\'on Biom\'edica ha sido revisada y aprobada por la Facultad de Medicina y Ciencias Biom\'edicas.
 }
 
-\vspace{1.0cm}
+\vspace{18pt}
 
 % Firmas usando VARIABLES - línea AL CALCE (abajo) y a la derecha
 {\fontsize{12}{14}\selectfont
@@ -281,31 +282,31 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \miFacultad\\
 \miUniversidad \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{1.0cm}
+\vspace{24pt}
 
 \noindent
 \miCoordinadora\\
 \miCoordinadoraCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{1.0cm}
+\vspace{24pt}
 
 \noindent
 \miDirector\\
 \miDirectorCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{1.0cm}
+\vspace{24pt}
 
 \noindent
 \miCodirector\\
 \miCodirectorCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{1.0cm}
+\vspace{24pt}
 
 \noindent
 \miAsesorUno\\
 \miAsesorUnoCargo \hfill \rule{5.5cm}{0.5pt}
 
-\vspace{1.0cm}
+\vspace{24pt}
 
 \noindent
 \miAsesorDos\\
