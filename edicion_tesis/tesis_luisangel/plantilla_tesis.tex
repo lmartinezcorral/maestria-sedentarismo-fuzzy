@@ -250,13 +250,17 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \thispagestyle{empty}
 
 % Encabezado: logos laterales (altura 3 líneas) + títulos centrados (3 líneas verticales)
+% SOLUCIÓN: minipage permite usar \\ para saltos de línea dentro de celdas de tabla
 \noindent
 \begin{tabular}{@{}m{0.15\textwidth}m{0.65\textwidth}m{0.15\textwidth}@{}}
 \includegraphics[height=2.2cm]{figuras/logo_uach_bn.png} &
-\centering\arraybackslash{\fontsize{12}{14}\selectfont\bfseries 
-Universidad Aut\'onoma de Chihuahua\newline
-Facultad de Medicina y Ciencias Biom\'edicas\newline
-Secretar\'ia de Investigaci\'on y Posgrado} &
+\begin{minipage}[c]{0.65\textwidth}
+    \centering
+    {\fontsize{12}{14}\selectfont\bfseries
+    Universidad Aut\'onoma de Chihuahua\\
+    Facultad de Medicina y Ciencias Biom\'edicas\\
+    Secretar\'ia de Investigaci\'on y Posgrado}
+\end{minipage} &
 \raggedleft\includegraphics[height=2.2cm]{\miLogoEncabezado} \\
 \end{tabular}
 
