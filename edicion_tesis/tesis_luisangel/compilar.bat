@@ -56,16 +56,25 @@ del %ARCHIVO%.aux %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHI
 del capitulos\*.aux 2>nul
 :: NOTA: NO borrar .bbl - es necesario para que las referencias aparezcan en el PDF
 
+:: Renombrar PDF con nombre de proyecto + fecha
+echo.
+echo Generando PDF con nombre de proyecto...
+set FECHA=101125
+set PROYECTO=proyecto_tesis_LAMC_%FECHA%.pdf
+copy %ARCHIVO%.pdf %PROYECTO% > nul
+echo PDF proyecto generado: %PROYECTO%
+
 echo.
 echo ========================================
 echo   COMPILACION EXITOSA!
 echo ========================================
 echo.
-echo Tu PDF esta listo: %ARCHIVO%.pdf
+echo Tu PDF esta listo: %PROYECTO%
+echo (Tambien disponible como: %ARCHIVO%.pdf)
 echo.
 
-:: Abrir el PDF automáticamente
-start %ARCHIVO%.pdf
+:: Abrir el PDF del proyecto automáticamente
+start %PROYECTO%
 
 pause
 

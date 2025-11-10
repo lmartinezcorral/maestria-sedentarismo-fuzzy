@@ -250,19 +250,20 @@ Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Reca
 \thispagestyle{empty}
 
 % Encabezado: logos laterales (altura 3 líneas) + títulos centrados (3 líneas verticales)
-% SOLUCIÓN: raisebox eleva el minipage para alinear con el top real de los logos
+% SOLUCIÓN A: raisebox con altura fija [2.2cm] + vspace negativo para alineación perfecta
 \noindent
 \begin{tabular}{@{}p{0.15\textwidth}p{0.65\textwidth}p{0.15\textwidth}@{}}
-\raisebox{-\height}{\includegraphics[height=2.2cm]{figuras/logo_uach_bn.png}} &
-\raisebox{0pt}[\height][0pt]{%
+\raisebox{0pt}[2.2cm][0pt]{\includegraphics[height=2.2cm]{figuras/logo_uach_portada.png}} &
+\raisebox{0pt}[2.2cm][0pt]{%
 \begin{minipage}[t]{0.65\textwidth}
     \centering
+    \vspace*{-2.8\baselineskip}% Ajuste fino: sube títulos al top de logos
     {\fontsize{12}{14}\selectfont\bfseries
     Universidad Aut\'onoma de Chihuahua\\
     Facultad de Medicina y Ciencias Biom\'edicas\\
     Secretar\'ia de Investigaci\'on y Posgrado}
 \end{minipage}} &
-\raggedleft\raisebox{-\height}{\includegraphics[height=2.2cm]{\miLogoEncabezado}} \\
+\raisebox{0pt}[2.2cm][0pt]{\raggedleft\includegraphics[height=2.2cm]{\miLogoEncabezado}} \\
 \end{tabular}
 
 \vspace{18pt}
@@ -410,28 +411,48 @@ Se agradece a:\\[0.5cm]
 % --------------- ÍNDICE DE CONTENIDOS ---------------
 \clearpage  % Forzar nueva página
 
-% Configurar encabezado con logo JUSTO ANTES del índice
-\pagenumbering{arabic}  % Cambiar a números arábigos desde ÍNDICE
-\setcounter{page}{1}  % Índice es página 1
+% Configurar encabezado con logo y NUMERACIÓN ARÁBIGA (pero números ocultos en índice)
+\pagenumbering{arabic}  % Cambiar a números arábigos DESDE ÍNDICE (pág 7)
+\setcounter{page}{7}  % Índice inicia en página 7 (después de 6 páginas preliminares)
 
 \fancyhf{}
-\fancyhead[L]{\includegraphics[height=2.2cm]{\miLogoEncabezado}}  % Logo duplicado
-\fancyhead[R]{\thepage}
+% Logo con ajuste vertical para dejar espacio en impresión
+\fancyhead[L]{\raisebox{0pt}[2.2cm][0pt]{% 
+    \begin{minipage}[t]{2.2cm}
+        \vspace*{-2.8\baselineskip}% Mismo ajuste que Hoja Firmas
+        \includegraphics[height=2.2cm]{\miLogoEncabezado}
+    \end{minipage}}}
+\fancyhead[R]{}  % SIN número de página en índice (pero se cuenta internamente)
 \renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{67pt}  % Para logo de 2.2cm
+\setlength{\headheight}{67pt}
+\setlength{\headsep}{12pt}  % Espacio entre encabezado y contenido (más margen para impresión)
 \pagestyle{fancy}
 
-% Personalizar título del índice
-\renewcommand{\contentsname}{\'Indice de contenidos}
+% Personalizar título del índice (CENTRADO)
+\renewcommand{\contentsname}{\centering \'Indice de contenidos}
 
-% Parchear tableofcontents para forzar fancy en primera página
-\patchcmd{\tableofcontents}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+% SOLUCIÓN DEFINITIVA: Forzar fancy desde DENTRO del archivo .toc
+\addtocontents{toc}{\protect\thispagestyle{fancy}}
 
-% Tabla de contenidos
+% Tabla de contenidos (CON logo, SIN números visibles, pero SE CUENTAN páginas 7-11)
 \tableofcontents
+\clearpage
 
 % --------------- INICIO DEL CONTENIDO ----------------
-% Aquí comenzarán los capítulos
+% Restaurar numeración VISIBLE en capítulos (página 12+)
+
+\fancyhf{}
+% Logo con ajuste vertical para TODO el documento
+\fancyhead[L]{\raisebox{0pt}[2.2cm][0pt]{%
+    \begin{minipage}[t]{2.2cm}
+        \vspace*{-2.8\baselineskip}% Ajuste milimétrico consistente
+        \includegraphics[height=2.2cm]{\miLogoEncabezado}
+    \end{minipage}}}
+\fancyhead[R]{\thepage}  % Ahora SÍ mostrar números
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{67pt}
+\setlength{\headsep}{12pt}
+\pagestyle{fancy}
 
 \include{capitulos/01_introduccion}
 \include{capitulos/02_marco_teorico_antecedentes}
@@ -441,12 +462,16 @@ Se agradece a:\\[0.5cm]
 \include{capitulos/06_resultados}
 \include{capitulos/07_discusion}
 \include{capitulos/08_conclusiones}
-\include{capitulos/09_anexos}
 
 % ----------------- BIBLIOGRAFÍA -----------------
+% Las referencias van ANTES de los anexos (orden correcto)
 \clearpage
 \renewcommand{\refname}{}
 % Imprimir referencias en formato APA 7
 \printbibliography[heading=bibintoc,title={Referencias}]
+
+% ----------------- ANEXOS -----------------
+% Los anexos van AL FINAL del documento
+\include{capitulos/09_anexos}
 
 \end{document}
