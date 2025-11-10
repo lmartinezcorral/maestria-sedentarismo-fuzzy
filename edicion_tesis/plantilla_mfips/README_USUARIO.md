@@ -1,15 +1,16 @@
 # 📖 MANUAL DE USUARIO: Plantilla de Tesis LaTeX
 
-**Versión:** 1.0  
-**Fecha:** Octubre 2025  
+**Versión:** 1.2 (Formato Perfeccionado)  
+**Fecha:** Noviembre 2025  
 **Autor:** Luis Ángel Martínez Corral  
-**Facultad:** Ingeniería - Universidad Autónoma de Chihuahua
+**Facultad:** Medicina y Ciencias Biomédicas - UACH  
+**Programa:** Maestría en Formación e Innovación para Profesionales de la Salud (MFIPS)
 
 ---
 
 ## 🎯 ¿Para Quién es Esta Plantilla?
 
-Esta plantilla está diseñada para estudiantes de **posgrado de la UACH** que necesitan escribir su tesis, especialmente aquellos **SIN experiencia previa en LaTeX**. 
+Esta plantilla está diseñada para estudiantes de la **Maestría en Formación e Innovación para Profesionales de la Salud (MFIPS)** y otros **posgrados en Ciencias de la Salud de la UACH** que necesitan escribir su tesis, especialmente aquellos **SIN experiencia previa en LaTeX**. 
 
 ### ✅ Ventajas de Usar LaTeX:
 
@@ -29,14 +30,16 @@ edicion_tesis/
 │
 ├── plantilla_tesis.tex          ← Archivo PRINCIPAL (aquí está todo conectado)
 │
-├── capitulos/                   ← Carpeta con tus capítulos
+├── capitulos/                   ← Carpeta con tus capítulos (9 archivos)
 │   ├── 01_introduccion.tex
-│   ├── 02_marco_teorico.tex
-│   ├── 03_estado_del_arte.tex
-│   ├── 04_metodologia.tex
-│   ├── 05_resultados.tex
-│   ├── 06_discusion.tex
-│   └── 07_conclusiones.tex
+│   ├── 02_marco_teorico_antecedentes.tex
+│   ├── 03_delimitacion.tex
+│   ├── 04_justificacion.tex
+│   ├── 05_materiales_metodos.tex
+│   ├── 06_resultados.tex
+│   ├── 07_discusion.tex
+│   ├── 08_conclusiones.tex
+│   └── 09_anexos.tex
 │
 ├── figuras/                     ← Guarda aquí tus imágenes (.png, .jpg, .pdf)
 │   └── ejemplo.png

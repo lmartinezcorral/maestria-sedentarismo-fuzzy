@@ -1,6 +1,19 @@
-# 📝 Plantilla de Tesis MFIPS-UACH
-**Maestría en Formación e Innovación para Profesionales de la Salud**  
-**Facultad de Medicina y Ciencias Biomédicas - Universidad Autónoma de Chihuahua**
+# 📝 Plantilla de Tesis MFIPS-UACH (v1.2)
+
+**Universidad Autónoma de Chihuahua**  
+**Facultad de Medicina y Ciencias Biomédicas**  
+**Maestría en Formación e Innovación para Profesionales de la Salud (MFIPS)**
+
+---
+
+## 🎯 **Formato Perfeccionado (Noviembre 2025)**
+
+Esta plantilla incluye ajustes milimétricos validados con requisitos institucionales UACH-MFIPS:
+- ✅ Hoja de Firmas con alineación perfecta (-2.8\baselineskip)
+- ✅ Índice con logo en todas las páginas (7-11)
+- ✅ Espaciado óptimo para impresión (headsep 18pt)
+- ✅ Numeración continua desde página 12
+- ✅ Compilación automática con renombrado de PDF
 
 ---
 
@@ -53,23 +66,33 @@ plantilla_mfips/
 ├── plantilla_tesis.tex          # Documento principal (EDITAR AQUÍ)
 ├── referencias.bib               # Tu bibliografía en formato BibTeX
 ├── compilar.bat                  # Script de compilación automática
-├── NORMAS_APA_FORMATO.md        # Guía completa de formato APA
+│
+├── LEEME_PRIMERO.txt             # Guía de inicio rápido
+├── README.md                     # Descripción general
 ├── README_PLANTILLA.md           # Este archivo
+├── README_USUARIO.md             # Manual completo (90+ páginas)
+├── RESUMEN_EJECUTIVO.md          # Visión general del proyecto
+├── NORMAS_APA_FORMATO.md         # Guía completa de formato APA
+├── GUIA_OVERLEAF.md              # Guía para Overleaf
+├── GUIA_RAPIDA_REFERENCIA.md     # Cheat sheet de comandos
 │
 ├── capitulos/                    # Todos tus capítulos
 │   ├── 01_introduccion.tex
 │   ├── 02_marco_teorico_antecedentes.tex
 │   ├── 03_delimitacion.tex
 │   ├── 04_justificacion.tex
-│   ├── 05_materiales_metodos.tex
+│   ├── 05_materiales_metodos.tex     ← CON EJEMPLOS completos
 │   ├── 06_resultados.tex
 │   ├── 07_discusion.tex
 │   ├── 08_conclusiones.tex
 │   └── 09_anexos.tex
 │
-└── figuras/                      # Coloca aquí tus imágenes
-    └── logo_uach_portada.png
-    └── logo_uach_bn.png
+├── figuras/                      # Coloca aquí tus imágenes
+│   ├── logo_uach_portada.png
+│   ├── logo_uach_bn.png
+│   └── Logo_facultad_medicina.png
+│
+└── tablas/                       # (Opcional) Datos de tablas
 ```
 
 ---
@@ -92,20 +115,19 @@ Abre `plantilla_tesis.tex` y modifica las líneas 35-51:
 \newcommand{\miFecha}{DD de Mes de 2025}
 ```
 
-### **Paso 2: Editar Firmas (Líneas 142-157)**
+### **Paso 2: Editar Comité Tutorial (Líneas 110-130)**
 
-Actualiza los nombres de tu director y asesores:
+Actualiza los nombres de tu secretario, coordinador, director y asesores:
 
 ```latex
-% 3. Director de Tesis
-{\fontsize{12}{14}\selectfont 
-DR(A) [Nombre de tu director]\\[0.3cm]
-Director de Tesis}\\[1.2cm]
+% --------------------- COMITÉ TUTORIAL ----------------------
+\newcommand{\miSecretario}{Dr. Said Alejandro De La Cruz Rey}
+\newcommand{\miCoordinador}{Dra. Haydeé Parra Acosta}
+\newcommand{\miDirector}{Dr. [NOMBRE DE TU DIRECTOR]}
 
-% 4-6. Asesores
-{\fontsize{12}{14}\selectfont 
-DR(A) [Asesor 1]\\[0.3cm]
-Asesor(a)}\\[1.0cm]
+\newcommand{\miAsesorA}{Dr. [NOMBRE ASESOR 1]}
+\newcommand{\miAsesorB}{Dr. [NOMBRE ASESOR 2]}
+\newcommand{\miAsesorC}{Dr. [NOMBRE ASESOR 3]}
 ```
 
 ### **Paso 3: Escribir tu Contenido**
@@ -292,6 +314,7 @@ Esta plantilla fue desarrollada colaborativamente. Siéntete libre de compartirl
 
 | Versión | Fecha | Cambios |
 |---------|-------|---------|
+| v1.2 | Nov 2025 | Formato perfeccionado: ajustes milimétricos Hoja Firmas, Índice con logos, espaciado optimizado |
 | v1.0 | Oct 2025 | Versión inicial con todos los capítulos y normas APA |
 
 ---

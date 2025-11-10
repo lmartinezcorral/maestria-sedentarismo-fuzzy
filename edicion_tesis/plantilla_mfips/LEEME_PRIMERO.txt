@@ -1,6 +1,7 @@
 ================================================================================
               PLANTILLA DE TESIS LATEX - UACH
-         Facultad de Ingeniería - Posgrado
+         Facultad de Medicina y Ciencias Biomédicas
+  Maestría en Formación e Innovación para Profesionales de la Salud
 ================================================================================
 
 ¡BIENVENIDO/A! 🎓
@@ -50,14 +51,16 @@ plantilla_tesis.tex          ← ARCHIVO PRINCIPAL (empieza aquí)
 referencias.bib              ← Tus referencias bibliográficas
 compilar.bat                 ← Compila automáticamente (Windows)
 
-capitulos/                   ← Tus capítulos (7 archivos .tex)
+capitulos/                   ← Tus capítulos (9 archivos .tex)
   ├── 01_introduccion.tex
-  ├── 02_marco_teorico.tex   ← CON EJEMPLOS de figuras/tablas/ecuaciones
-  ├── 03_estado_del_arte.tex
-  ├── 04_metodologia.tex
-  ├── 05_resultados.tex
-  ├── 06_discusion.tex
-  └── 07_conclusiones.tex
+  ├── 02_marco_teorico_antecedentes.tex
+  ├── 03_delimitacion.tex
+  ├── 04_justificacion.tex
+  ├── 05_materiales_metodos.tex      ← CON EJEMPLOS de figuras/tablas/ecuaciones
+  ├── 06_resultados.tex
+  ├── 07_discusion.tex
+  ├── 08_conclusiones.tex
+  └── 09_anexos.tex
 
 figuras/                     ← Guarda aquí tus imágenes (.png, .jpg, .pdf)
 tablas/                      ← (Opcional) Datos de tablas
@@ -89,16 +92,16 @@ AYUDA RÁPIDA
 ================================================================================
 
 ¿Cómo insertar una figura?
-   → Lee: capitulos/02_marco_teorico.tex (línea ~30)
+   → Lee: capitulos/05_materiales_metodos.tex (ejemplos completos)
 
 ¿Cómo crear una tabla?
-   → Lee: capitulos/02_marco_teorico.tex (línea ~50)
+   → Lee: capitulos/05_materiales_metodos.tex (ejemplos completos)
 
 ¿Cómo escribir ecuaciones?
-   → Lee: capitulos/02_marco_teorico.tex (línea ~80)
+   → Lee: capitulos/05_materiales_metodos.tex (ejemplos completos)
 
 ¿Cómo citar referencias?
-   → Lee: capitulos/02_marco_teorico.tex (línea ~110)
+   → Lee: capitulos/02_marco_teorico_antecedentes.tex (ejemplos)
 
 ¿No compila? ¿Errores?
    → Lee: README_USUARIO.md sección "Problemas Comunes"
@@ -114,12 +117,16 @@ Buscar símbolos:    http://detexify.kirelabs.org/
 Generar tablas:     https://www.tablesgenerator.com/
 
 ================================================================================
-CONTACTO
+CONTACTO Y SOPORTE
 ================================================================================
 
-Autor:  Luis Ángel Martínez Corral
-Email:  [tu_email@uach.mx]
-Inst.:  Universidad Autónoma de Chihuahua - Facultad de Ingeniería
+Desarrollado por:  Luis Ángel Martínez Corral
+Email:             p261337@uach.mx
+Celular:           +52 (614) 344-88-36
+Institución:       Universidad Autónoma de Chihuahua
+Facultad:          Medicina y Ciencias Biomédicas
+Programa:          Maestría en Formación e Innovación para Profesionales 
+                   de la Salud (MFIPS)
 
 ================================================================================
 LICENCIA

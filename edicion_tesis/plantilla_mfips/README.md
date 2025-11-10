@@ -1,6 +1,8 @@
-# 📚 PLANTILLA DE TESIS LATEX - UACH
+# 📚 PLANTILLA DE TESIS LATEX - UACH (v1.2)
 
-## Facultad de Ingeniería - Universidad Autónoma de Chihuahua
+**Universidad Autónoma de Chihuahua**  
+**Facultad de Medicina y Ciencias Biomédicas**  
+**Maestría en Formación e Innovación para Profesionales de la Salud (MFIPS)**
 
 ---
 
@@ -52,14 +54,16 @@ edicion_tesis/
 ├── 🌐 GUIA_OVERLEAF.md              ← Guía para usar Overleaf
 ├── ⚡ GUIA_RAPIDA_REFERENCIA.md     ← Cheat sheet (copiar/pegar código)
 │
-├── 📁 capitulos/                    ← Tus capítulos (7 archivos .tex)
+├── 📁 capitulos/                    ← Tus capítulos (9 archivos .tex)
 │   ├── 01_introduccion.tex
-│   ├── 02_marco_teorico.tex         ← Con EJEMPLOS de figuras/tablas
-│   ├── 03_estado_del_arte.tex
-│   ├── 04_metodologia.tex
-│   ├── 05_resultados.tex
-│   ├── 06_discusion.tex
-│   └── 07_conclusiones.tex
+│   ├── 02_marco_teorico_antecedentes.tex
+│   ├── 03_delimitacion.tex
+│   ├── 04_justificacion.tex
+│   ├── 05_materiales_metodos.tex    ← CON EJEMPLOS completos de figuras/tablas/ecuaciones
+│   ├── 06_resultados.tex
+│   ├── 07_discusion.tex
+│   ├── 08_conclusiones.tex
+│   └── 09_anexos.tex
 │
 ├── 📁 figuras/                      ← Guarda aquí tus imágenes
 │   └── README.txt
@@ -108,10 +112,10 @@ edicion_tesis/
 ## 🎓 ¿Para Quién?
 
 ### ✅ Ideal Para:
-- Estudiantes de **Maestría** (cualquier área de Ingeniería)
-- Estudiantes de **Doctorado**
-- Tesis con **muchas ecuaciones matemáticas**
-- Tesis con **50+ referencias bibliográficas**
+- Estudiantes de **Maestría en Ciencias de la Salud** (MFIPS-UACH)
+- Estudiantes de **Doctorado en Ciencias Biomédicas**
+- Tesis con **análisis estadístico y figuras científicas**
+- Tesis con **50+ referencias bibliográficas** (formato APA 7)
 - Personas que **odian los problemas de formato en Word**
 - Colaboración con **asesor en tiempo real** (Overleaf)
 
@@ -123,14 +127,16 @@ edicion_tesis/
 
 ## 💡 Ejemplos Incluidos
 
-El archivo `capitulos/02_marco_teorico.tex` contiene ejemplos completos de:
+Los archivos `capitulos/05_materiales_metodos.tex` y `capitulos/02_marco_teorico_antecedentes.tex` contienen ejemplos completos de:
 
-- ✅ Cómo insertar figuras
-- ✅ Cómo crear tablas profesionales
+- ✅ Cómo insertar figuras (con formato APA 7)
+- ✅ Cómo crear tablas profesionales (con booktabs)
 - ✅ Cómo escribir ecuaciones matemáticas
-- ✅ Cómo citar referencias bibliográficas
+- ✅ Cómo citar referencias bibliográficas (formato APA)
 - ✅ Cómo hacer listas (numeradas y con viñetas)
 - ✅ Cómo usar referencias cruzadas
+- ✅ Funciones de membresía difusa (figuras científicas)
+- ✅ Tablas de variables recolectadas
 
 **¡Copia y adapta estos ejemplos a tu tesis!**
 
@@ -202,8 +208,10 @@ El archivo `capitulos/02_marco_teorico.tex` contiene ejemplos completos de:
 
 ### Contacto:
 - **Autor:** Luis Ángel Martínez Corral
-- **Email:** [tu_email@uach.mx]
-- **Facultad:** Ingeniería - UACH
+- **Email:** p261337@uach.mx
+- **Tel:** +52 (614) 344-88-36
+- **Facultad:** Medicina y Ciencias Biomédicas - UACH
+- **Programa:** Maestría en Formación e Innovación para Profesionales de la Salud
 
 ---
 
@@ -289,11 +297,11 @@ Antes de empezar a escribir:
 
 ---
 
-**📅 Creado:** Octubre 2025  
-**🔢 Versión:** 1.0  
+**📅 Actualizado:** Noviembre 2025  
+**🔢 Versión:** 1.2 (Formato Perfeccionado)  
 **👤 Autor:** Luis Ángel Martínez Corral  
 **🏫 Institución:** Universidad Autónoma de Chihuahua  
-**🎓 Para:** Estudiantes de Posgrado - Facultad de Ingeniería
+**🎓 Para:** Maestría en Formación e Innovación para Profesionales de la Salud (MFIPS)
 
 ---
 
