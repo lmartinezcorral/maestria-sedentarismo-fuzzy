@@ -121,15 +121,18 @@ Actualiza los nombres de tu secretario, coordinador, director y asesores:
 
 ```latex
 % --------------------- COMITÉ TUTORIAL ----------------------
-\newcommand{\miSecretario}{Dr. [Nombre del Secretario]}
-\newcommand{\miCoordinadora}{Dra. [Nombre del Coordinador]}
+% DATOS CONSTANTES (ya definidos - iguales para todos MFIPS):
+\newcommand{\miSecretario}{Dr. Oscar Aguirre Barrera}
+\newcommand{\miCoordinadora}{Dra. Haydeé Parra Acosta}
+
+% DATOS VARIABLES (EDITA ESTOS con tu comité):
 \newcommand{\miDirector}{Dr. [Nombre de tu Director]}
 \newcommand{\miCodirector}{Dr. [Nombre de tu Codirector]}
 \newcommand{\miAsesorUno}{Dr. [Nombre Asesor 1]}
 \newcommand{\miAsesorDos}{Dr. [Nombre Asesor 2]}
 ```
 
-**💡 Nota:** Estos nombres se propagan automáticamente a la Hoja de Firmas y Carta de Liberación.
+**💡 Nota:** El Secretario y Coordinadora ya están definidos (constantes MFIPS). Solo edita Director, Codirector y Asesores con los nombres específicos de TU comité tutorial.
 
 ### **Paso 3: Escribir tu Contenido**
 
