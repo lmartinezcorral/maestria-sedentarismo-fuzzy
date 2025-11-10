@@ -56,13 +56,14 @@ del %ARCHIVO%.aux %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHI
 del capitulos\*.aux 2>nul
 :: NOTA: NO borrar .bbl - es necesario para que las referencias aparezcan en el PDF
 
-:: Renombrar PDF con nombre de proyecto + fecha
+:: Renombrar PDF con nombre de proyecto + fecha automática (DDMMAA)
 echo.
 echo Generando PDF con nombre de proyecto...
-set FECHA=101125
-set PROYECTO=proyecto_tesis_LAMC_%FECHA%.pdf
+:: Obtener fecha actual en formato DDMMAA (PowerShell)
+for /f %%i in ('powershell -Command "Get-Date -Format ddMMyy"') do set FECHA=%%i
+set PROYECTO=proyecto_tesis_MFIPS_%FECHA%.pdf
 copy %ARCHIVO%.pdf %PROYECTO% > nul
-echo PDF proyecto generado: %PROYECTO%
+echo PDF proyecto generado: %PROYECTO% (fecha: %FECHA%)
 
 echo.
 echo ========================================
