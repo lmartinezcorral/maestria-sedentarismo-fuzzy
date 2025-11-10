@@ -54,7 +54,7 @@
 
 \titlespacing*{\chapter}
   {0pt}     % Sin sangría
-  {12pt}    % Espacio ANTES (2 renglones)
+  {0pt}     % Espacio ANTES (0pt - capítulos inician en página nueva)
   {18pt}    % Espacio DESPUÉS (1.5 renglones)
 
 % Forzar estilo fancy en páginas de capítulo (para que aparezca logo en todas las páginas)
@@ -425,7 +425,7 @@ Se agradece a:\\[0.5cm]
 \fancyhead[R]{}  % SIN número de página en índice (pero se cuenta internamente)
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{67pt}
-\setlength{\headsep}{12pt}  % Espacio entre encabezado y contenido (más margen para impresión)
+\setlength{\headsep}{18pt}  % Espacio entre encabezado y contenido (separación óptima para impresión)
 \pagestyle{fancy}
 
 % Personalizar título del índice (CENTRADO)
@@ -451,7 +451,7 @@ Se agradece a:\\[0.5cm]
 \fancyhead[R]{\thepage}  % Ahora SÍ mostrar números
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{67pt}
-\setlength{\headsep}{12pt}
+\setlength{\headsep}{18pt}  % Espacio entre encabezado y contenido (separación óptima)
 \pagestyle{fancy}
 
 \include{capitulos/01_introduccion}
