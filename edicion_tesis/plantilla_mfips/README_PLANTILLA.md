@@ -121,14 +121,15 @@ Actualiza los nombres de tu secretario, coordinador, director y asesores:
 
 ```latex
 % --------------------- COMITÉ TUTORIAL ----------------------
-\newcommand{\miSecretario}{Dr. Said Alejandro De La Cruz Rey}
-\newcommand{\miCoordinador}{Dra. Haydeé Parra Acosta}
-\newcommand{\miDirector}{Dr. [NOMBRE DE TU DIRECTOR]}
-
-\newcommand{\miAsesorA}{Dr. [NOMBRE ASESOR 1]}
-\newcommand{\miAsesorB}{Dr. [NOMBRE ASESOR 2]}
-\newcommand{\miAsesorC}{Dr. [NOMBRE ASESOR 3]}
+\newcommand{\miSecretario}{Dr. [Nombre del Secretario]}
+\newcommand{\miCoordinadora}{Dra. [Nombre del Coordinador]}
+\newcommand{\miDirector}{Dr. [Nombre de tu Director]}
+\newcommand{\miCodirector}{Dr. [Nombre de tu Codirector]}
+\newcommand{\miAsesorUno}{Dr. [Nombre Asesor 1]}
+\newcommand{\miAsesorDos}{Dr. [Nombre Asesor 2]}
 ```
+
+**💡 Nota:** Estos nombres se propagan automáticamente a la Hoja de Firmas y Carta de Liberación.
 
 ### **Paso 3: Escribir tu Contenido**
 
@@ -185,18 +186,26 @@ Edita cada archivo en la carpeta `capitulos/`:
 }
 ```
 
-### **Citar en el Texto**
+### **Citar en el Texto (Formato APA 7)**
 
 ```latex
-% Cita entre paréntesis
-Según estudios recientes \cite{garcia2023}...
+% Cita narrativa (autor como parte del texto)
+Según García et al. \cite{garcia2023}, el método propuesto...
 
-% Cita narrativa
-García y López \citep{garcia2023} demostraron que...
+% Cita entre paréntesis (al final del texto)
+El método propuesto muestra resultados superiores \cite{garcia2023}.
 
 % Múltiples citas
-Diversos autores \cite{garcia2023,martinez2022} coinciden en...
+Diversos estudios \cite{garcia2023,WHO2020,Bull2020} coinciden en...
+
+% Cita con página específica
+Como menciona Smith \cite[p.~45]{smith2023}...
 ```
+
+**🔍 Vista Previa del Resultado:**
+- Narrativa: Según García et al. (2023), el método...
+- Paréntesis: ...resultados superiores (García et al., 2023).
+- Múltiples: ...diversos estudios (García et al., 2023; WHO, 2020; Bull et al., 2020)
 
 ---
 
