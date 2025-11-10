@@ -144,6 +144,36 @@ Después se vuelve MÁS FÁCIL y RÁPIDO que Word.
 SIGUIENTE PASO → Lee RESUMEN_EJECUTIVO.md
 
 ================================================================================
-Versión: 1.0 | Octubre 2025
+CHANGELOG DE FORMATO (Últimas actualizaciones)
+================================================================================
+
+📅 NOVIEMBRE 2025 - Ajustes de Formato MFIPS/UACH:
+
+✅ HOJA DE FIRMAS (Página 4):
+   - Títulos alineados perfectamente con logos (-2.8\baselineskip)
+   - Espaciado optimizado: 18pt entre encabezado y primer párrafo
+   - Formato consistente de nombres (tipo oración)
+
+✅ CARTA DE LIBERACIÓN (Página 5):
+   - Texto justificado sin sangría izquierda
+   - Formato profesional y limpio
+
+✅ ÍNDICE DE CONTENIDOS (Páginas 7-11):
+   - Logo de facultad en TODAS las páginas
+   - Sin numeración visible (pero páginas contadas internamente)
+   - Título centrado
+   - Numeración arábiga continua (empieza visible en pág. 12)
+
+✅ ESPACIADO GLOBAL:
+   - Títulos de capítulo: 0pt superior (páginas nuevas)
+   - Separación encabezado-contenido: 18pt (headsep)
+   - Logo con margen de seguridad para impresión
+
+✅ COMPILACIÓN:
+   - PDF auto-renombrado: proyecto_tesis_LAMC_DDMMAA.pdf
+   - Preservación de .bbl para bibliografía correcta
+
+================================================================================
+Versión: 1.2 | Noviembre 2025 (Formato perfeccionado)
 ================================================================================
 
