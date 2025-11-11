@@ -63,8 +63,8 @@ echo Generando PDF con nombre de proyecto...
 :: Obtener fecha actual en formato DDMMAA (PowerShell)
 for /f %%i in ('powershell -Command "Get-Date -Format ddMMyy"') do set FECHA=%%i
 set PROYECTO=proyecto_tesis_MFIPS_%FECHA%.pdf
-copy %ARCHIVO%.pdf %PROYECTO% > nul
-echo PDF proyecto generado: %PROYECTO% (fecha: %FECHA%)
+move %ARCHIVO%.pdf %PROYECTO% > nul
+echo PDF generado: %PROYECTO% (fecha: %FECHA%)
 
 echo.
 echo ========================================
@@ -72,10 +72,9 @@ echo   COMPILACION EXITOSA!
 echo ========================================
 echo.
 echo Tu PDF esta listo: %PROYECTO%
-echo (Tambien disponible como: %ARCHIVO%.pdf)
 echo.
 
-:: Abrir el PDF del proyecto automáticamente
+:: Abrir el PDF automáticamente
 start %PROYECTO%
 
 pause
