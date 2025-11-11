@@ -73,7 +73,7 @@ Debe incluir las siguientes **subsecciones obligatorias:**
 ### **2.2. Participantes**
 
 **Debe incluir:**
-- N=10 participantes (6 mujeres, 4 hombres)
+- N=10 participantes (5 mujeres, 5 hombres)
 - Edad: 34.2±6.7 años (rango: 25-45 años estimado)
 - IMC: 24.8±3.2 kg/m²
 - Criterios inclusión:

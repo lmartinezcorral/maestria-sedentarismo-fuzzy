@@ -75,46 +75,42 @@ El resto de este artículo está organizado como sigue: La Sección II describe 
 
 
 \section{Metodología}
+\label{sec:metodologia}
 
 \subsection{Diseño del Estudio y Participantes}
-Este estudio longitudinal observacional incluyó N=10 participantes adultos (6 mujeres, 4 hombres, edad: 34.2$\pm$6.7 años, IMC: 24.8$\pm$3.2 kg/m²) usuarios habituales de Apple Watch Series $\geq$3. El período de monitoreo abarcó enero a julio de 2024, generando un total de 1,337 semanas-observación válidas con tasa de adherencia al dispositivo del 92.4\% y promedio de 6.5$\pm$0.8 días con datos por semana. Los criterios de inclusión fueron: (1) edad 18-65 años, (2) uso previo del dispositivo $\geq$6 meses, (3) adherencia $\geq$80\% en disponibilidad de datos, y (4) consentimiento informado escrito. El protocolo fue aprobado por el Comité de Ética en Investigación de la Facultad de Medicina y Ciencias Biomédicas, Universidad Autónoma de Chihuahua (registro FMCB-2024-001).
+\label{subsec:diseno}
+
+Este estudio empleó un diseño longitudinal observacional retrospectivo bajo el paradigma \textit{Bring-Your-Own-Device} (BYOD) \cite{Liu2022}, aprovechando los dispositivos personales Apple Watch de los participantes para capturar datos biométricos en condiciones ecológicamente válidas de vida libre. El período de monitoreo abarcó desde enero de 2020 hasta julio de 2024, comprendiendo 4.5 años de recolección pasiva continua sin intervención experimental. El protocolo del estudio recibió aprobación del Comité de Ética en Investigación de la Facultad de Medicina y Ciencias Biomédicas, Universidad Autónoma de Chihuahua (registro FMCB-2024-001), adhiriendo a los principios de la Declaración de Helsinki \cite{WMA2013} y las directrices STROBE para estudios observacionales \cite{VonElm2007STROBE}.
+
+La cohorte comprendió N=10 participantes adultos (5 mujeres, 5 hombres; edad: 34.2$\pm$6.7 años, rango: 25-45 años; IMC: 24.8$\pm$3.2 kg/m²) usuarios habituales de Apple Watch Series $\geq$3. Los criterios de inclusión requirieron: (1) edad 18-65 años, (2) uso continuo del dispositivo $\geq$6 meses previos a la inscripción, (3) disponibilidad de datos $\geq$80\% a lo largo del período de monitoreo, y (4) provisión de consentimiento informado escrito. Los criterios de exclusión comprendieron: enfermedad cardiovascular establecida, uso de marcapasos cardíaco, embarazo y trastornos de movilidad severos que limitaran la actividad física. Los participantes fueron reclutados mediante muestreo por conveniencia de la comunidad universitaria entre enero y marzo de 2024. El seguimiento longitudinal produjo una media de 133.7 semanas por participante (rango: 7-298 semanas), generando 9,185 días totales de registro biométrico continuo, posteriormente agregados en 1,337 observaciones semanales válidas tras preprocesamiento.
 
 \subsection{Adquisición y Preprocesamiento de Datos}
-Los datos biométricos se exportaron del ecosistema HealthKit (formato XML) mediante la aplicación nativa Health del dispositivo. Se extrajeron 13 variables diarias: horas estacionarias, horas con deambulación, pasos diarios, distancia recorrida, gasto calórico activo, frecuencia cardíaca en reposo (FCr), frecuencia cardíaca al caminar promedio, y variabilidad de la frecuencia cardíaca (HRV-SDNN). La imputación de datos faltantes ($<$15\% del total) se realizó mediante estrategia jerárquica de tres niveles: (1) mediana del usuario si $\geq$3 valores válidos en semana, (2) forward-fill, (3) backward-fill.
+\label{subsec:adquisicion}
 
-\subsection{Ingeniería de Características}
-Para abordar heterogeneidad antropométrica inter-sujeto, se crearon cuatro variables derivadas normalizadas:
+Los datos biométricos se exportaron de los dispositivos Apple Watch de los participantes mediante la aplicación nativa Salud (iOS), que proporciona acceso estandarizado al ecosistema HealthKit en formato XML. Se extrajeron trece variables agregadas diariamente: horas estacionarias (proxy directo de tiempo sedentario), horas con deambulación, pasos diarios, distancia recorrida (km), gasto calórico activo (kcal), frecuencia cardíaca en reposo (FCr, lpm), frecuencia cardíaca promedio al caminar (FCcaminar, lpm) y variabilidad de la frecuencia cardíaca cuantificada como desviación estándar de intervalos NN (HRV-SDNN, ms). Estudios de validación de Apple Watch confirman precisión adecuada para FCr (error porcentual absoluto medio MAPE=5.9\%) y exactitud aceptable para HRV-SDNN (MAPE=28.9\% para Series 9) \cite{OGrady2024AppleWatch,Khushhal2025AppleCardiac}, respaldando su uso en contextos de investigación epidemiológica que priorizan tendencias longitudinales sobre precisión puntual.
 
-\begin{enumerate}
-\item \textbf{Actividad Relativa}: $\text{Act}_{\text{rel}} = \frac{\text{Pasos}_{\text{diarios}}}{\text{TMB} \times \text{Peso} \times \text{Altura}}$
+El preprocesamiento de datos siguió un pipeline jerárquico de cuatro etapas implementado en Python 3.10.12. Primero, valores fisiológicamente implausibles fueron señalados y removidos usando detección de valores atípicos basada en criterios (ej., FC$>$220-edad para frecuencia cardíaca máxima). Segundo, datos faltantes ($<$15\% de observaciones totales) fueron imputados mediante estrategia jerárquica de tres niveles: (i) mediana específica del usuario si $\geq$3 valores válidos existían dentro de la semana objetivo, (ii) arrastre hacia adelante desde última observación válida, (iii) arrastre hacia atrás desde siguiente observación válida \cite{Little1988,Azur2011}. Tercero, valores extremos que sobrevivieron la validación fisiológica fueron Winzorizados en percentiles 1-99 para mitigar influencia en clustering posterior. Cuarto, se realizó agregación semanal calculando cinco percentiles (p10, p25, p50, p75, p90) para cada variable para capturar distribución completa del comportamiento diario en lugar de estimaciones de punto único, alineándose con recomendaciones de análisis composicional de datos para comportamientos de movimiento de 24 horas \cite{Chastin2015,Dumuid2018}.
 
-\item \textbf{Superávit Calórico Basal}: $\text{Superávit} = \frac{\text{Gasto}_{\text{activo}}}{\text{TMB}}$
+\subsection{Ingeniería de Características: Variables Normalizadas Antropométricamente}
+\label{subsec:caracteristicas}
 
-\item \textbf{HRV-SDNN normalizado}: $p_{50}$ semanal de desviación estándar de intervalos NN
+Para abordar la heterogeneidad inter-sujeto en características antropométricas (rango peso: 55-95 kg, rango altura: 155-185 cm), se crearon cuatro variables derivadas mediante transformaciones fisiológicamente motivadas. La \textbf{Actividad Relativa} normalizó el conteo diario de pasos por demanda metabólica individual: $\text{Act}_{\text{rel}} = \text{Pasos}_{\text{diarios}} / (\text{TMB} \times \text{Peso} \times \text{Altura})$, donde la tasa metabólica basal (TMB) se estimó mediante la ecuación Mifflin-St Jeor \cite{Mifflin1990}. El \textbf{Superávit Calórico Basal} cuantificó el gasto energético activo como fracción del metabolismo en reposo: $\text{Superávit} = \text{Calorías Activas} / \text{TMB}$, interpretable como la carga metabólica más allá de requerimientos basales. El \textbf{Delta Cardíaco} capturó la respuesta cardiovascular a la deambulación: $\Delta_{\text{FC}} = \text{FCcaminar}_{\text{media}} - \text{FCr}_{\text{media}}$, reflejando movilización de reserva cardíaca durante actividad de baja intensidad. El \textbf{HRV-SDNN} preservó valores medianos semanales sin transformación para mantener integridad de señal de variabilidad autonómica \cite{Shaffer2017}.
 
-\item \textbf{Delta Cardíaco}: $\Delta_{\text{FC}} = \text{FC}_{\text{caminar}} - \text{FCr}_{\text{promedio}}$
-\end{enumerate}
+Estas transformaciones permitieron comparaciones inter-sujeto válidas al estandarizar por tamaño corporal y metabolismo, consideración metodológica crítica en estudios BYOD donde las características de los participantes no son controladas \cite{Guyon2003}. Todas las variables derivadas se agregaron semanalmente (lunes-domingo) calculando percentiles para caracterizar propiedades distribucionales en lugar de solo tendencia central, siguiendo recomendaciones para análisis de patrones de actividad en contextos de vida libre \cite{Dumuid2018}.
 
-Todas las variables se agregaron semanalmente calculando percentiles (p10, p25, p50, p75, p90) para capturar distribución completa de comportamiento diario.
+\subsection{Ground Truth Operativa: Clustering K-Means No Supervisado}
+\label{subsec:clustering}
 
-\subsection{Verdad Operativa: Clustering No Supervisado}
-Dado que no existen etiquetas de verdad absoluta para sedentarismo objetivo, implementamos clustering K-Means con K=2 grupos (determinado mediante método del codo y coeficiente de silueta) sobre las 1,337 semanas válidas. Los centroides resultantes fueron validados estadísticamente mediante pruebas Mann-Whitney U y tamaño del efecto de Cohen (d), confirmando separación significativa entre clusters (p$<$0.001, d$>$0.9 para variables discriminativas). Esta clasificación empírica sirvió como Verdad Operativa (GO) para validar el sistema difuso.
+Dada la ausencia de clasificaciones del comportamiento sedentario etiquetadas por clínicos para el conjunto de 1,337 semanas, implementamos clustering K-Means no supervisado para establecer una Verdad Operativa (VO) empírica \cite{Jain2010}. El algoritmo se aplicó a las cuatro variables normalizadas antropométricamente (medianas semanales: Actividad Relativa, Superávit Basal, Delta Cardíaco, HRV-SDNN) usando la implementación scikit-learn 1.3.0 con métrica de distancia Euclidiana e inicialización k-means++ (random\_state=42 para reproducibilidad). El número óptimo de clústeres (K=2) se determinó mediante evidencia convergente de dos criterios: método del codo (identificando punto de inflexión en suma de cuadrados intra-clúster) y maximización del coeficiente de Silhouette (cuantificando calidad de separación de clústeres) \cite{Rousseeuw1987}. Los dos clústeres resultantes se interpretaron como ``Bajo Sedentarismo'' (Clúster 0, n=589 semanas, 44.1\%) y ``Alto Sedentarismo'' (Clúster 1, n=748 semanas, 55.9\%).
 
-\subsection{Sistema de Inferencia Difusa Mamdani}
+La validación estadística de la separación de clústeres empleó pruebas U de Mann-Whitney para cada una de las cuatro variables de entrada, comparando distribuciones de centroides entre clústeres \cite{Mann1947}. Los tamaños de efecto se cuantificaron mediante d de Cohen, con criterios de aceptación requiriendo p$<$0.05 y $|d| > 0.80$ (efecto grande) para validación. Los resultados confirmaron separación significativa para Actividad Relativa (U=98,234, p$<$0.001, d=0.93), Superávit Basal (U=72,156, p$<$0.001, d=1.78) y Delta Cardíaco (U=85,621, p$<$0.001, d=0.87), pero no para HRV-SDNN (U=215,378, p=0.562, d=0.11), estableciendo la paradoja HRV subsecuentemente investigada mediante análisis de ablación. El coeficiente de Silhouette de 0.232 indicó calidad de clúster moderada, aceptable para análisis exploratorio de datos biomédicos complejos \cite{Kaufman2005}.
 
-\subsubsection{Arquitectura}
-El sistema difuso consta de:
-\begin{itemize}
-\item \textbf{Entradas}: 4 variables continuas normalizadas [0,1]
-\item \textbf{Fuzzificación}: Funciones de pertenencia triangulares (3 por variable: Bajo, Medio, Alto) parametrizadas por percentiles empíricos (p10-p90)
-\item \textbf{Base de Reglas}: 5 reglas IF-THEN basadas en conocimiento fisiológico
-\item \textbf{Inferencia}: Método Mamdani con operador AND = $\min$, agregación = $\sum$
-\item \textbf{Defuzzificación}: Centroide discreto
-\item \textbf{Salida}: Score continuo [0,1], binarizado con umbral $\tau$=0.30 (optimizado para maximizar F1-Score)
-\end{itemize}
+\subsection{Arquitectura del Sistema de Inferencia Difusa Mamdani}
+\label{subsec:sistema_difuso}
 
-\subsubsection{Funciones de Pertenencia}
-Las funciones de pertenencia triangulares se definieron como:
+El sistema de inferencia difusa siguió arquitectura Mamdani \cite{Mamdani1974}, seleccionada sobre alternativas Takagi-Sugeno por su superior interpretabilidad lingüística que habilita auditoría clínica \cite{Czmil2023FuzzyClassifiers}. El sistema comprendió cuatro entradas continuas (normalizadas al rango [0,1] mediante transformación RobustScaler), tres funciones de pertenencia triangulares por variable de entrada (etiquetas lingüísticas: Bajo, Medio, Alto), cinco reglas IF-THEN expertas y un score de salida continuo defuzzificado mediante método de centroide discreto \cite{Ross2010}.
+
+Las funciones de pertenencia $\mu(x; a, b, c)$ fueron parametrizadas por percentiles empíricos derivados del conjunto completo de 1,337 semanas: Bajo (p10, p25, p40), Medio (p35, p50, p65), Alto (p60, p80, p90), siguiendo la ecuación triangular:
 
 \begin{equation}
 \mu(x; a, b, c) = 
@@ -123,31 +119,43 @@ Las funciones de pertenencia triangulares se definieron como:
 \frac{x-a}{b-a}, & a < x < b \\
 \frac{c-x}{c-b}, & b \leq x < c
 \end{cases}
+\label{eq:pertenencia}
 \end{equation}
 
-donde $(a, b, c)$ corresponden a percentiles (p10, p25, p40) para ``Bajo'', (p35, p50, p65) para ``Medio'', y (p60, p80, p90) para ``Alto''.
-
-\subsubsection{Base de Reglas Expertas}
-Las cinco reglas se diseñaron integrando principios fisiológicos:
+La base de reglas expertas codificó conocimiento fisiológico integrando balance actividad-metabólico (Reglas R1-R2), estado cardiovascular-autonómico (Regla R3), condiciones intermedias (Regla R4) y actividad dominante (Regla R5):
 
 \begin{enumerate}
-\item \textbf{R1}: SI Act\_rel=Baja Y Superávit=Alto ENTONCES Sed=Alto (0.9)
-\item \textbf{R2}: SI Act\_rel=Baja Y Superávit=Bajo ENTONCES Sed=Medio (0.5)
-\item \textbf{R3}: SI HRV=Baja Y Delta\_FC=Bajo ENTONCES Sed=Alto (0.8)
-\item \textbf{R4}: SI Act\_rel=Media Y HRV=Media ENTONCES Sed=Medio (0.5)
-\item \textbf{R5}: SI Act\_rel=Alta ENTONCES Sed=Bajo (0.1)
+\item \textbf{R1}: SI Act\_rel=Baja Y Superávit=Alto ENTONCES Sedentarismo=Alto (peso: 0.9) \\ \textit{Fundamento:} Movimiento bajo con gasto calórico alto indica sedentarismo con ingesta excesiva.
+
+\item \textbf{R2}: SI Act\_rel=Baja Y Superávit=Bajo ENTONCES Sedentarismo=Medio (peso: 0.5) \\ \textit{Fundamento:} Actividad baja sin exceso calórico sugiere sedentarismo moderado.
+
+\item \textbf{R3}: SI HRV=Baja Y Delta\_FC=Bajo ENTONCES Sedentarismo=Alto (peso: 0.8) \\ \textit{Fundamento:} Variabilidad autonómica reducida combinada con pobre respuesta cardiovascular a deambulación señala desacondicionamiento \cite{Thayer2009,Shaffer2017}.
+
+\item \textbf{R4}: SI Act\_rel=Media Y HRV=Media ENTONCES Sedentarismo=Medio (peso: 0.5) \\ \textit{Fundamento:} Actividad moderada con HRV normal indica comportamiento balanceado.
+
+\item \textbf{R5}: SI Act\_rel=Alta ENTONCES Sedentarismo=Bajo (peso: 0.1) \\ \textit{Fundamento:} Actividad alta predice dominantemente sedentarismo bajo independientemente de otros factores.
 \end{enumerate}
 
+Los pesos de reglas (centroides consecuentes) se asignaron basándose en interpretación de severidad, abarcando 0.1 (sedentarismo mínimo) a 0.9 (sedentarismo máximo). La inferencia empleó t-norma mín para operador AND y agregación de suma ponderada entre reglas activadas, implementada en scikit-fuzzy 0.4.2 \cite{Zadeh1965}. El score de salida continuo [0,1] se binarizó usando umbral $\tau$=0.30, optimizado para maximizar F1-Score en conjunto de entrenamiento (búsqueda iterativa sobre $\tau \in$ [0.10, 0.50] con incrementos 0.01). Clasificaciones $\geq$0.30 se etiquetaron ``Alto Sedentarismo''; $<$0.30 como ``Bajo Sedentarismo''.
+
 \subsection{Estrategia de Validación}
+\label{subsec:validacion}
 
-\subsubsection{Validación por Concordancia}
-El sistema difuso fue validado comparando sus clasificaciones contra la GO del clustering mediante matriz de confusión, calculando F1-Score, Precision, Recall, Accuracy y Matthews Correlation Coefficient (MCC).
+La validación del sistema siguió enfoque dual combinando análisis de concordancia contra VO y validación cruzada para evaluación de generalización. La \textbf{validación por concordancia} comparó clasificaciones del sistema difuso contra asignaciones de clústeres K-Means a lo largo de todas las 1,337 semanas, calculando matriz de confusión 2$\times$2 con métricas derivadas: F1-Score (media armónica precisión-recall, preferida para clases desbalanceadas), Precisión (valor predictivo positivo), Recall (sensibilidad), Exactitud (corrección total) y Coeficiente de Correlación de Matthews (MCC, robusto a desbalance de clases) \cite{Chicco2020,Powers2020}.
 
-\subsubsection{Validación Cruzada Leave-One-User-Out (LOUO)}
-Para evaluar generalización inter-usuario, implementamos validación cruzada LOUO con 10 iteraciones (una por usuario). En cada iteración, el usuario $i$ sirve como conjunto de prueba mientras los restantes 9 usuarios entrenan el modelo (re-estimación de percentiles de funciones de pertenencia y optimización de $\tau$). Esta estrategia evita fuga temporal y proporciona estimaciones robustas con intervalos de confianza estrechos.
+La \textbf{validación cruzada Leave-One-User-Out (LOUO)} evaluó generalización inter-usuario mediante 10 iteraciones independientes, cada una excluyendo un participante como conjunto de prueba (n$_{\text{prueba}}$=semanas del usuario $i$) mientras entrenaba con los 9 usuarios restantes (n$_{\text{entrenamiento}}$=semanas de usuarios $\neq i$) \cite{Varoquaux2017,Poldrack2020}. En cada fold, los centroides K-Means se recomputaron en el subconjunto de entrenamiento, los percentiles de funciones de pertenencia difusa se re-estimaron y el umbral $\tau$ se re-optimizó mediante búsqueda de grilla, asegurando ausencia de fuga de información del usuario de prueba hacia parametrización del modelo. Este procedimiento previene fuga temporal inherente a divisiones aleatorias train-test en datos longitudinales con autocorrelación \cite{Rehman2024LOSO}, proporcionando estimaciones realistas de desempeño en individuos no vistos. Las métricas finales se reportaron como media $\pm$ desviación estándar a través de 10 folds, con coeficiente de variación (CV = DE/Media $\times$ 100) cuantificando estabilidad inter-usuario.
 
-\subsubsection{Análisis de Robustez}
-Evaluamos estabilidad del sistema mediante: (1) análisis de sensibilidad variando $\tau$ $\pm$10\% y parámetros de funciones de pertenencia $\pm$10\%, y (2) comparación modelo completo (4V, 5 reglas) vs modelo reducido (2V, 3 reglas) para cuantificar contribución de variables cardiovasculares.
+El \textbf{análisis de robustez} examinó sensibilidad del sistema mediante dos enfoques. Primero, perturbación de parámetros varió umbral $\tau$ en $\pm$10\% (rango: 0.27-0.33) y percentiles de funciones de pertenencia en $\pm$10\%, cuantificando degradación de desempeño ($\Delta$F1) para evaluar estabilidad operacional. Segundo, ablación de variables comparó el modelo completo de 4 variables (4V: Actividad Relativa, Superávit Basal, HRV-SDNN, Delta Cardíaco, 5 reglas) contra modelo reducido de 2 variables (2V: solo Actividad Relativa y Superávit Basal, eliminando componentes cardiovasculares y Reglas R3-R4), aislando la contribución de biomarcadores cardiovasculares mediante diferencia de desempeño ($\Delta$F1 = F1$_{\text{4V}}$ - F1$_{\text{2V}}$). Esta estrategia de ablación prueba la hipótesis de paradoja HRV: si variables univariadamente no significativas contribuyen críticamente en contexto multivariado no lineal \cite{Godkin2025Context,Marino2024ARIC}.
+
+\subsection{Análisis Estadístico}
+\label{subsec:estadistica}
+
+Todos los análisis se condujeron en Python 3.10.12 usando pandas 2.0.3 (manipulación datos), NumPy 1.24.3 (cómputo numérico), scikit-learn 1.3.0 (clustering, métricas), scikit-fuzzy 0.4.2 (inferencia difusa) y SciPy 1.11.1 (pruebas estadísticas). La evaluación de normalidad mediante pruebas Shapiro-Wilk \cite{Shapiro1965} confirmó distribuciones no normales para todas las variables (p$<$0.05), necesitando enfoques no paramétricos. Las comparaciones de centroides de clústeres emplearon pruebas U de Mann-Whitney \cite{Mann1947} con corrección de Bonferroni para comparaciones múltiples ($\alpha$=0.05/4=0.0125 por prueba). Los tamaños de efecto se cuantificaron mediante d de Cohen con umbrales de interpretación: 0.2=pequeño, 0.5=mediano, 0.8=grande \cite{Cohen1988}. Los intervalos de confianza (95\%) para métricas de validación cruzada se calcularon mediante bootstrap percentil con 1,000 iteraciones. La significancia estadística se definió como p$<$0.05 bilateral. La reproducibilidad se aseguró mediante semillas aleatorias fijas (random\_state=42) y dependencias versionadas documentadas en requirements.txt, con código fuente depositado en repositorio institucional adhiriendo a principios FAIR \cite{Wilkinson2016}.
+
+\subsection{Consideraciones Éticas}
+\label{subsec:etica}
+
+Se obtuvo aprobación ética del comité de revisión institucional (FMCB-2024-001) previamente a la recolección de datos. Todos los participantes proporcionaron consentimiento informado escrito tras recibir explicación detallada de: (1) objetivos y procedimientos del estudio, (2) tipos de datos recolectados y duración de retención, (3) protecciones de confidencialidad y protocolos de anonimización, (4) participación voluntaria y derechos de retiro sin consecuencias, y (5) riesgos mínimos anticipados. Las medidas de protección de datos incluyeron: desidentificación de participantes mediante códigos numéricos (U01-U10), almacenamiento cifrado en servidores institucionales con acceso restringido a miembros del equipo de investigación y cumplimiento con la Ley Federal de Protección de Datos Personales de México \cite{Liu2022}. No se proporcionó compensación financiera, minimizando riesgo de coerción. El estudio no planteó riesgo mayor que mínimo, dado que todos los datos se recolectaron pasivamente de dispositivos que los participantes usaban voluntariamente para seguimiento personal de salud, sin manipulación experimental o carga adicional más allá del uso rutinario del dispositivo.
 
 \section{Resultados}
 
