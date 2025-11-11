@@ -97,23 +97,17 @@ u10 & F & 28 & 21.6 & 131 & 100\% \\
 \subsection{Relación entre Variables}
 \label{subsec:relacion_variables}
 
-La relación de interés en este estudio se centró en analizar si los patrones de actividad física (AF) y comportamiento sedentario (CS) capturados objetivamente mediante wearables se asocian con diferencias en indicadores de salud. La hipótesis planteó que un modelo de inteligencia artificial basado en lógica difusa, entrenado con datos biométricos obtenidos de monitores portátiles, permitiría clasificar con precisión los niveles de sedentarismo semanales.
-
-Se espera que, a mayor presencia de CS, se observen menores puntuaciones en la percepción de la CVRS, mientras que niveles más altos de AF estarán asociados con puntuaciones más altas en la percepción de la CVRS. Estas predicciones, combinadas con un análisis estadístico basado en los resultados del cuestionario SF-36, buscan identificar correlaciones significativas entre las variables estudiadas, proporcionando evidencia cuantitativa de cómo el CS y la AF influyen en la calidad de vida.
+La relación de interés en este estudio se centró en evaluar la capacidad de un modelo de inteligencia artificial basado en lógica difusa para clasificar con precisión el comportamiento sedentario semanal, utilizando exclusivamente datos biométricos multivariados (actividad física, gasto calórico, variabilidad cardíaca, respuesta autonómica) obtenidos de dispositivos portátiles en condiciones de vida libre. La validación se realizó mediante concordancia con una verdad operativa derivada de clustering no supervisado (K-Means), evaluando la convergencia entre descubrimiento empírico de patrones y modelado basado en conocimiento experto.
 
 \subsection{Variables Independientes}
 \label{subsec:variables_independientes}
 
 Datos cuantitativos del Apple Watch: Número de pasos por día, horas estacionarias, minutos totales en movimiento, gasto calórico activo, frecuencia cardiaca promedio, entre otras.
 
-\subsection{Variables Dependientes}
-\label{subsec:variables_dependientes}
+\subsection{Variable Dependiente}
+\label{subsec:variable_dependiente}
 
-\begin{itemize}
-    \item Precisión del algoritmo de inteligencia artificial con lógica difusa en la estimación de la categorización de la AF y el CS.
-    
-    \item Calidad de Vida Relacionada con la Salud (CVRS), medida con el cuestionario SF-36, analizando sus dimensiones (Función física, Rol físico, Dolor corporal, Salud general, Vitalidad, Función social, Rol emocional, Salud mental) y la Puntuación Global.
-\end{itemize}
+Clasificación binaria de comportamiento sedentario semanal (Alto/Bajo) derivada del sistema de inferencia difusa Mamdani, expresada como un índice continuo en el rango [0,1] y posteriormente binarizada mediante umbral óptimo ($\tau=0.30$). La validación se realizó comparando esta clasificación con la verdad operativa (GO) establecida mediante clustering K-Means sobre las mismas variables de entrada.
 
 \subsection{Variables de Control}
 \label{subsec:variables_control}
@@ -123,7 +117,7 @@ Edad, sexo, peso y estatura, entre otras. Se registran para aislar su efecto sob
 \subsection{Operacionalización de las Variables}
 \label{subsec:operacionalizacion_variables}
 
-La \Cref{tab:variables_instrumento} presenta las variables recolectadas en el instrumento, las cuales corresponden a la recolección de los datos biométricos obtenidos mediante la selección de características del Apple Health, así como la aplicación del cuestionario de salud SF-36 y su correspondiente puntuación y recodificación de valores obtenidos.
+La \Cref{tab:variables_instrumento} presenta las variables recolectadas en el instrumento, las cuales corresponden a los datos biométricos obtenidos mediante la exportación de archivos XML de Apple HealthKit y su posterior conversión a formato CSV para análisis estadístico.
 
 \begin{table}[H]
 \centering
@@ -175,25 +169,7 @@ Frecuencia cardiaca de reposo promedio diario (lpm) & Independiente & Numérica 
 \midrule
 Gasto calórico activo (kcal) & Independiente & Numérica & Continua & Estimación del gasto calórico activo según el Apple Watch, en kilocalorías. \\
 \midrule
-Función física (SF-36) & Dependiente & Numérica (Escala) & Continua & Dimensión del SF-36 (puntaje 0 a 100). Evalúa la capacidad para realizar actividades físicas. \\
-\midrule
-Rol físico (SF-36) & Dependiente & Numérica (Escala) & Continua & Dimensión del SF-36 que evalúa las limitaciones físicas en la vida diaria. \\
-\midrule
-Dolor corporal (SF-36) & Dependiente & Numérica (Escala) & Continua & Percibe la intensidad y frecuencia del dolor, afecta la calidad de vida. \\
-\midrule
-Salud general (SF-36) & Dependiente & Numérica (Escala) & Continua & Percepción global de salud, síntoma de la salud percibida. \\
-\midrule
-Vitalidad (SF-36) & Dependiente & Numérica (Escala) & Continua & Evalúa energía, fatiga y cansancio. \\
-\midrule
-Función social (SF-36) & Dependiente & Numérica (Escala) & Continua & Valora el grado de limitación en las relaciones sociales por problemas de salud. \\
-\midrule
-Rol emocional (SF-36) & Dependiente & Numérica (Escala) & Continua & Evalúa las limitaciones en las actividades diarias por problemas emocionales. \\
-\midrule
-Salud mental (SF-36) & Dependiente & Numérica (Escala) & Continua & Mide depresión, ansiedad, pérdida de control emocional y bienestar general. \\
-\midrule
-Puntuación Global (SF-36) & Dependiente & Numérica (Escala) & Continua & Resultado agregado de todos los componentes del SF-36 (promedio final o score total). \\
-\midrule
-Estimación del algoritmo de lógica difusa & Dependiente & Numérica & Continua & Resultado obtenido por el algoritmo de Inteligencia artificial que integra las características identificadas para el CS y para la AF. \\
+Índice de sedentarismo (Sistema Difuso) & Dependiente & Numérica & Continua & Score continuo [0,1] generado por el sistema de inferencia difusa Mamdani. Valores cercanos a 1 indican alto sedentarismo; valores cercanos a 0 indican bajo sedentarismo. \\
 \end{longtable}
 \end{table}
 
