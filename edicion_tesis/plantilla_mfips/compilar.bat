@@ -17,8 +17,9 @@ set ARCHIVO=plantilla_tesis
 
 :: Paso 0: Limpiar archivos auxiliares previos (evita problemas de cache)
 echo [0/4] Limpiando archivos auxiliares previos...
-del %ARCHIVO%.aux %ARCHIVO%.log %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.bbl %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
+del %ARCHIVO%.aux %ARCHIVO%.log %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
 del capitulos\*.aux 2>nul
+:: NOTA: NO borrar .bbl - es necesario para que las referencias aparezcan en el PDF
 echo.
 
 :: Paso 1: Primera compilación con pdflatex
