@@ -7913,3 +7913,123 @@ En estos días he presenciado la forja de:
 
 ---
 
+## 🔱 **[11 NOV 2025 - URGENTE] POSEIDÓN: BÚSQUEDA BIBLIOGRÁFICA - LIMITACIÓN TÉCNICA**
+
+**Timestamp:** Lunes, 11 de noviembre de 2025, hora actual  
+**Tarea:** Búsqueda bibliográfica 15-20 artículos 2023-2025  
+**Estado:** ⚠️ **LIMITACIÓN TÉCNICA DETECTADA**
+
+---
+
+### 🚨 **PROBLEMA IDENTIFICADO:**
+
+**Web_search NO da acceso a artículos científicos específicos:**
+- ❌ No accede a IEEE Xplore directamente
+- ❌ No accede a PubMed/Scopus
+- ❌ No retorna DOIs ni títulos específicos
+- ❌ Solo da guías generales de formato IEEE
+
+**Intentos realizados (10 búsquedas):**
+- Sedentary + wearables + 2024
+- Fuzzy + health monitoring + 2024  
+- XAI + healthcare + wearable
+- LOUO + validation
+- Apple Watch + HRV + 2024
+- Frontiers + HRV + activity
+- Búsquedas específicas con doi:10.3390, doi:10.1109, doi:10.1038
+
+**Resultado:** Solo información general, no artículos específicos
+
+---
+
+### 🎯 **ALTERNATIVAS INMEDIATAS:**
+
+#### **OPCIÓN A (RECOMENDADA): Usar referencias ya en proyecto**
+
+**Referencias 2020-2024 disponibles en `referencias.bib`:**
+
+Puedo auditar y extraer de tus archivos existentes:
+- ✅ `referencias.bib` (143 referencias)
+- ✅ `referencias_ieee_jbhi.bib` (del directorio IEEE)
+- ✅ `mendely_library.bib` (si existe)
+
+**Ventajas:**
+- ⚡ Inmediato (15-30 min)
+- ✅ Referencias ya verificadas
+- ✅ Formato BibTeX listo
+
+**Desventajas:**
+- ⚠️ Puede que no haya suficientes 2023-2025
+
+---
+
+#### **OPCIÓN B: Tú (Luis) proporcionas DOIs/títulos**
+
+Si tienes acceso a:
+- IEEE Xplore (tu cuenta universitaria)
+- Google Scholar
+- PubMed
+- Biblioteca UACH
+
+**Proceso:**
+1. Busca artículos relevantes 2023-2025
+2. Copia DOIs o títulos completos
+3. Yo genero BibTeX completo para cada uno
+
+**Ventajas:**
+- ✅ Artículos exactos que necesitas
+- ✅ Yo formato todo rápidamente
+
+---
+
+#### **OPCIÓN C: Ades redacta con referencias actuales (16-20)**
+
+Ades puede redactar la Introducción YA con:
+- ✅ 16 referencias 2020-2024 (disponibles)
+- ✅ 4 fundadores <2020 (Zadeh, Mamdani, Ross, Rousseeuw)
+- ✅ Total: 20 referencias SÓLIDAS
+
+**Después (mañana):**
+- Buscamos 10-15 adicionales 2023-2025
+- Actualizamos Introducción
+
+**Ventajas:**
+- ✅ No bloquea tarea de clase
+- ✅ Borrador HOY
+- ✅ Mejoras mañana
+
+---
+
+### 💬 **¿QUÉ OPCIÓN PREFIERES, LUIS?**
+
+**A)** Audito referencias.bib + referencias_ieee_jbhi.bib (30 min)  
+**B)** Tú me das 10-15 DOIs/títulos y yo genero BibTeX (45 min)  
+**C)** Ades redacta con 20 actuales, mejoramos mañana (0 min espera)
+
+**Mi recomendación:** **Opción C** (no bloquea tu tarea) + **Opción A en paralelo** (preparo inventario)
+
+---
+
+### 📊 **LO QUE SÍ PUEDO HACER INMEDIATAMENTE:**
+
+1. ✅ Leer `referencias_ieee_jbhi.bib` completo
+2. ✅ Extraer artículos 2020-2024 relevantes
+3. ✅ Clasificar por categoría (sedentary, fuzzy, XAI, etc.)
+4. ✅ Generar inventario organizado para Ades
+5. ✅ Formatear BibTeX limpio
+
+**Tiempo:** 30-45 minutos
+
+---
+
+**Esperando tu decisión para continuar...** 🔱⏳
+
+---
+
+**🔱 Poseidón - Editor Científico Senior**  
+**Hora:** Lunes, 11 de noviembre de 2025, hora actual  
+**Estado:** ⚠️ Limitación técnica web_search | ✅ Alternativas propuestas  
+**Próxima acción:** Según tu decisión (A, B o C)
+
+---
+
