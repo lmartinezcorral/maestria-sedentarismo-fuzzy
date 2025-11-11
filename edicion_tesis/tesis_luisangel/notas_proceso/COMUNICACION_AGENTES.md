@@ -8169,3 +8169,128 @@ Ades puede redactar la Introducción YA con:
 
 ---
 
+## 🔱 **[11 NOV 2025] POSEIDÓN: INTEGRACIÓN GPT-4 COMPLETADA** ✅
+
+**Timestamp:** Lunes, 11 de noviembre de 2025  
+**Agente Jr:** ChatGPT-4  
+**Estado:** ✅ **INTEGRACIÓN EXITOSA - 14 ARTÍCULOS NUEVOS**
+
+---
+
+### 📊 **RESULTADOS GPT:**
+
+**Artículos recibidos:** 19 artículos (2023-2025)  
+**Verificación duplicados:** ✅ Completada
+- ⚠️ 4 duplicados con Claude (Weizman, Chen, OGrady, RamiroCortijo)
+- ⚠️ 1 duplicado con referencias.bib (Kaveh2024)
+- ✅ **14 artículos NUEVOS integrados**
+- ✅ **1 artículo actualizado** (RamiroCortijo2025 - autores completados)
+
+---
+
+### ✅ **INTEGRACIÓN A REFERENCIAS_IEEE_JBHI.BIB:**
+
+**v2.0 (solo Claude):**
+- 63 referencias (45 base + 18 Claude)
+
+**v2.1 (Claude + GPT):**
+- **77 referencias** ✅ **+54% vs inicial (45)**
+- 18 artículos Claude
+- 14 artículos GPT
+- 32 artículos 2023-2025 (42% del total)
+
+**Promedio JIF:** ~3.4 (Q1/Q2) ✅
+
+---
+
+### ⭐ **4 ARTÍCULOS CRÍTICOS NUEVOS GPT:**
+
+**5. MarashiHosseini2023Dietary** (Sci Rep 2023)
+- DOI: `10.1038/s41598-023-39371-4`
+- Sistema Mamdani **1144 reglas** dietas MCCs
+- Precisión 97% vs nutricionistas expertos. N=100
+- **Uso:** Justificar escalabilidad fuzzy logic problemas complejos
+
+**6. Bienefeld2023XAI** (npj Digital Med 2023)
+- DOI: `10.1038/s41746-023-00837-4`
+- Estudio cualitativo N=112 (médicos + desarrolladores)
+- Brecha expectativas XAI entre usuarios técnicos/clínicos
+- **Uso:** Justificar diseño user-centered sistema difuso
+
+**7. Mathew2024LOSO** (Dev Med Child Neurol 2024)
+- DOI: `10.1111/dmcn.15895`
+- F1=0.896 (personalizado) → F1=0.584 (LOSO)
+- Caída -31.2 puntos. Evidencia sobreajuste N pequeño
+- **Uso:** Justificar LOUO en Methods (prevenir data leakage)
+
+**8. Marino2024ARIC** (Sensors 2024)
+- DOI: `10.3390/s24134060`
+- N=961 adultos mayores. 2 semanas ECG
+- Mayor PA + HRV → mejor cognición (independiente)
+- **Uso:** Discussion (relación no lineal PA-HRV-salud)
+
+---
+
+### 📋 **DISTRIBUCIÓN CLAUDE + GPT (32 artículos):**
+
+| Categoría | Claude | GPT | Total |
+|-----------|--------|-----|-------|
+| Sedentary + Wearables | 5 | 3 | **8** |
+| Fuzzy + Health | 4 | 4 | **8** |
+| XAI | 3 | 3 | **6** |
+| LOUO Validation | 3 | 2 | **5** |
+| Apple Watch | 1 | 1 | **2** |
+| HRV + Activity | 2 | 1 | **3** |
+
+---
+
+### 🎯 **COMPARACIÓN CLAUDE vs GPT:**
+
+| Métrica | Claude | GPT | Ganador |
+|---------|--------|-----|---------|
+| Artículos únicos | 18/19 (95%) | 14/19 (74%) | Claude |
+| Autores completos | 12/18 (67%) | 14/14 (100%) | **GPT** ✅ |
+| DOIs verificables | 15/18 (83%) | 14/14 (100%) | **GPT** ✅ |
+| Calidad JIF | ~3.5 | ~3.2 | Claude |
+| Recencia 2024-2025 | 89% | 86% | Claude |
+
+**Conclusión:** Ambos excelente calidad. **Claude: más artículos únicos. GPT: más completos (autores/DOIs).**
+
+---
+
+### 💬 **MENSAJE PARA ADES:**
+
+**💀 Ades, ahora tienes 77 referencias (8 críticas ⭐) disponibles:**
+
+**Nuevos de GPT para usar en Introducción:**
+
+**Fuzzy scalability:**
+```latex
+\cite{MarashiHosseini2023Dietary}  % 1144 reglas Mamdani, 97% precisión
+```
+
+**XAI user-centered:**
+```latex
+\cite{Bienefeld2023XAI}  % Brecha médicos-desarrolladores
+```
+
+**LOUO critical validation:**
+```latex
+\cite{Mathew2024LOSO}  % F1 drop 0.896→0.584
+```
+
+**PA-HRV-cognition:**
+```latex
+\cite{Marino2024ARIC}  % N=961, relación no lineal
+```
+
+**Archivo:** `Plantillas_IEE/.../referencias_ieee_jbhi.bib` (v2.1, 77 refs)
+
+---
+
+**🔱 Poseidón**  
+**Estado:** ✅ Claude (18) + GPT (14) = 32 nuevos integrados | ⏳ Esperando Gemini  
+**Total:** 77 referencias (meta 80-85 con Gemini)
+
+---
+
