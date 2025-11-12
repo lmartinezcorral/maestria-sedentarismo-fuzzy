@@ -1,0 +1,288 @@
+% ============================================================================
+% TABLA 2.6: CUADRO COMPARATIVO DE INVESTIGACIONES PREVIAS
+% Generado por: Poseidón 🔱 (12 Nov 2025, 21:15 hrs)
+% Selección: 17 artículos representativos (2018-2025)
+% Criterios: Diversidad metodológica + LOUO destacado + Alcance amplio
+% ============================================================================
+
+\begin{table}[htbp]
+    \centering
+    \caption{Cuadro comparativo de investigaciones previas sobre clasificación de comportamiento sedentario y actividad física con wearables}
+    \label{tab:comparativa_investigaciones}
+    \footnotesize
+    \begin{tabular}{@{}p{1.8cm}p{2.2cm}p{1.5cm}p{1.3cm}p{0.8cm}p{1.2cm}p{1.8cm}p{1.5cm}@{}}
+        \toprule
+        \textbf{Autor (Año)} & 
+        \textbf{Objetivo} & 
+        \textbf{Técnica} & 
+        \textbf{Datos/ Wearable} & 
+        \textbf{N} & 
+        \textbf{Validación} & 
+        \textbf{Métrica Principal} & 
+        \textbf{Resultado} \\
+        \midrule
+        
+        % ========== FUZZY LOGIC ==========
+        
+        Capitoli et al. (2025) \cite{Capitoli2025FuzzyXAI} & 
+        Diagnóstico clínico interpretable con lógica difusa probabilística & 
+        Fuzzy Logic (interpretable) & 
+        Datos clínicos hospitalarios & 
+        Clínico & 
+        Validación clínica & 
+        Interpretabilidad 100\% & 
+        Clínicos controlan proceso diagnóstico. Fuzzy = XAI \\
+        
+        \midrule
+        
+        Marashi-Hosseini et al. (2023) \cite{MarashiHosseini2023Dietary} & 
+        Sistema decisión dietética para pacientes múltiples condiciones crónicas & 
+        Fuzzy Logic Mamdani (1144 reglas) & 
+        Datos dietéticos + clínicos & 
+        100 & 
+        Validación vs nutricionistas & 
+        Precisión & 
+        97\% precisión. Sistema experto fuzzy riguroso \\
+        
+        \midrule
+        
+        Gonçalves et al. (2021) \cite{Goncalves2021} & 
+        Reconocimiento actividad humana con clustering + fuzzy & 
+        K-Means ($k=2$) $\rightarrow$ FIS Mamdani & 
+        Sensores inerciales (IMU) & 
+        --- & 
+        Validación estabilidad & 
+        Estabilidad clasificación & 
+        ÚNICO precedente clustering $\rightarrow$ fuzzy supervisado \\
+        
+        \midrule
+        
+        % ========== DEEP LEARNING ==========
+        
+        Khan et al. (2024) \cite{Khan2024Wearable} & 
+        Reconocimiento actividad física con sensores inerciales + deep learning & 
+        Deep Learning (CNNs + LSTMs) & 
+        Sensores inerciales wearable & 
+        --- & 
+        K-fold CV & 
+        Accuracy & 
+        Alta precisión. Requiere datos masivos + no interpretable \\
+        
+        \midrule
+        
+        Bassani et al. (2025) \cite{Bassani2025DLHAR} & 
+        Deep Learning para reconocimiento actividad física en tareas manuales & 
+        Deep Learning (varios modelos) & 
+        Acelerómetros & 
+        --- & 
+        70/30 vs LOSO & 
+        Accuracy & 
+        \textbf{70/30: 95.7\%} $\rightarrow$ \textbf{LOSO: 90.3\%}. Generalización robusta requiere LOSO \\
+        
+        \midrule
+        
+        % ========== MACHINE LEARNING CLÁSICO ==========
+        
+        Fuller et al. (2021) \cite{Fuller2021Predicting} & 
+        Clasificación lying, sitting, walking, running con Apple Watch + Fitbit & 
+        Random Forest & 
+        Apple Watch + Fitbit (acelerómetro) & 
+        33 & 
+        LOOCV & 
+        Accuracy & 
+        Accuracy $>$90\% para posturas. BYOD validado \\
+        
+        \midrule
+        
+        Mathew et al. (2024) \cite{Mathew2024LOSO} & 
+        Medición uso funcional mano en parálisis cerebral unilateral con ML & 
+        Machine Learning (varios modelos) & 
+        Acelerómetros (muñeca) & 
+        22 & 
+        Personalizado vs LOSO & 
+        F1-Score & 
+        \textbf{Personalizado: F1=0.896} $\rightarrow$ \textbf{LOSO: F1=0.584}. Evidencia sobreajuste $N$ pequeño \\
+        
+        \midrule
+        
+        Rehman et al. (2024) \cite{Rehman2024LOSO} & 
+        Estudio comparativo validación + extracción características en HAR wearables & 
+        Random Forest & 
+        Sensores inerciales wearables & 
+        --- & 
+        LOSO vs k-fold & 
+        Accuracy & 
+        \textbf{LOSO: 76\%} vs \textbf{k-fold: 89\%}. Data leakage justifica LOUO \\
+        
+        \midrule
+        
+        % ========== MÉTODOS ESTADÍSTICOS ==========
+        
+        Salim et al. (2024) \cite{Salim2024STEPHEN} & 
+        Detección tiempo sedentario + bouts con Hidden Semi-Markov Model & 
+        Hidden Semi-Markov Model & 
+        Wearables consumo (muñeca) & 
+        --- & 
+        Validación vs ground truth & 
+        Sensibilidad/ Especificidad & 
+        Detección precisa sedentary bouts. Método estadístico avanzado \\
+        
+        \midrule
+        
+        Migueles et al. (2022) \cite{Migueles2022GRANADA} & 
+        Consenso análisis acelerómetro para comportamientos físicos en epidemiología & 
+        Consenso metodológico & 
+        Acelerómetros (varios) & 
+        --- & 
+        Revisión sistemática & 
+        Guías metodológicas & 
+        Estándar internacional para análisis PA/sedentarismo \\
+        
+        \midrule
+        
+        % ========== VALIDACIÓN WEARABLES ==========
+        
+        Lyons et al. (2024) \cite{Lyons2024StandHour} & 
+        Definición umbrales actividad que activan ``Stand Hour'' en Apple Watch & 
+        Estudio observacional & 
+        Apple Watch (energía activa + pasos) & 
+        --- & 
+        Análisis umbral & 
+        Umbrales Stand Hour & 
+        Deconstruye proxy sedentarismo comercial. Umbrales caja negra identificados \\
+        
+        \midrule
+        
+        O'Grady et al. (2024) \cite{OGrady2024AppleWatch} & 
+        Validación HRV + RHR en Apple Watch Series 9 y Ultra 2 & 
+        Estudio validación & 
+        Apple Watch vs Polar H10 (gold standard) & 
+        39 & 
+        Validación concurrente & 
+        MAPE & 
+        \textbf{HRV MAPE=28.88\%}, \textbf{RHR MAPE=5.91\%}. Limitaciones sensor PPG \\
+        
+        \midrule
+        
+        Ji et al. (2023) \cite{Ji2023Scratch} & 
+        Evaluación scratch nocturno con actigrafía en pacientes dermatitis atópica & 
+        Machine Learning & 
+        Actigrafía (ActiGraph) & 
+        --- & 
+        \textbf{LOSO evaluation} & 
+        Sensibilidad/ Especificidad & 
+        \textbf{Nature npj Digital Medicine}. Precedente metodológico clínico LOSO \\
+        
+        \midrule
+        
+        % ========== XAI + INTERPRETABILIDAD ==========
+        
+        Bienefeld et al. (2023) \cite{Bienefeld2023XAI} & 
+        Resolver dilema XAI: brecha necesidades clínicos vs objetivos desarrolladores & 
+        Estudio cualitativo & 
+        Entrevistas + cuestionarios & 
+        112 & 
+        Análisis cualitativo & 
+        Temas identificados & 
+        Clínicos requieren transparencia global. Desarrolladores enfocan local \\
+        
+        \midrule
+        
+        Deng et al. (2023) \cite{Deng2023LharJBHI} & 
+        HAR ligero en wearables con knowledge distillation & 
+        Deep Learning (ligero) & 
+        Sensores wearables & 
+        --- & 
+        Validación experimental & 
+        Accuracy + eficiencia & 
+        \textbf{IEEE JBHI} (revista objetivo). HAR eficiente wearables \\
+        
+        \midrule
+        
+        % ========== FISIOLOGÍA + HRV ==========
+        
+        Godkin et al. (2025) \cite{Godkin2025Context} & 
+        Medir RHR durante vida diaria: impacto contexto conductual + criterios metodológicos & 
+        Estudio observacional & 
+        Wearables (RHR + acelerómetro) & 
+        --- & 
+        Análisis contextual & 
+        RHR por contexto & 
+        \textbf{RHR sedentario $\neq$ RHR sueño}. Contextos autonómicos diferentes. Clasificación fisiológica vs postural \\
+        
+        \midrule
+        
+        Marino et al. (2024) \cite{Marino2024ARIC} & 
+        Asociaciones PA + HRV con función cognitiva + demencia (ARIC Neurocognitive Study) & 
+        Análisis cohorte longitudinal & 
+        ECG ambulatorio 2 semanas + acelerómetro & 
+        961 & 
+        Análisis regresión & 
+        Odds Ratio (OR) & 
+        Mayor PA + HRV $\rightarrow$ mejor cognición. Relación no lineal PA-HRV-salud cerebral \\
+        
+        \midrule
+        
+        % ========== INVESTIGACIÓN ACTUAL (ÚLTIMA FILA) ==========
+        
+        \textbf{Martínez-Corral (2025)} \newline \textbf{[Investigación Actual]} & 
+        \textbf{Clasificación comportamiento sedentario mediante lógica difusa + datos biométricos Apple Watch (HRV, acelerómetro)} & 
+        \textbf{Clustering K-Means ($k=2$) $\rightarrow$ Fuzzy Mamdani (4 variables)} & 
+        \textbf{Apple Watch (PPG + IMU) vida libre} & 
+        \textbf{10 (5F/5M)} & 
+        \textbf{LOUO (10-fold)} & 
+        \textbf{F1-Score} & 
+        \textbf{F1-global=0.840, F1-LOUO=0.780$\pm$0.167. Interpretabilidad 100\%. BYOD validado. Único estudio clustering$\rightarrow$fuzzy + LOUO + HRV sedentarismo} \\
+        
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% ============================================================================
+% NOTAS PARA EL AUTOR:
+% ============================================================================
+% 
+% REFERENCIAS CITADAS EN LA TABLA (17):
+% 1. Capitoli2025FuzzyXAI
+% 2. MarashiHosseini2023Dietary
+% 3. Goncalves2021
+% 4. Khan2024Wearable
+% 5. Bassani2025DLHAR
+% 6. Fuller2021Predicting
+% 7. Mathew2024LOSO
+% 8. Rehman2024LOSO
+% 9. Salim2024STEPHEN
+% 10. Migueles2022GRANADA
+% 11. Lyons2024StandHour
+% 12. OGrady2024AppleWatch
+% 13. Ji2023Scratch
+% 14. Bienefeld2023XAI
+% 15. Deng2023LharJBHI
+% 16. Godkin2025Context
+% 17. Marino2024ARIC
+% 
+% ARTÍCULOS QUE USAN LOUO/LOSO (5):
+% - Bassani2025DLHAR (LOSO caída rendimiento)
+% - Fuller2021Predicting (LOOCV)
+% - Mathew2024LOSO (F1 drop personalizado→LOSO)
+% - Rehman2024LOSO (comparación LOSO vs k-fold)
+% - Ji2023Scratch (LOSO Nature npj)
+% 
+% DISTRIBUCIÓN METODOLÓGICA:
+% - Fuzzy Logic: 3 artículos (Capitoli, Marashi, Gonçalves)
+% - Deep Learning: 2 artículos (Khan, Bassani)
+% - ML clásico: 3 artículos (Fuller, Mathew, Rehman)
+% - Métodos estadísticos: 2 artículos (Salim, Migueles)
+% - Validación wearables: 3 artículos (Lyons, OGrady, Ji)
+% - XAI: 2 artículos (Bienefeld, Deng)
+% - Fisiología/HRV: 2 artículos (Godkin, Marino)
+% 
+% APORTACIÓN DIFERENCIAL (investigación actual):
+% 1. ÚNICO estudio clustering NO SUPERVISADO → fuzzy SUPERVISADO + LOUO
+% 2. ÚNICO estudio con HRV para clasificar sedentarismo (fisiológico vs postural)
+% 3. Validación LOUO (generalización inter-usuario)
+% 4. Interpretabilidad 100% (reglas lingüísticas + funciones membresía)
+% 5. BYOD (Bring-Your-Own-Device) vida libre multi-anual
+% 
+% ============================================================================
+

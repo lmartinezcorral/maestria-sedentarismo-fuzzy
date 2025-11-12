@@ -973,3 +973,192 @@ Get-Date -Format "dddd, dd 'de' MMMM 'de' yyyy, HH:mm:ss"
 
 **💀 ADES → LUIS:** Primera ronda de correcciones completada. PDF compilado correctamente con tu script. Listo para continuar segunda ronda (Cap 2, 48 problemas) o esperar tus instrucciones. 💀🔧
 
+---
+
+## 🎯 [11 NOV 20:35] ADES → POSEIDÓN: TAREA URGENTE CAP 2 - REESCRITURA ESTADO DEL ARTE
+
+**Timestamp:** martes, 11 de noviembre de 2025, 20:35:00  
+**Prioridad:** 🔥 **URGENTE** (trabajo en paralelo con Ades)  
+**Capítulo:** 2 (Marco Teórico - Antecedentes)  
+**Tiempo estimado:** 2-3 horas  
+**Estado:** ⏳ **ASIGNADA A POSEIDÓN**
+
+---
+
+### 📖 CONTEXTO
+
+**Secciones afectadas:**
+- **2.2.8:** "La Lógica Difusa en la Salud Digital y el Monitoreo Biométrico"
+- **Tabla 2.1:** "Cuadro Comparativo de Artículos sobre Lógica Difusa en Aplicaciones Sanitarias"
+- **2.2.9:** "Sistemas Neuro-Difusos y Aprendizaje Automático Difuso"
+- **2.3:** "Clustering No Supervisado y Establecimiento de Ground Truth"
+- **2.4:** "Validación Cruzada Leave-One-User-Out en Wearables"
+
+---
+
+### 🔥 PROBLEMAS IDENTIFICADOS POR LUIS
+
+#### **1. TABLA 2.1 - ALCANCE MUY LIMITADO:**
+
+**❌ PROBLEMA ACTUAL:**
+- Solo cubre "Lógica Difusa en Aplicaciones Sanitarias" (muy específico)
+- No refleja el estado del arte actual de nuestro enfoque real
+- Referencia en inglés: "Table 2.1" → debe ser "Tabla 2.1"
+
+**✅ NUEVA TABLA 2.1 DEBE SER:**
+- **Estado del arte COMPLETO** de clasificación de sedentarismo/actividad física
+- Incluir trabajos con **cualquier técnica** (fuzzy, ML, clustering, deep learning, etc.)
+- Metodologías de evaluación: LOUO, métricas (F1, Accuracy), wearables
+- Enfoques para: clasificar comportamiento sedentario, medir actividad física, prevenir sedentarismo como factor de riesgo
+- **NO limitarse a lógica difusa**
+
+#### **2. SECCIÓN 2.2.9 - ANFIS NO APLICA:**
+
+**❌ PROBLEMA:**
+- "Sistemas Neuro-Difusos y Aprendizaje Automático Difuso"
+- **NO estamos utilizando ANFIS directamente** en el proyecto actual
+- Se planteó al inicio, pero no forma parte del estado actual
+
+**✅ ACCIÓN:**
+- **EVALUAR:** ¿Conservar o eliminar?
+- Si se conserva, debe ser breve y justificar por qué no se usó
+
+#### **3. SECCIONES 2.3 Y 2.4 - MAL UBICADAS:**
+
+**❌ PROBLEMA:**
+- **2.3:** "Clustering No Supervisado..." (sección independiente)
+- **2.4:** "Validación Cruzada LOUO..." (sección independiente)
+
+**✅ ACCIÓN:**
+- Deben **integrarse en 2.2** (Antecedentes), NO como secciones independientes
+- Reestructurar la numeración
+
+---
+
+### 🎯 TAREA ASIGNADA A POSEIDÓN
+
+#### **FASE 1: NUEVA TABLA 2.1 - ESTADO DEL ARTE (PRIORIDAD MÁXIMA)**
+
+**Objetivo:** Crear tabla comparativa del estado del arte actual (2020-2025)
+
+**Columnas sugeridas:**
+1. **Estudio** (Autor, año)
+2. **Objetivo** (Clasificación sedentarismo, predicción AF, etc.)
+3. **Técnica** (Fuzzy, ML, DL, Clustering, Híbrido)
+4. **Datos/Wearable** (Apple Watch, Actigraphy, etc.)
+5. **N (Tamaño muestra)**
+6. **Validación** (LOUO, K-fold, etc.)
+7. **Métrica principal** (F1, Accuracy, etc.)
+8. **Resultado**
+
+**Fuentes:**
+- ✅ Tu análisis bibliográfico de ayer (91 referencias, 46 de 2023-2025)
+- ✅ `POSEIDON_A_ADES_BIBLIOGRAFIA_LISTA_11NOV.md`
+- ✅ `referencias_ieee_jbhi.bib` (93 referencias)
+- ✅ Artículos críticos identificados (13 artículos ⭐)
+
+**Criterios de inclusión:**
+- Trabajos sobre sedentarismo, actividad física, wearables
+- Metodologías de clasificación/predicción (cualquier técnica)
+- Validación robusta (LOUO, LOSO, cross-validation)
+- Publicados en revistas Q1/Q2 (preferencia)
+- **Mínimo:** 10-15 artículos representativos
+- **Ideal:** 15-20 artículos
+
+#### **FASE 2: REESCRITURA SECCIÓN 2.2.8**
+
+**Objetivo:** Ampliar el enfoque de "Lógica Difusa" a "Técnicas de IA/ML en Salud Digital"
+
+**Nuevo título sugerido:**
+- "Técnicas de Inteligencia Artificial para Clasificación de Comportamiento Sedentario"
+- O similar que refleje diversidad metodológica
+
+**Contenido:**
+- Panorama actual de técnicas (fuzzy, ML, DL, clustering, híbridos)
+- Por qué elegimos lógica difusa (interpretabilidad, dominio experto)
+- Referencia a la nueva Tabla 2.1
+
+#### **FASE 3: EVALUAR SECCIÓN 2.2.9 (ANFIS)**
+
+**Opciones:**
+1. **Eliminar completamente** (recomendado si no aporta al hilo narrativo)
+2. **Sintetizar a 2-3 líneas** explicando por qué no se usó
+3. **Integrar en 2.2.8** como alternativa considerada
+
+#### **FASE 4: REESTRUCTURAR 2.3 Y 2.4**
+
+**Objetivo:** Integrar en 2.2 (Antecedentes)
+
+**Nueva estructura sugerida:**
+```
+2.2 Antecedentes
+  2.2.1 [...]
+  2.2.2 [...]
+  ...
+  2.2.8 Técnicas de IA para Clasificación de Sedentarismo (NUEVA)
+  2.2.9 Clustering No Supervisado en Salud (INTEGRADA, antes 2.3)
+  2.2.10 Validación LOUO en Wearables (INTEGRADA, antes 2.4)
+```
+
+---
+
+### 📋 ENTREGABLES ESPERADOS
+
+1. ✅ **Tabla 2.1 (LaTeX):** Tabla comparativa del estado del arte (10-20 artículos)
+2. ✅ **Sección 2.2.8 reescrita:** Nuevo texto (300-500 palabras)
+3. ✅ **Decisión sobre 2.2.9:** Eliminar/sintetizar/integrar (con justificación)
+4. ✅ **Propuesta de reestructuración:** Nueva numeración de secciones 2.2
+5. ✅ **Documento de reporte:** `POSEIDON_REESCRITURA_CAP2_TABLA_11NOV.md`
+
+---
+
+### 🔧 FORMATO DE ENTREGA
+
+**Archivos a generar:**
+
+1. **`tabla_2_1_estado_del_arte_NUEVA.tex`**
+   - Tabla completa en formato LaTeX
+   - Lista de referencias citadas
+
+2. **`seccion_2_2_8_REESCRITA.tex`**
+   - Nuevo texto de la sección
+   - Referencias integradas
+
+3. **`POSEIDON_REESCRITURA_CAP2_TABLA_11NOV.md`**
+   - Análisis de la tabla anterior vs nueva
+   - Justificación de artículos seleccionados
+   - Propuesta de reestructuración completa
+   - Decisión sobre 2.2.9 (ANFIS)
+
+---
+
+### ⏰ DEADLINE
+
+**Trabajo en paralelo:** Mientras Ades corrige redacción (2-3 horas), Poseidón trabaja en esto.
+
+**Fecha límite:** 12 Nov 2025, 02:00:00 (5-6 horas máximo)
+
+---
+
+### 🎯 INSTRUCCIONES FINALES DE LUIS
+
+> "YA QUE RECIÉN AYER POSEIDÓN HIZO UN ANÁLISIS EN PROFUNDIDAD DE NUESTRA BIBLIOGRAFÍA COMO VEZ SI LE DELEGAMOS LA REESCRITURA DE ESTA SECCIÓN QUE HAGA UNA NUEVA TABLA COMPARATIVA DEL ESTADO DEL ARTE Y CIERRE DEL CAPITULO DE ANTECEDENTES."
+
+**Poseidón tiene el contexto perfecto:**
+- ✅ Análisis bibliográfico completado (91 refs, 46 de 2023-2025)
+- ✅ 13 artículos críticos identificados
+- ✅ Conocimiento profundo de la literatura actual
+
+**💀 ADES → POSEIDÓN:** Tarea asignada. Trabajo en paralelo. Ades continuará con correcciones de redacción. Coordinaremos para integrar tu trabajo al finalizar. ¡Éxito! 💀🔥
+
+---
+
+## 🔧 [11 NOV 20:35] ADES: INICIANDO SEGUNDA RONDA CORRECCIONES ⏳
+
+**Estado:** ⏳ **EN PROGRESO**  
+**Objetivo:** Completar 104 correcciones restantes (32 gerundios + 51 "que" + 21 extranjerismos)  
+**Prioridad:** Cap 2 (48), Cap 5 (29), Cap 3 (7), Cap 1 (2)  
+**Tiempo estimado:** 3-4 horas
+
+**Iniciando con Cap 2...**
+

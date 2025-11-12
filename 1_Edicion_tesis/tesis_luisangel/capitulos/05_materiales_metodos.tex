@@ -97,7 +97,7 @@ u10 & F & 28 & 21.6 & 131 & 100\% \\
 \subsection{Relación entre Variables}
 \label{subsec:relacion_variables}
 
-La relación de interés en este estudio se centró en evaluar la capacidad de un modelo de inteligencia artificial basado en lógica difusa para clasificar con precisión el comportamiento sedentario semanal, utilizando exclusivamente datos biométricos multivariados (actividad física, gasto calórico, variabilidad cardíaca, respuesta autonómica) obtenidos de dispositivos portátiles en condiciones de vida libre. La validación se realizó mediante concordancia con una verdad operativa derivada de clustering no supervisado (K-Means), evaluando la convergencia entre descubrimiento empírico de patrones y modelado basado en conocimiento experto.
+La relación de interés en este estudio se centró en evaluar la capacidad de un modelo de inteligencia artificial basado en lógica difusa para clasificar con precisión el comportamiento sedentario semanal. El modelo utiliza exclusivamente datos biométricos multivariados (actividad física, gasto calórico, variabilidad cardíaca, respuesta autonómica) obtenidos de dispositivos portátiles en condiciones de vida libre. La validación se realizó mediante concordancia con una verdad operativa derivada de clustering no supervisado (K-Means), evaluando la convergencia entre descubrimiento empírico de patrones y modelado basado en conocimiento experto.
 
 \subsection{Variables Independientes}
 \label{subsec:variables_independientes}
@@ -218,7 +218,7 @@ Un análisis exploratorio preliminar reveló tres desafíos metodológicos que m
 
 \subsubsection{Heterogeneidad Inter-Sujeto Extrema}
 
-El cálculo del coeficiente de variación (CV) para cada variable a través de los 10 participantes mostró dispersiones superiores al 60\% en 7 de 9 métricas. Como se observa en la \Cref{fig:cv_variables_originales}, variables como \textit{Pasos diarios} presentaron CV=72\%, reflejando diferencias sustanciales en edad, composición corporal, ocupación y nivel de condicionamiento físico entre participantes.
+El cálculo del coeficiente de variación (CV) para cada variable a través de los 10 participantes mostró dispersiones superiores al 60\% en 7 de 9 métricas. Como se observa en la \Cref{fig:cv_variables_originales}, variables como \textit{Pasos diarios} presentaron CV=72\%, lo cual refleja diferencias sustanciales en edad, composición corporal, ocupación y nivel de condicionamiento físico entre participantes.
 
 \begin{figure}[h!]
     \centering
@@ -251,7 +251,7 @@ El análisis de correlación de Pearson entre las variables originales mostró c
     \item Minutos ejercicio $\leftrightarrow$ Calorías activas ($r=0.68$)
 \end{itemize}
 
-Esto motivó el diseño de variables derivadas que: (a) reduzcan redundancia informativa, y (b) normalicen por exposición temporal y metabolismo basal, permitiendo comparaciones equitativas entre usuarios con diferentes características antropométricas.
+Esto motivó el diseño de variables derivadas que: (a) reduzcan redundancia informativa, y (b) normalicen por exposición temporal y metabolismo basal, lo que permite comparaciones equitativas entre usuarios con diferentes características antropométricas.
 
 \subsection{Transición a Ingeniería de Características}
 \label{subsec:transicion_feature_engineering}
@@ -327,7 +327,7 @@ La desviación estándar de los intervalos NN (SDNN) es un biomarcador del balan
 \subsection{Agregación Semanal y Justificación de Medianas}
 \label{subsec:agregacion_semanal}
 
-Todas las variables se agregaron a nivel semanal utilizando la mediana (p50) como estimador de tendencia central y el rango intercuartílico (IQR) como medida de dispersión. Esta decisión metodológica se fundamentó en:
+Todas las variables se agregaron a nivel semanal. Se utilizó la mediana (p50) como estimador de tendencia central y el rango intercuartílico (IQR) como medida de dispersión. Esta decisión metodológica se fundamentó en:
 
 \begin{enumerate}
     \item \textbf{Robustez ante valores atípicos:} La mediana es menos sensible a días con fallas de registro del dispositivo (ej. <10 horas monitoreadas).
@@ -342,7 +342,7 @@ Todas las variables se agregaron a nivel semanal utilizando la mediana (p50) com
 \label{sec:plan_analisis_estadistico}
 % ============================================================================
 
-La secuencia de análisis (\textit{pipeline}) se estructuró en cinco fases secuenciales, integrando técnicas estadísticas clásicas, aprendizaje no supervisado y sistemas basados en conocimiento experto.
+La secuencia de análisis (flujo de trabajo) se estructuró en cinco fases secuenciales, integrando técnicas estadísticas clásicas, aprendizaje no supervisado y sistemas basados en conocimiento experto.
 
 \subsection{Fase 1: Caracterización y Análisis de Variabilidad}
 \label{subsec:fase1_caracterizacion}
@@ -354,14 +354,14 @@ El análisis de variabilidad permitió cuantificar la heterogeneidad inter-sujet
 \subsection{Fase 2: Establecimiento de la Verdad Operativa mediante Clustering}
 \label{subsec:fase2_clustering}
 
-Se aplicó el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas, utilizando las ocho características derivadas (medianas e IQRs de las cuatro variables). La selección del número óptimo de conglomerados (K) se determinó mediante:
+Se aplicó el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas. Se utilizaron las ocho características derivadas (medianas e IQRs de las cuatro variables). La selección del número óptimo de conglomerados (K) se determinó mediante:
 
 \begin{itemize}
-    \item \textbf{Coeficiente de Silhouette:} Cuantifica la cohesión intra-cluster y separación inter-cluster. Valores >0.50 indican estructura bien definida \cite{Rousseeuw1987}.
+    \item \textbf{Coeficiente de Silhouette:} Cuantifica la cohesión intra-conglomerado y separación inter-conglomerado. Valores >0.50 indican estructura bien definida \cite{Rousseeuw1987}.
     
     \item \textbf{Criterio de parsimonia:} Preferencia por soluciones simples (K pequeño) que faciliten interpretación clínica.
     
-    \item \textbf{Análisis de Componentes Principales (PCA):} Visualización de la separabilidad de los clusters en el espacio de las dos primeras componentes principales (que capturan >70\% de la varianza).
+    \item \textbf{Análisis de Componentes Principales (PCA):} Visualización de la separabilidad de los conglomerados en el espacio de las dos primeras componentes principales (que capturan >70\% de la varianza).
 \end{itemize}
 
 Previo al clustering, se verificó la ausencia de multicolinealidad mediante el Factor de Inflación de la Varianza (VIF<5 para todas las variables).
@@ -388,7 +388,7 @@ El desempeño del sistema difuso se evaluó comparando su salida contra la verda
 
 \textbf{Métricas de rendimiento:}
 \begin{itemize}
-    \item \textbf{F1-Score:} Media armónica entre Precisión y Sensibilidad, apropiada para datasets con leve desbalance de clases \cite{Sokolova2009}.
+    \item \textbf{F1-Score:} Media armónica entre Precisión y Sensibilidad, apropiada para conjuntos de datos con leve desbalance de clases \cite{Sokolova2009}.
     \item \textbf{Matthews Correlation Coefficient (MCC):} Métrica robusta que considera verdaderos/falsos positivos y negativos, con rango [-1, +1] \cite{Chicco2020}.
     \item \textbf{Exactitud (Accuracy):} Proporción de clasificaciones correctas.
 \end{itemize}
@@ -580,7 +580,7 @@ Los valores específicos calculados sobre la cohorte completa (N=10 usuarios, 1,
 \bottomrule
 \end{tabular}
 \\[5pt]
-\footnotesize{\textit{Nota:} Valores en espacio normalizado [0,1]. Percentiles calculados sobre dataset completo antes de validación LOOU.}
+\footnotesize{\textit{Nota:} Valores en espacio normalizado [0,1]. Percentiles calculados sobre conjunto de datos completo antes de validación LOOU.}
 \end{table}
 
 % ----------------------------------------------------------------------------
@@ -670,7 +670,7 @@ Un aspecto crítico del diseño metodológico fue el uso de \textbf{percentiles 
 En redes neuronales profundas, la \textit{arquitectura} (número de capas, neuronas) se diseña previamente, mientras que solo los \textit{pesos} se entrenan. Análogamente, los percentiles \(\mathbf{P}_i\) definen la \textbf{arquitectura} de las funciones de membresía (forma y rangos), constituyendo parámetros de diseño que no deben recalcularse en cada fold de validación cruzada.
 
 \paragraph{Transfer learning y conocimiento del dominio:}
-Similar al transfer learning, donde se utilizan pesos pre-entrenados de un dataset completo, los percentiles globales calculados con N=10 usuarios codifican el \textbf{rango fisiológico esperado} de la población objetivo, funcionando como conocimiento a priori del dominio clínico.
+Similar al transfer learning, donde se utilizan pesos pre-entrenados de un conjunto de datos completo, los percentiles globales calculados con N=10 usuarios codifican el \textbf{rango fisiológico esperado} de la población objetivo, funcionando como conocimiento a priori del dominio clínico.
 
 \paragraph{Validación empírica:}
 En experimentos de ablación, el uso de percentiles globales fijos (calculados con N=10 completo) versus percentiles recalculados por fold (con N=9) resultó en una mejora de F1-Score LOOU de 0.314 a \textbf{0.780} (+148\%, p<0.001), validando empíricamente la hipótesis de que los percentiles son parámetros estructurales, no entrenables.
@@ -678,7 +678,7 @@ En experimentos de ablación, el uso de percentiles globales fijos (calculados c
 El procedimiento adoptado en LOOU fue:
 
 \begin{enumerate}
-    \item \textbf{Antes del loop:} Calcular \(\mathbf{P}_{\text{global}}\) con dataset completo (N=10, 1,337 semanas)
+    \item \textbf{Antes del loop:} Calcular \(\mathbf{P}_{\text{global}}\) con conjunto de datos completo (N=10, 1,337 semanas)
     \item \textbf{En cada fold \(i\):} Usar \(\mathbf{P}_{\text{global}}\) (fijo) para construir funciones de membresía
     \item \textbf{En cada fold \(i\):} Solo recalcular escaladores (min/max) con N=9 para normalización de datos
 \end{enumerate}
@@ -696,7 +696,7 @@ El protocolo LOOU se formalizó como sigue. Sea el conjunto de datos completo:
 \label{eq:dataset_completo}
 \end{equation}
 
-donde \(i\) es el índice de usuario, \(j\) el índice de semana, \(\mathbf{x}_i^{(j)} \in \mathbb{R}^4\) el vector de features, y \(c_i^{(j)} \in \{0, 1\}\) el cluster asignado por K-Means (verdad operativa).
+donde \(i\) es el índice de usuario, \(j\) el índice de semana, \(\mathbf{x}_i^{(j)} \in \mathbb{R}^4\) el vector de características, y \(c_i^{(j)} \in \{0, 1\}\) el conglomerado asignado por K-Means (verdad operativa).
 
 Para cada usuario \(i = 1, \ldots, 10\):
 
