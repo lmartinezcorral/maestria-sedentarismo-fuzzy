@@ -10,7 +10,7 @@ Este capítulo presenta los hallazgos empíricos del estudio, siguiendo la secue
 
 La cohorte final del estudio estuvo compuesta por 10 participantes adultos (5 mujeres, 5 hombres) con un seguimiento longitudinal multianual, acumulando un total de 9,185 días de registro. Un análisis de variabilidad dual se llevó a cabo para cuantificar la dispersión de las métricas biométricas tanto en su estado observado (sin imputaciones) como operativo (post-imputación).
 
-Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, indicando una alta irregularidad en los patrones de actividad. La \Cref{fig:mapa_calor_variabilidad} muestra la magnitud de esta variabilidad mediante un mapa de calor donde cada celda representa el CV de una variable para un usuario específico. Los tonos más cálidos (rojos) indican mayor dispersión, mientras que los tonos fríos (azules) señalan patrones más estables.
+Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, lo cual indica una alta irregularidad en los patrones de actividad. La \Cref{fig:mapa_calor_variabilidad} muestra la magnitud de esta variabilidad mediante un mapa de calor donde cada celda representa el CV de una variable para un usuario específico. Los tonos más cálidos (rojos) indican mayor dispersión, mientras que los tonos fríos (azules) señalan patrones más estables.
 
 \begin{figure}[htbp]
     \centering
@@ -19,7 +19,7 @@ Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferente
     \label{fig:mapa_calor_variabilidad}
 \end{figure}
 
-Como se observa, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. La comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación (\Cref{fig:variabilidad_comparativa}) reveló que el proceso de imputación, si bien necesario, tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras que la incrementa ligeramente en otras, evidenciando el efecto estabilizador de la imputación jerárquica aplicada.
+Como se observa, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. La comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación (\Cref{fig:variabilidad_comparativa}) reveló que el proceso de imputación, si bien necesario, tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras que la incrementa ligeramente en otras. Este patrón evidencia el efecto estabilizador de la imputación jerárquica aplicada.
 
 \begin{figure}[htbp]
     \centering
@@ -44,7 +44,7 @@ Previo al análisis de conglomerados, se verificó la ausencia de multicolineali
     \label{fig:matriz_correlacion}
 \end{figure}
 
-Posteriormente, se realizó un barrido de $K$ (de 2 a 6 conglomerados) para determinar la partición más adecuada de los datos. Como se observa en la \Cref{fig:silhouette_elbow}, el coeficiente de Silhouette alcanzó su máximo en $K=2$ (S=0.232), indicando que la estructura más clara y estable en los datos correspondía a dos perfiles de comportamiento distintos. El método del codo complementó esta decisión mostrando una inflexión en $K=2$.
+Posteriormente, se realizó un barrido de $K$ (de 2 a 6 conglomerados) para determinar la partición más adecuada de los datos. Como se observa en la \Cref{fig:silhouette_elbow}, el coeficiente de Silhouette alcanzó su máximo en $K=2$ (S=0.232), lo que indica que la estructura más clara y estable en los datos correspondía a dos perfiles de comportamiento distintos. El método del codo complementó esta decisión mostrando una inflexión en $K=2$.
 
 \begin{figure}[htbp]
     \centering
@@ -105,7 +105,7 @@ La asignación de cada una de las 1,337 semanas válidas a uno de estos dos cong
 
 El rendimiento del modelo difuso se evaluó mediante su concordancia con la clasificación de la verdad operativa. Tras una búsqueda del umbral de decisión ($\tau$) que maximizara el F1-Score, se estableció un valor óptimo de $\tau = 0.30$. Con este umbral, el sistema difuso alcanzó un rendimiento global robusto, con un F1-Score de 0.840, una Exactitud de 0.740 y una alta Sensibilidad (Recall) de 0.976.
 
-El análisis por participante reveló una heterogeneidad en el rendimiento, con un F1-Score que osciló entre 0.215 y 0.997. Usuarios con patrones de comportamiento más estables mostraron una concordancia muy alta (ej. u1, u7), mientras que aquellos con mayor variabilidad intra-semanal presentaron mayores discrepancias, evidenciando áreas de oportunidad para la personalización futura del modelo.
+El análisis por participante reveló una heterogeneidad en el rendimiento, con un F1-Score que osciló entre 0.215 y 0.997. Usuarios con patrones de comportamiento más estables mostraron una concordancia muy alta (ej. u1, u7), mientras que aquellos con mayor variabilidad intra-semanal presentaron mayores discrepancias. Estos resultados evidencian áreas de oportunidad para la personalización futura del modelo.
 
 La \Cref{tab:rendimiento_louo} presenta los resultados de la validación cruzada Leave-One-User-Out (LOUO) por usuario.
 
@@ -180,7 +180,7 @@ El F1-Score de 0.780 ± 0.167 (CV=21.4\%) es comparable a los mejores resultados
 \begin{enumerate}
     \item \textbf{Generalización inter-sujeto robusta:} Con 7 de 10 usuarios alcanzando F1$\geq$0.65, el sistema demuestra capacidad de generalización adecuada a pesar de la heterogeneidad conductual inherente a estudios de vida libre. El coeficiente de variación (CV=21.4\%) refleja variabilidad esperada en cohortes pequeñas (N=10) con seguimientos heterogéneos (7-298 semanas por usuario), y es comparable con estudios de validación de wearables en condiciones ecológicas \cite{Doherty2021}.
     
-    \item \textbf{Parsimonia del modelo:} El sistema emplea 4 variables de entrada, significativamente menos que los 10-20 features típicos en la literatura de clasificación de actividad con acelerometría \cite{Alinia2020}. Esta simplicidad facilita interpretabilidad clínica y reducción de costos computacionales.
+    \item \textbf{Parsimonia del modelo:} El sistema emplea 4 variables de entrada, significativamente menos que las 10-20 características típicas en la literatura de clasificación de actividad con acelerometría \cite{Alinia2020}. Esta simplicidad facilita interpretabilidad clínica y reducción de costos computacionales.
     
     \item \textbf{Transparencia metodológica:} Se reporta el rendimiento completo (F1-Score ± SD) por usuario (ver \Cref{tab:rendimiento_louo}), práctica infrecuente en literatura actual. Estudios como Mullick et al. \cite{Mullick2022} y Crozat et al. \cite{Crozat2025} reportan métricas globales sin desglose por participante, limitando la evaluación de heterogeneidad de respuesta.
 \end{enumerate}
@@ -225,7 +225,7 @@ u10 & 0.091 ($\pm$0.033) & 0.054 ($\pm$0.037) & 25.162 ($\pm$9.817)  & 15.957 ($
 
 Para evaluar la importancia relativa de las variables en el modelo, se realizó un análisis de sensibilidad comparando el rendimiento del modelo completo (4 variables de entrada) con un modelo reducido (2 variables de entrada), que excluía las variables cardiovasculares (HRV\_SDNN y Delta\_cardiaco).
 
-El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420). La \Cref{fig:analisis_robustez} ilustra esta dependencia crítica mediante un gráfico de barras agrupadas que compara las cuatro métricas principales (F1-Score, Precision, Recall, MCC) entre ambos modelos, evidenciando el impacto devastador de la exclusión de variables cardiovasculares sobre todas las dimensiones del rendimiento.
+El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420). La \Cref{fig:analisis_robustez} ilustra esta dependencia crítica mediante un gráfico de barras agrupadas que compara las cuatro métricas principales (F1-Score, Precision, Recall, MCC) entre ambos modelos. Los resultados evidencian el impacto devastador de la exclusión de variables cardiovasculares sobre todas las dimensiones del rendimiento.
 
 \begin{figure}[htbp]
     \centering
@@ -239,7 +239,7 @@ Este análisis demostró que, aunque la HRV\_SDNN no era un discriminador potent
 \subsection{Paradoja HRV: Debilidad Univariada, Fortaleza Multivariada}
 \label{subsec:paradoja_hrv}
 
-El análisis de robustez reveló un hallazgo contraintuitivo que merece profundización: HRV-SDNN no discrimina significativamente entre clusters en análisis univariado (Mann-Whitney U, p=0.123), pero su exclusión del modelo causa un colapso del 50\% en el F1-Score (0.840 $\rightarrow$ 0.420). Esta aparente paradoja —debilidad individual con fortaleza sistémica— requiere una interpretación fisiológica y metodológica cuidadosa.
+El análisis de robustez reveló un hallazgo contraintuitivo que merece profundización: HRV-SDNN no discrimina significativamente entre conglomerados en análisis univariado (Mann-Whitney U, p=0.123), pero su exclusión del modelo causa un colapso del 50\% en el F1-Score (0.840 $\rightarrow$ 0.420). Esta aparente paradoja —debilidad individual con fortaleza sistémica— requiere una interpretación fisiológica y metodológica cuidadosa.
 
 \textbf{Interpretación fisiológica:} La HRV opera como modulador contextual de la respuesta cardiovascular al sedentarismo. Mientras que métricas como Delta\_cardíaco capturan la \textit{magnitud} de la respuesta cardiovascular (cuántos latidos aumenta la FC al caminar), HRV-SDNN caracteriza su \textit{variabilidad temporal}, un aspecto crítico del tono autonómico cardiovascular \cite{TaskForce1996,Laborde2017}.
 
