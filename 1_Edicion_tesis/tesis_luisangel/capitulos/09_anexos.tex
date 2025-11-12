@@ -16,15 +16,27 @@ Esta sección presenta la nomenclatura matemática utilizada en el sistema de in
 
 \subsection{Símbolos Matemáticos Generales}
 
-\begin{table}[H]
-\centering
+% Tabla multi-página con longtable (permite continuación automática)
+\begin{longtable}{@{}p{3cm}p{10cm}@{}}
 \caption{Símbolos y Notación Matemática del Sistema Difuso}
-\label{tab:nomenclatura}
-\small
-\begin{tabular}{@{}p{3cm}p{10cm}@{}}
+\label{tab:nomenclatura} \\
 \toprule
 \textbf{Símbolo} & \textbf{Descripción} \\
 \midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\textit{(Continuación de Tabla \ref{tab:nomenclatura})}} \\
+\toprule
+\textbf{Símbolo} & \textbf{Descripción} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la siguiente página...}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
 \multicolumn{2}{@{}l}{\textit{\textbf{Conjuntos y Funciones de Membresía}}} \\
 \(\tilde{A}\) & Conjunto difuso \\
 \(\mu_{\tilde{A}}(x)\) & Función de membresía del conjunto difuso \(\tilde{A}\) \\
@@ -107,9 +119,7 @@ Esta sección presenta la nomenclatura matemática utilizada en el sistema de in
 \(\setminus\) & Diferencia de conjuntos \\
 \(\land\) & Conjunción lógica (AND) \\
 \(\Rightarrow\) & Implicación lógica (THEN) \\
-\bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
 
 % ============================================================================
 % FIN DE NOMENCLATURA (ATLAS)

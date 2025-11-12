@@ -53,7 +53,7 @@ Construir y validar un modelo interpretable, basado en lógica difusa, para la c
     
     \item Identificar los perfiles de comportamiento sedentario inherentes a los datos mediante la aplicación de un algoritmo de agrupamiento no supervisado, para establecer una clasificación de referencia empírica.
     
-    \item Diseñar un sistema de inferencia difusa que modele la relación entre las variables biométricas y los perfiles de comportamiento, estableciendo reglas lingüísticas con fundamento fisiológico.
+    \item Diseñar un sistema de inferencia difusa que modele la relación entre las variables biométricas y los perfiles de comportamiento, el cual establezca reglas lingüísticas con fundamento fisiológico.
     
     \item Evaluar el desempeño del sistema de inferencia difusa mediante la determinación de su nivel de concordancia con los perfiles de comportamiento identificados por el método de agrupamiento.
     
@@ -96,7 +96,7 @@ Dadas las limitaciones del SF-36 como ground truth, el proyecto pivotó a un \te
     \item \textbf{Paso 2 - Sistema de Inferencia Difusa Mamdani:} Traducir los centroides y perfiles estadísticos de los clústeres identificados a reglas lingüísticas interpretables de un FIS Mamdani, lo que permite clasificación transparente de nuevas observaciones.
 \end{enumerate}
 
-\textbf{Ventajas metodológicas del pivote:} (1) \textbf{Objetividad} (la ground truth proviene de patrones data-driven, no de umbrales arbitrarios ni percepciones subjetivas), (2) \textbf{Interpretabilidad} (el FIS Mamdani es ``interpretable por diseño''), y (3) \textbf{Validación rigurosa} (LOUO evita temporal leakage e identity leakage, proporcionando métricas realistas de generalización inter-sujeto).
+\textbf{Ventajas metodológicas del pivote:} (1) \textbf{Objetividad} (la ground truth proviene de patrones data-driven, no de umbrales arbitrarios ni percepciones subjetivas), (2) \textbf{Interpretabilidad} (el FIS Mamdani es ``interpretable por diseño''), y (3) \textbf{Validación rigurosa} (LOOU evita temporal leakage e identity leakage, y proporciona métricas realistas de generalización inter-sujeto).
 
 \subsection{Re-posicionamiento del SF-36: De Ground Truth a Validación Convergente}
 \label{subsec:reposicionamiento_sf36}

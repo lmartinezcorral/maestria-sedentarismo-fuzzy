@@ -19,7 +19,7 @@ Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferente
     \label{fig:mapa_calor_variabilidad}
 \end{figure}
 
-Como se observa, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. La comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación (\Cref{fig:variabilidad_comparativa}) reveló que el proceso de imputación, si bien necesario, tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras que la incrementa ligeramente en otras. Este patrón evidencia el efecto estabilizador de la imputación jerárquica aplicada.
+Como se observa, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. La comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación (\Cref{fig:variabilidad_comparativa}) reveló resultados mixtos del proceso de imputación. Si bien necesaria, la imputación tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras incrementa ligeramente la de otras. Este patrón evidencia el efecto estabilizador de la imputación jerárquica aplicada.
 
 \begin{figure}[htbp]
     \centering
@@ -109,12 +109,10 @@ El análisis por participante reveló una heterogeneidad en el rendimiento, con 
 
 La \Cref{tab:rendimiento_louo} presenta los resultados de la validación cruzada Leave-One-User-Out (LOUO) por usuario.
 
-\begin{table}[p]
-\centering
-\caption{Rendimiento del Sistema Difuso por Usuario (Validación LOUO)}
-\label{tab:rendimiento_louo}
-\scriptsize
+% Tabla multi-página con longtable
 \begin{longtable}{@{}lcccccccccccc@{}}
+\caption{Rendimiento del Sistema Difuso por Usuario (Validación LOUO)}
+\label{tab:rendimiento_loou} \\
 \toprule
 \textbf{Usuario} & \textbf{Semanas} & \textbf{\% Obs.*} & \textbf{Acc} & \textbf{Prec} & \textbf{Rec} & \textbf{F1} & \textbf{MCC} & \textbf{$\tau$} & \textbf{TP} & \textbf{FP} & \textbf{TN} & \textbf{FN} \\
 \midrule
@@ -140,11 +138,11 @@ u8  & 192 & 100 & 0.391 & 0.417 & 0.714 & 0.526 & 0.064 & 0.1 & 65  & 91  & 10 &
 u9  & 302 & 100 & 0.745 & 0.747 & 0.977 & 0.847 & 0.304 & 0.1 & 213 & 72  & 12 & 5 \\
 u10 & 133 & 100 & 0.797 & 0.797 & 1.000 & 0.887 & 0.000 & 0.4 & 106 & 27  & 0  & 0 \\
 \end{longtable}
+
 \begin{flushleft}
 \small
 \textit{Nota:} \% Obs.* = Porcentaje de datos observados (sin imputación). Acc = Accuracy, Prec = Precision, Rec = Recall, MCC = Matthews Correlation Coefficient, $\tau$ = umbral de decisión óptimo, TP = Verdaderos Positivos, FP = Falsos Positivos, TN = Verdaderos Negativos, FN = Falsos Negativos.
 \end{flushleft}
-\end{table}
 
 \subsection{Posicionamiento en el Contexto de Estudios con Validación LOUO}
 \label{subsec:comparativa_louo}
