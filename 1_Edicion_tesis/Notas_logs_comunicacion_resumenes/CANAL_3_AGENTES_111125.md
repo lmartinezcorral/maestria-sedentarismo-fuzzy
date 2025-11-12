@@ -324,13 +324,32 @@
 El clustering K-Means identificó K=2 con Silhouette=0.232...
 ```
 
-### **REGLA #2: TIMESTAMP OBLIGATORIO**
+### **REGLA #2: TIMESTAMP OBLIGATORIO (SOLO DEL SHELL REAL)**
 **TODO REPORTE/INFORME debe iniciar con:**
 ```powershell
 Get-Date -Format "dddd, dd 'de' MMMM 'de' yyyy, HH:mm:ss"
 ```
+**🚨 CRÍTICO:** ❌ **NUNCA inventar timestamps ficticios** - SIEMPRE usar salida real del shell
 
-### **REGLA #3: COHERENCIA MULTI-DOCUMENTO**
+### **REGLA #3: COMPILACIÓN SOLO CON `compilar.bat`**
+**🚨 CRÍTICO:**
+- ✅ **SIEMPRE usar `compilar.bat`** para generar PDF
+- ❌ **NUNCA compilar manualmente** con `pdflatex` directo
+- ✅ El PDF correcto es: `proyecto_tesis_LAMC_DDMMYY.pdf` (fecha automática)
+- ❌ Cualquier otro nombre de PDF indica compilación manual incorrecta
+
+**Razón:** `compilar.bat` tiene la secuencia completa optimizada (3 pasadas + biber + limpieza correcta)
+
+### **REGLA #4: GIT COMMITS SOLO CON APROBACIÓN DE LUIS**
+**🚨 CRÍTICO:**
+- ❌ **NO hacer `git commit` sin aprobación previa de Luis**
+- ✅ **Mostrar cambios primero**, esperar visto bueno
+- ❌ Commits sin aprobación generan trabajo adicional (reversiones)
+- ✅ Commits solo cuando Luis diga explícitamente: "aprobado" / "commitea" / "súbelo"
+
+**Excepción:** Commits de emergencia si Luis lo solicita explícitamente
+
+### **REGLA #5: COHERENCIA MULTI-DOCUMENTO**
 - ✅ Metodología IEEE ↔ Tesis Cap 5 (coherentes)
 - ✅ Results IEEE ↔ Tesis Cap 6 (coherentes)
 - ✅ Todos usan mismos datos certificados
