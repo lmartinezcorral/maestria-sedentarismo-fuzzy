@@ -49,12 +49,12 @@ pdflatex -interaction=nonstopmode %ARCHIVO%.tex > nul
 echo [4/4] Tercera compilacion (finalizando)...
 pdflatex -interaction=nonstopmode %ARCHIVO%.tex > nul
 
-:: Limpiar archivos auxiliares (conserva .log y .bbl para debug)
+:: Limpiar archivos auxiliares (conserva .log, .bbl, .toc para debug)
 echo.
-echo Limpiando archivos temporales (conservando .log y .bbl)...
-del %ARCHIVO%.aux %ARCHIVO%.out %ARCHIVO%.toc %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
+echo Limpiando archivos temporales (conservando .log, .bbl, .toc)...
+del %ARCHIVO%.aux %ARCHIVO%.out %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
 del capitulos\*.aux 2>nul
-:: NOTA: NO borrar .bbl - es necesario para que las referencias aparezcan en el PDF
+:: NOTA: NO borrar .bbl (referencias) ni .toc (índice de contenidos) - son necesarios para el PDF
 
 :: Renombrar PDF con nombre de proyecto + fecha automática (DDMMAA)
 echo.
