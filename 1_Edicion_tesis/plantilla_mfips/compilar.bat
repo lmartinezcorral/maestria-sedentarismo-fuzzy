@@ -13,13 +13,14 @@ echo ========================================
 echo.
 
 :: Nombre del archivo principal (sin extensión .tex)
-set ARCHIVO=plantilla_tesis
+set ARCHIVO=main
 
 :: Paso 0: Limpiar archivos auxiliares previos (evita problemas de cache)
 echo [0/4] Limpiando archivos auxiliares previos...
+if not exist "_temp" mkdir _temp
 del %ARCHIVO%.aux %ARCHIVO%.log %ARCHIVO%.out %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
+del _temp\*.aux _temp\*.log _temp\*.out _temp\*.toc _temp\*.lof _temp\*.lot _temp\*.bbl _temp\*.blg _temp\*.bcf _temp\*.run.xml 2>nul
 del capitulos\*.aux 2>nul
-:: NOTA: NO borrar .bbl (referencias) ni .toc (índice) - son necesarios para el PDF
 echo.
 
 :: Paso 1: Primera compilación con pdflatex
@@ -50,12 +51,22 @@ pdflatex -interaction=nonstopmode %ARCHIVO%.tex > nul
 echo [4/4] Tercera compilacion (finalizando)...
 pdflatex -interaction=nonstopmode %ARCHIVO%.tex > nul
 
-:: Limpiar archivos auxiliares (conserva .log, .bbl, .toc para debug)
+:: Mover archivos auxiliares a _temp/ (organización y debug)
 echo.
-echo Limpiando archivos temporales (conservando .log, .bbl, .toc)...
-del %ARCHIVO%.aux %ARCHIVO%.out %ARCHIVO%.lof %ARCHIVO%.lot %ARCHIVO%.blg %ARCHIVO%.bcf %ARCHIVO%.run.xml 2>nul
-del capitulos\*.aux 2>nul
-:: NOTA: NO borrar .bbl (referencias) ni .toc (índice) - son necesarios para el PDF
+echo Organizando archivos auxiliares en _temp/...
+if not exist "_temp" mkdir _temp
+move /Y %ARCHIVO%.aux _temp\ 2>nul
+move /Y %ARCHIVO%.log _temp\ 2>nul
+move /Y %ARCHIVO%.out _temp\ 2>nul
+move /Y %ARCHIVO%.toc _temp\ 2>nul
+move /Y %ARCHIVO%.lof _temp\ 2>nul
+move /Y %ARCHIVO%.lot _temp\ 2>nul
+move /Y %ARCHIVO%.bbl _temp\ 2>nul
+move /Y %ARCHIVO%.blg _temp\ 2>nul
+move /Y %ARCHIVO%.bcf _temp\ 2>nul
+move /Y %ARCHIVO%.run.xml _temp\ 2>nul
+move /Y capitulos\*.aux _temp\ 2>nul
+:: NOTA: Archivos auxiliares movidos a _temp/ para debug posterior
 
 :: Renombrar PDF con nombre de proyecto + fecha automática (DDMMAA)
 echo.

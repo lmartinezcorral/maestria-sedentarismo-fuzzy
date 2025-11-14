@@ -1,0 +1,45 @@
+# ============================================================================
+# .gitignore para proyecto LaTeX
+# ============================================================================
+
+# Archivos auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# Directorio temporal
+_temp/
+
+# PDFs generados (excepto versiones finales específicas)
+# proyecto_tesis_MFIPS_*.pdf se mantienen para historial
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Python (si hay scripts auxiliares)
+__pycache__/
+*.pyc
+*.pyo
+
