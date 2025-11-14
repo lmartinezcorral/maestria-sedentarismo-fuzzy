@@ -1,0 +1,430 @@
+================================================================================
+INSTRUCCIONES AUDITORÍA PROFUNDA CON LUPA - GPT/GEMINI
+Verificación Cruzada de Inconsistencias Numéricas
+================================================================================
+
+**Fecha:** 14 de Noviembre de 2025  
+**Objetivo:** Búsqueda exhaustiva de discrepancias numéricas entre documentos  
+**Modalidad:** Inspección forense (comparación línea por línea)
+
+================================================================================
+I. CONTEXTO DE LA AUDITORÍA
+================================================================================
+
+**SITUACIÓN ACTUAL:**
+
+Se detectaron INCONSISTENCIAS CRÍTICAS entre diferentes versiones de la tesis:
+
+1. **Métricas del modelo difuso:** Valores diferentes en Cap 6 vs auditorías
+2. **Análisis de ablación HRV:** Reporte de -50% vs -9.1% de caída
+3. **p-value HRV:** Tres valores diferentes (0.12, 0.24, 0.562)
+4. **Funciones de membresía:** Contradicción triangular (texto) vs trapezoidal (figura)
+
+**TU MISIÓN:**
+
+Actuar como AUDITOR FORENSE que compara documentos para identificar:
+- Inconsistencias numéricas (valores contradictorios)
+- Datos que no aparecen en documentos de respaldo
+- Afirmaciones sin sustento en fuentes primarias
+- Posibles "fugas" de versiones antiguas
+
+**NO GENERES CONTENIDO NUEVO. SOLO DETECTA INCONSISTENCIAS.**
+
+================================================================================
+II. DOCUMENTOS A AUDITAR
+================================================================================
+
+**DOCUMENTO PRINCIPAL (A INSPECCIONAR):**
+- `INFORME_TECNICO_ACTUALIZADO_V3.tex` (3,768 líneas)
+
+**DOCUMENTOS DE REFERENCIA (FUENTE DE VERDAD):**
+- `CANAL_3_AGENTES_111125.md` (Tabla datos certificados, líneas 36-54)
+- Revisiones Cap 5 y Cap 6 previas
+- Cualquier otro documento proporcionado por Luis
+
+**CRITERIO FUNDAMENTAL:**
+
+Si un valor numérico en el Informe Técnico NO coincide con el Canal 3 (datos certificados), es una DISCREPANCIA que debe reportarse.
+
+================================================================================
+III. PROTOCOLO DE AUDITORÍA (8 PASOS)
+================================================================================
+
+PASO 1: IDENTIFICAR VALORES CERTIFICADOS (5 min)
+────────────────────────────────────────────────
+
+Lee la tabla de datos certificados en CANAL_3_AGENTES_111125.md.
+
+Extrae los 15 valores fundamentales:
+
+| Dato Certificado | Valor REAL Certificado |
+|------------------|------------------------|
+| N participantes | 10 (5F/5M) |
+| Edad | 34.2±6.7 años |
+| IMC | 24.8±3.2 kg/m² |
+| Días totales | 9,185 |
+| Semanas generadas | 1,385 |
+| Semanas válidas | 1,337 |
+| Seguimiento media | 133.7 semanas |
+| K óptimo | 2 |
+| Silhouette | 0.232 |
+| F1-Score global | 0.840 |
+| F1-Score LOUO | 0.780±0.167 |
+| Precision | 0.737 |
+| Recall | 0.976 |
+| MCC | 0.294 |
+| Umbral τ | 0.30 |
+
+**Estos son tu ESTÁNDAR DE ORO para comparar.**
+
+---
+
+PASO 2: BÚSQUEDA DE MÉTRICAS EN INFORME TÉCNICO (10 min)
+─────────────────────────────────────────────────────────
+
+Busca en `INFORME_TECNICO_ACTUALIZADO_V3.tex` TODAS las menciones de:
+
+1. F1-Score (global, LOUO, por usuario)
+2. Accuracy
+3. Precision
+4. Recall
+5. MCC (Matthews Correlation Coefficient)
+6. p-value de HRV
+7. Tamaños de clúster (402/935 vs otros valores)
+8. Cohen's d para cada variable
+
+**Para cada mención, anota:**
+- Línea del documento
+- Valor reportado
+- Contexto (¿qué sección, qué análisis?)
+
+---
+
+PASO 3: COMPARACIÓN CON VALORES CERTIFICADOS (10 min)
+──────────────────────────────────────────────────────
+
+Para cada valor encontrado, compara con tabla certificada:
+
+| Línea | Valor en Informe | Valor Certificado | ¿Coincide? | Gravedad |
+|-------|-----------------|-------------------|------------|----------|
+| 2974 | Accuracy: 0.740 | 0.740 | ✓ | - |
+| XXXX | Accuracy: 0.844 | 0.740 | ✗ | 🔥 CRÍTICO |
+| ... | ... | ... | ... | ... |
+
+**Gravedad:**
+- 🔥 CRÍTICO: Diferencia >5% en métricas clave
+- ⚠️ ALTA: Diferencia 2-5% o valores contradictorios
+- 📋 MEDIA: Diferencia <2% (puede ser redondeo)
+
+---
+
+PASO 4: BÚSQUEDA DE ABLACIÓN HRV (10 min)
+──────────────────────────────────────────
+
+En el Informe Técnico, busca:
+- Capítulo 12 (Validación Cruzada y Análisis de Robustez)
+- Sección "Análisis de Robustez: Modelo 4V vs Modelo 2V"
+- Tabla comparativa 4V vs 2V
+
+**Extrae:**
+- Línea donde reporta F1 del Modelo 4V
+- Línea donde reporta F1 del Modelo 2V (sin HRV y Delta_cardiaco)
+- Cálculo de caída porcentual
+- ¿Dice -50% o -9.1%?
+
+**Compara con:**
+- Valor certificado: F1 global = 0.840
+- ¿Cuál es el F1 sin HRV reportado?
+
+---
+
+PASO 5: BÚSQUEDA DE P-VALUE HRV (10 min)
+─────────────────────────────────────────
+
+En el Informe Técnico, busca:
+- Capítulo 10 (Clustering)
+- Tabla de comparación estadística entre clusters
+- Sección "Pruebas de Comparación Estadística"
+
+**Extrae:**
+- Tabla con resultados Mann-Whitney U
+- Específicamente línea de HRV_SDNN
+- Valores: U statistic, p-valor, Cohen's d
+
+**Verifica:**
+- ¿Dice p=0.12, p=0.24, o p=0.562?
+- ¿Cuál Cohen's d reporta? (certificado: debe ser muy pequeño ~0.08-0.11)
+
+---
+
+PASO 6: BÚSQUEDA DE FUNCIONES MEMBRESÍA (5 min)
+────────────────────────────────────────────────
+
+En Capítulo 11 del Informe Técnico:
+- Sección "Funciones de Pertenencia"
+- Ecuación de la función de membresía
+
+**Verifica:**
+- ¿Dice explícitamente "triangular" o "trapezoidal"?
+- ¿La ecuación tiene 3 parámetros (a,b,c) → triangular?
+- ¿O tiene 4 parámetros (a,b,c,d) → trapezoidal?
+
+**Referencia:**
+- Triangular: μ(x; a, b, c) con 3 parámetros
+- Trapezoidal: μ(x; a, b, c, d) con 4 parámetros
+
+---
+
+PASO 7: CONSOLIDAR DISCREPANCIAS (5 min)
+─────────────────────────────────────────
+
+Genera tabla RESUMEN:
+
+| # | Problema | Valor Informe | Valor Certificado | Líneas | Gravedad |
+|---|----------|---------------|-------------------|--------|----------|
+| 1 | Accuracy | X.XXX | 0.740 | XXXX | 🔥 |
+| 2 | Recall | X.XXX | 0.976 | XXXX | 🔥 |
+| 3 | p-value HRV | X.XXX | 0.562 | XXXX | 🔥 |
+| ... | ... | ... | ... | ... | ... |
+
+---
+
+PASO 8: REPORTE FINAL (5 min)
+──────────────────────────────
+
+**Genera reporte consolidado siguiendo esta plantilla:**
+
+```markdown
+────────────────────────────────────────────────────────────────
+REPORTE DE AUDITORÍA FORENSE
+────────────────────────────────────────────────────────────────
+Documento auditado: INFORME_TECNICO_ACTUALIZADO_V3.tex
+Fecha: [Fecha]
+Auditor: [GPT-4 / Gemini Pro]
+Tiempo: [X minutos]
+────────────────────────────────────────────────────────────────
+
+## RESUMEN EJECUTIVO
+
+Total de valores verificados: XX
+Inconsistencias detectadas: XX
+Gravedad crítica: XX
+Gravedad alta: XX
+Gravedad media: XX
+
+────────────────────────────────────────────────────────────────
+
+## DISCREPANCIAS CRÍTICAS (🔥)
+
+### DISCREPANCIA #1: [Nombre]
+**Línea:** XXXX  
+**Valor reportado:** X.XXX  
+**Valor certificado:** X.XXX  
+**Diferencia:** X.XX% / X.XXX absoluto  
+**Impacto:** [Descripción]  
+**Acción sugerida:** [Corrección específica]
+
+[Repetir para cada discrepancia crítica]
+
+────────────────────────────────────────────────────────────────
+
+## DISCREPANCIAS ALTAS (⚠️)
+
+[Similar formato]
+
+────────────────────────────────────────────────────────────────
+
+## VALORES VERIFICADOS CORRECTOS (✅)
+
+[Lista de valores que SÍ coinciden]
+
+────────────────────────────────────────────────────────────────
+
+## RECOMENDACIONES PRIORITARIAS
+
+1. [Acción más urgente]
+2. [...]
+3. [...]
+
+────────────────────────────────────────────────────────────────
+
+## VEREDICTO FINAL
+
+**Nivel de consistencia:** [XX%]
+**Estado documento:** [Requiere corrección mayor/menor/listo]
+**Prioridad correcciones:** [Inmediata/Alta/Media]
+
+────────────────────────────────────────────────────────────────
+```
+
+================================================================================
+IV. LÍMITES Y RESTRICCIONES
+================================================================================
+
+**LO QUE SÍ DEBES HACER:**
+✓ Extraer valores numéricos del Informe Técnico
+✓ Comparar con tabla certificada
+✓ Reportar discrepancias con líneas específicas
+✓ Calcular diferencias absolutas y porcentuales
+✓ Priorizar problemas por gravedad
+
+**LO QUE NO DEBES HACER:**
+✗ Generar análisis estadísticos nuevos
+✗ Proponer valores "corregidos" sin fuente
+✗ Modificar documentos
+✗ Solicitar información adicional (trabaja con lo provisto)
+✗ Asumir que un documento tiene razón sobre otro
+
+**SI ENCUENTRAS VALORES CONTRADICTORIOS:**
+→ Repórtalos TODOS
+→ Indica cuál coincide con tabla certificada
+→ NO elijas cuál es "correcto" si ambos difieren de la tabla
+
+================================================================================
+V. ENFOQUE ESPECIAL: BÚSQUEDA CON LUPA
+================================================================================
+
+**"LUPA" significa:**
+
+1. **No asumas que un capítulo es consistente internamente**
+   - Verifica que valores se repiten consistentemente
+   - Ejemplo: Si Cap 10 dice Cluster 0 = 402, verifica que Cap 12 use el mismo valor
+
+2. **Busca variaciones sutiles**
+   - 0.840 vs 0.84 (redondeo aceptable)
+   - 0.840 vs 0.844 (¿typo o dato diferente?)
+   - 0.840 vs 0.812 (¿global vs LOUO?)
+
+3. **Identifica contexto**
+   - ¿El valor es para análisis global o LOUO?
+   - ¿Es para modelo completo o ablación?
+   - ¿Es para clustering o fuzzy?
+
+4. **Detecta patrones de versiones antiguas**
+   - Valores que NO aparecen en tabla certificada
+   - Métricas de versiones pre-pivote
+   - Referencias a análisis que ya no existen
+
+================================================================================
+VI. PREGUNTAS CLAVE A RESPONDER
+================================================================================
+
+Al finalizar tu auditoría, debes poder responder:
+
+1. **¿El Informe Técnico V3 usa los valores certificados de la tabla?**
+   - SÍ completamente / PARCIALMENTE / NO
+
+2. **¿Cuántas inconsistencias críticas detectaste?**
+   - [Número]
+
+3. **¿Las inconsistencias son sistemáticas (versión antigua) o aisladas (typos)?**
+   - Sistemáticas / Aisladas / Mixtas
+
+4. **¿El documento es CONFIABLE como fuente técnica?**
+   - SÍ (>95% consistente)
+   - PARCIAL (80-95% consistente)
+   - NO (<80% consistente)
+
+5. **¿Qué secciones requieren mayor atención?**
+   - [Lista de capítulos problemáticos]
+
+================================================================================
+VII. FORMATO DE ENTREGA
+================================================================================
+
+**Genera UN SOLO archivo Markdown con el reporte completo.**
+
+**Título sugerido:** 
+`AUDITORIA_FORENSE_INFORME_TECNICO_V3_[GPT/GEMINI]_14NOV.md`
+
+**Longitud esperada:** 1,000-2,000 líneas (auditoría exhaustiva)
+
+**Tiempo estimado:** 60-90 minutos
+
+================================================================================
+VIII. CRITERIOS DE GRAVEDAD
+================================================================================
+
+**🔥 CRÍTICO:**
+- Métricas de desempeño diferentes (F1, Accuracy, Precision, Recall, MCC)
+- Tamaños de muestra diferentes (N, semanas, clústeres)
+- Resultados de pruebas estadísticas diferentes (p-values, Cohen's d)
+- Afirmaciones contradictorias sobre hallazgos principales
+
+**⚠️ ALTA:**
+- Parámetros del modelo diferentes (τ, K, percentiles MF)
+- Valores descriptivos diferentes (medias, DE, rangos)
+- Configuraciones de software diferentes (versiones, seeds)
+
+**📋 MEDIA:**
+- Redondeos inconsistentes (0.840 vs 0.84)
+- Referencias cruzadas incorrectas (cita Tabla X pero es Tabla Y)
+- Fechas diferentes en eventos clave
+
+**✔️ BAJA:**
+- Typos ortográficos
+- Formato inconsistente (no numérico)
+- Detalles menores sin impacto científico
+
+================================================================================
+IX. EJEMPLO DE AUDITORÍA CORRECTA
+================================================================================
+
+**MALO (Auditoría superficial):**
+"El documento tiene algunos errores en las métricas que deberían corregirse."
+
+**BUENO (Auditoría forense):**
+
+```markdown
+### DISCREPANCIA #1: Accuracy del modelo difuso
+
+**Ubicación:** Capítulo 12, Tabla 12.2, línea 2973  
+**Valor reportado:** 0.740  
+**Valor certificado:** 0.740  
+**Estado:** ✅ CORRECTO
+
+### DISCREPANCIA #2: Recall del modelo difuso
+
+**Ubicación:** Capítulo 12, Tabla 12.2, línea 2975  
+**Valor reportado:** 0.976  
+**Valor certificado:** 0.976  
+**Estado:** ✅ CORRECTO
+
+### DISCREPANCIA #3: MCC del modelo difuso
+
+**Ubicación:** Capítulo 12, Tabla 12.2, línea 2977  
+**Valor reportado:** 0.294  
+**Valor certificado:** 0.294  
+**Estado:** ✅ CORRECTO
+
+### DISCREPANCIA #4: Ablación HRV - Caída F1
+
+**Ubicación:** Capítulo 12, Tabla comparativa, línea 3174  
+**Valor reportado:** -50.0% (F1: 0.840 → 0.420)  
+**Valor certificado:** [NO DISPONIBLE EN TABLA - REQUIERE VERIFICACIÓN]  
+**Conflicto detectado:** Auditoría Ades reporta -9.1% (F1: 0.840 → 0.768)  
+**Estado:** 🔥 CRÍTICO - Valores contradictorios  
+**Acción requerida:** Verificar log de ablación real
+```
+
+================================================================================
+X. INSTRUCCIONES FINALES
+================================================================================
+
+**INICIA TU AUDITORÍA AHORA.**
+
+1. Lee la tabla certificada (CANAL_3)
+2. Abre el Informe Técnico V3
+3. Busca sistemáticamente cada valor clave
+4. Compara con tabla certificada
+5. Genera reporte con plantilla proporcionada
+
+**NO PREGUNTES. NO SOLICITES. AUDITA.**
+
+**El equipo espera tu reporte para tomar decisiones de corrección.**
+
+================================================================================
+PROMPT LISTO PARA USO
+Versión 1.0 | Auditoría Forense | Búsqueda con lupa
+================================================================================
+

@@ -1,21 +1,21 @@
 \chapter{Materiales y Métodos}
 \label{chap:materiales_metodos}
 
-\noindent Este capítulo detalla la metodología empleada en la investigación, incluyendo el diseño del estudio, la caracterización de la población participante, la definición operacional de variables, los instrumentos de recolección de datos biométricos y el protocolo de análisis estadístico implementado. Se describe el procedimiento completo desde la adquisición de datos del Apple Watch mediante el ecosistema HealthKit hasta la validación del sistema de inferencia difusa mediante estrategia Leave-One-User-Out, garantizando la reproducibilidad y transparencia metodológica necesarias para la replicación de los hallazgos en estudios futuros.
+\noindent Este capítulo detalla la metodología empleada en la investigación, incluyendo el diseño del estudio, la caracterización de la población participante, la definición operacional de variables, los instrumentos de recolección de datos biométricos y el protocolo de análisis estadístico implementado. Describimos el procedimiento completo desde la adquisición de datos del Apple Watch mediante el ecosistema HealthKit hasta la validación del sistema de inferencia difusa mediante estrategia Leave-One-User-Out, garantizando la reproducibilidad y transparencia metodológica necesarias para la replicación de los hallazgos en estudios futuros.
 
 % ============================================================================
 \section{Diseño del Estudio}
 \label{sec:diseno}
 % ============================================================================
 
-El estudio empleó un diseño cuantitativo, observacional, longitudinal retrospectivo con seguimiento multianual (2021-2024) de una cohorte de 10 participantes adultos. Se basó en la validación convergente de un sistema de inferencia difusa tipo Mamdani contra una clasificación de referencia empírica (verdad operativa, GO) derivada de un análisis de conglomerados no supervisado sobre datos biométricos semanales agregados.
+Empleamos un diseño cuantitativo, observacional, longitudinal retrospectivo con seguimiento multianual (2021-2024) de una cohorte de 10 participantes adultos. El diseño se basó en la validación convergente de un sistema de inferencia difusa tipo Mamdani contra una clasificación de referencia empírica (verdad operativa, GO) derivada de un análisis de conglomerados no supervisado sobre datos biométricos semanales agregados.
 
 La unidad de análisis correspondió a semanas completas de monitoreo (n=1,337 semanas válidas de 183 totales), donde cada observación semanal integró la mediana (p50) y el rango intercuartílico (IQR) de cuatro variables biométricas derivadas: Actividad Relativa, Superávit Calórico Basal, Variabilidad de Frecuencia Cardíaca (HRV-SDNN) y Delta Cardíaco.
 
 \subsection{Pivote Metodológico}
 \label{subsec:pivote_metodologico}
 
-El enfoque metodológico se apartó del diseño correlacional original, que planteaba relacionar métricas objetivas (biométricas) con percepciones subjetivas de calidad de vida (SF-36). Este pivote se fundamentó en tres razones convergentes documentadas en literatura:
+Adoptamos un enfoque metodológico diferente al diseño correlacional original, que planteaba relacionar métricas objetivas (biométricas) con percepciones subjetivas de calidad de vida (SF-36). Fundamentamos este pivote en tres razones convergentes documentadas en literatura:
 
 \begin{enumerate}
     \item \textbf{Limitaciones de potencia estadística:} Con N=10 participantes, el poder para detectar correlaciones moderadas (r<0.70) entre variables biométricas y SF-36 es insuficiente (1-$\beta$<0.50). Healy et al. \cite{Healy2024} reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de wearables en cohortes N<15.
@@ -25,7 +25,7 @@ El enfoque metodológico se apartó del diseño correlacional original, que plan
     \item \textbf{Autopercepción vs. comportamiento objetivo:} Prince et al. \cite{Prince2008} demuestran que autorreportes y mediciones objetivas representan constructos relacionados pero no intercambiables, con concordancia limitada (Kappa<0.50) debido a sesgos de deseabilidad social y error de memoria.
 \end{enumerate}
 
-En su lugar, se adoptó una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por Gonçalves et al. \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
+En su lugar, adoptamos una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por Gonçalves et al. \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
 
 % ============================================================================
 \section{Población de Estudio}
@@ -37,7 +37,7 @@ La cohorte final del estudio estuvo compuesta por 10 adultos jóvenes (5 mujeres
 \subsection{Estrategia de Reclutamiento}
 \label{subsec:reclutamiento}
 
-Se empleó un muestreo no probabilístico por conveniencia basado en el paradigma \textit{Bring Your Own Device} (BYOD; \cite{Doherty2021}). Los criterios de inclusión se basaron en:
+Empleamos un muestreo no probabilístico por conveniencia basado en el paradigma \textit{Bring Your Own Device} (BYOD; \cite{Doherty2021}). Basamos los criterios de inclusión en:
 
 \begin{enumerate}
     \item Propiedad de un Apple Watch Series 3 o superior
@@ -50,7 +50,7 @@ Se empleó un muestreo no probabilístico por conveniencia basado en el paradigm
 \subsection{Tamaño de Muestra y Justificación Estadística}
 \label{subsec:justificacion_n}
 
-El tamaño final de N=10 participantes se justificó por el carácter longitudinal del diseño. Cada participante generó un promedio de 133.7 semanas válidas (mediana: 131 semanas; rango: 7-298 semanas), lo cual resultó en 1,337 observaciones semanales independientes para el modelado.
+Justificamos el tamaño final de N=10 participantes por el carácter longitudinal del diseño. Cada participante generó un promedio de 133.7 semanas válidas (mediana: 131 semanas; rango: 7-298 semanas), lo cual resultó en 1,337 observaciones semanales independientes para el modelado.
 
 Este enfoque se alinea con el paradigma de \textbf{muestras densamente monitoreadas} (\textit{intensive longitudinal designs}; \cite{Bolger2013}), donde el poder estadístico proviene del número de observaciones temporales por sujeto (n$_{\text{obs}}$) más que del número de sujetos (N):
 
@@ -64,7 +64,7 @@ Con N=10 y $\bar{n}_{\text{obs}}$=133.7, se obtuvo n$_{\text{total}}$=1,337, sup
 \subsection{Características Demográficas de la Cohorte}
 \label{subsec:caracteristicas_cohorte}
 
-La distribución balanceada por sexo (50\%/50\%) y el amplio rango de seguimiento (7-298 semanas; CV=86\%) permiten capturar heterogeneidad inter-sujeto e intra-sujeto, características esenciales para evaluar la robustez del sistema de inferencia difusa en condiciones de vida libre. Las características detalladas se presentan en la \Cref{tab:cohorte_caracteristicas}.
+La distribución balanceada por sexo (50\%/50\%) y el amplio rango de seguimiento (7-298 semanas; CV=86\%) permiten capturar heterogeneidad inter-sujeto e intra-sujeto, características esenciales para evaluar la robustez del sistema de inferencia difusa en condiciones de vida libre. Presentamos las características detalladas en la \Cref{tab:cohorte_caracteristicas}.
 
 \begin{table}[htbp]
 \centering
@@ -114,7 +114,7 @@ Clasificación binaria de comportamiento sedentario semanal (Alto/Bajo) derivada
 \subsection{Variables de Control}
 \label{subsec:variables_control}
 
-Edad, sexo, peso y estatura, entre otras. Se registran para aislar su efecto sobre la asociación AF/CS--CVRS.
+Edad, sexo, peso y estatura, entre otras. Registramos estas variables para aislar su efecto sobre la asociación AF/CS--CVRS.
 
 \subsection{Operacionalización de las Variables}
 \label{subsec:operacionalizacion_variables}
@@ -165,7 +165,7 @@ Distancia caminada en kms & Independiente & Numérica & Continua & Distancia rec
 \midrule
 Número de pasos por día & Independiente & Numérica & Discreta & Conteo total de pasos diarios. \\
 \midrule
-Frecuencia cardiaca al caminar promedio diario (lpm) & Independiente & Numérica & Continua & Este valor refleja el estado del sistema cardiovascular durante períodos de inactividad o descanso y se considera un indicador clave de la salud general y la condición física. \\
+Frecuencia cardiaca al caminar promedio diario (lpm) & Independiente & Numérica & Continua & Este valor refleja el estado del sistema cardiovascular durante períodos de inactividad o descanso y constituye un indicador clave de la salud general y la condición física. \\
 \midrule
 Frecuencia cardiaca de reposo promedio diario (lpm) & Independiente & Numérica & Continua & Frecuencia cardíaca de reposo promedio diario. \\
 \midrule
@@ -183,9 +183,9 @@ Gasto calórico activo (kcal) & Independiente & Numérica & Continua & Estimaci�
 \subsection{Extracción de Variables desde Apple HealthKit}
 \label{subsec:extraccion_variables}
 
-Los archivos \texttt{export.zip} generados por la aplicación Apple Health contienen datos biométricos en formato XML estructurado. Para facilitar su análisis, se empleó el script de código abierto \texttt{apple\_health\_data\_converter.py} \cite{Gaur2024AppleHealth}, el cual convierte los registros XML a archivos CSV tabulares.
+Los archivos \texttt{export.zip} generados por la aplicación Apple Health contienen datos biométricos en formato XML estructurado. Para facilitar su análisis, empleamos el script de código abierto \texttt{apple\_health\_data\_converter.py} \cite{Gaur2024AppleHealth}, el cual convierte los registros XML a archivos CSV tabulares.
 
-Del ecosistema HealthKit se extrajeron inicialmente 9 variables diarias, correspondientes a métricas de actividad física, gasto energético y biomarcadores cardiovasculares (ver \Cref{tab:variables_originales_apple_health}):
+Del ecosistema HealthKit extrajimos inicialmente 9 variables diarias, correspondientes a métricas de actividad física, gasto energético y biomarcadores cardiovasculares (ver \Cref{tab:variables_originales_apple_health}):
 
 \begin{table}[htbp]
 \centering
@@ -220,7 +220,7 @@ Un análisis exploratorio preliminar reveló tres desafíos metodológicos que m
 
 \subsubsection{Heterogeneidad Inter-Sujeto Extrema}
 
-El cálculo del coeficiente de variación (CV) para cada variable a través de los 10 participantes mostró dispersiones superiores al 60\% en 7 de 9 métricas. Como se observa en la \Cref{fig:cv_variables_originales}, variables como \textit{Pasos diarios} presentaron CV=72\%, lo cual refleja diferencias sustanciales en edad, composición corporal, ocupación y nivel de condicionamiento físico entre participantes.
+El cálculo del coeficiente de variación (CV) para cada variable a través de los 10 participantes mostró dispersiones superiores al 60\% en 7 de 9 métricas. Como observamos en la \Cref{fig:cv_variables_originales}, variables como \textit{Pasos diarios} presentaron CV=72\%, lo cual refleja diferencias sustanciales en edad, composición corporal, ocupación y nivel de condicionamiento físico entre participantes.
 
 \begin{figure}[h!]
     \centering
@@ -235,7 +235,7 @@ Esta heterogeneidad extrema justifica la normalización individualizada implemen
 
 El análisis de datos faltantes (\textit{missingness}) reveló patrones heterogéneos entre participantes: 3 usuarios con menos del 5\% de datos faltantes, 4 usuarios con 10-20\%, y 3 usuarios con más del 20\% (principalmente en FC al caminar y HRV-SDNN, variables dependientes de algoritmos de detección de señal fotopletismográfica).
 
-Se implementó una estrategia de imputación jerárquica que prioriza:
+Implementamos una estrategia de imputación jerárquica que prioriza:
 \begin{enumerate}
     \item Interpolación lineal para gaps menores a 3 días consecutivos
     \item Mediana móvil de 7 días (ventana retrospectiva) para gaps de 3-7 días
@@ -329,7 +329,7 @@ La desviación estándar de los intervalos NN (SDNN) es un biomarcador del balan
 \subsection{Agregación Semanal y Justificación de Medianas}
 \label{subsec:agregacion_semanal}
 
-Todas las variables se agregaron a nivel semanal. Se utilizó la mediana (p50) como estimador de tendencia central y el rango intercuartílico (IQR) como medida de dispersión. Esta decisión metodológica se fundamentó en:
+Agregamos todas las variables a nivel semanal. Utilizamos la mediana (p50) como estimador de tendencia central y el rango intercuartílico (IQR) como medida de dispersión. Fundamentamos esta decisión metodológica en:
 
 \begin{enumerate}
     \item \textbf{Robustez ante valores atípicos:} La mediana es menos sensible a días con fallas de registro del dispositivo (ej. <10 horas monitoreadas).
@@ -349,14 +349,14 @@ La secuencia de análisis (flujo de trabajo) se estructuró en cinco fases secue
 \subsection{Fase 1: Caracterización y Análisis de Variabilidad}
 \label{subsec:fase1_caracterizacion}
 
-Se realizó un análisis descriptivo bivariado de la cohorte, el cual incluyó el cálculo de estadísticos de tendencia central (media, mediana) y dispersión (desviación estándar, rango intercuartílico, coeficiente de variación) para cada variable biométrica en dos estados: (a) datos observados (sin imputaciones), y (b) datos operativos (post-imputación mediante interpolación lineal para gaps <3 días consecutivos).
+Realizamos un análisis descriptivo bivariado de la cohorte, el cual incluyó el cálculo de estadísticos de tendencia central (media, mediana) y dispersión (desviación estándar, rango intercuartílico, coeficiente de variación) para cada variable biométrica en dos estados: (a) datos observados (sin imputaciones), y (b) datos operativos (post-imputación mediante interpolación lineal para gaps <3 días consecutivos).
 
 El análisis de variabilidad permitió cuantificar la heterogeneidad inter-sujeto (entre participantes) e intra-sujeto (día a día en un mismo participante), justificando la decisión de agregación temporal semanal (ver Sección \ref{subsec:agregacion_semanal}).
 
 \subsection{Fase 2: Establecimiento de la Verdad Operativa mediante Clustering}
 \label{subsec:fase2_clustering}
 
-Se aplicó el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas, configurado con semilla aleatoria fija (random\_state=42) y 10 inicializaciones (n\_init=10) para garantizar reproducibilidad \citep{Pedregosa2011sklearn}. Se utilizaron las ocho características derivadas (medianas e IQRs de las cuatro variables). La selección del número óptimo de conglomerados (K) se determinó mediante:
+Aplicamos el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas, configurado con semilla aleatoria fija (random\_state=42) y 10 inicializaciones (n\_init=10) para garantizar reproducibilidad \citep{Pedregosa2011sklearn}. Utilizamos las ocho características derivadas (medianas e IQRs de las cuatro variables). Determinamos el número óptimo de conglomerados (K) mediante:
 
 \begin{itemize}
     \item \textbf{Coeficiente de Silhouette:} Cuantifica la cohesión intra-conglomerado y separación inter-conglomerado. Valores >0.50 indican estructura bien definida \cite{Rousseeuw1987}.
@@ -373,18 +373,18 @@ Previo al clustering, se verificó la ausencia de multicolinealidad mediante el 
 \subsection{Fase 3: Diseño y Configuración del Sistema de Inferencia Difusa}
 \label{subsec:fase3_diseno_fuzzy}
 
-Se diseñó un sistema de inferencia difusa tipo Mamdani de cuatro entradas (las medianas semanales de Actividad Relativa, Superávit Calórico Basal, HRV-SDNN y Delta Cardíaco) y una salida (Índice de Actividad Física, escala [0,1]).
+Diseñamos un sistema de inferencia difusa tipo Mamdani de cuatro entradas (las medianas semanales de Actividad Relativa, Superávit Calórico Basal, HRV-SDNN y Delta Cardíaco) y una salida (Índice de Actividad Física, escala [0,1]).
 
-\textbf{Fuzzificación:} Se definieron funciones de pertenencia trapezoidales para tres categorías lingüísticas por variable (\textit{bajo}, \textit{medio}, \textit{alto}), con parámetros ajustados según rangos observados y criterios fisiológicos (ver Sección \ref{sec:base_metodologica_fuzzy}).
+\textbf{Fuzzificación:} Definimos funciones de pertenencia triangulares para tres categorías lingüísticas por variable (\textit{Baja}, \textit{Media}, \textit{Alta}), con parámetros determinados mediante percentiles empíricos de la distribución observada (data-driven) complementados con criterios fisiológicos (ver Sección \ref{sec:base_metodologica_fuzzy}).
 
-\textbf{Base de reglas:} Se exploraron inicialmente 81 reglas posibles (3$^4$ combinaciones de antecedentes), pero se diseñaron finalmente 5 reglas representativas basadas en conocimiento experto de fisiología del ejercicio, priorizando parsimonia e interpretabilidad. Ejemplo: ``SI Actividad\_rel es \textit{baja} Y Superávit\_cal es \textit{negativo} ENTONCES Índice\_AF es \textit{bajo}''.
+\textbf{Base de reglas:} Exploramos inicialmente 81 reglas posibles (3$^4$ combinaciones de antecedentes), pero diseñamos finalmente 5 reglas representativas basadas en conocimiento experto de fisiología del ejercicio, priorizando parsimonia e interpretabilidad. Ejemplo: ``SI Actividad\_rel es \textit{baja} Y Superávit\_cal es \textit{negativo} ENTONCES Índice\_AF es \textit{bajo}''.
 
-\textbf{Defuzzificación:} Se empleó el método del centroide para convertir la salida difusa en un valor crisp (numérico).
+\textbf{Defuzzificación:} Empleamos el método del promedio ponderado (weighted average) para convertir la salida difusa en un valor crisp (numérico), ofreciendo mayor estabilidad numérica que el centroide clásico.
 
 \subsection{Fase 4: Validación del Sistema Difuso mediante Leave-One-User-Out}
 \label{subsec:fase4_validacion_louo}
 
-El desempeño del sistema difuso se evaluó comparando su salida contra la verdad operativa (etiquetas de clustering). Se implementó una validación Leave-One-User-Out (LOUO), estrategia de referencia para cohortes pequeñas (N<20) donde cada fold corresponde a un participante completo \cite{Alinia2020,Crozat2025}.
+Evaluamos el desempeño del sistema difuso comparando su salida contra la verdad operativa (etiquetas de clustering). Implementamos una validación Leave-One-User-Out (LOUO), estrategia de referencia para cohortes pequeñas (N<20) donde cada fold corresponde a un participante completo \cite{Alinia2020,Crozat2025}.
 
 \textbf{Justificación LOUO:} A diferencia del k-fold tradicional (que particiona aleatoriamente), LOUO preserva la independencia inter-sujeto y evita la filtración de datos entre entrenamientos y pruebas. Esto es crítico cuando múltiples observaciones (semanas) pertenecen al mismo individuo.
 
@@ -400,7 +400,7 @@ El umbral de decisión ($\tau$) para binarizar la salida del sistema difuso se o
 \subsection{Fase 5: Análisis de Robustez y Contribución de Variables}
 \label{subsec:fase5_robustez}
 
-Se realizó un experimento de ablación para cuantificar la contribución sinérgica de las variables cardiovasculares (HRV-SDNN, Delta\_cardíaco). Se comparó el rendimiento del modelo completo (4 entradas) contra un modelo reducido (2 entradas: solo Actividad Relativa y Superávit Calórico).
+Realizamos un experimento de ablación para cuantificar la contribución sinérgica de las variables cardiovasculares (HRV-SDNN, Delta\_cardíaco). Comparamos el rendimiento del modelo completo (4 entradas) contra un modelo reducido (2 entradas: solo Actividad Relativa y Superávit Calórico).
 
 Este análisis permitió evaluar si la inclusión de biomarcadores cardiovasculares aporta información no redundante, más allá de métricas de actividad pura.
 
@@ -412,12 +412,12 @@ Este análisis permitió evaluar si la inclusión de biomarcadores cardiovascula
 \subsection{Selección del Dispositivo}
 \label{subsec:seleccion_dispositivo}
 
-Para la selección del dispositivo de monitoreo, se utilizó una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 \citep{Henriksen2021ReplicationData}. Esta base permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS).
+Para la selección del dispositivo de monitoreo, utilizamos una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 \citep{Henriksen2021ReplicationData}. Esta base permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS).
 
 \subsection{Análisis de Sensores}
 \label{subsec:analisis_sensores}
 
-Del análisis de los 423 dispositivos, se observó que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento y facilitar así la evaluación de la AF \citep{Henriksen2021ReplicationData}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \citep{Pinto2023Physiology}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente y alcanzó un 55\% en los dispositivos lanzados en 2016, lo cual refleja su creciente relevancia en la monitorización de la salud \citep{Henriksen2018}.
+Del análisis de los 423 dispositivos, observamos que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento y facilitar así la evaluación de la AF \citep{Henriksen2021ReplicationData}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \citep{Pinto2023Physiology}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente y alcanzó un 55\% en los dispositivos lanzados en 2016, lo cual refleja su creciente relevancia en la monitorización de la salud \citep{Henriksen2018}.
 
 Otros sensores, como el giroscopio (23.9\%) y el GPS (29.6\%), también destacan por su utilidad. El giroscopio mejora la detección de posturas y rotaciones corporales, mientras que el GPS permite registrar trayectorias, útil en actividades al aire libre. Sensores menos comunes, como el magnetómetro (18.2\%) y el barómetro (13.5\%), tienen aplicaciones específicas, pero son menos relevantes para este estudio \citep{Henriksen2018}.
 
@@ -440,11 +440,11 @@ La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodoló
     \label{fig:diagrama_flujo}
 \end{figure}
 
-Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en Swift. Los participantes generaron un archivo \texttt{export.zip} a través de la aplicación Apple Health en sus dispositivos. Cada archivo fue recibido y almacenado en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente los archivos comprimidos fueron descomprimidos para acceder a los datos en formato XML. Se utilizó el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
+Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en Swift. Los participantes generaron un archivo \texttt{export.zip} a través de la aplicación Apple Health en sus dispositivos. Recibimos y almacenamos cada archivo en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente descomprimimos los archivos para acceder a los datos en formato XML. Utilizamos el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
 
-Se identificaron los archivos \texttt{ActiveEnergyBurned.csv}, \texttt{AppleExerciseTime.csv}, \texttt{AppleStandHour.csv}, \texttt{AppleStandTime.csv}, \texttt{DistanceWalkingRunning.csv}, \texttt{HeartRate.csv}, \texttt{StepCount.csv}, \texttt{WalkingHeartRateAverage.csv} y extrajeron las siguientes métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente se desarrolló un código personalizado en Python que requirió de las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, se filtraron los registros utilizando la columna \texttt{sourceName}. Se seleccionaron únicamente los datos asociados al dispositivo específico del participante, excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
+Identificamos los archivos \texttt{ActiveEnergyBurned.csv}, \texttt{AppleExerciseTime.csv}, \texttt{AppleStandHour.csv}, \texttt{AppleStandTime.csv}, \texttt{DistanceWalkingRunning.csv}, \texttt{HeartRate.csv}, \texttt{StepCount.csv}, \texttt{WalkingHeartRateAverage.csv} y extrajimos las métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente desarrollamos un código personalizado en Python utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, filtramos los registros utilizando la columna \texttt{sourceName}, seleccionando únicamente los datos asociados al dispositivo específico del participante y excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
 
-Para el manejo de datos se identificaron registros con valores faltantes, nulos o atípicos. Los diferentes archivos CSV procesados fueron combinados en un único DataFrame consolidado. Las columnas del DataFrame consolidado fueron organizadas y etiquetadas adecuadamente para facilitar su interpretación y análisis posterior. Los encabezados de las columnas incluyeron: [Total de horas en las que se rompe la sedestación, Total de horas en sedestación, Total de Horas por día que tiene registros el dispositivo y Total de Horas que no hay registros, Total de minutos en movimiento, Pasos diarios, Distancia recorrida diaria en KM, Frecuencia cardíaca en reposo promedio diario, Frecuencia cardíaca al caminar promedio diario, Gasto calórico en activo.] Las columnas del DataFrame consolidado fueron organizadas y etiquetadas adecuadamente para facilitar su interpretación y análisis posterior.
+Para el manejo de datos identificamos registros con valores faltantes, nulos o atípicos. Combinamos los diferentes archivos CSV procesados en un único DataFrame consolidado y organizamos las columnas con etiquetas apropiadas para facilitar su interpretación y análisis posterior. Los encabezados de las columnas incluyeron: [Total de horas en las que se rompe la sedestación, Total de horas en sedestación, Total de Horas por día que tiene registros el dispositivo y Total de Horas que no hay registros, Total de minutos en movimiento, Pasos diarios, Distancia recorrida diaria en KM, Frecuencia cardíaca en reposo promedio diario, Frecuencia cardíaca al caminar promedio diario, Gasto calórico en activo.]
 
 % ============================================================================
 \section{Base Metodológica del Sistema de Inferencia Difusa}
@@ -453,22 +453,22 @@ Para el manejo de datos se identificaron registros con valores faltantes, nulos 
 
 Formalmente, la lógica difusa extiende la teoría de conjuntos clásica introduciendo conjuntos difusos (borrosos) cuyos elementos tienen grados de pertenencia en el intervalo $[0,1]$. Cada conjunto difuso $A$ en un universo de discurso $U$ se define mediante una función de pertenencia $\mu_A(x): U \rightarrow [0,1]$, que a cada valor $x$ le asigna un grado en que $x$ pertenece al concepto borroso $A$. Un grado $\mu_A(x) = 1$ indica pertenencia plena, $\mu_A(x) = 0$ indica no pertenencia, y valores intermedios reflejan pertenencia parcial.
 
-Las funciones de pertenencia típicamente se representan con curvas triangulares, trapezoidales, sigmoides u otras formas, según convenga modelar gradualmente la transición entre categorías lingüísticas (bajo, medio, alto). La \Cref{fig:funciones_membresia} muestra las funciones trapezoidales definidas para cada variable de entrada del sistema, con tres categorías lingüísticas por variable cuyos parámetros fueron ajustados según los rangos observados en la cohorte y criterios fisiológicos.
+Las funciones de pertenencia típicamente se representan con curvas triangulares, trapezoidales, sigmoides u otras formas, según convenga modelar gradualmente la transición entre categorías lingüísticas (bajo, medio, alto). En el presente estudio, adoptamos \textbf{funciones de membresía triangulares} debido a su parsimonia matemática, interpretabilidad clínica directa, y robustez ante tamaños muestrales pequeños. La \Cref{fig:funciones_membresia} muestra las funciones triangulares definidas para cada variable de entrada del sistema, con tres categorías lingüísticas por variable cuyos parámetros determinamos mediante percentiles empíricos de la cohorte (data-driven) complementados con criterios fisiológicos para garantizar relevancia clínica.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{figuras/Funciones_de_membresias_trapezoidales_fig4.png}
-    \caption{Funciones de pertenencia trapezoidales de las variables de entrada}
+    \includegraphics[width=0.95\textwidth]{figuras/funciones_membresia_triangulares.png}
+    \caption{Funciones de pertenencia triangulares de las cuatro variables de entrada del sistema difuso. Determinamos los vértices (a, b, c) de cada triángulo mediante percentiles empíricos (P\textsubscript{10}, P\textsubscript{25}, P\textsubscript{40} para \textit{Baja}; P\textsubscript{35}, P\textsubscript{50}, P\textsubscript{65} para \textit{Media}; P\textsubscript{60}, P\textsubscript{75}, P\textsubscript{90} para \textit{Alta}), calculados sobre el conjunto de datos completo (N=10 usuarios, 1,337 semanas válidas). Esta parametrización data-driven garantiza que las funciones reflejen la distribución real observada en la cohorte.}
     \label{fig:funciones_membresia}
 \end{figure}
 
-Por ejemplo, podríamos definir un conjunto difuso ``pasos diarios bajos'' donde $\mu_{\text{bajo}}(x) = 0.8$ para $x = 4000$ pasos, significando que 4000 pasos/día se consideran con un 80\% de pertenencia al concepto ``bajo''.
+Por ejemplo, podríamos definir un conjunto difuso ``actividad relativa baja'' donde $\mu_{\text{Baja}}(x) = 0.8$ para $x = 0.08$ (normalizado), significando que un valor de 0.08 se considera con un 80\% de pertenencia al concepto ``baja actividad''. La forma triangular permite transiciones graduales: a medida que $x$ aumenta desde el vértice izquierdo ($a$) hasta el pico ($b$), el grado de pertenencia crece linealmente de 0 a 1; luego decrece linealmente de 1 a 0 desde $b$ hasta el vértice derecho ($c$). Esta simplicidad facilita tanto la interpretación fisiológica como el ajuste de parámetros mediante métodos estadísticos estándar (percentiles).
 
 Operar con conjuntos difusos requiere generalizar los operadores lógicos clásicos. En lógica difusa, el AND (conjunción) de dos condiciones se modela mediante una t-norma (norma triangular), y el OR (disyunción) mediante una t-conorma (s-norma). Estas operaciones combinan los grados de verdad de los operandos siguiendo ciertas propiedades (conmutatividad, asociatividad, monotonía y existencia de elementos neutro y nulo). La elección más común --por su simplicidad y significado intuitivo-- es usar la mínima (min) como t-norma para AND y la máxima (máx) como s-norma para OR. Así, el grado de verdad de ``$A$ AND $B$'' sería $\min(\mu_A, \mu_B)$ y de ``$A$ OR $B$'' sería $\max(\mu_A, \mu_B)$. De igual forma, la negación (NOT) de un conjunto difuso se define usualmente como el complemento estándar $\mu_{\neg A}(x) = 1 - \mu_A(x)$. Estas operaciones extienden las leyes de De Morgan al caso difuso, permitiendo cálculos lógicos coherentes con valores de verdad parciales.
 
-Con estos elementos, es posible construir reglas difusas del tipo SI-ENTONCES para capturar conocimiento experto. Una regla difusa tiene la forma: ``SI $X$ es $A$ Y $Y$ es $B$, ENTONCES $Z$ es $C$'', donde $A$, $B$ y $C$ son valores lingüísticos representados por conjuntos difusos en los universos de discurso de las variables $X$, $Y$ y $Z$ respectivamente. Por ejemplo, una regla en nuestro contexto podría ser: ``SI pasos diarios es bajo Y horas sedentarias es alto, ENTONCES calidad de vida es baja''. La colección de todas las reglas constituye la base de conocimientos difusa del sistema. 
+Con estos elementos, es posible construir reglas difusas del tipo SI-ENTONCES para capturar conocimiento experto. Una regla difusa tiene la forma: ``SI $X$ es $A$ Y $Y$ es $B$, ENTONCES $Z$ es $C$'', donde $A$, $B$ y $C$ son valores lingüísticos representados por conjuntos difusos en los universos de discurso de las variables $X$, $Y$ y $Z$ respectivamente. Por ejemplo, una regla en nuestro contexto podría ser: ``SI Actividad\_relativa es Baja Y Superávit\_calórico es Bajo, ENTONCES Sedentarismo es Alto'' (correspondiente a la Regla R1 de nuestro sistema). La colección de todas las reglas constituye la base de conocimientos difusa del sistema. 
 
-El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los antecedentes (entradas) como los consecuentes (salida) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo Mamdani produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación. La \Cref{fig:salida_difusa} ilustra este proceso: el motor de inferencia combina las reglas activadas y genera una distribución difusa de salida, la cual se defuzzifica mediante el método del centroide para obtener un valor numérico interpretable.
+El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los antecedentes (entradas) como los consecuentes (salida) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo Mamdani produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación. La \Cref{fig:salida_difusa} ilustra este proceso: el motor de inferencia combina las reglas activadas y genera una distribución difusa de salida, la cual se defuzzifica mediante el método del promedio ponderado (weighted average) para obtener un valor numérico interpretable. Esta elección metodológica de defuzzificación (promedio ponderado en lugar del centroide clásico) se justifica por su menor complejidad computacional y mayor estabilidad numérica cuando múltiples reglas se activan simultáneamente con pesos similares.
 
 \begin{figure}[htbp]
     \centering
@@ -477,7 +477,7 @@ El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los anteceden
     \label{fig:salida_difusa}
 \end{figure}
 
-En resumen, matemáticamente el sistema consta de: (a) conjuntos difusos y funciones de pertenencia que definen las etiquetas lingüísticas para cada variable; (b) operadores lógicos difusos (t-normas, s-normas, negadores) que permiten evaluar la veracidad parcial de premisas compuestas; (c) un conjunto de reglas SI ENTONCES difusas que relacionan las entradas (comportamientos sedentarios/activos) con la salida (impacto en calidad de vida); y (d) un mecanismo de inferencia difusa Mamdani que combina las reglas y obtiene una salida difusa, la cual finalmente se transforma en un valor numérico mediante defuzzificación.
+En resumen, matemáticamente el sistema consta de: (a) conjuntos difusos y funciones de pertenencia \textbf{triangulares} que definen las etiquetas lingüísticas para cada variable mediante parametrización data-driven (percentiles empíricos); (b) operadores lógicos difusos (t-normas, s-normas, negadores) que permiten evaluar la veracidad parcial de premisas compuestas; (c) un conjunto de cinco reglas SI ENTONCES difusas basadas en conocimiento fisiológico del ejercicio que relacionan las entradas (comportamientos sedentarios/activos medidos por sensores wearables) con la salida (índice de sedentarismo); y (d) un mecanismo de inferencia difusa Mamdani que combina las reglas mediante t-norm de Gödel (mínimo) y obtiene una salida difusa, la cual finalmente se transforma en un valor numérico mediante defuzzificación por promedio ponderado.
 
 % ============================================================================
 % SECCIÓN 5.X: FORMALIZACIÓN MATEMÁTICA DEL SISTEMA DIFUSO (ATLAS)
@@ -486,7 +486,7 @@ En resumen, matemáticamente el sistema consta de: (a) conjuntos difusos y funci
 \subsection{Formalización Matemática del Sistema de Inferencia Difusa}
 \label{subsec:formalizacion_sistema_difuso}
 
-El sistema de inferencia difusa implementado sigue el modelo de \textbf{Mamdani} \citep{Mamdani1975}, que permite la construcción de reglas lingüísticas interpretables mediante la teoría de conjuntos difusos \citep{Zadeh1965}. A continuación se presenta la formalización matemática completa del sistema.
+El sistema de inferencia difusa implementado sigue el modelo de \textbf{Mamdani} \citep{Mamdani1975}, que permite la construcción de reglas lingüísticas interpretables mediante la teoría de conjuntos difusos \citep{Zadeh1965}. Presentamos a continuación la formalización matemática completa del sistema.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Conjuntos Difusos y Variables Lingüísticas}
@@ -517,7 +517,7 @@ Y: \text{Índice de Sedentarismo} \in [0, 1] \quad \text{(adimensional)}
 \label{eq:var_salida}
 \end{equation}
 
-Cada variable de entrada se particionó en tres términos lingüísticos: \(\{Baja, Media, Alta\}\), mientras que la variable de salida se particionó en \(\{Bajo, Medio, Alto\}\).
+Particionamos cada variable de entrada en tres términos lingüísticos: \(\{Baja, Media, Alta\}\), mientras que la variable de salida la particionamos en \(\{Bajo, Medio, Alto\}\).
 
 % ----------------------------------------------------------------------------
 \subsubsection{Funciones de Membresía Triangulares}
@@ -530,7 +530,7 @@ Las funciones de membresía se parametrizaron mediante \textbf{funciones triangu
 \label{eq:func_triangular}
 \end{equation}
 
-Para cada variable \(X_i\) y término lingüístico \(T \in \{\text{Baja}, \text{Media}, \text{Alta}\}\), los parámetros \((a, b, c)\) se determinaron como:
+Para cada variable \(X_i\) y término lingüístico \(T \in \{\text{Baja}, \text{Media}, \text{Alta}\}\), determinamos los parámetros \((a, b, c)\) como:
 
 \begin{align}
 \mu_{X_i, \text{Baja}}(x) &= \text{triangular}(x; p_{10,i}, p_{25,i}, p_{40,i}) \label{eq:mf_baja} \\
@@ -542,7 +542,7 @@ donde \(p_{k,i}\) representa el percentil \(k\) de la variable \(X_i\) calculado
 
 \paragraph{Representación matricial de percentiles:}
 
-Para cada variable \(X_i\), se define la matriz de percentiles globales \(\mathbf{P}_i \in \mathbb{R}^{3 \times 3}\):
+Para cada variable \(X_i\), definimos la matriz de percentiles globales \(\mathbf{P}_i \in \mathbb{R}^{3 \times 3}\):
 
 \begin{equation}
 \mathbf{P}_i = \begin{bmatrix}
@@ -553,7 +553,7 @@ p_{60,i} & p_{80,i} & p_{90,i}
 \label{eq:matriz_percentiles}
 \end{equation}
 
-Los valores específicos calculados sobre la cohorte completa (N=10 usuarios, 1,337 semanas) se presentan en la \Cref{tab:percentiles_globales}.
+Presentamos los valores específicos calculados sobre la cohorte completa (N=10 usuarios, 1,337 semanas) en la \Cref{tab:percentiles_globales}.
 
 \begin{table}[H]
 \centering
@@ -635,7 +635,7 @@ w_5^{(j)}
 \subsubsection{Agregación y Defuzzificación}
 \label{subsubsec:agregacion_defuzz}
 
-La defuzzificación se realizó mediante \textbf{promedio ponderado} (weighted average):
+Realizamos la defuzzificación mediante \textbf{promedio ponderado} (weighted average):
 
 \begin{equation}
 y^{(j)} = \frac{\sum_{r=1}^{5} w_r^{(j)} \cdot y_r}{\sum_{r=1}^{5} w_r^{(j)}}
@@ -651,9 +651,9 @@ y^{(j)} = \frac{(\mathbf{w}^{(j)})^T \cdot \mathbf{y}_{\text{salidas}}}{\|\mathb
 \label{eq:defuzz_matricial}
 \end{equation}
 
-\textbf{Propiedad fundamental:} Se demuestra que \(y^{(j)} \in [0, 1]\) para toda observación \(j\), garantizando que el score de sedentarismo siempre está acotado en el intervalo unitario.
+\textbf{Propiedad fundamental:} Demostramos que \(y^{(j)} \in [0, 1]\) para toda observación \(j\), garantizando que el score de sedentarismo siempre está acotado en el intervalo unitario.
 
-La clasificación binaria final se obtiene mediante umbralización:
+Obtenemos la clasificación binaria final mediante umbralización:
 
 \begin{equation}
 \hat{y}^{(j)} = \mathbb{1}[y^{(j)} \geq \tau]
@@ -666,13 +666,13 @@ donde \(\tau \in [0, 1]\) es el umbral de decisión optimizado para maximizar el
 \subsubsection{Justificación de Percentiles Globales en LOOU}
 \label{subsubsec:percentiles_globales}
 
-Un aspecto crítico del diseño metodológico fue el uso de \textbf{percentiles globales fijos} en la validación Leave-One-User-Out. Esta decisión se fundamenta en tres principios:
+Un aspecto crítico del diseño metodológico fue el uso de \textbf{percentiles globales fijos} en la validación Leave-One-User-Out. Fundamentamos esta decisión en tres principios:
 
 \paragraph{Analogía con arquitecturas de redes neuronales:}
 En redes neuronales profundas, la \textit{arquitectura} (número de capas, neuronas) se diseña previamente, mientras que solo los \textit{pesos} se entrenan. Análogamente, los percentiles \(\mathbf{P}_i\) definen la \textbf{arquitectura} de las funciones de membresía (forma y rangos), constituyendo parámetros de diseño que no deben recalcularse en cada fold de validación cruzada.
 
 \paragraph{Transfer learning y conocimiento del dominio:}
-Similar al transfer learning, donde se utilizan pesos pre-entrenados de un conjunto de datos completo, los percentiles globales calculados con N=10 usuarios codifican el \textbf{rango fisiológico esperado} de la población objetivo, funcionando como conocimiento a priori del dominio clínico.
+Similar al transfer learning, donde utilizamos pesos pre-entrenados de un conjunto de datos completo, los percentiles globales calculados con N=10 usuarios codifican el \textbf{rango fisiológico esperado} de la población objetivo, funcionando como conocimiento a priori del dominio clínico.
 
 \paragraph{Validación empírica:}
 En experimentos de ablación, el uso de percentiles globales fijos (calculados con N=10 completo) versus percentiles recalculados por fold (con N=9) resultó en una mejora de F1-Score LOOU de 0.314 a \textbf{0.780} (+148\%, p<0.001), validando empíricamente la hipótesis de que los percentiles son parámetros estructurales, no entrenables.
@@ -691,7 +691,7 @@ Esta estrategia garantiza estabilidad de la arquitectura del sistema difuso mien
 \subsubsection{Protocolo de Validación Leave-One-User-Out}
 \label{subsubsec:protocolo_loou}
 
-El protocolo LOOU se formalizó como sigue. Sea el conjunto de datos completo:
+Formalizamos el protocolo LOOU como sigue. Sea el conjunto de datos completo:
 
 \begin{equation}
 \mathcal{D} = \left\{(x_i^{(j)}, c_i^{(j)})\right\}_{i=1}^{10}, \quad j \in \{1, \ldots, n_i\}
@@ -739,7 +739,7 @@ El sistema alcanzó \(\overline{F1}_{\text{LOOU}} = 0.780 \pm 0.167\) (CV=21.4\%
 \label{sec:aspectos_eticos_bioseguridad}
 % ============================================================================
 
-Las bases para garantizar que el proyecto de investigación se desarrolle respetando los más altos estándares éticos y de bioseguridad. Al implementar las medidas descritas, se protegerá la confidencialidad y privacidad de los datos de los participantes, cumpliendo con las normativas nacionales e internacionales en cumplimiento con:
+Las bases para garantizar que el proyecto de investigación se desarrolle respetando los más altos estándares éticos y de bioseguridad. Al implementar las medidas descritas, protegemos la confidencialidad y privacidad de los datos de los participantes, cumpliendo con las normativas nacionales e internacionales en cumplimiento con:
 
 \begin{itemize}
     \item Los Principios éticos para las investigaciones médicas en seres humanos de la Declaración de Helsinki.
@@ -759,9 +759,9 @@ El proyecto se regirá por los siguientes principios éticos: \textbf{respeto po
 \subsection{Procedimiento para Obtener el Consentimiento}
 \label{subsec:procedimiento_consentimiento}
 
-Se proporcionará a los participantes información clara y comprensible que contenga una explicación detallada del estudio, incluyendo objetivos, procedimientos, riesgos y beneficios. El consentimiento se obtendrá sin coerción, presión o influencia indebida garantizando la voluntariedad del individuo a participar en el proyecto de investigación, otorgándole el derecho a retirarse en cualquier momento sin penalización ni pérdida de beneficios.
+Proporcionamos a los participantes información clara y comprensible que contiene una explicación detallada del estudio, incluyendo objetivos, procedimientos, riesgos y beneficios. Obtenemos el consentimiento sin coerción, presión o influencia indebida garantizando la voluntariedad del individuo a participar en el proyecto de investigación, otorgándole el derecho a retirarse en cualquier momento sin penalización ni pérdida de beneficios.
 
-El consentimiento se documentará mediante un formulario digital firmado electrónicamente, en apego a las normas impuestas por el comité de ética que garantizan la autenticidad del consentimiento. Se brindará un medio para que los participantes puedan hacer preguntas y recibir respuestas antes de otorgar su consentimiento, dejando evidencia documental de que el participante ha leído y comprendido el formulario, y que ha dado su consentimiento de manera voluntaria.
+Documentamos el consentimiento mediante un formulario digital firmado electrónicamente, en apego a las normas impuestas por el comité de ética que garantizan la autenticidad del consentimiento. Brindamos un medio para que los participantes puedan hacer preguntas y recibir respuestas antes de otorgar su consentimiento, dejando evidencia documental de que el participante ha leído y comprendido el formulario, y que ha dado su consentimiento de manera voluntaria.
 
 \subsection{Contenido del Formulario de Consentimiento}
 \label{subsec:contenido_formulario_consentimiento}
@@ -783,14 +783,14 @@ Los criterios de inclusión y exclusión del estudio han sido definidos para ase
 \subsection{Confidencialidad y Privacidad de los Datos}
 \label{subsec:confidencialidad_privacidad}
 
-El manejo de los datos personales se basó en los siguientes principios: \textbf{licitud y transparencia}, los datos se recopilaron y procesaron de manera legal y transparente. Se utilizaron únicamente para los fines específicos del estudio, limitando la finalidad. Solo se recopilaron los datos necesarios y pertinentes, se garantizó que fueran precisos y actualizados, y se protegieron contra accesos no autorizados, pérdidas o daños, garantizando integridad y confidencialidad. El control de accesos se gestionó de manera que solo el equipo de investigación tuvo acceso a los datos, con permisos asignados según roles y responsabilidades.
+Basamos el manejo de los datos personales en los siguientes principios: \textbf{licitud y transparencia}, recopilamos y procesamos los datos de manera legal y transparente. Los utilizamos únicamente para los fines específicos del estudio, limitando la finalidad. Solo recopilamos los datos necesarios y pertinentes, garantizamos que fueran precisos y actualizados, y los protegimos contra accesos no autorizados, pérdidas o daños, garantizando integridad y confidencialidad. Gestionamos el control de accesos de manera que solo el equipo de investigación tuvo acceso a los datos, con permisos asignados según roles y responsabilidades.
 
-Además, se eliminaron identificadores personales para que los datos no pudieran asociarse a individuos específicos. Se asignaron códigos únicos a los participantes, manteniendo separados los datos identificativos de los datos de investigación. Para transferencia y comunicación de datos se utilizaron canales seguros y cifrados. Cuando fue estrictamente necesario el acceso de terceros, se firmaron Acuerdos de Confidencialidad para garantizar la protección y uso adecuado de los datos.
+Además, eliminamos identificadores personales para que los datos no pudieran asociarse a individuos específicos. Asignamos códigos únicos a los participantes, manteniendo separados los datos identificativos de los datos de investigación. Para transferencia y comunicación de datos utilizamos canales seguros y cifrados. Cuando fue estrictamente necesario el acceso de terceros, firmamos Acuerdos de Confidencialidad para garantizar la protección y uso adecuado de los datos.
 
 \subsection{Política de Retención y Eliminación Segura}
 \label{subsec:politica_retencion}
 
-Los datos personales se conservarán únicamente durante el tiempo necesario para los fines del estudio y respetando las normas interpuestas por el comité de ética.
+Conservaremos los datos personales únicamente durante el tiempo necesario para los fines del estudio y respetando las normas interpuestas por el comité de ética.
 
 \subsection{Derechos de los Participantes}
 \label{subsec:derechos_participantes}
@@ -802,12 +802,12 @@ Los participantes podrán solicitar información sobre sus datos personales alma
 
 El equipo se adherirá a los principios éticos de la Declaración de Helsinki para investigaciones médicas, priorizando el bienestar de los participantes sobre los intereses científicos y sociales, respetando las normas éticas. También se cumplirán las pautas éticas internacionales del CIOMS (Consejo de Organizaciones Internacionales de las Ciencias Médicas) que han sido contempladas y declaradas en este documento para salvaguardar los derechos y bienestar de los participantes. Todo esto en acatamiento al reglamento de la ley general de salud en materia de investigación, que solicita el registro del proyecto aprobado por un comité de ética en investigación reconocido.
 
-Además, por la naturaleza de esta investigación nos exime a cumplir también con Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados, donde los participantes en el proyecto serán responsables del manejo adecuado de los datos personales. Se proporcionará un aviso detallado a los participantes sobre cómo se manejarán sus datos las medidas de seguridad implementadas, las medidas técnicas y organizativas para proteger los datos, los criterios de inclusión y exclusión definidos, las instrucciones claras sobre cómo participar y utilizar los dispositivos de monitoreo, el manejo de datos, el análisis de los datos, la divulgación de resultados, intención de publicaciones y si se comparten datos con otros investigadores.
+Además, por la naturaleza de esta investigación nos exime a cumplir también con Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados, donde los participantes en el proyecto serán responsables del manejo adecuado de los datos personales. Proporcionamos un aviso detallado a los participantes sobre cómo manejaremos sus datos, las medidas de seguridad implementadas, las medidas técnicas y organizativas para proteger los datos, los criterios de inclusión y exclusión definidos, las instrucciones claras sobre cómo participar y utilizar los dispositivos de monitoreo, el manejo de datos, el análisis de los datos, la divulgación de resultados, intención de publicaciones y si compartimos datos con otros investigadores.
 
 \subsection{Plan de Contingencia y Manejo de Incidentes}
 \label{subsec:plan_contingencia}
 
-Para evitar incidentes de seguridad de datos se implementarán sistemas para detectar accesos no autorizados y responder de manera inmediata en caso de detectar una brecha de seguridad y generar una notificación que informará a las autoridades competentes y a los participantes afectados.
+Para evitar incidentes de seguridad de datos implementaremos sistemas para detectar accesos no autorizados y responder de manera inmediata en caso de detectar una brecha de seguridad y generar una notificación que informará a las autoridades competentes y a los participantes afectados.
 
 En el caso del surgimiento de cualquier efecto adverso relacionado con el uso de los dispositivos, como los mencionados en la evaluación de riesgos se dispondrá de los recursos pertinentes para atender cualquier necesidad que surja durante el estudio.
 
@@ -821,7 +821,7 @@ El proyecto fue financiado con recursos propios, cubriendo los gastos asociados 
 \subsection{Reproducibilidad Computacional}
 \label{subsec:reproducibilidad_computacional}
 
-Para garantizar la reproducibilidad completa de los análisis, se documentan a continuación las especificaciones técnicas del entorno computacional:
+Para garantizar la reproducibilidad completa de los análisis, documentamos a continuación las especificaciones técnicas del entorno computacional:
 
 \paragraph{Entorno de software:}
 \begin{itemize}
