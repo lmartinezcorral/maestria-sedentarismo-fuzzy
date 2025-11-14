@@ -1,6 +1,8 @@
 \chapter{Materiales y Métodos}
 \label{chap:materiales_metodos}
 
+\noindent Este capítulo detalla la metodología empleada en la investigación, incluyendo el diseño del estudio, la caracterización de la población participante, la definición operacional de variables, los instrumentos de recolección de datos biométricos y el protocolo de análisis estadístico implementado. Se describe el procedimiento completo desde la adquisición de datos del Apple Watch mediante el ecosistema HealthKit hasta la validación del sistema de inferencia difusa mediante estrategia Leave-One-User-Out, garantizando la reproducibilidad y transparencia metodológica necesarias para la replicación de los hallazgos en estudios futuros.
+
 % ============================================================================
 \section{Diseño del Estudio}
 \label{sec:diseno}
@@ -48,7 +50,7 @@ Se empleó un muestreo no probabilístico por conveniencia basado en el paradigm
 \subsection{Tamaño de Muestra y Justificación Estadística}
 \label{subsec:justificacion_n}
 
-El tamaño final de N=10 participantes se justificó por el carácter longitudinal del diseño. Cada participante generó un promedio de 133.7 semanas válidas (mediana: 131 semanas; rango: 7-298 semanas), resultando en 1,337 observaciones semanales independientes para el modelado.
+El tamaño final de N=10 participantes se justificó por el carácter longitudinal del diseño. Cada participante generó un promedio de 133.7 semanas válidas (mediana: 131 semanas; rango: 7-298 semanas), lo cual resultó en 1,337 observaciones semanales independientes para el modelado.
 
 Este enfoque se alinea con el paradigma de \textbf{muestras densamente monitoreadas} (\textit{intensive longitudinal designs}; \cite{Bolger2013}), donde el poder estadístico proviene del número de observaciones temporales por sujeto (n$_{\text{obs}}$) más que del número de sujetos (N):
 
@@ -196,7 +198,7 @@ Del ecosistema HealthKit se extrajeron inicialmente 9 variables diarias, corresp
 \midrule
 Pasos diarios & count & HKQuantityTypeIdentifier\-StepCount & Conteo total de pasos acumulados en 24 horas \\
 Distancia & km & HKQuantityTypeIdentifier\-DistanceWalkingRunning & Distancia recorrida en actividades ambulatorias \\
-Calorías activas & kcal & HKQuantityTypeIdentifier\-ActiveEnergyBurned & Gasto energético activo (excluyendo tasa metabólica basal) \\
+Calorías activas & kcal & HKQuantityTypeIdentifier\-ActiveEnergyBurned & Gasto energético activo (excluye tasa metabólica basal) \\
 Minutos ejercicio & min & HKQuantityTypeIdentifier\-AppleExerciseTime & Tiempo en actividades $\geq$3 METs \\
 FC reposo & lpm & HKQuantityTypeIdentifier\-RestingHeartRate & Frecuencia cardíaca mínima diaria \\
 FC al caminar & lpm & HKQuantityTypeIdentifier\-WalkingHeartRateAverage & Frecuencia cardíaca promedio en marcha \\
@@ -233,7 +235,7 @@ Esta heterogeneidad extrema justifica la normalización individualizada implemen
 
 El análisis de datos faltantes (\textit{missingness}) reveló patrones heterogéneos entre participantes: 3 usuarios con menos del 5\% de datos faltantes, 4 usuarios con 10-20\%, y 3 usuarios con más del 20\% (principalmente en FC al caminar y HRV-SDNN, variables dependientes de algoritmos de detección de señal fotopletismográfica).
 
-Se implementó una estrategia de imputación jerárquica priorizando:
+Se implementó una estrategia de imputación jerárquica que prioriza:
 \begin{enumerate}
     \item Interpolación lineal para gaps menores a 3 días consecutivos
     \item Mediana móvil de 7 días (ventana retrospectiva) para gaps de 3-7 días
@@ -251,7 +253,7 @@ El análisis de correlación de Pearson entre las variables originales mostró c
     \item Minutos ejercicio $\leftrightarrow$ Calorías activas ($r=0.68$)
 \end{itemize}
 
-Esto motivó el diseño de variables derivadas que: (a) reduzcan redundancia informativa, y (b) normalicen por exposición temporal y metabolismo basal, lo que permite comparaciones equitativas entre usuarios con diferentes características antropométricas.
+Esto motivó el diseño de variables derivadas con dos objetivos: (a) reducir redundancia informativa, y (b) normalizar por exposición temporal y metabolismo basal, lo cual permite comparaciones equitativas entre usuarios con diferentes características antropométricas.
 
 \subsection{Transición a Ingeniería de Características}
 \label{subsec:transicion_feature_engineering}
@@ -284,7 +286,7 @@ Inspirada en el concepto de Reserva de Frecuencia Cardíaca (\%HRR; \cite{Schrac
 \subsection{Superávit Calórico Basal}
 \label{subsec:superavit_calorico}
 
-Normaliza el balance energético diario ajustando por el Metabolismo Basal de Reposo (TMB) individual, estimado mediante las ecuaciones de Harris-Benedict \cite{Harris1918}:
+Normaliza el balance energético diario mediante el ajuste por el Metabolismo Basal de Reposo (TMB) individual, estimado mediante las ecuaciones de Harris-Benedict \cite{Harris1918}:
 
 \begin{equation}
 \text{Superávit\_calórico\_basal} = \text{Calorías\_activas\_hr} - \frac{\text{TMB}}{24}
@@ -297,7 +299,7 @@ Donde TMB se calcula como:
 \text{TMB}_{\text{mujeres}} &= 655.1 + (9.563 \times \text{Peso}) + (1.850 \times \text{Altura}) - (4.676 \times \text{Edad})
 \end{align}
 
-\textbf{Justificación fisiológica:} Yamada et al. \cite{Yamada2019} reportan que el Gasto Energético de Actividad Física (PAEE = TEE - BMR) es la métrica estándar para evaluar actividad en estudios de agua doblemente marcada (gold standard). Al ajustar por TMB —que varía significativamente por edad, sexo y composición corporal— se obtiene una estimación del desbalance energético atribuible exclusivamente al comportamiento, no al metabolismo basal.
+\textbf{Justificación fisiológica:} Yamada et al. \cite{Yamada2019} reportan que el Gasto Energético de Actividad Física (PAEE = TEE - BMR) es la métrica estándar para evaluar actividad en estudios de agua doblemente marcada (estándar de referencia). Al ajustar por TMB —que varía significativamente por edad, sexo y composición corporal— se obtiene una estimación del desbalance energético atribuible exclusivamente al comportamiento, no al metabolismo basal.
 
 \textbf{Rango observado:} [-50, +80] kcal/hora. Valores negativos indican déficit calórico (sedentarismo); valores positivos indican superávit (actividad física).
 
@@ -347,14 +349,14 @@ La secuencia de análisis (flujo de trabajo) se estructuró en cinco fases secue
 \subsection{Fase 1: Caracterización y Análisis de Variabilidad}
 \label{subsec:fase1_caracterizacion}
 
-Se realizó un análisis descriptivo bivariado de la cohorte, calculando estadísticos de tendencia central (media, mediana) y dispersión (desviación estándar, rango intercuartílico, coeficiente de variación) para cada variable biométrica en dos estados: (a) datos observados (sin imputaciones), y (b) datos operativos (post-imputación mediante interpolación lineal para gaps <3 días consecutivos).
+Se realizó un análisis descriptivo bivariado de la cohorte, el cual incluyó el cálculo de estadísticos de tendencia central (media, mediana) y dispersión (desviación estándar, rango intercuartílico, coeficiente de variación) para cada variable biométrica en dos estados: (a) datos observados (sin imputaciones), y (b) datos operativos (post-imputación mediante interpolación lineal para gaps <3 días consecutivos).
 
 El análisis de variabilidad permitió cuantificar la heterogeneidad inter-sujeto (entre participantes) e intra-sujeto (día a día en un mismo participante), justificando la decisión de agregación temporal semanal (ver Sección \ref{subsec:agregacion_semanal}).
 
 \subsection{Fase 2: Establecimiento de la Verdad Operativa mediante Clustering}
 \label{subsec:fase2_clustering}
 
-Se aplicó el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas. Se utilizaron las ocho características derivadas (medianas e IQRs de las cuatro variables). La selección del número óptimo de conglomerados (K) se determinó mediante:
+Se aplicó el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas, configurado con semilla aleatoria fija (random\_state=42) y 10 inicializaciones (n\_init=10) para garantizar reproducibilidad \citep{Pedregosa2011sklearn}. Se utilizaron las ocho características derivadas (medianas e IQRs de las cuatro variables). La selección del número óptimo de conglomerados (K) se determinó mediante:
 
 \begin{itemize}
     \item \textbf{Coeficiente de Silhouette:} Cuantifica la cohesión intra-conglomerado y separación inter-conglomerado. Valores >0.50 indican estructura bien definida \cite{Rousseeuw1987}.
@@ -375,16 +377,16 @@ Se diseñó un sistema de inferencia difusa tipo Mamdani de cuatro entradas (las
 
 \textbf{Fuzzificación:} Se definieron funciones de pertenencia trapezoidales para tres categorías lingüísticas por variable (\textit{bajo}, \textit{medio}, \textit{alto}), con parámetros ajustados según rangos observados y criterios fisiológicos (ver Sección \ref{sec:base_metodologica_fuzzy}).
 
-\textbf{Base de reglas:} Se establecieron 81 reglas del tipo SI-ENTONCES (3$^4$ combinaciones), las cuales incorporan conocimiento experto de fisiología del ejercicio. Ejemplo: ``SI Actividad\_rel es \textit{baja} Y Superávit\_cal es \textit{negativo} ENTONCES Índice\_AF es \textit{bajo}''.
+\textbf{Base de reglas:} Se exploraron inicialmente 81 reglas posibles (3$^4$ combinaciones de antecedentes), pero se diseñaron finalmente 5 reglas representativas basadas en conocimiento experto de fisiología del ejercicio, priorizando parsimonia e interpretabilidad. Ejemplo: ``SI Actividad\_rel es \textit{baja} Y Superávit\_cal es \textit{negativo} ENTONCES Índice\_AF es \textit{bajo}''.
 
 \textbf{Defuzzificación:} Se empleó el método del centroide para convertir la salida difusa en un valor crisp (numérico).
 
 \subsection{Fase 4: Validación del Sistema Difuso mediante Leave-One-User-Out}
 \label{subsec:fase4_validacion_louo}
 
-El desempeño del sistema difuso se evaluó comparando su salida contra la verdad operativa (etiquetas de clustering). Se implementó una validación Leave-One-User-Out (LOUO), estrategia gold standard para cohortes pequeñas (N<20) donde cada fold corresponde a un participante completo \cite{Alinia2020,Crozat2025}.
+El desempeño del sistema difuso se evaluó comparando su salida contra la verdad operativa (etiquetas de clustering). Se implementó una validación Leave-One-User-Out (LOUO), estrategia de referencia para cohortes pequeñas (N<20) donde cada fold corresponde a un participante completo \cite{Alinia2020,Crozat2025}.
 
-\textbf{Justificación LOUO:} A diferencia del k-fold tradicional (que particiona aleatoriamente), LOUO preserva la independencia inter-sujeto, evitando data leakage entre entrenamientos y pruebas. Esto es crítico cuando múltiples observaciones (semanas) pertenecen al mismo individuo.
+\textbf{Justificación LOUO:} A diferencia del k-fold tradicional (que particiona aleatoriamente), LOUO preserva la independencia inter-sujeto y evita la filtración de datos entre entrenamientos y pruebas. Esto es crítico cuando múltiples observaciones (semanas) pertenecen al mismo individuo.
 
 \textbf{Métricas de rendimiento:}
 \begin{itemize}
@@ -415,19 +417,19 @@ Para la selección del dispositivo de monitoreo, se utilizó una base de datos d
 \subsection{Análisis de Sensores}
 \label{subsec:analisis_sensores}
 
-Del análisis de los 423 dispositivos, se observó que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento, lo que facilita la evaluación de la AF \citep{Henriksen2021ReplicationData}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \citep{Pinto2023Physiology}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente, alcanzando un 55\% en los dispositivos lanzados en 2016, lo que refleja su creciente relevancia en la monitorización de la salud \citep{Henriksen2018}.
+Del análisis de los 423 dispositivos, se observó que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento y facilitar así la evaluación de la AF \citep{Henriksen2021ReplicationData}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \citep{Pinto2023Physiology}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente y alcanzó un 55\% en los dispositivos lanzados en 2016, lo cual refleja su creciente relevancia en la monitorización de la salud \citep{Henriksen2018}.
 
 Otros sensores, como el giroscopio (23.9\%) y el GPS (29.6\%), también destacan por su utilidad. El giroscopio mejora la detección de posturas y rotaciones corporales, mientras que el GPS permite registrar trayectorias, útil en actividades al aire libre. Sensores menos comunes, como el magnetómetro (18.2\%) y el barómetro (13.5\%), tienen aplicaciones específicas, pero son menos relevantes para este estudio \citep{Henriksen2018}.
 
 \subsection{Elección del Apple Watch}
 \label{subsec:eleccion_apple_watch}
 
-El análisis de mercado identificó a Apple como el líder en la categoría de smartwatches, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \citep{Canalys2024Wearables}. Esta predominancia y la uniformidad en sus dispositivos justifican la elección del Apple Watch como el dispositivo más adecuado, asegurando una mayor representatividad de datos y compatibilidad con herramientas de análisis avanzadas.
+El análisis de mercado identificó a Apple como el líder en la categoría de relojes inteligentes, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \citep{Canalys2024Wearables}. Esta predominancia y la uniformidad en sus dispositivos justifican la elección del Apple Watch como el dispositivo más adecuado, asegurando una mayor representatividad de datos y compatibilidad con herramientas de análisis avanzadas.
 
 \subsection{Protocolo del Instrumento}
 \label{subsec:protocolo_instrumento}
 
-Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos Apple Watch, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en Swift, lo que garantizó la integridad y seguridad de los datos a través de un procedimiento manual estructurado que permite su replicabilidad \citep{Apple2024HealthKit}.
+Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos Apple Watch, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en Swift, lo cual garantizó la integridad y seguridad de los datos a través de un procedimiento manual estructurado y replicable \citep{Apple2024HealthKit}.
 
 La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodológico, desde la recepción de archivos \texttt{export.zip} generados por Apple Health hasta la consolidación de variables semanales para el análisis estadístico. El proceso se estructuró en cinco etapas: (1) recepción y almacenamiento seguro, (2) descompresión y conversión XML→CSV, (3) extracción de métricas específicas con filtrado por \texttt{sourceName}, (4) manejo de datos faltantes y valores atípicos, y (5) consolidación en un DataFrame con etiquetas estandarizadas.
 
@@ -466,7 +468,7 @@ Operar con conjuntos difusos requiere generalizar los operadores lógicos clási
 
 Con estos elementos, es posible construir reglas difusas del tipo SI-ENTONCES para capturar conocimiento experto. Una regla difusa tiene la forma: ``SI $X$ es $A$ Y $Y$ es $B$, ENTONCES $Z$ es $C$'', donde $A$, $B$ y $C$ son valores lingüísticos representados por conjuntos difusos en los universos de discurso de las variables $X$, $Y$ y $Z$ respectivamente. Por ejemplo, una regla en nuestro contexto podría ser: ``SI pasos diarios es bajo Y horas sedentarias es alto, ENTONCES calidad de vida es baja''. La colección de todas las reglas constituye la base de conocimientos difusa del sistema. 
 
-El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los antecedentes (inputs) como los consecuentes (output) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo Mamdani produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación. La \Cref{fig:salida_difusa} ilustra este proceso: el motor de inferencia combina las reglas activadas y genera una distribución difusa de salida, la cual se defuzzifica mediante el método del centroide para obtener un valor numérico interpretable.
+El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los antecedentes (entradas) como los consecuentes (salida) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo Mamdani produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación. La \Cref{fig:salida_difusa} ilustra este proceso: el motor de inferencia combina las reglas activadas y genera una distribución difusa de salida, la cual se defuzzifica mediante el método del centroide para obtener un valor numérico interpretable.
 
 \begin{figure}[htbp]
     \centering
@@ -640,12 +642,12 @@ y^{(j)} = \frac{\sum_{r=1}^{5} w_r^{(j)} \cdot y_r}{\sum_{r=1}^{5} w_r^{(j)}}
 \label{eq:defuzzificacion}
 \end{equation}
 
-donde \(\mathbf{y}_{\text{outputs}} = [1.0, 0.0, 0.9, 0.5, 0.7]^T\) es el vector de valores crisp asignados a cada regla.
+donde \(\mathbf{y}_{\text{salidas}} = [1.0, 0.0, 0.9, 0.5, 0.7]^T\) es el vector de valores crisp asignados a cada regla.
 
 En notación matricial:
 
 \begin{equation}
-y^{(j)} = \frac{(\mathbf{w}^{(j)})^T \cdot \mathbf{y}_{\text{outputs}}}{\|\mathbf{w}^{(j)}\|_1}
+y^{(j)} = \frac{(\mathbf{w}^{(j)})^T \cdot \mathbf{y}_{\text{salidas}}}{\|\mathbf{w}^{(j)}\|_1}
 \label{eq:defuzz_matricial}
 \end{equation}
 
@@ -814,6 +816,32 @@ En el caso del surgimiento de cualquier efecto adverso relacionado con el uso de
 \label{sec:financiamiento_lugar}
 % ============================================================================
 
-El proyecto fue financiado con recursos propios, cubriendo los gastos asociados al reclutamiento de participantes y los costos relacionados con la publicación y difusión de resultados en eventos científicos. Se utilizó software libre, específicamente Python y sus bibliotecas (Scikit-learn, Pandas, NumPy, y Matplotlib) para la implementación del modelo de IA basado en lógica difusa, análisis de datos biométricos y visualización de resultados.
+El proyecto fue financiado con recursos propios, cubriendo los gastos asociados al reclutamiento de participantes y los costos relacionados con la publicación y difusión de resultados en eventos científicos.
 
-En cuanto al lugar de ejecución, se llevará a cabo en la Facultad de Medicina y Ciencias Biomédicas, en el laboratorio LIIACOM, donde se dispone de la infraestructura y el acompañamiento académico adecuados para la gestión del proyecto. Esta institución brindará las facilidades de espacio, equipo de cómputo y asesoría necesaria para la realización de las etapas de recolección de datos, validación de instrumentos, análisis estadístico y elaboración de informes científicos.
+\subsection{Reproducibilidad Computacional}
+\label{subsec:reproducibilidad_computacional}
+
+Para garantizar la reproducibilidad completa de los análisis, se documentan a continuación las especificaciones técnicas del entorno computacional:
+
+\paragraph{Entorno de software:}
+\begin{itemize}
+    \item Python 3.10+ (lenguaje de programación)
+    \item scikit-learn 1.3+ (clustering K-Means, métricas de rendimiento)
+    \item pandas 2.0+ (manipulación y agregación de datos)
+    \item numpy 1.24+ (operaciones numéricas y matriciales)
+    \item matplotlib 3.7+ (visualizaciones científicas)
+    \item scipy 1.11+ (pruebas estadísticas no paramétricas)
+\end{itemize}
+
+\paragraph{Parámetros de reproducibilidad:}
+\begin{itemize}
+    \item \textbf{Semilla aleatoria global:} \texttt{random\_state=42} para todas las operaciones estocásticas (K-Means, PCA, particiones de validación)
+    \item \textbf{Parámetros K-Means:} \texttt{n\_init=10} (inicializaciones), \texttt{max\_iter=300} (iteraciones máximas), \texttt{algorithm='lloyd'}
+    \item \textbf{Umbral de decisión:} $\tau=0.30$ (optimizado para maximizar F1-Score global)
+\end{itemize}
+
+Los scripts de análisis completos están disponibles bajo solicitud para fines de auditoría científica y replicación metodológica, en cumplimiento con las políticas de ciencia abierta y transparencia de datos \citep{Wilkinson2016FAIR}.
+
+\subsection{Lugar de Ejecución}
+
+El proyecto se llevó a cabo en la Facultad de Medicina y Ciencias Biomédicas, en el laboratorio LIIACOM, donde se dispone de la infraestructura y el acompañamiento académico adecuados para la gestión del proyecto. Esta institución brindó las facilidades de espacio, equipo de cómputo y asesoría necesaria para la realización de las etapas de recolección de datos, validación de instrumentos, análisis estadístico y elaboración de informes científicos.

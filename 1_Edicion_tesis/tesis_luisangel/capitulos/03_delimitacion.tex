@@ -1,6 +1,8 @@
 ﻿\chapter{Delimitación del Objeto de Estudio}
 \label{chap:delimitacion}
 
+\noindent Este capítulo delimita el objeto de estudio de la investigación mediante la identificación del problema, la formulación de la pregunta de investigación, el planteamiento de hipótesis y el establecimiento de objetivos específicos. Además, se fundamenta el pivote metodológico realizado durante el desarrollo del proyecto y se justifica el tamaño de muestra empleado (N=10), así como la estrategia de validación Leave-One-User-Out implementada para evaluar la generalización inter-sujeto del sistema de inferencia difusa propuesto.
+
 % ============================================================================
 \section{Problema de Investigación}
 \label{sec:problema_investigacion}
@@ -68,11 +70,11 @@ Construir y validar un modelo interpretable, basado en lógica difusa, para la c
 \subsection{Hipótesis Inicial y Necesidad de Pivote}
 \label{subsec:hipotesis_inicial_pivote}
 
-La hipótesis inicial del proyecto planteaba entrenar un modelo supervisado de Redes Neuronales Artificiales (ANN) para predecir comportamiento sedentario. El modelo utilizaría como variable de referencia (\textit{ground truth}) las puntuaciones del cuestionario SF-36 (Short Form Health Survey). Este enfoque asumía que: (1) la percepción subjetiva de calidad de vida correlaciona fuertemente con indicadores objetivos de comportamiento sedentario, (2) dicha correlación es suficientemente robusta para servir como ``verdad de referencia'' en entrenamiento supervisado, y (3) el tamaño de muestra ($N=10$) es adecuado para entrenar un modelo ANN.
+La hipótesis inicial del proyecto planteaba entrenar un modelo supervisado de Redes Neuronales Artificiales (ANN) para predecir comportamiento sedentario. El modelo utilizaría como variable de referencia (\textit{verdad de referencia}) las puntuaciones del cuestionario SF-36 (Short Form Health Survey). Este enfoque asumía que: (1) la percepción subjetiva de calidad de vida correlaciona fuertemente con indicadores objetivos de comportamiento sedentario, (2) dicha correlación es suficientemente robusta para servir como ``verdad de referencia'' en entrenamiento supervisado, y (3) el tamaño de muestra ($N=10$) es adecuado para entrenar un modelo ANN.
 
 \textbf{Resultados del análisis exploratorio:} El análisis de correlación entre las 8 dimensiones del SF-36 y las variables del Apple Watch ($N=8$ participantes con datos completos) reveló correlaciones moderadas-fuertes pero mayormente no significativas. La única correlación estadísticamente significativa tras corrección Bonferroni fue Salud Mental vs.\ Fuzzy\_median: $r_s = 0.765$, $p = 0.027$. Otras dimensiones mostraron correlaciones marginalmente no significativas o direcciones contraintuitivas (correlaciones positivas entre salud física percibida e indicadores de sedentarismo).
 
-\subsection{Limitaciones del SF-36 como Ground Truth en Cohortes Pequeñas}
+\subsection{Limitaciones del SF-36 como Verdad de Referencia en Cohortes Pequeñas}
 \label{subsec:limitaciones_sf36}
 
 El SF-36 es un instrumento validado para evaluación de calidad de vida relacionada con la salud en estudios epidemiológicos a gran escala. Sin embargo, su uso como \textit{variable de referencia para entrenamiento supervisado} en cohortes pequeñas ($N < 20$) presenta limitaciones metodológicas:
@@ -88,7 +90,7 @@ El SF-36 es un instrumento validado para evaluación de calidad de vida relacion
 \subsection{Justificación del Pivote a Enfoque Data-Driven}
 \label{subsec:justificacion_pivote}
 
-Dadas las limitaciones del SF-36 como ground truth, el proyecto pivotó a un \textbf{enfoque dual data-driven}:
+Dadas las limitaciones del SF-36 como verdad de referencia, el proyecto pivotó a un \textbf{enfoque dual basado en datos}:
 
 \begin{enumerate}
     \item \textbf{Paso 1 - Clustering No Supervisado (K-Means):} Utilizar únicamente los datos objetivos del Apple Watch para identificar patrones naturales de comportamiento mediante K-Means ($k=2$: Sedentario/No Sedentario). Este clustering establece una ``verdad operativa'' (Operational Ground Truth) basada en la estructura inherente de los datos, no en percepciones subjetivas ni umbrales heurísticos predefinidos.
@@ -96,14 +98,14 @@ Dadas las limitaciones del SF-36 como ground truth, el proyecto pivotó a un \te
     \item \textbf{Paso 2 - Sistema de Inferencia Difusa Mamdani:} Traducir los centroides y perfiles estadísticos de los clústeres identificados a reglas lingüísticas interpretables de un FIS Mamdani, lo que permite clasificación transparente de nuevas observaciones.
 \end{enumerate}
 
-\textbf{Ventajas metodológicas del pivote:} (1) \textbf{Objetividad} (la ground truth proviene de patrones data-driven, no de umbrales arbitrarios ni percepciones subjetivas), (2) \textbf{Interpretabilidad} (el FIS Mamdani es ``interpretable por diseño''), y (3) \textbf{Validación rigurosa} (LOOU evita temporal leakage e identity leakage, y proporciona métricas realistas de generalización inter-sujeto).
+\textbf{Ventajas metodológicas del pivote:} (1) \textbf{Objetividad} (la verdad de referencia proviene de patrones basados en datos, no de umbrales arbitrarios ni percepciones subjetivas), (2) \textbf{Interpretabilidad} (el FIS Mamdani es ``interpretable por diseño''), y (3) \textbf{Validación rigurosa} (LOOU evita filtración temporal e identitaria, y proporciona métricas realistas de generalización inter-sujeto).
 
-\subsection{Re-posicionamiento del SF-36: De Ground Truth a Validación Convergente}
+\subsection{Re-posicionamiento del SF-36: De Verdad de Referencia a Validación Convergente}
 \label{subsec:reposicionamiento_sf36}
 
-Aunque el SF-36 resultó inadecuado como ground truth para entrenamiento supervisado, mantiene valor como \textit{variable de validación convergente exploratoria}: (1) proporciona contexto clínico y datos demográficos que enriquecen la interpretación de hallazgos, (2) permite investigar si el sistema difuso (basado en datos objetivos) correlaciona con percepción subjetiva de salud, y (3) contribuye a la discusión sobre \textit{qué constituye ``ground truth''} en estudios de cohortes pequeñas.
+Aunque el SF-36 resultó inadecuado como verdad de referencia para entrenamiento supervisado, mantiene valor como \textit{variable de validación convergente exploratoria}: (1) proporciona contexto clínico y datos demográficos que enriquecen la interpretación de hallazgos, (2) permite investigar si el sistema difuso (basado en datos objetivos) correlaciona con percepción subjetiva de salud, y (3) contribuye a la discusión sobre \textit{qué constituye ``verdad de referencia''} en estudios de cohortes pequeñas.
 
-Esta re-conceptualización transforma una aparente limitación (correlaciones no significativas) en una \textit{fortaleza metodológica}: demuestra que no asumimos ingenuamente que cuestionarios son ``verdad absoluta'', sino que adoptamos un enfoque crítico data-driven.
+Esta re-conceptualización transforma una aparente limitación (correlaciones no significativas) en una \textit{fortaleza metodológica}: demuestra que no asumimos ingenuamente que cuestionarios son ``verdad absoluta'', sino que adoptamos un enfoque crítico basado en datos.
 
 % ============================================================================
 \section{Justificación del Tamaño de Muestra (N=10)}
@@ -122,7 +124,7 @@ El tamaño de muestra $N=10$ puede considerarse limitado desde la perspectiva de
 \subsection{Precedentes de Cohortes Pequeñas en Literatura Q1}
 \label{subsec:precedentes_cohortes_pequenas}
 
-Estudios de alto impacto demuestran que cohortes pequeñas ($N < 20$) son viables metodológicamente si se cumplen condiciones de mediciones intensivas, validación rigurosa y objetivos exploratorios claros. Ricotti et al. (2023, \textit{Nature Medicine}), Crozat et al. (2025, \textit{Sensors}), Kaveh et al. (2024, \textit{Nature Communications}) y Lu et al. (2018, \textit{Sensors}) publican con $N=7-21$ en revistas Q1, compartiendo características: protocolos exhaustivos, LOUO/LOSO y objetivos de viabilidad técnica.
+Estudios de alto impacto demuestran que cohortes pequeñas ($N < 20$) son viables metodológicamente si se cumplen condiciones de mediciones intensivas, validación rigurosa y objetivos exploratorios claros. Ricotti et al. (2023, \textit{Nature Medicine}), Crozat et al. (2025, \textit{Sensors}), Kaveh et al. (2024, \textit{Nature Communications}) y Lu et al. (2018, \textit{Sensors}) publican con $N=7-21$ en revistas Q1, y comparten características similares: protocolos exhaustivos, LOUO/LOSO y objetivos de viabilidad técnica.
 
 \subsection{Justificación de N=10 en Nuestro Estudio}
 \label{subsec:justificacion_n10_estudio}

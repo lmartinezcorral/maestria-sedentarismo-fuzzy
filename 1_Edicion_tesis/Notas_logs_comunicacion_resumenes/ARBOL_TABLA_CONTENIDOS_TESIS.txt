@@ -1,0 +1,280 @@
+═══════════════════════════════════════════════════════════════════════════════
+  ÁRBOL TABLA DE CONTENIDOS - TESIS MAESTRÍA
+  Modelo de Evaluación del Comportamiento Sedentario mediante Lógica Difusa
+  Luis Ángel Martínez Corral - MFIPS UACH
+  Generado: 13 Noviembre 2025, 13:33 hrs
+═══════════════════════════════════════════════════════════════════════════════
+
+TESIS: Modelo de Evaluación del Comportamiento Sedentario mediante Lógica Difusa y Datos Biométricos
+│
+├── PORTADA
+├── HOJA DE FIRMAS
+├── RESUMEN
+├── ABSTRACT
+├── DEDICATORIA
+├── AGRADECIMIENTOS
+│
+├── CAPÍTULO 1: INTRODUCCIÓN
+│   └── [Párrafo único sin secciones numeradas]
+│
+├── CAPÍTULO 2: MARCO TEÓRICO Y ANTECEDENTES
+│   │
+│   ├── 2.1 Marco Teórico
+│   │   ├── 2.1.1 Definición de Sedentarismo
+│   │   ├── 2.1.2 Definición del Comportamiento Sedentario
+│   │   ├── 2.1.3 Diferencia entre Comportamiento Sedentario e Inactividad Física
+│   │   ├── 2.1.4 Directrices de la OMS sobre Actividad Física
+│   │   ├── 2.1.5 Actividad Física y Ejercicio Físico
+│   │   ├── 2.1.6 Frecuencia Cardiaca y Monitoreo de Intensidad
+│   │   ├── 2.1.7 Variabilidad de la Frecuencia Cardiaca (HRV)
+│   │   ├── 2.1.8 MET (Equivalente Metabólico)
+│   │   ├── 2.1.9 Dispositivos y Tecnologías Electrónicas Portátiles
+│   │   ├── 2.1.10 Sensores en Dispositivos Portátiles de Consumo
+│   │   ├── 2.1.11 Inteligencia Artificial para el Reconocimiento del Comportamiento Sedentario
+│   │   ├── 2.1.12 Teoría de lógica difusa para el análisis de datos biométricos
+│   │   └── 2.1.13 Síntesis del Marco Conceptual
+│   │
+│   ├── 2.2 Antecedentes
+│   │   ├── 2.2.1 Impacto del Comportamiento Sedentario
+│   │   ├── 2.2.2 Instrumentos de evaluación del Comportamiento Sedentario
+│   │   ├── 2.2.3 Cómo afecta el CS en la CVRS
+│   │   ├── 2.2.4 Uso de sensores para el análisis del Comportamiento Sedentario
+│   │   │   └── 2.2.4.1 Acelerómetros
+│   │   ├── 2.2.5 Monitores de Actividad Física Portables de consumo público
+│   │   │   ├── 2.2.5.1 Validación de los Monitores de Actividad Física Portables
+│   │   │   ├── 2.2.5.2 Desafíos especiales para el uso monitores de actividad física de consumo
+│   │   │   └── 2.2.5.3 Oportunidades para el uso monitores de actividad física de consumo
+│   │   ├── 2.2.6 El enfoque de la Inteligencia Artificial en el Análisis de Datos
+│   │   ├── 2.2.7 Fundamento filosófico del enfoque difuso
+│   │   ├── 2.2.8 La Lógica Difusa en la Salud Digital y el Monitoreo Biométrico
+│   │   ├── 2.2.9 Clustering No Supervisado para Establecimiento de Ground Truth
+│   │   │   ├── 2.2.9.1 Clustering como Herramienta de Descubrimiento de Patrones
+│   │   │   ├── 2.2.9.2 Línea de Base: Umbrales Heurísticos para Sedentarismo
+│   │   │   └── 2.2.9.3 Vacío Metodológico: Clustering + Sistema de Inferencia Difusa
+│   │   └── 2.2.10 Validación Leave-One-User-Out en Wearables
+│   │       ├── 2.2.10.1 LOUO: Estándar para Generalización Inter-Sujeto
+│   │       └── 2.2.10.2 LOUO en Cohortes Pequeñas (N < 20)
+│   │
+│   ├── 2.3 Investigaciones Previas Relacionadas
+│   │   ├── 2.3.1 Enfoques de Deep Learning y Redes Neuronales
+│   │   ├── 2.3.2 Machine Learning Clásico y Validación Cruzada
+│   │   ├── 2.3.3 Lógica Difusa y Sistemas de Inferencia Interpretables
+│   │   ├── 2.3.4 Métodos Estadísticos y Consensos Metodológicos
+│   │   ├── 2.3.5 Validación de Precisión en Dispositivos Wearables Comerciales
+│   │   └── 2.3.6 Relación entre HRV, Actividad Física y Salud
+│   │
+│   └── 2.4 Análisis Comparativo de Investigaciones
+│       ├── 2.4.1 Síntesis del Análisis Comparativo
+│       │   ├── Brecha 1: Ausencia de sistemas híbridos clustering + lógica difusa + LOUO
+│       │   ├── Brecha 2: Subutilización de HRV para clasificación fisiológica
+│       │   ├── Brecha 3: Persistencia del dilema interpretabilidad vs. precisión
+│       │   ├── Brecha 4: Escasez de estudios con datos de vida libre multi-anual (BYOD)
+│       │   └── Brecha 5: Ausencia de metodologías validadas para N ≤ 10
+│       └── 2.4.2 Aportación Diferencial de la Investigación Actual
+│
+├── CAPÍTULO 3: DELIMITACIÓN DEL OBJETO DE ESTUDIO
+│   ├── 3.1 Problema de Investigación
+│   ├── 3.2 Pregunta de Investigación
+│   ├── 3.3 Hipótesis
+│   │   ├── 3.3.1 Hipótesis Conceptual (HC)
+│   │   └── 3.3.2 Hipótesis Nula (H₀)
+│   ├── 3.4 Objetivo General
+│   ├── 3.5 Objetivos Específicos
+│   ├── 3.6 Fundamento del Pivote Metodológico
+│   │   ├── 3.6.1 Hipótesis Inicial y Necesidad de Pivote
+│   │   ├── 3.6.2 Limitaciones del SF-36 como Verdad de Referencia en Cohortes Pequeñas
+│   │   ├── 3.6.3 Justificación del Pivote a Enfoque Data-Driven
+│   │   └── 3.6.4 Re-posicionamiento del SF-36: De Verdad de Referencia a Validación Convergente
+│   ├── 3.7 Justificación del Tamaño de Muestra (N=10)
+│   │   ├── 3.7.1 Trade-Off: Profundidad Longitudinal vs. Cantidad de Participantes
+│   │   ├── 3.7.2 Precedentes de Cohortes Pequeñas en Literatura Q1
+│   │   └── 3.7.3 Justificación de N=10 en Nuestro Estudio
+│   └── 3.8 Estrategia de Validación LOUO
+│       ├── 3.8.1 Protocolo LOUO Implementado
+│       ├── 3.8.2 Justificación Metodológica de LOUO
+│       └── 3.8.3 Limitaciones Reconocidas y Trabajo Futuro
+│
+├── CAPÍTULO 4: JUSTIFICACIÓN
+│   └── [Texto continuo sin subsecciones numeradas]
+│
+├── CAPÍTULO 5: MATERIALES Y MÉTODOS
+│   │
+│   ├── 5.1 Diseño del Estudio
+│   │   └── 5.1.1 Pivote Metodológico
+│   │
+│   ├── 5.2 Población de Estudio
+│   │   ├── 5.2.1 Estrategia de Reclutamiento
+│   │   ├── 5.2.2 Tamaño de Muestra y Justificación Estadística
+│   │   └── 5.2.3 Características Demográficas de la Cohorte
+│   │
+│   ├── 5.3 Definición Operacional de Variables
+│   │   ├── 5.3.1 Relación entre Variables
+│   │   ├── 5.3.2 Variables Independientes
+│   │   ├── 5.3.3 Variable Dependiente
+│   │   ├── 5.3.4 Variables de Control
+│   │   └── 5.3.5 Operacionalización de las Variables
+│   │
+│   ├── 5.4 Preprocesamiento y Análisis Exploratorio de Datos
+│   │   ├── 5.4.1 Extracción de Variables desde Apple HealthKit
+│   │   ├── 5.4.2 Análisis de Calidad y Variabilidad de Datos
+│   │   │   ├── 5.4.2.1 Heterogeneidad Inter-Sujeto Extrema
+│   │   │   ├── 5.4.2.2 Datos Faltantes Estratificados por Usuario
+│   │   │   └── 5.4.2.3 Multicolinealidad Moderada entre Variables de Actividad
+│   │   └── 5.4.3 Transición a Ingeniería de Características
+│   │
+│   ├── 5.5 Ingeniería de Características y Agregación Temporal
+│   │   ├── 5.5.1 Actividad Relativa
+│   │   ├── 5.5.2 Superávit Calórico Basal
+│   │   ├── 5.5.3 Delta Cardíaco
+│   │   ├── 5.5.4 Variabilidad de Frecuencia Cardíaca (HRV-SDNN)
+│   │   └── 5.5.5 Agregación Semanal y Justificación de Medianas
+│   │
+│   ├── 5.6 Plan de Análisis Estadístico
+│   │   ├── 5.6.1 Fase 1: Caracterización y Análisis de Variabilidad
+│   │   ├── 5.6.2 Fase 2: Establecimiento de la Verdad Operativa mediante Clustering
+│   │   ├── 5.6.3 Fase 3: Diseño y Configuración del Sistema de Inferencia Difusa
+│   │   ├── 5.6.4 Fase 4: Validación del Sistema Difuso mediante Leave-One-User-Out
+│   │   └── 5.6.5 Fase 5: Análisis de Robustez y Contribución de Variables
+│   │
+│   ├── 5.7 Técnicas y Procedimiento
+│   │   ├── 5.7.1 Selección del Dispositivo
+│   │   ├── 5.7.2 Análisis de Sensores
+│   │   ├── 5.7.3 Elección del Apple Watch
+│   │   └── 5.7.4 Protocolo del Instrumento
+│   │
+│   ├── 5.8 Base Metodológica del Sistema de Inferencia Difusa
+│   │   └── 5.8.1 Formalización Matemática del Sistema de Inferencia Difusa
+│   │       ├── 5.8.1.1 Conjuntos Difusos y Variables Lingüísticas
+│   │       │   ├── Variables de entrada
+│   │       │   └── Variable de salida
+│   │       ├── 5.8.1.2 Funciones de Membresía Triangulares
+│   │       │   └── Representación matricial de percentiles
+│   │       ├── 5.8.1.3 Reglas de Inferencia y Operadores T-Norm
+│   │       ├── 5.8.1.4 Agregación y Defuzzificación
+│   │       ├── 5.8.1.5 Justificación de Percentiles Globales en LOOU
+│   │       │   ├── Analogía con arquitecturas de redes neuronales
+│   │       │   ├── Transfer learning y conocimiento del dominio
+│   │       │   └── Validación empírica
+│   │       └── 5.8.1.6 Protocolo de Validación Leave-One-User-Out
+│   │
+│   ├── 5.9 Aspectos Éticos y de Bioseguridad
+│   │   ├── 5.9.1 Principios Éticos
+│   │   ├── 5.9.2 Procedimiento para Obtener el Consentimiento
+│   │   ├── 5.9.3 Contenido del Formulario de Consentimiento
+│   │   ├── 5.9.4 Evaluación de Riesgos
+│   │   ├── 5.9.5 Protección de Grupos Vulnerables
+│   │   ├── 5.9.6 Confidencialidad y Privacidad de los Datos
+│   │   ├── 5.9.7 Política de Retención y Eliminación Segura
+│   │   ├── 5.9.8 Derechos de los Participantes
+│   │   ├── 5.9.9 Cumplimiento de Normativas y Legislación
+│   │   └── 5.9.10 Plan de Contingencia y Manejo de Incidentes
+│   │
+│   └── 5.10 Financiamiento y Lugar Donde Se Realizará El Proyecto
+│       ├── 5.10.1 Reproducibilidad Computacional
+│       │   ├── Entorno de software
+│       │   └── Parámetros de reproducibilidad
+│       └── 5.10.2 Lugar de Ejecución
+│
+├── CAPÍTULO 6: RESULTADOS
+│   ├── 6.1 Caracterización de la Cohorte y Análisis de Variabilidad de Datos
+│   ├── 6.2 Establecimiento de la Verdad Operativa: Análisis de Conglomerados
+│   ├── 6.3 Rendimiento del Sistema de Inferencia Difusa
+│   │   └── 6.3.1 Posicionamiento en el Contexto de Estudios con Validación LOUO
+│   ├── 6.4 Análisis de Robustez y Contribución Sinérgica de las Variables
+│   │   ├── 6.4.1 Paradoja HRV: Debilidad Univariada, Fortaleza Multivariada
+│   │   └── 6.4.2 Validación Convergente Exploratoria con SF-36
+│   └── 6.5 Tesis
+│
+├── CAPÍTULO 7: DISCUSIÓN
+│   ├── 7.1 Discusión de Hallazgos Principales
+│   │   ├── 7.1.1 Desempeño Predictivo del Modelo Difuso en Validación Leave-One-User-Out
+│   │   ├── 7.1.2 Paradoja de la Variabilidad de la Frecuencia Cardíaca
+│   │   └── 7.1.3 Robustez del Pipeline Híbrido: Clustering como Ground Truth Operativa
+│   │
+│   ├── 7.2 Comparación con Investigaciones Previas
+│   │   ├── 7.2.1 Convergencias con la Literatura Científica
+│   │   ├── 7.2.2 Divergencias Relevantes y Explicaciones
+│   │   └── 7.2.3 Posicionamiento en el Estado del Arte
+│   │
+│   ├── 7.3 Implicaciones de los Resultados
+│   │   ├── 7.3.1 Implicaciones Teóricas
+│   │   ├── 7.3.2 Implicaciones Metodológicas
+│   │   └── 7.3.3 Implicaciones Prácticas
+│   │
+│   ├── 7.4 Limitaciones del Estudio
+│   │   ├── 7.4.1 Limitaciones de Diseño
+│   │   ├── 7.4.2 Limitaciones de Generalización
+│   │   ├── 7.4.3 Limitaciones Técnicas
+│   │   └── 7.4.4 Limitaciones de Interpretación
+│   │
+│   ├── 7.5 Cumplimiento de Objetivos e Hipótesis
+│   │   └── 7.5.1 Cumplimiento de Objetivos Específicos
+│   │
+│   └── 7.6 Reflexión Final y Líneas de Investigación Futura
+│       ├── 7.6.1 Reflexión Crítica sobre la Metodología Implementada
+│       └── 7.6.2 Líneas de Investigación Futura
+│
+├── CAPÍTULO 8: CONCLUSIONES
+│   └── [Texto continuo sin subsecciones numeradas]
+│
+├── CAPÍTULO 9: ANEXOS
+│   ├── 9.1 Análisis Comparativo Exhaustivo de Investigaciones Previas
+│   │   └── [Tabla 9.1: Tabla completa 17 artículos estado del arte]
+│   │
+│   └── 9.2 Nomenclatura y Simbología Matemática
+│       └── 9.2.1 Símbolos Matemáticos Generales
+│           └── [Tabla nomenclatura: ~100 símbolos matemáticos]
+│
+├── REFERENCIAS BIBLIOGRÁFICAS
+│   └── [155 referencias en formato APA 7]
+│
+└── ÍNDICES
+    ├── Índice de Figuras (~30 figuras)
+    ├── Índice de Tablas (~15 tablas)
+    └── Índice de Ecuaciones (~30 ecuaciones numeradas)
+
+═══════════════════════════════════════════════════════════════════════════════
+ESTADÍSTICAS DE LA TESIS:
+═══════════════════════════════════════════════════════════════════════════════
+
+Capítulos principales: 8
+Secciones nivel 1: 42
+Subsecciones nivel 2: 89
+Subsubsecciones nivel 3: 21
+Párrafos/ítems nivel 4: 15
+Ítems nivel 5: 5 (brechas identificadas)
+
+Total elementos TOC: 172+ entradas
+
+Páginas estimadas: 95-100 (post-correcciones 13 Nov)
+Referencias: 155
+Figuras: ~30
+Tablas: ~15
+Ecuaciones numeradas: ~30
+
+═══════════════════════════════════════════════════════════════════════════════
+NOTAS ESTRUCTURALES:
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Cap 2: REESTRUCTURADO por Poseidón (12 Nov)
+   - Sección 2.2.9: Clustering (antes era 2.3 independiente)
+   - Sección 2.2.10: LOOU (antes era 2.4 independiente)
+   - Sección 2.3: Investigaciones Previas (NUEVA)
+   - Sección 2.4: Análisis Comparativo (NUEVA - Tabla estado del arte)
+   - ANFIS (2.2.9 original): ELIMINADA
+
+✅ Cap 5: Formalización Atlas (5-6 Nov)
+   - Sección 5.8.1: Matemática rigurosa (6 subsubsecciones)
+   - Justificación percentiles globales: HALLAZGO METODOLÓGICO
+
+✅ Cap 5: Reproducibilidad añadida (13 Nov)
+   - Sección 5.10.1: NUEVA (versiones software, random_state=42)
+
+✅ Cap 7: Versión EXCELENCIA integrada (6 Nov)
+   - 6 subsecciones estructuradas
+   - Paradoja HRV profundizada
+
+═══════════════════════════════════════════════════════════════════════════════
+FIN DEL ÁRBOL - Generado por ADES 💀
+═══════════════════════════════════════════════════════════════════════════════
+

@@ -13,7 +13,7 @@
 % INTRODUCCIÓN CONTEXTUAL
 % ============================================================================
 
-El presente estudio desarrolló y validó un modelo de clasificación del comportamiento sedentario basado en lógica difusa, integrando datos biométricos obtenidos mediante dispositivos portátiles de consumo en condiciones de vida libre. Los resultados demuestran que un sistema de inferencia difusa tipo Mamdani, fundamentado en una arquitectura híbrida de clustering no supervisado y codificación de conocimiento experto, logra una clasificación robusta y clínicamente interpretable del sedentarismo a partir de métricas pasivamente capturadas en el entorno ecológico del individuo. Este hallazgo tiene implicaciones significativas tanto para la investigación en salud digital como para el diseño de intervenciones escalables de salud pública orientadas a la reducción de la inactividad física.
+\noindent El presente estudio desarrolló y validó un modelo de clasificación del comportamiento sedentario basado en lógica difusa, integrando datos biométricos obtenidos mediante dispositivos portátiles de consumo en condiciones de vida libre. Los resultados demuestran que un sistema de inferencia difusa tipo Mamdani, fundamentado en una arquitectura híbrida de clustering no supervisado y codificación de conocimiento experto, logra una clasificación robusta y clínicamente interpretable del sedentarismo a partir de métricas pasivamente capturadas en el entorno ecológico del individuo. Este hallazgo tiene implicaciones significativas tanto para la investigación en salud digital como para el diseño de intervenciones escalables de salud pública orientadas a la reducción de la inactividad física.
 
 El análisis de los resultados obtenidos en condiciones de vida libre bajo el paradigma \textit{Bring Your Own Device} (BYOD) aporta evidencia valiosa sobre la factibilidad y validez del uso de dispositivos portátiles comerciales para la evaluación del comportamiento sedentario. Este paradigma metodológico representa una transición significativa en la investigación biomédica, al desplazar la observación controlada hacia contextos ecológicamente válidos donde los individuos realizan sus actividades cotidianas sin interferencia experimental. Tal desplazamiento no solo amplía la representatividad de los datos, sino que también facilita la generación de conocimiento aplicable a entornos reales de salud pública \cite{Doherty2021,Liu2022}.
 
@@ -32,9 +32,9 @@ La validación Leave-One-User-Out (LOUO) del sistema de inferencia difusa demost
 
 \textbf{Interpretación:}
 
-Este hallazgo confirma que el modelo difuso logra generalizar de manera robusta a individuos no vistos durante el entrenamiento del clustering, lo que demuestra su capacidad para capturar patrones universales del comportamiento sedentario a pesar de la heterogeneidad inter-individual en fisiología, dispositivos tecnológicos y estilos de vida. La validación LOUO es particularmente exigente en cohortes pequeñas, donde cada \textit{fold} elimina aproximadamente el 10\% de la muestra (1 usuario de 10), lo cual maximiza el desafío de generalización. El coeficiente de variación del 21.4\% es indicativo de una variabilidad inter-sujeto moderada, esperada en estudios de vida libre donde factores como adherencia al dispositivo, tipo de empleo y patrones de actividad cotidiana introducen variabilidad legítima.
+Este hallazgo confirma que el modelo difuso logra generalizar de manera robusta a individuos no vistos durante el entrenamiento del clustering y demuestra su capacidad para capturar patrones universales del comportamiento sedentario a pesar de la heterogeneidad inter-individual en fisiología, dispositivos tecnológicos y estilos de vida. La validación LOOU es particularmente exigente en cohortes pequeñas, donde cada \textit{fold} elimina aproximadamente el 10\% de la muestra (1 usuario de 10) y maximiza así el desafío de generalización. El coeficiente de variación del 21.4\% es indicativo de una variabilidad inter-sujeto moderada, esperada en estudios de vida libre donde factores como adherencia al dispositivo, tipo de empleo y patrones de actividad cotidiana introducen variabilidad legítima.
 
-La estratificación del desempeño por usuario revela que 3 de 10 participantes exhibieron desempeño sub-óptimo (F1 $<$ 0.65), lo cual puede atribuirse a patrones de comportamiento atípicos que desviaron significativamente de los centroides del clustering. Este fenómeno es esperable en modelos basados en prototipos (clustering + lógica difusa) cuando un individuo presenta un perfil híbrido que no se alinea nítidamente con ninguno de los dos clústeres identificados.
+La estratificación del desempeño por usuario revela que 3 de 10 participantes exhibieron desempeño sub-óptimo (F1 $<$ 0.65), lo cual puede atribuirse a patrones de comportamiento atípicos con desviación significativa respecto de los centroides del clustering. Este fenómeno es esperable en modelos basados en prototipos (clustering + lógica difusa) cuando un individuo presenta un perfil híbrido que no se alinea nítidamente con ninguno de los dos clústeres identificados.
 
 \textbf{Comparación con la literatura:}
 
@@ -84,7 +84,7 @@ El análisis de clustering K-Means ($k=2$) sobre 1,337 semanas válidas identifi
 
 \textbf{Interpretación:}
 
-La elección de utilizar clustering no supervisado como \textit{ground truth} operativa representa un enfoque innovador que mitiga dos limitaciones metodológicas críticas: (1) la subjetividad de los umbrales heurísticos predefinidos (ej. ``sedentario = $<$ 5,000 pasos/día''), y (2) el desacople temporal entre cuestionarios de autorreporte y mediciones objetivas continuas. Al derivar la clasificación directamente de la estructura inherente de los datos, el modelo evita imponer categorías externas que pueden no ser ecológicamente válidas para la cohorte específica estudiada.
+La elección de utilizar clustering no supervisado como \textit{verdad operativa} representa un enfoque innovador que mitiga dos limitaciones metodológicas críticas: (1) la subjetividad de los umbrales heurísticos predefinidos (ej. ``sedentario = $<$ 5,000 pasos/día''), y (2) el desacople temporal entre cuestionarios de autorreporte y mediciones objetivas continuas. Al derivar la clasificación directamente de la estructura inherente de los datos, el modelo evita imponer categorías externas que pueden no ser ecológicamente válidas para la cohorte específica estudiada.
 
 El índice de Silhouette de 0.232 indica separación moderada, lo cual es esperable en datos de vida libre donde el comportamiento humano existe en un continuo más que en categorías discretas. Valores de Silhouette $>$ 0.20 son considerados aceptables en análisis exploratorios de datos biomédicos complejos \cite{Rousseeuw1987Silhouettes}. La asimetría en la distribución de clústeres (59\% vs 41\%) refleja que en la cohorte estudiada, el comportamiento ``moderadamente activo'' es más frecuente que el ``altamente activo'', lo cual es consistente con las prevalencias poblacionales de sedentarismo en adultos jóvenes universitarios \cite{Shamah-Levy2023ENSANUT}.
 
@@ -92,7 +92,7 @@ El índice de Silhouette de 0.232 indica separación moderada, lo cual es espera
 
 Este enfoque diverge de la mayoría de estudios de clasificación de actividad física, que emplean umbrales predefinidos basados en recomendaciones de la OMS ($\geq$ 150 min/semana de actividad moderada-vigorosa) o percentiles poblacionales. Sin embargo, coincide con los planteamientos recientes de investigadores en ciencia de datos aplicada a salud \cite{Liu2022}, quienes argumentan que la validez ecológica requiere clasificaciones derivadas de los datos observados, no impuestas \textit{a priori}.
 
-Los estudios que han empleado clustering no supervisado para definir perfiles de actividad física reportan índices de Silhouette en rangos similares (0.18-0.35) en cohortes de vida libre, como el estudio de Koster et al. (2012) con acelerometría en NHANES. Esta convergencia metodológica valida el uso de clustering como estrategia de definición de \textit{ground truth} en ausencia de un estándar de oro objetivo.
+Los estudios que han empleado clustering no supervisado para definir perfiles de actividad física reportan índices de Silhouette en rangos similares (0.18-0.35) en cohortes de vida libre, como el estudio de Koster et al. (2012) con acelerometría en NHANES. Esta convergencia metodológica valida el uso de clustering como estrategia de definición de \textit{verdad operativa} en ausencia de un estándar de oro objetivo.
 
 \textbf{Explicación teórica:}
 
@@ -229,7 +229,7 @@ Los resultados de esta investigación tienen las siguientes implicaciones teóri
     
     \item \textbf{Reinterpretación del rol del HRV en modelos multivariados:} Sugieren una revisión del concepto de que biomarcadores cardiovasculares deben demostrar asociación univariada significativa para ser incluidos en modelos predictivos. La paradoja HRV identificada aporta evidencia sobre la existencia de modificación de efecto y supresión estadística en fisiología del ejercicio, lo cual no había sido claramente demostrado en estudios de vida libre con wearables de consumo.
     
-    \item \textbf{Fundamentación del clustering como ground truth operativa:} Proporciona evidencia empírica de que clasificaciones derivadas de la estructura inherente de los datos (clustering no supervisado) pueden servir como referencia válida para entrenamiento de modelos supervisados en ausencia de estándares de oro objetivos, particularmente en investigación de vida libre longitudinal.
+    \item \textbf{Fundamentación del clustering como verdad operativa:} Proporciona evidencia empírica de que clasificaciones derivadas de la estructura inherente de los datos (clustering no supervisado) pueden servir como referencia válida para entrenamiento de modelos supervisados en ausencia de estándares de oro objetivos, particularmente en investigación de vida libre longitudinal.
 \end{enumerate}
 
 \subsection{Implicaciones Prácticas}
@@ -251,7 +251,7 @@ Los hallazgos tienen aplicaciones prácticas inmediatas en tres ámbitos:
 Metodológicamente, este estudio aporta:
 
 \begin{enumerate}
-    \item \textbf{Protocolo reproducible para investigación BYOD:} La pipeline de preprocesamiento, derivación de variables, clustering y entrenamiento de sistema difuso está documentada y puede ser replicada en cohortes independientes con dispositivos portátiles alternativos (Garmin, Fitbit), ajustando únicamente las funciones de pertenencia a los centroides observados en la nueva cohorte.
+    \item \textbf{Protocolo reproducible para investigación BYOD:} La secuencia de preprocesamiento, derivación de variables, clustering y entrenamiento de sistema difuso está documentada y puede ser replicada en cohortes independientes con dispositivos portátiles alternativos (Garmin, Fitbit), ajustando únicamente las funciones de pertenencia a los centroides observados en la nueva cohorte.
     
     \item \textbf{Estrategia de validación para cohortes pequeñas:} Demuestra que LOUO es viable y riguroso en estudios con $N < 15$ participantes pero con alta densidad temporal (múltiples observaciones por individuo), proporcionando métricas realistas de generalización que evitan el optimismo de validaciones basadas en partición temporal simple.
     
@@ -276,7 +276,7 @@ El objetivo general de \textit{construir y validar un modelo interpretable, basa
 \begin{itemize}
     \item \textbf{OE1 - Derivación de variables semanales:} \textbf{Cumplido.} Se derivaron exitosamente cuatro variables compuestas (Actividad relativa, Superávit calórico basal, Delta cardíaco, HRV-SDNN) mediante normalización antropométrica y agregación semanal sobre 9,185 días de registro, resultando en 1,337 semanas válidas con $<$ 20\% de datos faltantes.
     
-    \item \textbf{OE2 - Identificación de perfiles mediante clustering:} \textbf{Cumplido.} El algoritmo K-Means identificó dos perfiles de comportamiento con separación moderada (Silhouette = 0.232) y diferencias estadísticamente significativas en las cuatro variables ($p < 0.001$, tamaños de efecto grandes). Esta clasificación sirvió como ground truth operativa para el entrenamiento del sistema difuso.
+    \item \textbf{OE2 - Identificación de perfiles mediante clustering:} \textbf{Cumplido.} El algoritmo K-Means identificó dos perfiles de comportamiento con separación moderada (Silhouette = 0.232) y diferencias estadísticamente significativas en las cuatro variables ($p < 0.001$, tamaños de efecto grandes). Esta clasificación sirvió como verdad operativa para el entrenamiento del sistema difuso.
     
     \item \textbf{OE3 - Diseño del sistema de inferencia difusa:} \textbf{Cumplido.} Se diseñó un sistema Mamdani con 5 reglas lingüísticas fundamentadas fisiológicamente, empleando funciones de pertenencia triangulares calibradas a partir de los percentiles 25, 50 y 75 de cada variable observada en los datos. La estructura \textit{if-then} garantiza interpretabilidad clínica completa.
     
@@ -292,7 +292,7 @@ El objetivo general de \textit{construir y validar un modelo interpretable, basa
 
 \textbf{Resultado:} La hipótesis conceptual fue \textbf{confirmada} con evidencia estadística sólida. El coeficiente Kappa de Cohen entre las clasificaciones del clustering y del sistema difuso alcanzó 0.56 (concordancia moderada-sustancial), significativamente superior al acuerdo esperado por azar ($p < 0.001$). El F1-Score de 0.780 en validación LOUO indica que el modelo difuso logró replicar la estructura clasificatoria identificada por el clustering, generalizando efectivamente a individuos no vistos durante el entrenamiento.
 
-Este resultado confirma la viabilidad de la arquitectura híbrida propuesta, donde el conocimiento empírico descubierto por métodos no supervisados puede ser codificado en reglas lingüísticas interpretables que preservan la capacidad predictiva. La concordancia observada valida el enfoque de utilizar clustering como ground truth operativa en contextos donde estándares de oro clásicos no están disponibles.
+Este resultado confirma la viabilidad de la arquitectura híbrida propuesta, donde el conocimiento empírico descubierto por métodos no supervisados puede ser codificado en reglas lingüísticas interpretables que preservan la capacidad predictiva. La concordancia observada valida el enfoque de utilizar clustering como verdad operativa en contextos donde estándares de oro clásicos no están disponibles.
 
 
 % ============================================================================
