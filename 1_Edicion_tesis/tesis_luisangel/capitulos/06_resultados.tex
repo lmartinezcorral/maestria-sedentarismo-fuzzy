@@ -10,25 +10,9 @@
 
 La cohorte final del estudio estuvo compuesta por 10 participantes adultos (5 mujeres, 5 hombres) con un seguimiento longitudinal multianual, acumulando un total de 9,185 días de registro. Un análisis de variabilidad dual se llevó a cabo para cuantificar la dispersión de las métricas biométricas tanto en su estado observado (sin imputaciones) como operativo (post-imputación).
 
-Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, lo cual indica una alta irregularidad en los patrones de actividad. La \Cref{fig:mapa_calor_variabilidad} muestra la magnitud de esta variabilidad mediante un mapa de calor donde cada celda representa el CV de una variable para un usuario específico. Los tonos más cálidos (rojos) indican mayor dispersión, mientras que los tonos fríos (azules) señalan patrones más estables.
+Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, lo cual indica una alta irregularidad en los patrones de actividad incluso después de la imputación jerárquica. Este comportamiento motivó el uso de estadísticos robustos (mediana e IQR) y fundamenta la interpretación posterior de los perfiles detectados mediante clustering.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{figuras/coeficiente_de_variacion.png}
-    \caption{Mapa de calor de variabilidad por usuario y variable}
-    \label{fig:mapa_calor_variabilidad}
-\end{figure}
-
-Como observamos, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. La comparación entre la variabilidad de los datos puramente observados y la de los datos operativos post-imputación (\Cref{fig:variabilidad_comparativa}) reveló resultados mixtos del proceso de imputación. Si bien necesaria, la imputación tiende a reducir la dispersión de algunas variables como la HRV\_SDNN y la FCr\_promedio\_diario, mientras incrementa ligeramente la de otras. Este patrón evidencia el efecto estabilizador de la imputación jerárquica aplicada.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{figuras/variabilidadoperativa_vs_observada.png}
-    \caption{Comparación de variabilidad observada vs. operativa}
-    \label{fig:variabilidad_comparativa}
-\end{figure}
-
-Esta alta variabilidad natural de los datos recopilados en condiciones de vida libre justificó la decisión metodológica de agregar los datos a nivel semanal utilizando estadísticos robustos (mediana e IQR), con el fin de amortiguar el ruido diario y analizar patrones de comportamiento más estables y sostenidos.
+Como observamos, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. Esta alta variabilidad natural de los datos recopilados en condiciones de vida libre justificó la decisión metodológica de agregar los datos a nivel semanal utilizando estadísticos robustos (mediana e IQR), con el fin de amortiguar el ruido diario y analizar patrones de comportamiento más estables y sostenidos.
 
 % ============================================================================
 \section{Establecimiento de la Verdad Operativa: Análisis de Conglomerados}
@@ -256,7 +240,7 @@ La Paradoja HRV demuestra la \textbf{naturaleza multivariada y no lineal} del co
 \subsection{Validación Convergente Exploratoria con SF-36}
 \label{subsec:sf36_exploratorio}
 
-Un subconjunto de 8 participantes completó el cuestionario SF-36 al finalizar el seguimiento, permitiendo un análisis exploratorio de validación convergente entre el índice fuzzy y métricas de calidad de vida percibida. Aunque el diseño final no se centró en esta correlación (ver pivote metodológico, Sección \ref{subsec:pivote_metodologico}), los resultados aportan contexto sobre la relación entre comportamiento objetivo y autopercepción de salud.
+Un subconjunto de 8 participantes completó el cuestionario SF-36 al finalizar el seguimiento, lo que permitió un análisis exploratorio de validación convergente entre el índice fuzzy y métricas de calidad de vida percibida. Aunque el diseño final no se centró en esta correlación (ver pivote metodológico, Sección \ref{subsec:pivote_metodologico}), los resultados aportan contexto sobre la relación entre comportamiento objetivo y autopercepción de salud.
 
 \textbf{Hallazgos principales:}
 \begin{itemize}

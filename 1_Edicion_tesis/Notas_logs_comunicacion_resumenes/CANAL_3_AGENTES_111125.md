@@ -2120,3 +2120,26 @@ Esto ejecutará:
 
 ---
 
+### 🕒 **ACTUALIZACIÓN 15 NOV 2025 — 14:50:40 (Hora local)**
+
+**Responsables:** Luis (coordinación) + Rayo (infraestructura LaTeX)  
+**Contexto:** Reanudamos sesión post-auditoría Q1 para cerrar pendientes metodológicos y garantizar que el compilador vuelva a generar el PDF final con el nombre operativo.
+
+#### ✅ Acciones completadas
+1. **Registro temporal:** `Get-Date` documentado desde PowerShell (`sábado, 15 de noviembre de 2025 14:50:40`).  
+2. **Reordenamiento Capítulo 5:** La sección `5.7 Técnicas y Procedimiento` (dispositivo, sensores, elección del Apple Watch y protocolo del instrumento) ahora vive inmediatamente después del “Pivote Metodológico” y antes de `Población de Estudio`, cumpliendo la narrativa cronológica BYOD → cohorte.  
+3. **Compilador restaurado:**  
+   - Añadimos `\usepackage{enumitem}` a `main.tex`.  
+   - Reescribimos el Algoritmo 1 como figura + lista enumerada (sin `tabular`).  
+   - `.\compilar.bat` vuelve a generar `proyecto_tesis_LAMC_151125.pdf` y deja el archivo persistente (ya no lo borra).  
+4. **Verificación PDF:** Se confirmó en disco la presencia de `proyecto_tesis_LAMC_151125.pdf` (3.86 MB, timestamp 15-nov-2025 14:02).
+
+#### 🔄 Próximos pasos inmediatos
+- Alinear Capítulo 6 con la narrativa actualizada (reubicar recordatorios de BYOD y tamaños de clúster).  
+- Atender los avisos de referencias faltantes reportados por `latexmk` (nuevas citas: Gonçalves 2021, Khan 2024, etc.).  
+- Retomar los pendientes de Olimpo: diagrama general, nueva Figura 5.4, agradecimientos/dedicatoria.
+
+**Estado general:** Capítulo 5 ya refleja el orden metodológico BYOD → cohorte → variables. PDF final vuelve a generarse con nombre oficial. Pendiente cerrar Cap 6 y tareas de estilo para subir a 9.9/10.
+
+---
+

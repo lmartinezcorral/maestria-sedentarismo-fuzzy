@@ -28,6 +28,7 @@
 \usepackage{amssymb}  % Para símbolos matemáticos (\mathbb)
 \usepackage{caption}
 \usepackage{cleveref}
+\usepackage{enumitem}
 
 % --------------------- CONFIGURACIÓN CLEVEREF (ESPAÑOL) -----
 \crefname{table}{tabla}{tablas}
@@ -224,7 +225,7 @@
 \onehalfspacing
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 
-El comportamiento sedentario representa un factor de riesgo para enfermedades crónicas no transmisibles, cuya medición objetiva en condiciones de vida libre presenta desafíos metodológicos significativos. Los métodos tradicionales de evaluación (cuestionarios de autorreporte) adolecen de sesgos de memoria y deseabilidad social, mientras que las técnicas de referencia se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento ecológico. Este estudio desarrolló un modelo de clasificación del sedentarismo mediante lógica difusa que integra datos biométricos de dispositivos portátiles de consumo, aplicado bajo el paradigma \textit{Bring Your Own Device} (BYOD) en condiciones de vida libre.
+\noindent El comportamiento sedentario representa un factor de riesgo para enfermedades crónicas no transmisibles, cuya medición objetiva en condiciones de vida libre presenta desafíos metodológicos significativos. Los métodos tradicionales de evaluación (cuestionarios de autorreporte) adolecen de sesgos de memoria y deseabilidad social, mientras que las técnicas de referencia se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento ecológico. Este estudio desarrolló un modelo de clasificación del sedentarismo mediante lógica difusa que integra datos biométricos de dispositivos portátiles de consumo, aplicado bajo el paradigma \textit{Bring Your Own Device} (BYOD) en condiciones de vida libre.
 
 La cohorte estuvo conformada por 10 adultos jóvenes con seguimiento longitudinal retrospectivo multianual (media: 133.7 semanas; rango: 7-298 semanas), acumulando 9,185 días de registro biométrico continuo mediante Apple Watch. Tras preprocesamiento (imputación jerárquica, normalización antropométrica), se generaron 1,337 semanas válidas con cuatro variables derivadas: Actividad relativa, Superávit calórico basal, Delta cardíaco y HRV-SDNN. La metodología empleó un enfoque híbrido: clustering K-Means no supervisado (K=2) para establecer verdad operativa a partir de patrones empíricos, seguido de un Sistema de Inferencia Difusa Mamdani que codifica conocimiento experto mediante cinco reglas lingüísticas interpretables.
 
@@ -247,7 +248,7 @@ La validación Leave-One-User-Out demostró F1-Score=0.840 (Precisión=0.833, Re
 \onehalfspacing
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 
-Sedentary behavior represents a risk factor for chronic non-communicable diseases, whose objective measurement in free-living conditions presents significant methodological challenges. Traditional evaluation methods (self-report questionnaires) suffer from recall and social desirability biases, while reference techniques are restricted to laboratory settings that do not capture the complexity of ecological behavior. This study developed a sedentary lifestyle classification model using fuzzy logic that integrates biometric data from consumer wearable devices, applied under the \textit{Bring Your Own Device} (BYOD) paradigm in free-living conditions.
+\noindent Sedentary behavior represents a risk factor for chronic non-communicable diseases, whose objective measurement in free-living conditions presents significant methodological challenges. Traditional evaluation methods (self-report questionnaires) suffer from recall and social desirability biases, while reference techniques are restricted to laboratory settings that do not capture the complexity of ecological behavior. This study developed a sedentary lifestyle classification model using fuzzy logic that integrates biometric data from consumer wearable devices, applied under the \textit{Bring Your Own Device} (BYOD) paradigm in free-living conditions.
 
 The cohort consisted of 10 young adults with multi-year retrospective longitudinal follow-up (mean: 133.7 weeks; range: 7-298 weeks), accumulating 9,185 days of continuous biometric recording via Apple Watch. After preprocessing (hierarchical imputation, anthropometric normalization), 1,337 valid weeks were generated with four derived variables: Relative activity, Basal caloric surplus, Cardiac delta, and HRV-SDNN. The methodology employed a hybrid approach: unsupervised K-Means clustering (K=2) to establish operational truth from empirical patterns, followed by a Mamdani Fuzzy Inference System that encodes expert knowledge through five interpretable linguistic rules.
 
