@@ -25,7 +25,7 @@ El planteamiento inicial del proyecto fue correlacional: buscábamos predecir el
     \item \textbf{Autopercepción vs. comportamiento objetivo:} Prince et al. \cite{Prince2008} demuestran que autorreportes y mediciones objetivas representan constructos relacionados pero no intercambiables, con concordancia limitada (Kappa<0.50) debido a sesgos de deseabilidad social y error de memoria.
 \end{enumerate}
 
-En su lugar, adoptamos una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por Gonçalves et al. \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
+En su lugar, adoptamos una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
 
 % ============================================================================
 \section{Técnicas y Procedimiento}
@@ -49,11 +49,15 @@ Otros sensores, como el giroscopio (23.9\%) y el GPS (29.6\%), también destacan
 
 El análisis de mercado identificó a Apple como el líder en la categoría de relojes inteligentes, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \citep{Canalys2024Wearables}. Esta predominancia y la uniformidad en sus dispositivos justifican la elección del Apple Watch como el dispositivo más adecuado, asegurando una mayor representatividad de datos y compatibilidad con herramientas de análisis avanzadas. La \Cref{tab:wearables_comparison_extended} resume la matriz de decisión empleada, incorporando a los principales proveedores disponibles en México.
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \caption{Matriz de decisión extendida para selección de dispositivo wearable}
     \label{tab:wearables_comparison_extended}
-    \begin{tabular}{@{}lccccc@{}}
+    \begingroup
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.15}
+    \footnotesize
+    \begin{tabularx}{\textwidth}{@{}p{3.0cm}*{5}{>{\raggedright\arraybackslash}X}@{}}
         \toprule
         \textbf{Criterio} & \textbf{Apple Watch} & \textbf{Fitbit} & \textbf{Garmin} & \textbf{Polar} & \textbf{Huawei} \\
         \midrule
@@ -63,30 +67,39 @@ El análisis de mercado identificó a Apple como el líder en la categoría de r
         Consistencia HW/SW & Alta (ecosistema cerrado) & Media & Alta & Media & Baja (fragmentación) \\
         SDK / Documentación & HealthKit (extensa) & API con foros activos & Documentación integral & Moderada (deportiva) & Limitada/básica \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
+    \endgroup
 \end{table}
+
+\FloatBarrier
 
 \subsection{Protocolo del Instrumento}
 \label{subsec:protocolo_instrumento}
 
 Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos Apple Watch, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en Swift, lo cual garantizó la integridad y seguridad de los datos a través de un procedimiento manual estructurado y replicable \citep{Apple2024HealthKit}.
 
-La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodológico, desde la recepción de archivos \texttt{export.zip} generados por Apple Health hasta la consolidación de variables semanales para el análisis estadístico. El proceso se estructuró en cinco etapas: (1) recepción y almacenamiento seguro, (2) descompresión y conversión XML→CSV, (3) extracción de métricas específicas con filtrado por \texttt{sourceName}, (4) manejo de datos faltantes y valores atípicos, y (5) consolidación en un DataFrame con etiquetas estandarizadas.
 
-\begin{figure}[htbp]
+
+La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodológico, desde la recepción de archivos \path{export.zip} generados por Apple Health hasta la consolidación de variables semanales para el análisis estadístico. El proceso se estructuró en cinco etapas: (1) recepción y almacenamiento seguro, (2) descompresión y conversión XML→CSV, (3) extracción de métricas específicas con filtrado por \texttt{sourceName}, (4) manejo de datos faltantes y valores atípicos, y (5) consolidación en un DataFrame con etiquetas estandarizadas.
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figuras/diagrama_de_flujo_fig3.png}
     \caption{Diagrama de flujo del proceso metodológico completo}
     \label{fig:diagrama_flujo}
 \end{figure}
 
+Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en Swift. Los participantes generaron un archivo \path{export.zip} a través de la aplicación Apple Health en sus dispositivos. Recibimos y almacenamos cada archivo en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente descomprimimos los archivos para acceder a los datos en formato XML. Utilizamos el script de código abierto \nolinkurl{apple_health_data_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
+
+Identificamos los archivos \nolinkurl{ActiveEnergyBurned.csv}, \nolinkurl{AppleExerciseTime.csv}, \nolinkurl{AppleStandHour.csv}, \nolinkurl{AppleStandTime.csv}, \nolinkurl{DistanceWalkingRunning.csv}, \nolinkurl{HeartRate.csv}, \nolinkurl{StepCount.csv}, \nolinkurl{WalkingHeartRateAverage.csv} y extrajimos las métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente desarrollamos un código personalizado en Python utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, filtramos los registros utilizando la columna \texttt{sourceName}, seleccionando únicamente los datos asociados al dispositivo específico del participante y excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
+
 \begin{figure}[htbp]
     \centering
     \caption{Algoritmo 1. Preprocesamiento XML $\rightarrow$ CSV diario}
     \label{alg:xml_csv}
     \begin{minipage}{0.95\textwidth}
-        \textbf{Entrada:} archivo \texttt{export.zip} por participante \\
-        \textbf{Salida:} \texttt{DB\_u\{id\}.csv} con columnas [fecha, pasos, calorías, FC\_reposo, HRV\_SDNN, \ldots]\\[4pt]
+        \textbf{Entrada:} archivo \path{export.zip} por participante \\
+        \textbf{Salida:} \path|DB_u{id}.csv| con columnas [fecha, pasos, calorías, FC\_reposo, HRV\_SDNN, \ldots]\\[4pt]
         \begin{enumerate}[label=\textbf{Paso \arabic*:}, leftmargin=*]
             \item Analizar el archivo XML: \texttt{tree = parse(xml\_file)}.
             \item Extraer los nodos \texttt{Record}: \texttt{records = tree.findall("Record")}.
@@ -97,11 +110,6 @@ La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodoló
         \end{enumerate}
     \end{minipage}
 \end{figure}
-
-Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en Swift. Los participantes generaron un archivo \texttt{export.zip} a través de la aplicación Apple Health en sus dispositivos. Recibimos y almacenamos cada archivo en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente descomprimimos los archivos para acceder a los datos en formato XML. Utilizamos el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
-
-Identificamos los archivos \texttt{ActiveEnergyBurned.csv}, \texttt{AppleExerciseTime.csv}, \texttt{AppleStandHour.csv}, \texttt{AppleStandTime.csv}, \texttt{DistanceWalkingRunning.csv}, \texttt{HeartRate.csv}, \texttt{StepCount.csv}, \texttt{WalkingHeartRateAverage.csv} y extrajimos las métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente desarrollamos un código personalizado en Python utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, filtramos los registros utilizando la columna \texttt{sourceName}, seleccionando únicamente los datos asociados al dispositivo específico del participante y excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
-
 Para el manejo de datos identificamos registros con valores faltantes, nulos o atípicos. Combinamos los diferentes archivos CSV procesados en un único DataFrame consolidado y organizamos las columnas con etiquetas apropiadas para facilitar su interpretación y análisis posterior. Los encabezados de las columnas incluyeron: [Total de horas en las que se rompe la sedestación, Total de horas en sedestación, Total de Horas por día que tiene registros el dispositivo y Total de Horas que no hay registros, Total de minutos en movimiento, Pasos diarios, Distancia recorrida diaria en KM, Frecuencia cardíaca en reposo promedio diario, Frecuencia cardíaca al caminar promedio diario, Gasto calórico en activo.]
 
 % ============================================================================
@@ -147,8 +155,11 @@ La distribución balanceada por sexo (50\%/50\%) y el amplio rango de seguimient
 \centering
 \caption{Características Demográficas de la Cohorte (N=10)}
 \label{tab:cohorte_caracteristicas}
+\begingroup
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.1}
 \small
-\begin{tabular}{@{}lcccccc@{}}
+\begin{tabular}{@{}lccccc@{}}
 \toprule
 \textbf{Usuario} & \textbf{Sexo} & \textbf{Edad} & \textbf{IMC} & \textbf{Semanas} & \textbf{\% Válidas} \\
 \midrule
@@ -166,6 +177,7 @@ u10 & F & 28 & 21.6 & 131 & 100\% \\
 \textbf{Media±SD} & 5M/5F & 31.8±4.5 & 28.9±5.1 & 133.7±95.3 & 100\% \\
 \bottomrule
 \end{tabular}
+\endgroup
 \end{table}
 
 \subsection{Análisis Descriptivo Previo a la Agregación}
@@ -177,7 +189,7 @@ Realizamos un análisis descriptivo exhaustivo de los 9,185 días válidos antes
     \centering
     \caption{Estadísticos descriptivos diarios (datos post-limpieza, $n=9{,}185$ días)}
     \label{tab:descriptivos_actualizados}
-    \scriptsize
+    \resizebox{\textwidth}{!}{%
     \begin{tabular}{@{}lrrrrrrrrrrrr@{}}
         \toprule
         \textbf{Variable} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{CV (\%)} & \textbf{Mediana} & \textbf{Q1} & \textbf{Q3} & \textbf{IQR} & \textbf{Mín} & \textbf{Máx} & \textbf{Test} & \textbf{$p$-valor} \\
@@ -191,7 +203,7 @@ Realizamos un análisis descriptivo exhaustivo de los 9,185 días válidos antes
         Actividad relativa & 9,185 & 0.14 & 0.10 & 73.2 & 0.13 & 0.08 & 0.18 & 0.09 & 0.00 & 2.15 & K-S & $< 0.001$ \\
         Superávit calórico (\%) & 9,185 & 32.6 & 23.0 & 70.6 & 28.0 & 19.9 & 40.9 & 21.0 & 0.0 & 817.1 & K-S & $< 0.001$ \\
         \bottomrule
-    \end{tabular}
+    \end{tabular}}
 \end{table}
 
 Las distribuciones exhibieron colas pesadas hacia valores bajos de actividad (Figura~\ref{fig:histogramas_kde}), fenómeno que explica por qué la partición óptima detectada por clustering fue $K=2$ (perfiles bajo y alto sedentarismo). Asimismo, los boxplots comparativos (Figura~\ref{fig:boxplots_comparativos}) muestran heterogeneidad inter-sujeto e intra-sujeto, reforzando la decisión de utilizar mediana e IQR como descriptores semanales.

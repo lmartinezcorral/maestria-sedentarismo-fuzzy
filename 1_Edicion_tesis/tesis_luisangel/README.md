@@ -1,6 +1,6 @@
 # 📚 PLANTILLA DE TESIS LATEX - UACH
 
-## Facultad de Ingeniería - Universidad Autónoma de Chihuahua
+## Facultad de Medicina y Ciencias Biomédicas · Maestría en Formación e Innovación para Profesionales de la Salud (MFIPS)
 
 ---
 
@@ -118,6 +118,7 @@ edicion_tesis/
 ### ⚠️ Considera Alternativas Si:
 - Tu tesis es solo texto plano sin ecuaciones (Word puede ser suficiente)
 - Necesitas entregar **mañana** (LaTeX tiene curva de aprendizaje de 2-3 días)
+- Tu institución utiliza normas distintas a APA 7 y no deseas editarlas manualmente
 
 ---
 
@@ -202,17 +203,17 @@ El archivo `capitulos/02_marco_teorico.tex` contiene ejemplos completos de:
 
 ### Contacto:
 - **Autor:** Luis Ángel Martínez Corral
-- **Email:** [tu_email@uach.mx]
-- **Facultad:** Ingeniería - UACH
+- **Email:** lmartinezcorral@uach.mx
+- **Facultad:** Medicina y Ciencias Biomédicas - UACH (Programa MFIPS)
 
 ---
 
 ## 🎁 Licencia
 
 - ✅ **Uso libre** para fines académicos
-- ✅ **Modificar y compartir** libremente
+- ✅ **Modificar y compartir** libremente (mantén los créditos)
 - ✅ **Sin restricciones** para estudiantes UACH
-- ❌ **NO vender** (es un regalo para la comunidad)
+- ❌ **NO vender** (es un recurso abierto para la comunidad)
 
 ### Créditos:
 Si te fue útil, agradécelo en tu tesis:
@@ -289,11 +290,12 @@ Antes de empezar a escribir:
 
 ---
 
-**📅 Creado:** Octubre 2025  
-**🔢 Versión:** 1.0  
+**📅 Última actualización:** Noviembre 2025  
+**🔢 Versión:** 1.1  
 **👤 Autor:** Luis Ángel Martínez Corral  
-**🏫 Institución:** Universidad Autónoma de Chihuahua  
-**🎓 Para:** Estudiantes de Posgrado - Facultad de Ingeniería
+**🏫 Institución:** Universidad Autónoma de Chihuahua  - Facultad de Medicina y Ciencias Biomédicas
+**🎓 Programa:** Maestría en Formación e Innovación para Profesionales de la Salud (MFIPS)  
+**💻 Repositorio:** [maestria-sedentarismo-fuzzy](https://github.com/lmartinezcorral/maestria-sedentarismo-fuzzy)
 
 ---
 
