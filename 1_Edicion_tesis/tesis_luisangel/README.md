@@ -108,7 +108,7 @@ edicion_tesis/
 ## 🎓 ¿Para Quién?
 
 ### ✅ Ideal Para:
-- Estudiantes de **Maestría** (cualquier área de Ingeniería)
+- Estudiantes de **Maestría** 
 - Estudiantes de **Doctorado**
 - Tesis con **muchas ecuaciones matemáticas**
 - Tesis con **50+ referencias bibliográficas**
