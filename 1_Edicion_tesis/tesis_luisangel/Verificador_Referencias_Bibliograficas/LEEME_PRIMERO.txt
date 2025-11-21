@@ -1,0 +1,112 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                  VERIFICADOR DE REFERENCIAS BIBLIOGRÁFICAS                ║
+║                                                                           ║
+║                    👋 ¡BIENVENIDO! - LEE ESTO PRIMERO                    ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+
+📦 CONTENIDO DE ESTA CARPETA
+   ──────────────────────────────────────────────────────────────────────
+   
+   ✅ verificar_referencias.bat
+      → HAZ DOBLE CLIC AQUÍ para ejecutar (Windows)
+   
+   ✅ verificar_multiple_bases_datos.py
+      → Script Python principal (no necesitas abrirlo)
+   
+   ✅ INICIO_RAPIDO.txt
+      → Guía rápida de 3 pasos
+   
+   ✅ README_VERIFICADOR_REFERENCIAS.md
+      → Documentación completa con todas las instrucciones
+   
+   ✅ requirements.txt
+      → Dependencias (se instalan automáticamente)
+   
+   ✅ ejemplo_referencias.bib
+      → Ejemplo del formato esperado para tu archivo .bib
+
+
+🚀 INICIO RÁPIDO (3 PASOS)
+   ──────────────────────────────────────────────────────────────────────
+   
+   1️⃣  Verifica que tengas Python instalado
+       → Abre CMD y escribe: python --version
+       → Si no lo tienes: https://www.python.org/downloads/
+   
+   2️⃣  Coloca tu archivo "referencias.bib" en esta carpeta
+   
+   3️⃣  Haz DOBLE CLIC en "verificar_referencias.bat"
+   
+   ¡Listo! El script hará todo automáticamente.
+
+
+📊 ¿QUÉ HACE ESTE SCRIPT?
+   ──────────────────────────────────────────────────────────────────────
+   
+   Verifica si tus referencias bibliográficas están indexadas en:
+   
+   • ScienceDirect (Elsevier)
+   • PubMed (Ciencias biomédicas)
+   • IEEE Xplore (Ingeniería)
+   • ACM Digital Library (Computación)
+   • Google Scholar (General)
+   • SpringerLink (Editorial Springer)
+   • Wiley Online Library (Editorial Wiley)
+   • Crossref (Metadatos DOI)
+   
+   Genera un archivo CSV con los resultados que puedes abrir en Excel.
+
+
+⏱️  TIEMPO ESTIMADO
+   ──────────────────────────────────────────────────────────────────────
+   
+   • 50 referencias:  2-3 minutos
+   • 100 referencias: 5-7 minutos
+   • 150 referencias: 10-15 minutos
+
+
+📁 ARCHIVOS GENERADOS
+   ──────────────────────────────────────────────────────────────────────
+   
+   Después de ejecutar encontrarás:
+   
+   • referencias_multiple_bases_datos.csv
+     → Ábrelo con Excel para ver los resultados en tabla
+   
+   • referencias_multiple_bases_datos.json
+     → Mismos datos en formato JSON
+
+
+❓ ¿NECESITAS AYUDA?
+   ──────────────────────────────────────────────────────────────────────
+   
+   📖 Lee: INICIO_RAPIDO.txt (guía rápida)
+   📖 Lee: README_VERIFICADOR_REFERENCIAS.md (documentación completa)
+   
+   Problemas comunes:
+   • "Python no está instalado" → Instala Python y marca "Add to PATH"
+   • "No se encontró referencias.bib" → Coloca tu archivo .bib aquí
+   • Errores de conexión → Verifica tu internet y vuelve a intentar
+
+
+💡 CONSEJOS
+   ──────────────────────────────────────────────────────────────────────
+   
+   ✓ El campo 'doi' en tu .bib ayuda mucho a encontrar referencias
+   ✓ Si una referencia no aparece, búscala manualmente en la base más relevante
+   ✓ Google Scholar suele encontrar casi todo, pero no es "oficial"
+   ✓ PubMed es excelente para artículos de ciencias de la salud
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+¿Listo para empezar?
+
+👉 Abre "INICIO_RAPIDO.txt" para ver los 3 pasos
+👉 O haz doble clic en "verificar_referencias.bat" directamente
+
+═══════════════════════════════════════════════════════════════════════════
+
+¡Buena suerte con tu verificación! 📚✨
+

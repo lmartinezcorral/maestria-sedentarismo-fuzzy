@@ -1,0 +1,74 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    VERIFICADOR DE REFERENCIAS BIBLIOGRÁFICAS              ║
+║                         INICIO RÁPIDO - 3 PASOS                           ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📋 PASO 1: VERIFICAR PYTHON
+   ──────────────────────────────────────────────────────────────────────
+   Abre PowerShell o CMD y escribe:
+   
+   python --version
+   
+   Si aparece un error, instala Python desde:
+   https://www.python.org/downloads/
+   
+   ⚠️ IMPORTANTE: Marca "Add Python to PATH" durante la instalación
+
+
+📁 PASO 2: COLOCAR TU ARCHIVO .BIB
+   ──────────────────────────────────────────────────────────────────────
+   Coloca tu archivo "referencias.bib" en esta misma carpeta
+   (donde está este archivo)
+
+
+▶️  PASO 3: EJECUTAR
+   ──────────────────────────────────────────────────────────────────────
+   Haz DOBLE CLIC en: verificar_referencias.bat
+   
+   El script hará todo automáticamente:
+   ✓ Verificará Python
+   ✓ Instalará dependencias si es necesario
+   ✓ Verificará tus referencias en 8 bases de datos
+   ✓ Generará archivos CSV y JSON con los resultados
+
+
+⏱️  TIEMPO ESTIMADO
+   ──────────────────────────────────────────────────────────────────────
+   • 50 referencias:  2-3 minutos
+   • 100 referencias: 5-7 minutos
+   • 150 referencias: 10-15 minutos
+
+
+📊 RESULTADOS
+   ──────────────────────────────────────────────────────────────────────
+   Después de ejecutar, encontrarás:
+   
+   • referencias_multiple_bases_datos.csv
+     → Ábrelo con Excel para ver los resultados
+   
+   • referencias_multiple_bases_datos.json
+     → Datos en formato JSON (para procesamiento)
+
+
+❓ ¿PROBLEMAS?
+   ──────────────────────────────────────────────────────────────────────
+   Lee el archivo: README_VERIFICADOR_REFERENCIAS.md
+   Ahí encontrarás solución a problemas comunes
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+Bases de datos verificadas:
+  ✓ ScienceDirect (Elsevier)
+  ✓ PubMed (Ciencias biomédicas)
+  ✓ IEEE Xplore (Ingeniería)
+  ✓ ACM Digital Library (Computación)
+  ✓ Google Scholar (General)
+  ✓ SpringerLink (Editorial Springer)
+  ✓ Wiley Online Library (Editorial Wiley)
+  ✓ Crossref (Metadatos DOI)
+
+═══════════════════════════════════════════════════════════════════════════
+
+¡Listo para usar! 🚀
+

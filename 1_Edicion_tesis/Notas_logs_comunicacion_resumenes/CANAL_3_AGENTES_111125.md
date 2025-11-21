@@ -1,10 +1,11 @@
 # ⚡🔱💀 CANAL DE COMUNICACIÓN PROYECTO HÉRCULES
 ## Pipeline Sintético + Status Actual + Re-Auditoría 11 Nov 2025
 
-**Timestamp:** martes, 11 de noviembre de 2025, 09:36:21  
-**Versión:** 1.0 - Canal sintético (reemplaza COMUNICACION_AGENTES_tesis.md + _IEEE.md)  
+**Timestamp:** jueves, 20 de noviembre de 2025, 21:06:17  
+**Versión:** 1.1 - Canal sintético (reemplaza COMUNICACION_AGENTES_tesis.md + _IEEE.md)  
 **Propósito:** Mantener contexto SIN saturación de líneas  
-**Vigencia:** Hasta saturación, luego crear CANAL_4_AGENTES
+**Vigencia:** Hasta saturación, luego crear CANAL_4_AGENTES  
+**Última actualización:** 20-Nov-2025 21:06 - Verificación WSL + Git status
 
 ---
 
@@ -2140,6 +2141,72 @@ Esto ejecutará:
 - Retomar los pendientes de Olimpo: diagrama general, nueva Figura 5.4, agradecimientos/dedicatoria.
 
 **Estado general:** Capítulo 5 ya refleja el orden metodológico BYOD → cohorte → variables. PDF final vuelve a generarse con nombre oficial. Pendiente cerrar Cap 6 y tareas de estilo para subir a 9.9/10.
+
+---
+
+### 🔱 **Delegación 15 Nov 2025 — Correcciones de formato LaTeX (Poseidón)**
+
+- **Situación:** El intento de escalar la Tabla 5.1 con `\resizebox` generó superposición de texto sobre el párrafo siguiente.  
+- **Acción:** Luis delega a **Poseidón** la auditoría de formato/estilo LaTeX para esa tabla y demás estructuras largas (prioridad inmediata).  
+- **Objetivo:** Ajustar tablas extensas sin romper márgenes APA, preferentemente con soluciones `tabularx`/`longtable` o dividido en subtablas.  
+- **Entregable:** Pull request interno o diff que corrija la tabla y documente la decisión en este canal.
+
+---
+
+### 💀 **Actualización 20 Nov 2025 — Configuración WSL como Shell Predeterminado (Ades)**
+
+**Timestamp:** jueves, 20 de noviembre de 2025, 21:06:17
+
+**Configuración del entorno:**
+- **Shell anterior:** PowerShell (Windows)
+- **Shell nuevo:** ✅ **WSL (Linux)** configurado como predeterminado
+- **WSL disponible:** ✅ Linux Hulk-mtz 6.6.87.2-microsoft-standard-WSL2
+- **Configuración aplicada:** Archivos `.vscode/settings.json` creados/actualizados
+
+**Archivos de configuración creados:**
+1. ✅ `.vscode/settings.json` (raíz del proyecto) - Configuración global
+2. ✅ `4 semestre_dataset/1_Edicion_tesis/tesis_luisangel/.vscode/settings.json` - Configuración específica tesis
+
+**Configuración aplicada:**
+```json
+"terminal.integrated.defaultProfile.windows": "WSL"
+```
+
+**Instrucciones para activar:**
+1. **Cerrar y reabrir Cursor** (o recargar ventana: `Ctrl+Shift+P` → "Developer: Reload Window")
+2. **Abrir nueva terminal:** `Ctrl+Shift+` ` (backtick) o Terminal → New Terminal
+3. **Verificar:** El prompt debe mostrar `user@Hulk-mtz` (WSL) en lugar de `PS C:\>`
+
+**Nota:** Si el terminal sigue mostrando PowerShell después de recargar:
+- Verificar que WSL esté instalado: `wsl --list --verbose`
+- Verificar que el path en settings.json sea correcto: `C:\\Windows\\System32\\wsl.exe`
+- Intentar seleccionar manualmente: Terminal → Select Default Profile → WSL
+
+**Git Status (20-Nov-2025 21:06):**
+- **Branch:** master (up to date with origin/master)
+- **Archivos modificados:**
+  - `Notas_logs_comunicacion_resumenes/CANAL_3_AGENTES_111125.md`
+  - `.vscode/settings.json` (nuevo/actualizado)
+- **Archivos nuevos (untracked):**
+  - `Notas_logs_comunicacion_resumenes/ADES_AUDITORIA_CRITICA_TESIS_EDNEY_15NOV.md` (auditoría tesis Edney)
+  - `4 semestre_dataset/1_Edicion_tesis/tesis_luisangel/.vscode/settings.json` (nuevo)
+  - Varios archivos de verificación de referencias bibliográficas
+  - Scripts Python para verificación de bases de datos
+
+**Archivos de configuración creados:**
+1. ✅ `.vscode/settings.json` (raíz) - Configuración global WSL
+2. ✅ `4 semestre_dataset/1_Edicion_tesis/tesis_luisangel/.vscode/settings.json` - Configuración específica tesis
+3. ✅ `INSTRUCCIONES_CONFIGURACION_WSL_20NOV.md` - Guía completa de activación
+
+**Acción requerida:** 
+1. ⏳ **Recargar Cursor** (`Ctrl+Shift+P` → "Reload Window" o cerrar/reabrir)
+2. ⏳ **Abrir nueva terminal** (`Ctrl+Shift+` `) y verificar que muestre prompt WSL
+3. ⏳ **Probar comando:** `uname -a` (debe mostrar Linux, no Windows)
+4. ⏳ Revisar cambios y decidir qué archivos agregar al repositorio
+
+**Nota importante:** El script `compilar.bat` es de Windows. Si necesitas compilar desde WSL, puedes:
+- Ejecutarlo desde WSL: `cmd.exe /c compilar.bat`
+- O crear versión `.sh` (bash) del script (pendiente si es necesario)
 
 ---
 

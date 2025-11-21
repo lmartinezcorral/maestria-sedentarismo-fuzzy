@@ -1,0 +1,131 @@
+{
+  // ============================================================================
+  // CONFIGURACIÓN GLOBAL UNIFICADA - VS CODE / CURSOR
+  // ============================================================================
+  // Configuración para todos los proyectos
+  // Usuario: Luis Ángel
+  // Fecha: 22 de noviembre de 2025
+  // Ubicación: %APPDATA%\Code\User\settings.json (VS Code) o %APPDATA%\Cursor\User\settings.json (Cursor)
+  // ============================================================================
+  
+  // ============================================================================
+  // 1. EDITOR - Configuración del área de edición principal
+  // ============================================================================
+  "editor.fontSize": 16,
+  "editor.fontFamily": "Consolas, 'Courier New', monospace",
+  "editor.lineHeight": 1.5,
+  "editor.lineNumbers": "on",
+  "editor.renderIndentGuides": true,
+  "editor.renderWhitespace": "selection",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.wordWrap": "on",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "workbench.editor.alwaysShowEditorActions": false,
+  "workbench.editor.centeredLayoutFixedWidth": false,
+  
+  // ============================================================================
+  // 2. MINIMAPA - Mapa en miniatura del código
+  // ============================================================================
+  "editor.minimap.enabled": true,
+  "editor.minimap.size": "proportional",
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.renderCharacters": true,
+  "editor.minimap.maxColumn": 120,
+  
+  // ============================================================================
+  // 3. BARRA LATERAL (SIDE BAR) - Panel izquierdo con explorador, búsqueda, etc.
+  // ============================================================================
+  "workbench.sideBar.location": "left",
+  "workbench.activityBar.visible": true,
+  "workbench.activityBar.iconClickBehavior": "toggle",
+  "workbench.tree.indent": 8,
+  "workbench.tree.renderIndentGuides": "always",
+  
+  // ============================================================================
+  // 4. PANEL - Panel inferior (terminal, problemas, salida, depuración)
+  // ============================================================================
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.panel.opensMaximized": "never",
+  "problems.showCurrentInStatus": true,
+  "output.smartScroll.enabled": true,
+  
+  // ============================================================================
+  // 5. BARRA DE ESTADO - Barra inferior con información del archivo
+  // ============================================================================
+  "workbench.statusBar.visible": true,
+  "problems.showCurrentInStatus": true,
+  "git.enabled": true,
+  "git.showStatusBar": true,
+  "editor.gotoLocation.multipleReferences": "peek",
+  
+  // ============================================================================
+  // 6. PALETA DE COMANDOS - Menú de comandos (Ctrl+Shift+P)
+  // ============================================================================
+  "workbench.commandPalette.history": 50,
+  "workbench.commandPalette.experimental.suggestCommands": true,
+  
+  // ============================================================================
+  // 7. BARRA DE MENÚ / GRUPOS - Barra superior con menús
+  // ============================================================================
+  "window.menuBarVisibility": "default",
+  "window.titleBarStyle": "custom",
+  "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
+  "workbench.editor.showTabs": true,
+  "workbench.editor.tabSizing": "fit",
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.symbolSortOrder": "type",
+  
+  // ============================================================================
+  // 8. TEMA Y APARIENCIA
+  // ============================================================================
+  "workbench.colorTheme": "SynthWave 84' Remix Min Darker (by FernaandoJr)",
+  "workbench.preferredHighContrastLightColorTheme": "Visual Studio Light",
+  "workbench.iconTheme": "symbols",
+  
+  // ============================================================================
+  // 9. TERMINAL INTEGRADO - Configuración WSL
+  // ============================================================================
+  // Configuración para usar WSL como shell predeterminado en lugar de PowerShell
+  // Aplicado por: Luis Ángel + Ades
+  // Fecha: 20 de noviembre de 2025
+  "terminal.integrated.defaultProfile.windows": "WSL",
+  
+  "terminal.integrated.profiles.windows": {
+    "WSL": {
+      "path": "C:\\Windows\\System32\\wsl.exe",
+      "args": [],
+      "icon": "terminal-linux"
+    },
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    }
+  },
+  
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.integrated.enablePersistentSessions": true,
+  "terminal.integrated.persistentSessionReviveProcess": "onExit",
+  
+  // ============================================================================
+  // 10. EXTENSIONES Y HERRAMIENTAS ADICIONALES
+  // ============================================================================
+  "chatgpt.openOnStartup": false
+}
+
