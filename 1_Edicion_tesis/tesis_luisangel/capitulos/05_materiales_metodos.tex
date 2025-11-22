@@ -1,31 +1,31 @@
 \chapter{Materiales y Métodos}
 \label{chap:materiales_metodos}
 
-\noindent Este capítulo detalla la metodología empleada en la investigación, incluyendo el diseño del estudio, la caracterización de la población participante, la definición operacional de variables, los instrumentos de recolección de datos biométricos y el protocolo de análisis estadístico implementado. Describimos el procedimiento completo desde la selección del Apple Watch como dispositivo wearable bajo los paradigmas de vida libre y \textit{Bring Your Own Device} (BYOD), seguido del protocolo de extracción de datos mediante el ecosistema HealthKit, hasta la validación del sistema de inferencia difusa con estrategia Leave-One-User-Out, lo cual garantiza la reproducibilidad y transparencia metodológica necesarias para la replicación de los hallazgos en estudios futuros.
+\noindent Este capítulo detalla la metodología empleada en la investigación, incluyendo el diseño del estudio, la caracterización de la población participante, la definición operacional de variables, los instrumentos de recolección de datos biométricos y el protocolo de análisis estadístico implementado. Describimos el procedimiento completo desde la selección del \textit{Apple Watch} como dispositivo \textit{wearable} bajo los paradigmas de vida libre y \textit{Bring Your Own Device} (\textit{BYOD}), seguido del protocolo de extracción de datos mediante el ecosistema \textit{HealthKit}, hasta la validación del sistema de inferencia difusa con estrategia Leave-One-User-Out, lo cual garantiza la reproducibilidad y transparencia metodológica necesarias para la replicación de los hallazgos en estudios futuros.
 
 % ============================================================================
 \section{Diseño del Estudio}
 \label{sec:diseno}
 % ============================================================================
 
-Empleamos un diseño cuantitativo, observacional, longitudinal retrospectivo con seguimiento multianual (2021-2024) de una cohorte de 10 participantes adultos. El diseño se basó en la validación convergente de un sistema de inferencia difusa tipo Mamdani contra una clasificación de referencia empírica (verdad operativa, GO) derivada de un análisis de conglomerados no supervisado sobre datos biométricos semanales agregados.
+Empleamos un diseño cuantitativo, observacional, longitudinal retrospectivo con seguimiento multianual (2021-2024) de una cohorte de 10 participantes adultos. El diseño se basó en la validación convergente de un sistema de inferencia difusa tipo \textit{Mamdani} contra una clasificación de referencia empírica (verdad operativa, GO) derivada de un análisis de conglomerados no supervisado sobre datos biométricos semanales agregados.
 
 La unidad de análisis correspondió a semanas completas de monitoreo generadas a partir de los 9,185 días válidos recopilados (1,385 semanas totales), de las cuales 1,337 cumplieron los criterios de calidad (≥3 días con datos y ≤60\% de imputación). Cada observación semanal integró la mediana (p50) y el rango intercuartílico (IQR) de cuatro variables biométricas derivadas: Actividad Relativa, Superávit Calórico Basal, Variabilidad de Frecuencia Cardíaca (HRV-SDNN) y Delta Cardíaco.
 
 \subsection{Pivote Metodológico}
 \label{subsec:pivote_metodologico}
 
-El planteamiento inicial del proyecto fue correlacional: buscábamos predecir el puntaje del cuestionario SF-36 (aplicado una sola vez por participante) a partir de las series biométricas capturadas por el Apple Watch. Durante la fase piloto validamos que esta estrategia no era viable y adoptamos un enfoque metodológico diferente, centrado en la convergencia entre patrones objetivos (clustering K-Means) y un sistema difuso basado en conocimiento experto. Fundamentamos este pivote en tres razones convergentes documentadas en la literatura:
+El planteamiento inicial del proyecto fue correlacional: buscábamos predecir el puntaje del cuestionario SF-36 (aplicado una sola vez por participante) a partir de las series biométricas capturadas por el \textit{Apple Watch}. Durante la fase piloto validamos que esta estrategia no era viable y adoptamos un enfoque metodológico diferente, centrado en la convergencia entre patrones objetivos (\textit{clustering} \textit{K-Means}) y un sistema difuso basado en conocimiento experto. Fundamentamos este pivote en tres razones convergentes documentadas en la literatura:
 
 \begin{enumerate}
-    \item \textbf{Limitaciones de potencia estadística:} Con N=10 participantes, el poder para detectar correlaciones moderadas (r<0.70) entre variables biométricas y SF-36 es insuficiente (1-$\beta$<0.50). Healy et al. \cite{Healy2024} reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de wearables en cohortes N<15.
+    \item \textbf{Limitaciones de potencia estadística:} Con N=10 participantes, el poder para detectar correlaciones moderadas (r<0.70) entre variables biométricas y SF-36 es insuficiente (1-$\beta$<0.50). Healy \textit{et al.}. \cite{Healy2024} reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de \textit{wearables} en cohortes N<15.
     
     \item \textbf{Baja adherencia al cuestionario:} Solo 8 de 10 participantes completaron el SF-36, y el análisis retrospectivo reveló correlaciones mayormente no significativas (p>0.05) excepto para Salud Mental (ver Sección \ref{subsec:sf36_exploratorio}).
     
-    \item \textbf{Autopercepción vs. comportamiento objetivo:} Prince et al. \cite{Prince2008} demuestran que autorreportes y mediciones objetivas representan constructos relacionados pero no intercambiables, con concordancia limitada (Kappa<0.50) debido a sesgos de deseabilidad social y error de memoria.
+    \item \textbf{Autopercepción vs. comportamiento objetivo:} Prince \textit{et al.}. \cite{Prince2008} demuestran que autorreportes y mediciones objetivas representan constructos relacionados pero no intercambiables, con concordancia limitada (Kappa<0.50) debido a sesgos de deseabilidad social y error de memoria.
 \end{enumerate}
 
-En su lugar, adoptamos una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
+En su lugar, adoptamos una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento \textit{K-Means}) y uno experto (modelado basado en conocimiento mediante lógica difusa \textit{Mamdani}). Este enfoque, validado por \cite{Goncalves2021} en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
 
 % ============================================================================
 \section{Técnicas y Procedimiento}
@@ -63,9 +63,9 @@ El análisis de mercado identificó a Apple como el líder en la categoría de r
         \midrule
         Penetración en México & Alta & Media & Media-baja & Baja & Media \\
         Sensores validados & Sí (todos) & Sí (núcleo) & Sí (núcleo) & Sí (núcleo) & Parcial \\
-        Exportación de datos & HealthKit (XML/API) & Fitbit Web API & Garmin Health API & Polar AccessLink & Huawei Health API (limitada) \\
+        Exportación de datos & \textit{HealthKit} (\textit{XML}/\textit{API}) & Fitbit Web \textit{API} & Garmin Health \textit{API} & Polar AccessLink & Huawei Health \textit{API} (limitada) \\
         Consistencia HW/SW & Alta (ecosistema cerrado) & Media & Alta & Media & Baja (fragmentación) \\
-        SDK / Documentación & HealthKit (extensa) & API con foros activos & Documentación integral & Moderada (deportiva) & Limitada/básica \\
+        \textit{SDK} / Documentación & \textit{HealthKit} (extensa) & \textit{API} con foros activos & Documentación integral & Moderada (deportiva) & Limitada/básica \\
         \bottomrule
     \end{tabularx}
     \endgroup
@@ -76,11 +76,11 @@ El análisis de mercado identificó a Apple como el líder en la categoría de r
 \subsection{Protocolo del Instrumento}
 \label{subsec:protocolo_instrumento}
 
-Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos Apple Watch, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en Swift, lo cual garantizó la integridad y seguridad de los datos a través de un procedimiento manual estructurado y replicable \citep{Apple2024HealthKit}.
+Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos \textit{Apple Watch}, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en \textit{Swift}, lo cual garantizó la integridad y seguridad de los datos a través de un procedimiento manual estructurado y replicable \citep{Apple2024HealthKit}.
 
 
 
-La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodológico, desde la recepción de archivos \path{export.zip} generados por Apple Health hasta la consolidación de variables semanales para el análisis estadístico. El proceso se estructuró en cinco etapas: (1) recepción y almacenamiento seguro, (2) descompresión y conversión XML→CSV, (3) extracción de métricas específicas con filtrado por \texttt{sourceName}, (4) manejo de datos faltantes y valores atípicos, y (5) consolidación en un DataFrame con etiquetas estandarizadas.
+La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodológico, desde la recepción de archivos \path{export.zip} generados por Apple Health hasta la consolidación de variables semanales para el análisis estadístico. El proceso se estructuró en cinco etapas: (1) recepción y almacenamiento seguro, (2) descompresión y conversión \textit{XML}→\textit{CSV}, (3) extracción de métricas específicas con filtrado por \texttt{sourceName}, (4) manejo de datos faltantes y valores atípicos, y (5) consolidación en un \textit{DataFrame} con etiquetas estandarizadas.
 
 \begin{figure}[H]
     \centering
@@ -89,9 +89,9 @@ La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodoló
     \label{fig:diagrama_flujo}
 \end{figure}
 
-Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en Swift. Los participantes generaron un archivo \path{export.zip} a través de la aplicación Apple Health en sus dispositivos. Recibimos y almacenamos cada archivo en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente descomprimimos los archivos para acceder a los datos en formato XML. Utilizamos el script de código abierto \nolinkurl{apple_health_data_converter.py}, disponible en GitHub, para convertir los archivos XML a formato CSV, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
+Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en \textit{Swift}. Los participantes generaron un archivo \path{export.zip} a través de la aplicación Apple Health en sus dispositivos. Recibimos y almacenamos cada archivo en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente descomprimimos los archivos para acceder a los datos en formato \textit{XML}. Utilizamos el script de código abierto \nolinkurl{apple_health_data_converter.py}, disponible en \textit{GitHub}, para convertir los archivos \textit{XML} a formato \textit{CSV}, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
 
-Identificamos los archivos \nolinkurl{ActiveEnergyBurned.csv}, \nolinkurl{AppleExerciseTime.csv}, \nolinkurl{AppleStandHour.csv}, \nolinkurl{AppleStandTime.csv}, \nolinkurl{DistanceWalkingRunning.csv}, \nolinkurl{HeartRate.csv}, \nolinkurl{StepCount.csv}, \nolinkurl{WalkingHeartRateAverage.csv} y extrajimos las métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente desarrollamos un código personalizado en Python utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del Apple Watch de cada participante, filtramos los registros utilizando la columna \texttt{sourceName}, seleccionando únicamente los datos asociados al dispositivo específico del participante y excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
+Identificamos los archivos \nolinkurl{ActiveEnergyBurned.csv}, \nolinkurl{AppleExerciseTime.csv}, \nolinkurl{AppleStandHour.csv}, \nolinkurl{AppleStandTime.csv}, \nolinkurl{DistanceWalkingRunning.csv}, \nolinkurl{HeartRate.csv}, \nolinkurl{StepCount.csv}, \nolinkurl{WalkingHeartRateAverage.csv} y extrajimos las métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente desarrollamos un código personalizado en \textit{Python} utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del \textit{Apple Watch} de cada participante, filtramos los registros utilizando la columna \texttt{sourceName}, seleccionando únicamente los datos asociados al dispositivo específico del participante y excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
 
 \begin{figure}[htbp]
     \centering
@@ -99,18 +99,18 @@ Identificamos los archivos \nolinkurl{ActiveEnergyBurned.csv}, \nolinkurl{AppleE
     \label{alg:xml_csv}
     \begin{minipage}{0.95\textwidth}
         \textbf{Entrada:} archivo \path{export.zip} por participante \\
-        \textbf{Salida:} \path|DB_u{id}.csv| con columnas [fecha, pasos, calorías, FC\_reposo, HRV\_SDNN, \ldots]\\[4pt]
+        \textbf{Salida:} \path|DB_u{id}.\textit{CSV}| con columnas [fecha, pasos, calorías, FC\_reposo, \textit{HRV}\_SDNN, \ldots]\\[4pt]
         \begin{enumerate}[label=\textbf{Paso \arabic*:}, leftmargin=*]
-            \item Analizar el archivo XML: \texttt{tree = parse(xml\_file)}.
+            \item Analizar el archivo \textit{XML}: \texttt{tree = parse(xml\_file)}.
             \item Extraer los nodos \texttt{Record}: \texttt{records = tree.findall("Record")}.
             \item Inicializar un \texttt{DataFrame} vacío donde se almacenarán los registros consolidados.
-            \item Recorrer cada \texttt{record} y filtrar únicamente los que provienen del Apple Watch (\texttt{sourceName} contiene ``Apple Watch''); guardar \texttt{type}, \texttt{value} y la fecha (\texttt{startDate}).
+            \item Recorrer cada \texttt{record} y filtrar únicamente los que provienen del \textit{Apple Watch} (\texttt{sourceName} contiene ``\textit{Apple Watch}''); guardar \texttt{type}, \texttt{value} y la fecha (\texttt{startDate}).
             \item Agrupar los registros por fecha mediante un pivote que transforma las filas en columnas por tipo de métrica.
-            \item Exportar el \texttt{DataFrame} resultante a CSV con la nomenclatura \texttt{DB\_u\{id\}.csv}.
+            \item Exportar el \texttt{DataFrame} resultante a \textit{CSV} con la nomenclatura \texttt{DB\_u\{id\}.csv}.
         \end{enumerate}
     \end{minipage}
 \end{figure}
-Para el manejo de datos identificamos registros con valores faltantes, nulos o atípicos. Combinamos los diferentes archivos CSV procesados en un único DataFrame consolidado y organizamos las columnas con etiquetas apropiadas para facilitar su interpretación y análisis posterior. Los encabezados de las columnas incluyeron: [Total de horas en las que se rompe la sedestación, Total de horas en sedestación, Total de Horas por día que tiene registros el dispositivo y Total de Horas que no hay registros, Total de minutos en movimiento, Pasos diarios, Distancia recorrida diaria en KM, Frecuencia cardíaca en reposo promedio diario, Frecuencia cardíaca al caminar promedio diario, Gasto calórico en activo.]
+Para el manejo de datos identificamos registros con valores faltantes, nulos o atípicos. Combinamos los diferentes archivos \textit{CSV} procesados en un único \textit{DataFrame} consolidado y organizamos las columnas con etiquetas apropiadas para facilitar su interpretación y análisis posterior. Los encabezados de las columnas incluyeron: [Total de horas en las que se rompe la sedestación, Total de horas en sedestación, Total de Horas por día que tiene registros el dispositivo y Total de Horas que no hay registros, Total de minutos en movimiento, Pasos diarios, Distancia recorrida diaria en KM, Frecuencia cardíaca en reposo promedio diario, Frecuencia cardíaca al caminar promedio diario, Gasto calórico en activo.]
 
 % ============================================================================
 \section{Población de Estudio}
@@ -122,14 +122,14 @@ La cohorte final del estudio estuvo compuesta por 10 adultos jóvenes (5 mujeres
 \subsection{Estrategia de Reclutamiento}
 \label{subsec:reclutamiento}
 
-Empleamos un muestreo no probabilístico por conveniencia basado en el paradigma \textit{Bring Your Own Device} (BYOD; \cite{Doherty2021}). Basamos los criterios de inclusión en:
+Empleamos un muestreo no probabilístico por conveniencia basado en el paradigma \textit{Bring Your Own Device} (\textit{BYOD}; \cite{Doherty2021}). Basamos los criterios de inclusión en:
 
 \begin{enumerate}
-    \item Propiedad de un Apple Watch Series 3 o superior
+    \item Propiedad de un \textit{Apple Watch} Series 3 o superior
     \item Uso continuo del dispositivo por al menos 6 meses previos (para minimizar efectos de habituación)
     \item Edad entre 18 y 65 años
     \item Capacidad ambulatoria sin limitaciones severas
-    \item Disponibilidad para exportar datos históricos del ecosistema HealthKit
+    \item Disponibilidad para exportar datos históricos del ecosistema \textit{HealthKit}
 \end{enumerate}
 
 \subsection{Tamaño de Muestra y Justificación Estadística}
@@ -206,7 +206,7 @@ Realizamos un análisis descriptivo exhaustivo de los 9,185 días válidos antes
     \end{tabular}}
 \end{table}
 
-Las distribuciones exhibieron colas pesadas hacia valores bajos de actividad (Figura~\ref{fig:histogramas_kde}), fenómeno que explica por qué la partición óptima detectada por clustering fue $K=2$ (perfiles bajo y alto sedentarismo). Asimismo, los boxplots comparativos (Figura~\ref{fig:boxplots_comparativos}) muestran heterogeneidad inter-sujeto e intra-sujeto, reforzando la decisión de utilizar mediana e IQR como descriptores semanales.
+Las distribuciones exhibieron colas pesadas hacia valores bajos de actividad (Figura~\ref{fig:histogramas_kde}), fenómeno que explica por qué la partición óptima detectada por \textit{clustering} fue $K=2$ (perfiles bajo y alto sedentarismo). Asimismo, los boxplots comparativos (Figura~\ref{fig:boxplots_comparativos}) muestran heterogeneidad inter-sujeto e intra-sujeto, reforzando la decisión de utilizar mediana e \textit{IQR} como descriptores semanales.
 
 \begin{figure}[htbp]
     \centering
@@ -222,7 +222,7 @@ Las distribuciones exhibieron colas pesadas hacia valores bajos de actividad (Fi
     \label{fig:boxplots_comparativos}
 \end{figure}
 
-Adicionalmente comparamos la variabilidad puramente observada con la variabilidad operativa posterior a la imputación jerárquica (Figura~\ref{fig:variabilidad_comparativa}). La imputación reduce la dispersión de biomarcadores como HRV-SDNN y la frecuencia cardíaca en reposo, pero mantiene la heterogeneidad legítima de los patrones de actividad. Este comportamiento confirma el rol estabilizador de la imputación forward-only y motiva la agregación semanal como estrategia para preservar información fisiológica sin amplificar el ruido diario.
+Adicionalmente comparamos la variabilidad puramente observada con la variabilidad operativa posterior a la imputación jerárquica (Figura~\ref{fig:variabilidad_comparativa}). La imputación reduce la dispersión de biomarcadores como \textit{HRV-SDNN} y la frecuencia cardíaca en reposo, pero mantiene la heterogeneidad legítima de los patrones de actividad. Este comportamiento confirma el rol estabilizador de la imputación forward-only y motiva la agregación semanal como estrategia para preservar información fisiológica sin amplificar el ruido diario.
 
 \begin{figure}[htbp]
     \centering
@@ -239,34 +239,34 @@ Adicionalmente comparamos la variabilidad puramente observada con la variabilida
 \subsection{Relación entre Variables}
 \label{subsec:relacion_variables}
 
-El estudio evalúa la convergencia entre dos representaciones del comportamiento sedentario semanal: (i) la verdad operativa obtenida mediante clustering K-Means sobre las variables biométricas derivadas y (ii) la clasificación generada por el sistema de inferencia difusa Mamdani. Ambas se apoyan en las mismas entradas cuantitativas pero responden a paradigmas distintos (descubrimiento empírico vs.\ conocimiento experto), lo que permite medir la capacidad del modelo difuso para replicar patrones objetivos en condiciones de vida libre.
+El estudio evalúa la convergencia entre dos representaciones del comportamiento sedentario semanal: (i) la verdad operativa obtenida mediante \textit{clustering} \textit{K-Means} sobre las variables biométricas derivadas y (ii) la clasificación generada por el sistema de inferencia difusa \textit{Mamdani}. Ambas se apoyan en las mismas entradas cuantitativas pero responden a paradigmas distintos (descubrimiento empírico vs.\ conocimiento experto), lo que permite medir la capacidad del modelo difuso para replicar patrones objetivos en condiciones de vida libre.
 
 \subsection{Variables Independientes}
 \label{subsec:variables_independientes}
 
-Las variables independientes corresponden a las cuatro características biométricas derivadas a nivel semanal, cada una representada por su mediana (p50) y rango intercuartílico (IQR):
+Las variables independientes corresponden a las cuatro características biométricas derivadas a nivel semanal, cada una representada por su mediana (p50) y rango intercuartílico (\textit{IQR}):
 \begin{enumerate}[noitemsep]
     \item \textbf{Actividad relativa:} pasos normalizados por horas monitoreadas (kilopasos/hora).
     \item \textbf{Superávit calórico basal:} gasto calórico activo expresado como porcentaje de la TMB individual.
     \item \textbf{Delta cardíaco:} diferencia entre frecuencia cardíaca al caminar y en reposo.
     \item \textbf{HRV-SDNN:} variabilidad de la frecuencia cardíaca (desviación estándar de los intervalos NN).
 \end{enumerate}
-Estas ocho características (4 medianas + 4 IQR) alimentan tanto el algoritmo de clustering como el sistema de inferencia difusa.
+Estas ocho características (4 medianas + 4 \textit{IQR}) alimentan tanto el algoritmo de \textit{clustering} como el sistema de inferencia difusa.
 
 \subsection{Variable Dependiente}
 \label{subsec:variable_dependiente}
 
-La variable dependiente corresponde a la clasificación semanal de sedentarismo. Para entrenar y evaluar el modelo difuso utilizamos la etiqueta binaria proveniente de la verdad operativa (clustering K-Means, $K=2$). El sistema Mamdani genera un índice continuo en $[0,1]$ que posteriormente se binariza mediante el umbral óptimo $\tau=0.30$, de forma que la comparación entre ambas representaciones cuantifica la concordancia empírico--experta.
+La variable dependiente corresponde a la clasificación semanal de sedentarismo. Para entrenar y evaluar el modelo difuso utilizamos la etiqueta binaria proveniente de la verdad operativa (\textit{clustering} \textit{K-Means}, $K=2$). El sistema \textit{Mamdani} genera un índice continuo en $[0,1]$ que posteriormente se binariza mediante el umbral óptimo $\tau=0.30$, de forma que la comparación entre ambas representaciones cuantifica la concordancia empírico--experta.
 
 \subsection{Variables de Control}
 \label{subsec:variables_control}
 
-Registramos edad, sexo, peso, estatura y versión del Apple Watch para monitorear posibles efectos confusores. Adicionalmente fijamos los hiperparámetros que afectan la reproducibilidad computacional (por ejemplo, \texttt{random\_state}=42 y \texttt{n\_init}=10 en K-Means) y documentamos el entorno de ejecución (scikit-learn 1.4, Python 3.11) para garantizar replicabilidad.
+Registramos edad, sexo, peso, estatura y versión del \textit{Apple Watch} para monitorear posibles efectos confusores. Adicionalmente fijamos los hiperparámetros que afectan la reproducibilidad computacional (por ejemplo, \texttt{random\_state}=42 y \texttt{n\_init}=10 en \textit{K-Means}) y documentamos el entorno de ejecución (scikit-learn 1.4, \textit{Python} 3.11) para garantizar replicabilidad.
 
 \subsection{Operacionalización de las Variables}
 \label{subsec:operacionalizacion_variables}
 
-La estructura XML exportada por Apple HealthKit (\Cref{lst:xml_structure}) contiene la información cruda que se transforma en el dataset diario consolidado. Cada nodo \texttt{Record} encapsula una métrica biométrica con su \texttt{type}, \texttt{value} y rango temporal.
+La estructura \textit{XML} exportada por Apple \textit{HealthKit} (\Cref{lst:xml_structure}) contiene la información cruda que se transforma en el \textit{dataset} diario consolidado. Cada nodo \texttt{Record} encapsula una métrica biométrica con su \texttt{type}, \texttt{value} y rango temporal.
 
 \begin{figure}[htbp]
     \centering
@@ -274,7 +274,7 @@ La estructura XML exportada por Apple HealthKit (\Cref{lst:xml_structure}) conti
 \begin{verbatim}
 <HealthData locale="es_MX">
   <Record type="HKQuantityTypeIdentifierStepCount"
-          sourceName="Apple Watch de u1"
+          sourceName="\textit{Apple Watch} de u1"
           sourceVersion="10.1.1"
           unit="count"
           value="1245"
@@ -322,7 +322,7 @@ La calidad de los registros se evaluó mediante las métricas de la Tabla~\ref{t
     \end{tabular}
 \end{table}
 
-Finalmente, las variables independientes descritas en la Sección~\ref{subsec:variables_independientes} se derivaron semana a semana calculando mediana e IQR tras la winsorización del 1-99\% y la normalización antropométrica. Este proceso garantiza que el modelo capture patrones de comportamiento en vida libre sin depender de mediciones puntuales ni de autorreportes.
+Finalmente, las variables independientes descritas en la Sección~\ref{subsec:variables_independientes} se derivaron semana a semana calculando mediana e \textit{IQR} tras la winsorización del 1-99\% y la normalización antropométrica. Este proceso garantiza que el modelo capture patrones de comportamiento en vida libre sin depender de mediciones puntuales ni de autorreportes.
 
 % ============================================================================
 \section{Preprocesamiento y Análisis Exploratorio de Datos}
@@ -332,9 +332,9 @@ Finalmente, las variables independientes descritas en la Sección~\ref{subsec:va
 \subsection{Extracción de Variables desde Apple HealthKit}
 \label{subsec:extraccion_variables}
 
-Los archivos \texttt{export.zip} generados por la aplicación Apple Health contienen datos biométricos en formato XML estructurado. Para facilitar su análisis, empleamos el script de código abierto \texttt{apple\_health\_data\_converter.py} \cite{Gaur2024AppleHealth}, el cual convierte los registros XML a archivos CSV tabulares.
+Los archivos \texttt{export.zip} generados por la aplicación Apple Health contienen datos biométricos en formato \textit{XML} estructurado. Para facilitar su análisis, empleamos el script de código abierto \texttt{apple\_health\_data\_converter.py} \cite{Gaur2024AppleHealth}, el cual convierte los registros \textit{XML} a archivos \textit{CSV} tabulares.
 
-Del ecosistema HealthKit extrajimos inicialmente 9 variables diarias, correspondientes a métricas de actividad física, gasto energético y biomarcadores cardiovasculares (ver \Cref{tab:variables_originales_apple_health}):
+Del ecosistema \textit{HealthKit} extrajimos inicialmente 9 variables diarias, correspondientes a métricas de actividad física, gasto energético y biomarcadores cardiovasculares (ver \Cref{tab:variables_originales_apple_health}):
 
 \begin{table}[htbp]
 \centering
@@ -351,14 +351,14 @@ Calorías activas & kcal & HKQuantityTypeIdentifier\-ActiveEnergyBurned & Gasto 
 Minutos ejercicio & min & HKQuantityTypeIdentifier\-AppleExerciseTime & Tiempo en actividades $\geq$3 METs \\
 FC reposo & lpm & HKQuantityTypeIdentifier\-RestingHeartRate & Frecuencia cardíaca mínima diaria \\
 FC al caminar & lpm & HKQuantityTypeIdentifier\-WalkingHeartRateAverage & Frecuencia cardíaca promedio en marcha \\
-HRV-SDNN & ms & HKQuantityTypeIdentifier\-HeartRateVariabilitySDNN & Variabilidad de la frecuencia cardíaca \\
+\textit{HRV-SDNN} & ms & HKQuantityTypeIdentifier\-HeartRateVariabilitySDNN & Variabilidad de la frecuencia cardíaca \\
 Horas monitoreadas & h & Calculado & Tiempo con señal válida del dispositivo \\
 Horas sedestación & h & HKCategoryTypeIdentifier\-AppleStandHour & Tiempo sin romper sedestación prolongada \\
 \bottomrule
 \end{tabular}
 \begin{flushleft}
 \scriptsize
-\textit{Nota:} HK = HealthKit. METs = Equivalentes Metabólicos. FC = Frecuencia Cardíaca. HRV-SDNN = Heart Rate Variability - Standard Deviation of NN intervals.
+\textit{Nota:} HK = \textit{HealthKit}. METs = Equivalentes Metabólicos. FC = Frecuencia Cardíaca. \textit{HRV-SDNN} = Heart Rate Variability - Standard Deviation of NN intervals.
 \end{flushleft}
 \end{table}
 
@@ -409,7 +409,7 @@ Esta conclusión fundamenta el diseño de las cuatro variables derivadas con nor
 \label{sec:feature_engineering}
 % ============================================================================
 
-A partir de las métricas diarias registradas por el Apple Watch mediante el ecosistema HealthKit, se derivaron cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO$_2$max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018ACSM}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas \cite{Schrack2018,Ho2022}.
+A partir de las métricas diarias registradas por el \textit{Apple Watch} mediante el ecosistema \textit{HealthKit}, se derivaron cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO$_2$max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018ACSM}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas \cite{Schrack2018,Ho2022}.
 
 \subsection{Actividad Relativa}
 \label{subsec:actividad_relativa}
@@ -421,7 +421,7 @@ Inspirada en el concepto de Reserva de Frecuencia Cardíaca (\%HRR; \cite{Schrac
 \label{eq:actividad_relativa}
 \end{equation}
 
-\textbf{Justificación fisiológica:} Schrack et al. \cite{Schrack2018} demuestran que la intensidad \textit{relativa} (ajustada por capacidad individual) es superior a umbrales absolutos para clasificar comportamiento en adultos con heterogeneidad metabólica. Un individuo sedentario con 3,000 pasos/día en 16 horas (Actividad\_rel = 0.188) difiere cualitativamente de un individuo activo con 3,000 pasos en 8 horas (Actividad\_rel = 0.375).
+\textbf{Justificación fisiológica:} Schrack \textit{et al.}. \cite{Schrack2018} demuestran que la intensidad \textit{relativa} (ajustada por capacidad individual) es superior a umbrales absolutos para clasificar comportamiento en adultos con heterogeneidad metabólica. Un individuo sedentario con 3,000 pasos/día en 16 horas (Actividad\_rel = 0.188) difiere cualitativamente de un individuo activo con 3,000 pasos en 8 horas (Actividad\_rel = 0.375).
 
 \textbf{Rango observado:} [0.05, 0.25] en esta cohorte. Valores >0.15 indican actividad sostenida (>150 pasos/hora).
 
@@ -441,7 +441,7 @@ Donde TMB se calcula como:
 \text{TMB}_{\text{mujeres}} &= 655.1 + (9.563 \times \text{Peso}) + (1.850 \times \text{Altura}) - (4.676 \times \text{Edad})
 \end{align}
 
-\textbf{Justificación fisiológica:} Yamada et al. \cite{Yamada2019} reportan que el Gasto Energético de Actividad Física (PAEE = TEE - BMR) es la métrica estándar para evaluar actividad en estudios de agua doblemente marcada (estándar de referencia). Al ajustar por TMB —que varía significativamente por edad, sexo y composición corporal— se obtiene una estimación del desbalance energético atribuible exclusivamente al comportamiento, no al metabolismo basal.
+\textbf{Justificación fisiológica:} Yamada \textit{et al.}. \cite{Yamada2019} reportan que el Gasto Energético de Actividad Física (PAEE = TEE - BMR) es la métrica estándar para evaluar actividad en estudios de agua doblemente marcada (estándar de referencia). Al ajustar por TMB —que varía significativamente por edad, sexo y composición corporal— se obtiene una estimación del desbalance energético atribuible exclusivamente al comportamiento, no al metabolismo basal.
 
 \textbf{Rango observado:} [-50, +80] kcal/hora. Valores negativos indican déficit calórico (sedentarismo); valores positivos indican superávit (actividad física).
 
@@ -462,16 +462,16 @@ Cuantifica la respuesta cardiovascular al movimiento mediante la diferencia entr
 \subsection{Variabilidad de Frecuencia Cardíaca (HRV-SDNN)}
 \label{subsec:hrv_sdnn}
 
-La desviación estándar de los intervalos NN (SDNN) es un biomarcador del balance autonómico cardiovascular, validado por la Task Force de la European Society of Cardiology \cite{TaskForce1996} y ampliamente utilizado en estudios con wearables \cite{Laborde2017}.
+La desviación estándar de los intervalos NN (\textit{SDNN}) es un biomarcador del balance autonómico cardiovascular, validado por la Task Force de la European Society of Cardiology \cite{TaskForce1996} y ampliamente utilizado en estudios con \textit{wearables} \cite{Laborde2017}.
 
-\textbf{Interpretación clínica:} HRV alta (>50 ms) indica predominancia parasimpática (relajación, recuperación); HRV baja (<30 ms) indica estrés crónico, fatiga o sobreentrenamiento.
+\textbf{Interpretación clínica:} \textit{HRV} alta (>50 ms) indica predominancia parasimpática (relajación, recuperación); \textit{HRV} baja (<30 ms) indica estrés crónico, fatiga o sobreentrenamiento.
 
 \textbf{Rango normativo:} [15, 150] ms según Task Force \cite{TaskForce1996}.
 
 \subsection{Agregación Semanal y Justificación de Medianas}
 \label{subsec:agregacion_semanal}
 
-Agregamos todas las variables a nivel semanal. Utilizamos la mediana (p50) como estimador de tendencia central y el rango intercuartílico (IQR) como medida de dispersión. Fundamentamos esta decisión metodológica en:
+Agregamos todas las variables a nivel semanal. Utilizamos la mediana (p50) como estimador de tendencia central y el rango intercuartílico (\textit{IQR}) como medida de dispersión. Fundamentamos esta decisión metodológica en:
 
 \begin{enumerate}
     \item \textbf{Robustez ante valores atípicos:} La mediana es menos sensible a días con fallas de registro del dispositivo (ej. <10 horas monitoreadas).
@@ -498,7 +498,7 @@ El análisis de variabilidad permitió cuantificar la heterogeneidad inter-sujet
 \subsection{Fase 2: Establecimiento de la Verdad Operativa mediante Clustering}
 \label{subsec:fase2_clustering}
 
-Aplicamos el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas, configurado con semilla aleatoria fija (random\_state=42) y 10 inicializaciones (n\_init=10) para garantizar reproducibilidad \citep{Pedregosa2011sklearn}. En el código distribuido (scikit-learn 1.4) estos parámetros se explicitan para evitar resultados diferentes debidos a cambios en la inicialización por defecto. Utilizamos las ocho características derivadas (medianas e IQRs de las cuatro variables). Determinamos el número óptimo de conglomerados (K) mediante:
+Aplicamos el algoritmo \textit{K-Means} sobre el conjunto de 1,337 semanas válidas, configurado con semilla aleatoria fija (random\_state=42) y 10 inicializaciones (n\_init=10) para garantizar reproducibilidad \citep{Pedregosa2011sklearn}. En el código distribuido (scikit-learn 1.4) estos parámetros se explicitan para evitar resultados diferentes debidos a cambios en la inicialización por defecto. Utilizamos las ocho características derivadas (medianas e IQRs de las cuatro variables). Determinamos el número óptimo de conglomerados (K) mediante:
 
 \begin{itemize}
     \item \textbf{Coeficiente de Silhouette:} Cuantifica la cohesión intra-conglomerado y separación inter-conglomerado. Valores >0.50 indican estructura bien definida \cite{Rousseeuw1987}.
@@ -508,14 +508,14 @@ Aplicamos el algoritmo K-Means sobre el conjunto de 1,337 semanas válidas, conf
     \item \textbf{Análisis de Componentes Principales (PCA):} Visualización de la separabilidad de los conglomerados en el espacio de las dos primeras componentes principales (que capturan >70\% de la varianza).
 \end{itemize}
 
-Previo al clustering, se verificó la ausencia de multicolinealidad mediante el Factor de Inflación de la Varianza (VIF<5 para todas las variables).
+Previo al \textit{clustering}, se verificó la ausencia de multicolinealidad mediante el Factor de Inflación de la Varianza (VIF<5 para todas las variables).
 
 \textbf{Caracterización de perfiles:} Los conglomerados resultantes se caracterizaron estadísticamente mediante pruebas de Mann-Whitney U (para K=2) o Kruskal-Wallis (K>2), cuantificando diferencias entre perfiles con el tamaño del efecto de Cohen (d).
 
 \subsection{Fase 3: Diseño y Configuración del Sistema de Inferencia Difusa}
 \label{subsec:fase3_diseno_fuzzy}
 
-Diseñamos un sistema de inferencia difusa tipo Mamdani de cuatro entradas (las medianas semanales de Actividad Relativa, Superávit Calórico Basal, HRV-SDNN y Delta Cardíaco) y una salida (Índice de Actividad Física, escala [0,1]).
+Diseñamos un sistema de inferencia difusa tipo \textit{Mamdani} de cuatro entradas (las medianas semanales de Actividad Relativa, Superávit Calórico Basal, \textit{HRV-SDNN} y Delta Cardíaco) y una salida (Índice de Actividad Física, escala [0,1]).
 
 \textbf{Fuzzificación:} Definimos funciones de pertenencia triangulares para tres categorías lingüísticas por variable (\textit{Baja}, \textit{Media}, \textit{Alta}), con parámetros determinados mediante percentiles empíricos de la distribución observada (data-driven) complementados con criterios fisiológicos (ver Sección \ref{sec:base_metodologica_fuzzy}).
 
@@ -526,9 +526,9 @@ Diseñamos un sistema de inferencia difusa tipo Mamdani de cuatro entradas (las 
 \subsection{Fase 4: Validación del Sistema Difuso mediante Leave-One-User-Out}
 \label{subsec:fase4_validacion_louo}
 
-Evaluamos el desempeño del sistema difuso comparando su salida contra la verdad operativa (etiquetas de clustering). Implementamos una validación Leave-One-User-Out (LOUO), estrategia de referencia para cohortes pequeñas (N<20) donde cada fold corresponde a un participante completo \cite{Alinia2020,Crozat2025}.
+Evaluamos el desempeño del sistema difuso comparando su salida contra la verdad operativa (etiquetas de \textit{clustering}). Implementamos una validación Leave-One-User-Out (\textit{LOUO}), estrategia de referencia para cohortes pequeñas (N<20) donde cada fold corresponde a un participante completo \cite{Alinia2020,Crozat2025}.
 
-\textbf{Justificación LOUO:} A diferencia del k-fold tradicional (que particiona aleatoriamente), LOUO preserva la independencia inter-sujeto y evita la filtración de datos entre entrenamientos y pruebas. Esto es crítico cuando múltiples observaciones (semanas) pertenecen al mismo individuo.
+\textbf{Justificación LOUO:} A diferencia del k-fold tradicional (que particiona aleatoriamente), \textit{LOUO} preserva la independencia inter-sujeto y evita la filtración de datos entre entrenamientos y pruebas. Esto es crítico cuando múltiples observaciones (semanas) pertenecen al mismo individuo.
 
 \textbf{Métricas de rendimiento:}
 \begin{itemize}
@@ -537,12 +537,12 @@ Evaluamos el desempeño del sistema difuso comparando su salida contra la verdad
     \item \textbf{Exactitud (Accuracy):} Proporción de clasificaciones correctas.
 \end{itemize}
 
-El umbral de decisión ($\tau$) para binarizar la salida del sistema difuso se optimizó maximizando el F1-Score en el conjunto total.
+El umbral de decisión ($\tau$) para binarizar la salida del sistema difuso se optimizó maximizando el \textit{F1-Score} en el conjunto total.
 
 \subsection{Fase 5: Análisis de Robustez y Contribución de Variables}
 \label{subsec:fase5_robustez}
 
-Realizamos un experimento de ablación para cuantificar la contribución sinérgica de las variables cardiovasculares (HRV-SDNN, Delta\_cardíaco). Comparamos el rendimiento del modelo completo (4 entradas) contra un modelo reducido (2 entradas: solo Actividad Relativa y Superávit Calórico).
+Realizamos un experimento de ablación para cuantificar la contribución sinérgica de las variables cardiovasculares (\textit{HRV-SDNN}, Delta\_cardíaco). Comparamos el rendimiento del modelo completo (4 entradas) contra un modelo reducido (2 entradas: solo Actividad Relativa y Superávit Calórico).
 
 Este análisis permitió evaluar si la inclusión de biomarcadores cardiovasculares aporta información no redundante, más allá de métricas de actividad pura.
 
@@ -567,7 +567,7 @@ Operar con conjuntos difusos requiere generalizar los operadores lógicos clási
 
 Con estos elementos, es posible construir reglas difusas del tipo SI-ENTONCES para capturar conocimiento experto. Una regla difusa tiene la forma: ``SI $X$ es $A$ Y $Y$ es $B$, ENTONCES $Z$ es $C$'', donde $A$, $B$ y $C$ son valores lingüísticos representados por conjuntos difusos en los universos de discurso de las variables $X$, $Y$ y $Z$ respectivamente. Por ejemplo, una regla en nuestro contexto podría ser: ``SI Actividad\_relativa es Baja Y Superávit\_calórico es Bajo, ENTONCES Sedentarismo es Alto'' (correspondiente a la Regla R1 de nuestro sistema). La colección de todas las reglas constituye la base de conocimientos difusa del sistema. 
 
-El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los antecedentes (entradas) como los consecuentes (salida) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo Mamdani produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación. La \Cref{fig:salida_difusa} ilustra este proceso: el motor de inferencia combina las reglas activadas y genera una distribución difusa de salida, la cual se defuzzifica mediante el método del promedio ponderado (weighted average) para obtener un valor numérico interpretable. Esta elección metodológica de defuzzificación (promedio ponderado en lugar del centroide clásico) se justifica por su menor complejidad computacional y mayor estabilidad numérica cuando múltiples reglas se activan simultáneamente con pesos similares.
+El tipo de inferencia utilizada es el de \textit{Mamdani}, en el cual tanto los antecedentes (entradas) como los consecuentes (salida) de las reglas se representan con conjuntos difusos. A diferencia de un modelo Sugeno (que usa salidas crisp definidas por funciones lineales), el modelo \textit{Mamdani} produce una salida difusa que luego debe convertirse a un valor final preciso mediante defuzzificación. La \Cref{fig:salida_difusa} ilustra este proceso: el motor de inferencia combina las reglas activadas y genera una distribución difusa de salida, la cual se defuzzifica mediante el método del promedio ponderado (weighted average) para obtener un valor numérico interpretable. Esta elección metodológica de defuzzificación (promedio ponderado en lugar del centroide clásico) se justifica por su menor complejidad computacional y mayor estabilidad numérica cuando múltiples reglas se activan simultáneamente con pesos similares.
 
 \begin{figure}[htbp]
     \centering
@@ -578,7 +578,7 @@ El tipo de inferencia utilizada es el de Mamdani, en el cual tanto los anteceden
 
 Todos los parámetros numéricos del sistema (vértices \(a,b,c\) de las funciones de pertenencia y pesos de cada regla) se almacenan como fuente de verdad en el archivo \texttt{fuzzy\_config/fuzzy\_membership\_config.yaml}, que acompaña al repositorio y permite reproducir la configuración exacta del sistema difuso sin depender del documento principal.
 
-En resumen, matemáticamente el sistema consta de: (a) conjuntos difusos y funciones de pertenencia \textbf{triangulares} que definen las etiquetas lingüísticas para cada variable mediante parametrización data-driven (percentiles empíricos); (b) operadores lógicos difusos (t-normas, s-normas, negadores) que permiten evaluar la veracidad parcial de premisas compuestas; (c) un conjunto de cinco reglas SI ENTONCES difusas basadas en conocimiento fisiológico del ejercicio que relacionan las entradas (comportamientos sedentarios/activos medidos por sensores wearables) con la salida (índice de sedentarismo); y (d) un mecanismo de inferencia difusa Mamdani que combina las reglas mediante t-norm de Gödel (mínimo) y obtiene una salida difusa, la cual finalmente se transforma en un valor numérico mediante defuzzificación por promedio ponderado.
+En resumen, matemáticamente el sistema consta de: (a) conjuntos difusos y funciones de pertenencia \textbf{triangulares} que definen las etiquetas lingüísticas para cada variable mediante parametrización data-driven (percentiles empíricos); (b) operadores lógicos difusos (t-normas, s-normas, negadores) que permiten evaluar la veracidad parcial de premisas compuestas; (c) un conjunto de cinco reglas SI ENTONCES difusas basadas en conocimiento fisiológico del ejercicio que relacionan las entradas (comportamientos sedentarios/activos medidos por sensores \textit{wearables}) con la salida (índice de sedentarismo); y (d) un mecanismo de inferencia difusa \textit{Mamdani} que combina las reglas mediante t-norm de Gödel (mínimo) y obtiene una salida difusa, la cual finalmente se transforma en un valor numérico mediante defuzzificación por promedio ponderado.
 
 % ============================================================================
 % SECCIÓN 5.X: FORMALIZACIÓN MATEMÁTICA DEL SISTEMA DIFUSO (ATLAS)
@@ -690,7 +690,7 @@ Presentamos los valores específicos calculados sobre la cohorte completa (N=10 
 \subsubsection{Reglas de Inferencia y Operadores T-Norm}
 \label{subsubsec:reglas_inferencia}
 
-El sistema implementa cinco reglas de inferencia tipo Mamdani (\Cref{tab:reglas_difusas}). La activación de cada regla se calcula mediante la \textbf{t-norm de Gödel} \citep{Ross2010}:
+El sistema implementa cinco reglas de inferencia tipo \textit{Mamdani} (\Cref{tab:reglas_difusas}). La activación de cada regla se calcula mediante la \textbf{t-norm de Gödel} \citep{Ross2010}:
 
 \begin{equation}
 w_r^{(j)} = T\left(\mu_{A_1}(x_{i_1}^{(j)}), \mu_{A_2}(x_{i_2}^{(j)})\right), \quad \text{con } T(a, b) = \min(a, b)
@@ -761,7 +761,7 @@ Obtenemos la clasificación binaria final mediante umbralización:
 \label{eq:binarizacion}
 \end{equation}
 
-donde \(\tau \in [0, 1]\) es el umbral de decisión optimizado para maximizar el F1-Score.
+donde \(\tau \in [0, 1]\) es el umbral de decisión optimizado para maximizar el \textit{F1-Score}.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Justificación de Percentiles Globales en LOOU}
@@ -776,9 +776,9 @@ En redes neuronales profundas, la \textit{arquitectura} (número de capas, neuro
 Similar al transfer learning, donde utilizamos pesos pre-entrenados de un conjunto de datos completo, los percentiles globales calculados con N=10 usuarios codifican el \textbf{rango fisiológico esperado} de la población objetivo, funcionando como conocimiento a priori del dominio clínico.
 
 \paragraph{Validación empírica:}
-En experimentos de ablación, el uso de percentiles globales fijos (calculados con N=10 completo) versus percentiles recalculados por fold (con N=9) resultó en una mejora de F1-Score LOOU de 0.314 a \textbf{0.780} (+148\%, p<0.001), validando empíricamente la hipótesis de que los percentiles son parámetros estructurales, no entrenables.
+En experimentos de ablación, el uso de percentiles globales fijos (calculados con N=10 completo) versus percentiles recalculados por fold (con N=9) resultó en una mejora de \textit{F1-Score} \textit{LOOU} de 0.314 a \textbf{0.780} (+148\%, p<0.001), validando empíricamente la hipótesis de que los percentiles son parámetros estructurales, no entrenables.
 
-El procedimiento adoptado en LOOU fue:
+El procedimiento adoptado en \textit{LOOU} fue:
 
 \begin{enumerate}
     \item \textbf{Antes del loop:} Calcular \(\mathbf{P}_{\text{global}}\) con conjunto de datos completo (N=10, 1,337 semanas)
@@ -792,14 +792,14 @@ Esta estrategia garantiza estabilidad de la arquitectura del sistema difuso mien
 \subsubsection{Protocolo de Validación Leave-One-User-Out}
 \label{subsubsec:protocolo_loou}
 
-Formalizamos el protocolo LOOU como sigue. Sea el conjunto de datos completo:
+Formalizamos el protocolo \textit{LOOU} como sigue. Sea el conjunto de datos completo:
 
 \begin{equation}
 \mathcal{D} = \left\{(x_i^{(j)}, c_i^{(j)})\right\}_{i=1}^{10}, \quad j \in \{1, \ldots, n_i\}
 \label{eq:dataset_completo}
 \end{equation}
 
-donde \(i\) es el índice de usuario, \(j\) el índice de semana, \(\mathbf{x}_i^{(j)} \in \mathbb{R}^4\) el vector de características, y \(c_i^{(j)} \in \{0, 1\}\) el conglomerado asignado por K-Means (verdad operativa).
+donde \(i\) es el índice de usuario, \(j\) el índice de semana, \(\mathbf{x}_i^{(j)} \in \mathbb{R}^4\) el vector de características, y \(c_i^{(j)} \in \{0, 1\}\) el conglomerado asignado por \textit{K-Means} (verdad operativa).
 
 Para cada usuario \(i = 1, \ldots, 10\):
 
@@ -808,7 +808,7 @@ Para cada usuario \(i = 1, \ldots, 10\):
 \mathcal{D}_{\text{test}}^{(i)} &= \mathcal{D}_{u_i} \quad \text{(solo usuario } i\text{)} \label{eq:loou_test}
 \end{align}
 
-En cada fold, se re-entrenó el clustering K-Means con \(\mathcal{D}_{\text{train}}^{(i)}\) y se aplicó el sistema difuso (con \(\mathbf{P}_{\text{global}}\) fijo) a \(\mathcal{D}_{\text{test}}^{(i)}\). Las métricas de rendimiento se calcularon como:
+En cada fold, se re-entrenó el \textit{clustering} \textit{K-Means} con \(\mathcal{D}_{\text{train}}^{(i)}\) y se aplicó el sistema difuso (con \(\mathbf{P}_{\text{global}}\) fijo) a \(\mathcal{D}_{\text{test}}^{(i)}\). Las métricas de rendimiento se calcularon como:
 
 \begin{equation}
 F1^{(i)} = \frac{2 \cdot \text{Precision}^{(i)} \cdot \text{Recall}^{(i)}}{\text{Precision}^{(i)} + \text{Recall}^{(i)}}
@@ -926,19 +926,19 @@ Para garantizar la reproducibilidad completa de los análisis, documentamos a co
 
 \paragraph{Entorno de software:}
 \begin{itemize}
-    \item Python 3.10+ (lenguaje de programación)
-    \item scikit-learn 1.3+ (clustering K-Means, métricas de rendimiento)
-    \item pandas 2.0+ (manipulación y agregación de datos)
-    \item numpy 1.24+ (operaciones numéricas y matriciales)
+    \item \textit{Python} 3.10+ (lenguaje de programación)
+    \item scikit-learn 1.3+ (\textit{clustering} \textit{K-Means}, métricas de rendimiento)
+    \item \textit{pandas} 2.0+ (manipulación y agregación de datos)
+    \item \textit{numpy} 1.24+ (operaciones numéricas y matriciales)
     \item matplotlib 3.7+ (visualizaciones científicas)
     \item scipy 1.11+ (pruebas estadísticas no paramétricas)
 \end{itemize}
 
 \paragraph{Parámetros de reproducibilidad:}
 \begin{itemize}
-    \item \textbf{Semilla aleatoria global:} \texttt{random\_state=42} para todas las operaciones estocásticas (K-Means, PCA, particiones de validación)
+    \item \textbf{Semilla aleatoria global:} \texttt{random\_state=42} para todas las operaciones estocásticas (\textit{K-Means}, PCA, particiones de validación)
     \item \textbf{Parámetros K-Means:} \texttt{n\_init=10} (inicializaciones), \texttt{max\_iter=300} (iteraciones máximas), \texttt{algorithm='lloyd'}
-    \item \textbf{Umbral de decisión:} $\tau=0.30$ (optimizado para maximizar F1-Score global)
+    \item \textbf{Umbral de decisión:} $\tau=0.30$ (optimizado para maximizar \textit{F1-Score} global)
 \end{itemize}
 
 Los scripts de análisis completos están disponibles bajo solicitud para fines de auditoría científica y replicación metodológica, en cumplimiento con las políticas de ciencia abierta y transparencia de datos \citep{Wilkinson2016FAIR}.

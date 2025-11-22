@@ -12,7 +12,7 @@ La cohorte final del estudio estuvo compuesta por 10 participantes adultos (5 mu
 
 Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100\%, lo cual indica una alta irregularidad en los patrones de actividad incluso después de la imputación jerárquica. Este comportamiento motivó el uso de estadísticos robustos (mediana e IQR) y fundamenta la interpretación posterior de los perfiles detectados mediante clustering.
 
-Como observamos, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. Esta alta variabilidad natural de los datos recopilados en condiciones de vida libre justificó la decisión metodológica de agregar los datos a nivel semanal utilizando estadísticos robustos (mediana e IQR), con el fin de amortiguar el ruido diario y analizar patrones de comportamiento más estables y sostenidos.
+Como observamos, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. Esta alta variabilidad natural de los datos recopilados en condiciones de vida libre justificó la decisión metodológica de agregar los datos a nivel semanal utilizando estadísticos robustos (mediana e \textit{IQR}), con el fin de amortiguar el ruido diario y analizar patrones de comportamiento más estables y sostenidos.
 
 % ============================================================================
 \section{Establecimiento de la Verdad Operativa: Análisis de Conglomerados}
@@ -46,7 +46,7 @@ El análisis de componentes principales (PCA) confirmó visualmente esta estruct
     \label{fig:pca_biplot}
 \end{figure}
 
-Los perfiles de estos dos conglomerados se analizaron estadísticamente para su caracterización clínica. Como ilustra la \Cref{fig:perfiles_clusters}, el Conglomerado 0 (``Bajo Sedentarismo'') presentó valores de mediana significativamente más altos en Actividad\_relativa\_p50 y Superavit\_calorico\_basal\_p50 en comparación con el Conglomerado 1 (``Alto Sedentarismo''). Las diferencias fueron estadísticamente irrefutables ($p < .001$) y con un tamaño del efecto grande (Cohen's $d > 0.9$). Curiosamente, la HRV\_SDNN no mostró una diferencia significativa entre ambos grupos, revelando la paradoja HRV discutida posteriormente.
+Los perfiles de estos dos conglomerados se analizaron estadísticamente para su caracterización clínica. Como ilustra la \Cref{fig:perfiles_clusters}, el Conglomerado 0 (``Bajo Sedentarismo'') presentó valores de mediana significativamente más altos en Actividad\_relativa\_p50 y Superavit\_calorico\_basal\_p50 en comparación con el Conglomerado 1 (``Alto Sedentarismo''). Las diferencias fueron estadísticamente irrefutables ($p < .001$) y con un tamaño del efecto grande (Cohen's $d > 0.9$). Curiosamente, la \textit{HRV}\_SDNN no mostró una diferencia significativa entre ambos grupos, revelando la paradoja \textit{HRV} discutida posteriormente.
 
 \begin{figure}[htbp]
     \centering
@@ -87,11 +87,11 @@ La asignación de cada una de las 1,337 semanas válidas a uno de estos dos cong
 \label{sec:rendimiento_sistema_difuso}
 % ============================================================================
 
-El rendimiento del modelo difuso se evaluó mediante su concordancia con la clasificación de la verdad operativa. Tras una búsqueda del umbral de decisión ($\tau$) que maximizara el F1-Score, se estableció un valor óptimo de $\tau = 0.30$. Con este umbral, el sistema difuso alcanzó un rendimiento global robusto, con un F1-Score de 0.840, una Exactitud de 0.740 y una alta Sensibilidad (Recall) de 0.976.
+El rendimiento del modelo difuso se evaluó mediante su concordancia con la clasificación de la verdad operativa. Tras una búsqueda del umbral de decisión ($\tau$) que maximizara el \textit{F1-Score}, se estableció un valor óptimo de $\tau = 0.30$. Con este umbral, el sistema difuso alcanzó un rendimiento global robusto, con un \textit{F1-Score} de 0.840, una Exactitud de 0.740 y una alta Sensibilidad (\textit{Recall}) de 0.976.
 
-El análisis por participante reveló una heterogeneidad en el rendimiento, con un F1-Score que osciló entre 0.215 y 0.997. Usuarios con patrones de comportamiento más estables mostraron una concordancia muy alta (ej. u1, u7), mientras que aquellos con mayor variabilidad intra-semanal presentaron mayores discrepancias. Estos resultados evidencian áreas de oportunidad para la personalización futura del modelo.
+El análisis por participante reveló una heterogeneidad en el rendimiento, con un \textit{F1-Score} que osciló entre 0.215 y 0.997. Usuarios con patrones de comportamiento más estables mostraron una concordancia muy alta (ej. u1, u7), mientras que aquellos con mayor variabilidad intra-semanal presentaron mayores discrepancias. Estos resultados evidencian áreas de oportunidad para la personalización futura del modelo.
 
-La \Cref{tab:rendimiento_louo} presenta los resultados de la validación cruzada Leave-One-User-Out (LOUO) por usuario.
+La \Cref{tab:rendimiento_louo} presenta los resultados de la validación cruzada Leave-One-User-Out (\textit{LOUO}) por usuario.
 
 % Tabla multi-página con longtable
 \begin{longtable}{@{}lcccccccccccc@{}}
@@ -131,7 +131,7 @@ u10 & 133 & 100 & 0.797 & 0.797 & 1.000 & 0.887 & 0.000 & 0.4 & 106 & 27  & 0  &
 \subsection{Posicionamiento en el Contexto de Estudios con Validación LOUO}
 \label{subsec:comparativa_louo}
 
-La \Cref{tab:comparativa_louo} posiciona el desempeño del sistema en el contexto de estudios recientes con cohortes de tamaño comparable que emplean validación LOUO/LOSO (Leave-One-Subject-Out) en dominios de salud con wearables.
+La \Cref{tab:comparativa_louo} posiciona el desempeño del sistema en el contexto de estudios recientes con cohortes de tamaño comparable que emplean validación \textit{LOUO}/LOSO (Leave-One-Subject-Out) en dominios de salud con \textit{wearables}.
 
 \begin{table}[htbp]
 \centering
@@ -142,11 +142,11 @@ La \Cref{tab:comparativa_louo} posiciona el desempeño del sistema en el context
 \toprule
 \textbf{Estudio} & \textbf{Dominio} & \textbf{N} & \textbf{Métrica} & \textbf{Valor} & \textbf{CV\%} \\
 \midrule
-Alinia 2020 & Actividad física & 10 & Accuracy & 0.812 & 6.3\% \\
-Mullick 2022 & Depresión & 37 & F1-Score & 0.650 & NR \\
+Alinia 2020 & Actividad física & 10 & \textit{Accuracy} & 0.812 & 6.3\% \\
+Mullick 2022 & Depresión & 37 & \textit{F1-Score} & 0.650 & NR \\
 Crozat 2025 & Conteo pasos & 7 & MAPE & 13.6\% & NR \\
 Ricotti 2023 & Progresión DMD & 21 & R² & 0.900 & NR \\
-Kaveh 2024 & Somnolencia & 9 & Accuracy & 0.933 & NR \\
+Kaveh 2024 & Somnolencia & 9 & \textit{Accuracy} & 0.933 & NR \\
 \midrule
 \textbf{Este estudio} & \textbf{Sedentarismo} & \textbf{10} & \textbf{F1-Score} & \textbf{0.780} & \textbf{21.4\%} \\
 \bottomrule
@@ -157,17 +157,17 @@ Kaveh 2024 & Somnolencia & 9 & Accuracy & 0.933 & NR \\
 \end{flushleft}
 \end{table}
 
-El F1-Score de 0.780 ± 0.167 (CV=21.4\%) es comparable a los mejores resultados reportados (Kaveh et al., 2024; Ricotti et al., 2023), pero destaca por tres características distintivas:
+El \textit{F1-Score} de 0.780 ± 0.167 (CV=21.4\%) es comparable a los mejores resultados reportados (Kaveh et al., 2024; Ricotti et al., 2023), pero destaca por tres características distintivas:
 
 \begin{enumerate}
     \item \textbf{Generalización inter-sujeto robusta:} Con 7 de 10 usuarios alcanzando F1$\geq$0.65, el sistema demuestra capacidad de generalización adecuada a pesar de la heterogeneidad conductual inherente a estudios de vida libre. El coeficiente de variación (CV=21.4\%) refleja variabilidad esperada en cohortes pequeñas (N=10) con seguimientos heterogéneos (7-298 semanas por usuario), y es comparable con estudios de validación de wearables en condiciones ecológicas \cite{Doherty2021}.
     
     \item \textbf{Parsimonia del modelo:} El sistema emplea 4 variables de entrada, significativamente menos que las 10-20 características típicas en la literatura de clasificación de actividad con acelerometría \cite{Alinia2020}. Esta simplicidad facilita interpretabilidad clínica y reducción de costos computacionales.
     
-    \item \textbf{Transparencia metodológica:} Reportamos el rendimiento completo (F1-Score ± SD) por usuario (ver \Cref{tab:rendimiento_louo}), práctica infrecuente en literatura actual. Estudios como Mullick et al. \cite{Mullick2022} y Crozat et al. \cite{Crozat2025} reportan métricas globales sin desglose por participante, limitando la evaluación de heterogeneidad de respuesta.
+    \item \textbf{Transparencia metodológica:} Reportamos el rendimiento completo (\textit{F1-Score} ± SD) por usuario (ver \Cref{tab:rendimiento_louo}), práctica infrecuente en literatura actual. Estudios como Mullick \textit{et al.}. \cite{Mullick2022} y Crozat \textit{et al.}. \cite{Crozat2025} reportan métricas globales sin desglose por participante, limitando la evaluación de heterogeneidad de respuesta.
 \end{enumerate}
 
-Este posicionamiento valida que el sistema propuesto alcanza desempeño competitivo con metodologías más complejas (redes neuronales profundas en Kaveh et al. \cite{Kaveh2024}), preservando la ventaja de interpretabilidad inherente a los sistemas difusos basados en reglas.
+Este posicionamiento valida que el sistema propuesto alcanza desempeño competitivo con metodologías más complejas (redes neuronales profundas en Kaveh \textit{et al.}. \cite{Kaveh2024}), preservando la ventaja de interpretabilidad inherente a los sistemas difusos basados en reglas.
 
 La \Cref{tab:caracteristicas_usuario} presenta las características biométricas semanales por usuario (mediana $\pm$ desviación estándar).
 
@@ -195,7 +195,7 @@ u10 & 0.091 ($\pm$0.033) & 0.054 ($\pm$0.037) & 25.162 ($\pm$9.817)  & 15.957 ($
 \end{tabular}
 \begin{flushleft}
 \scriptsize
-\textit{Nota:} Act\_rel = Actividad relativa, Sup\_cal = Superávit calórico basal, HRV = Variabilidad de frecuencia cardiaca (SDNN), Delta\_FC = Delta cardíaco, Score\_fuzzy = Puntuación del sistema difuso. Valores expresados como mediana ($\pm$ desviación estándar).
+\textit{Nota:} Act\_rel = Actividad relativa, Sup\_cal = Superávit calórico basal, \textit{HRV} = Variabilidad de frecuencia cardiaca (\textit{SDNN}), Delta\_FC = Delta cardíaco, Score\_fuzzy = Puntuación del sistema difuso. Valores expresados como mediana ($\pm$ desviación estándar).
 \end{flushleft}
 \end{table}
 \end{landscape}
@@ -205,7 +205,7 @@ u10 & 0.091 ($\pm$0.033) & 0.054 ($\pm$0.037) & 25.162 ($\pm$9.817)  & 15.957 ($
 \label{sec:analisis_robustez}
 % ============================================================================
 
-Para evaluar la importancia relativa de las variables en el modelo, se realizó un análisis de sensibilidad comparando el rendimiento del modelo completo (4 variables de entrada) con un modelo reducido (2 variables de entrada), que excluía las variables cardiovasculares (HRV\_SDNN y Delta\_cardiaco).
+Para evaluar la importancia relativa de las variables en el modelo, se realizó un análisis de sensibilidad comparando el rendimiento del modelo completo (4 variables de entrada) con un modelo reducido (2 variables de entrada), que excluía las variables cardiovasculares (\textit{HRV}\_SDNN y Delta\_cardiaco).
 
 El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420). La \Cref{fig:analisis_robustez} ilustra esta dependencia crítica mediante un gráfico de barras agrupadas que compara las cuatro métricas principales (F1-Score, Precision, Recall, MCC) entre ambos modelos. Los resultados evidencian el impacto devastador de la exclusión de variables cardiovasculares sobre todas las dimensiones del rendimiento.
 
@@ -216,55 +216,55 @@ El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de
     \label{fig:analisis_robustez}
 \end{figure}
 
-Este análisis demostró que, aunque la HRV\_SDNN no era un discriminador potente a nivel univariado, su inclusión en el sistema difuso es crítica. Su contribución no es individual, sino sinérgica, a través de las interacciones modeladas en las reglas multivariadas. Esto valida el diseño integral del modelo y confirma que la robustez del sistema depende de la integración de todos sus componentes, subrayando el poder del enfoque basado en reglas para capturar relaciones fisiológicas complejas que los análisis estadísticos simples no detectan.
+Este análisis demostró que, aunque la \textit{HRV}\_SDNN no era un discriminador potente a nivel univariado, su inclusión en el sistema difuso es crítica. Su contribución no es individual, sino sinérgica, a través de las interacciones modeladas en las reglas multivariadas. Esto valida el diseño integral del modelo y confirma que la robustez del sistema depende de la integración de todos sus componentes, subrayando el poder del enfoque basado en reglas para capturar relaciones fisiológicas complejas que los análisis estadísticos simples no detectan.
 
 \subsection{Paradoja HRV: Debilidad Univariada, Fortaleza Multivariada}
 \label{subsec:paradoja_hrv}
 
-El análisis de las variables cardiovasculares reveló un hallazgo contraintuitivo de alta relevancia metodológica, que denominaremos ``Paradoja HRV''. Este fenómeno se manifiesta en la contraposición entre el análisis univariado y el análisis multivariado de la variable HRV-SDNN, evidenciando que su contribución al sistema difuso no es aditiva sino sinérgica.
+El análisis de las variables cardiovasculares reveló un hallazgo contraintuitivo de alta relevancia metodológica, que denominaremos ``Paradoja \textit{HRV}''. Este fenómeno se manifiesta en la contraposición entre el análisis univariado y el análisis multivariado de la variable \textit{HRV-SDNN}, evidenciando que su contribución al sistema difuso no es aditiva sino sinérgica.
 
-\textbf{Análisis Univariado:} La prueba de Mann-Whitney U para HRV-SDNN entre los dos conglomerados resultó no significativa (U = 184,180, p = 0.562, Cohen's d = 0.051), indicando que esta variable no discrimina los grupos de manera independiente. Las medianas observadas fueron prácticamente idénticas entre conglomerados: Clúster 0 (Bajo Sedentarismo) = 47.71 ms versus Clúster 1 (Alto Sedentarismo) = 49.45 ms, con una diferencia absoluta de apenas 1.74 ms (3.6\% de la mediana global). El tamaño del efecto despreciable (d = 0.051) confirma la ausencia de diferenciación clínicamente relevante en términos univariados.
+\textbf{Análisis Univariado:} La prueba de Mann-Whitney U para \textit{HRV-SDNN} entre los dos conglomerados resultó no significativa (U = 184,180, p = 0.562, Cohen's d = 0.051), indicando que esta variable no discrimina los grupos de manera independiente. Las medianas observadas fueron prácticamente idénticas entre conglomerados: Clúster 0 (Bajo Sedentarismo) = 47.71 ms versus Clúster 1 (Alto Sedentarismo) = 49.45 ms, con una diferencia absoluta de apenas 1.74 ms (3.6\% de la mediana global). El tamaño del efecto despreciable (d = 0.051) confirma la ausencia de diferenciación clínicamente relevante en términos univariados.
 
-\textbf{Análisis Multivariado mediante Ablación:} Sin embargo, el análisis de ablación demostró que la exclusión de las variables cardiovasculares (HRV-SDNN y Delta\_cardíaco) del sistema difuso provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420, p $<$ 0.001). Esta degradación masiva del desempeño evidencia que HRV-SDNN es crítica para la capacidad clasificatoria del sistema, a pesar de su aparente irrelevancia en análisis univariado.
+\textbf{Análisis Multivariado mediante Ablación:} Sin embargo, el análisis de ablación demostró que la exclusión de las variables cardiovasculares (\textit{HRV-SDNN} y Delta\_cardíaco) del sistema difuso provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420, p $<$ 0.001). Esta degradación masiva del desempeño evidencia que HRV-SDNN es crítica para la capacidad clasificatoria del sistema, a pesar de su aparente irrelevancia en análisis univariado.
 
-\textbf{Interpretación fisiológica de la paradoja:} Este hallazgo evidencia que HRV-SDNN no actúa como \textit{predictor independiente}, sino como \textit{modificador de efecto} en interacción con otras variables biométricas. La HRV opera como modulador contextual de la respuesta cardiovascular al sedentarismo: mientras que Delta\_cardíaco captura la \textit{magnitud} de la respuesta al ejercicio (cuántos latidos aumenta la frecuencia cardíaca al caminar), HRV-SDNN caracteriza su \textit{variabilidad temporal}, reflejando el tono autonómico cardiovascular \cite{TaskForce1996,Laborde2017}.
+\textbf{Interpretación fisiológica de la paradoja:} Este hallazgo evidencia que \textit{HRV-SDNN} no actúa como \textit{predictor independiente}, sino como \textit{modificador de efecto} en interacción con otras variables biométricas. La \textit{HRV} opera como modulador contextual de la respuesta cardiovascular al sedentarismo: mientras que Delta\_cardíaco captura la \textit{magnitud} de la respuesta al ejercicio (cuántos latidos aumenta la frecuencia cardíaca al caminar), \textit{HRV-SDNN} caracteriza su \textit{variabilidad temporal}, reflejando el tono autonómico cardiovascular \cite{TaskForce1996,Laborde2017}.
 
-La Task Force de la European Society of Cardiology \cite{TaskForce1996} establece que SDNN refleja la actividad combinada de los sistemas simpático (activación, estrés) y parasimpático (relajación, recuperación). En el contexto del sedentarismo, la Regla R3 del sistema difuso (``Si HRV es Baja \textbf{Y} Delta es Alto $\rightarrow$ Sedentarismo Alto'') identifica un subgrupo específico de individuos con desacondicionamiento cardiovascular: tono vagal reducido (HRV baja) con respuesta exagerada de frecuencia cardíaca al caminar (Delta alto), patrón que no sería detectado mediante análisis univariado de ninguna de las dos variables por separado.
+La Task Force de la European Society of Cardiology \cite{TaskForce1996} establece que \textit{SDNN} refleja la actividad combinada de los sistemas simpático (activación, estrés) y parasimpático (relajación, recuperación). En el contexto del sedentarismo, la Regla R3 del sistema difuso (``Si \textit{HRV} es Baja \textbf{Y} Delta es Alto $\rightarrow$ Sedentarismo Alto'') identifica un subgrupo específico de individuos con desacondicionamiento cardiovascular: tono vagal reducido (\textit{HRV} baja) con respuesta exagerada de frecuencia cardíaca al caminar (Delta alto), patrón que no sería detectado mediante análisis univariado de ninguna de las dos variables por separado.
 
-\textbf{Evidencia convergente en la literatura:} Este patrón de ``contribución latente'' —no detectable univariadamente, crítica multivariadamente— ha sido documentado en modelos de riesgo cardiovascular. Soares-Miranda et al. \cite{Soares-Miranda2014} reportan que variables con baja carga univariada resultan indispensables para capturar interacciones no-lineales, fenómeno denominado ``redundancia parcial contextual''. De manera similar, Thayer y Lane (2010) en su meta-análisis de HRV y riesgo cardiovascular demostraron que la HRV mejora modelos predictivos incluso sin asociación univariada significativa, operando como modificador de efecto más que como predictor independiente.
+\textbf{Evidencia convergente en la literatura:} Este patrón de ``contribución latente'' —no detectable univariadamente, crítica multivariadamente— ha sido documentado en modelos de riesgo cardiovascular. Soares-Miranda \textit{et al.}. \cite{Soares-Miranda2014} reportan que variables con baja carga univariada resultan indispensables para capturar interacciones no-lineales, fenómeno denominado ``redundancia parcial contextual''. De manera similar, Thayer y Lane (2010) en su meta-análisis de \textit{HRV} y riesgo cardiovascular demostraron que la \textit{HRV} mejora modelos predictivos incluso sin asociación univariada significativa, operando como modificador de efecto más que como predictor independiente.
 
-\textbf{Implicación metodológica:} Este hallazgo valida la elección de un sistema difuso, cuyas reglas basadas en operadores AND (intersecciones de conjuntos difusos) capturan sinergias que los análisis estadísticos tradicionales (ANOVA, Mann-Whitney) —diseñados para detectar efectos aditivos— no pueden identificar. La lógica difusa permite modelar premisas como ``Alto sedentarismo ocurre cuando Actividad es Baja \textbf{Y} HRV es Baja \textbf{Y} Superávit\_calórico es Bajo'', donde la conjunción de condiciones (operador mínimo en el sistema Mamdani) modera el efecto de cada variable individual.
+\textbf{Implicación metodológica:} Este hallazgo valida la elección de un sistema difuso, cuyas reglas basadas en operadores AND (intersecciones de conjuntos difusos) capturan sinergias que los análisis estadísticos tradicionales (ANOVA, Mann-Whitney) —diseñados para detectar efectos aditivos— no pueden identificar. La lógica difusa permite modelar premisas como ``Alto sedentarismo ocurre cuando Actividad es Baja \textbf{Y} \textit{HRV} es Baja \textbf{Y} Superávit\_calórico es Bajo'', donde la conjunción de condiciones (operador mínimo en el sistema \textit{Mamdani}) modera el efecto de cada variable individual.
 
-La Paradoja HRV demuestra la \textbf{naturaleza multivariada y no lineal} del comportamiento sedentario, y justifica el uso de inteligencia artificial explicable sobre métodos estadísticos univariados tradicionales. Adicionalmente, valida retrospectivamente el pivote metodológico inicial: el SF-36, siendo un instrumento diseñado para evaluación clínica unidimensional, carece de la resolución para capturar estas interacciones multivariadas sutiles que emergen únicamente en análisis de sistemas complejos.
+La Paradoja \textit{HRV} demuestra la \textbf{naturaleza multivariada y no lineal} del comportamiento sedentario, y justifica el uso de inteligencia artificial explicable sobre métodos estadísticos univariados tradicionales. Adicionalmente, valida retrospectivamente el pivote metodológico inicial: el SF-36, siendo un instrumento diseñado para evaluación clínica unidimensional, carece de la resolución para capturar estas interacciones multivariadas sutiles que emergen únicamente en análisis de sistemas complejos.
 
 \subsection{Validación Convergente Exploratoria con SF-36}
 \label{subsec:sf36_exploratorio}
 
-Un subconjunto de 8 participantes completó el cuestionario SF-36 al finalizar el seguimiento, lo que permitió un análisis exploratorio de validación convergente entre el índice fuzzy y métricas de calidad de vida percibida. Aunque el diseño final no se centró en esta correlación (ver pivote metodológico, Sección \ref{subsec:pivote_metodologico}), los resultados aportan contexto sobre la relación entre comportamiento objetivo y autopercepción de salud.
+Un subconjunto de 8 participantes completó el cuestionario SF-36 al finalizar el seguimiento, lo que permitió un análisis exploratorio de validación convergente entre el índice \textit{fuzzy} y métricas de calidad de vida percibida. Aunque el diseño final no se centró en esta correlación (ver pivote metodológico, Sección \ref{subsec:pivote_metodologico}), los resultados aportan contexto sobre la relación entre comportamiento objetivo y autopercepción de salud.
 
 \textbf{Hallazgos principales:}
 \begin{itemize}
-    \item \textbf{Salud Mental (SM):} Correlación moderada-fuerte con mediana fuzzy ($\rho$=0.765, p=0.027), estadísticamente significativa. Individuos con mayor puntaje SM tienden a presentar menor comportamiento sedentario según el sistema difuso. Este hallazgo es consistente con literatura que documenta la relación bidireccional entre actividad física y bienestar psicológico \cite{Schuch2018}.
+    \item \textbf{Salud Mental (SM):} Correlación moderada-fuerte con mediana \textit{fuzzy} ($\rho$=0.765, p=0.027), estadísticamente significativa. Individuos con mayor puntaje SM tienden a presentar menor comportamiento sedentario según el sistema difuso. Este hallazgo es consistente con literatura que documenta la relación bidireccional entre actividad física y bienestar psicológico \cite{Schuch2018}.
     
-    \item \textbf{Salud General (SG):} Correlación débil-moderada no significativa ($\rho$=0.537, p=0.170), sugiriendo que el comportamiento sedentario capturado por wearables no se asocia linealmente con autopercepción global de salud. Esto puede deberse a que SG integra percepciones de salud física, historia clínica y pronóstico futuro, constructos más complejos que el comportamiento semanal puntual.
+    \item \textbf{Salud General (SG):} Correlación débil-moderada no significativa ($\rho$=0.537, p=0.170), sugiriendo que el comportamiento sedentario capturado por \textit{wearables} no se asocia linealmente con autopercepción global de salud. Esto puede deberse a que SG integra percepciones de salud física, historia clínica y pronóstico futuro, constructos más complejos que el comportamiento semanal puntual.
     
     \item \textbf{Rol Físico (RF):} Correlación no significativa ($\rho$=-0.247, p=0.555), con dirección contraintuitiva (negativa), potencialmente explicada por fenómenos de compensación. Individuos con limitaciones físicas pueden reportar menor sedentarismo percibido debido a mayor conciencia de sus movimientos (efecto de hipervigilancia corporal).
 \end{itemize}
 
 \textbf{Interpretación contextual:} Las correlaciones moderadas pero mayormente no significativas (excepto SM) validan \textit{retrospectivamente} el pivote metodológico inicial: el SF-36, diseñado para evaluación clínica en cohortes grandes (N>100), presenta limitaciones de poder estadístico en muestras pequeñas (N=8) \cite{Healy2024}.
 
-Healy et al. \cite{Healy2024} reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de wearables en cohortes N<15. Esto sugiere que la \textbf{autopercepción} de actividad y el \textbf{comportamiento objetivo} capturado por sensores representan constructos relacionados pero no intercambiables, con divergencias atribuibles a sesgos de deseabilidad social, error de memoria y diferentes ventanas temporales de evaluación (SF-36 evalúa últimas 4 semanas; nuestro sistema evalúa semanas individuales).
+Healy \textit{et al.}. \cite{Healy2024} reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de \textit{wearables} en cohortes N<15. Esto sugiere que la \textbf{autopercepción} de actividad y el \textbf{comportamiento objetivo} capturado por sensores representan constructos relacionados pero no intercambiables, con divergencias atribuibles a sesgos de deseabilidad social, error de memoria y diferentes ventanas temporales de evaluación (SF-36 evalúa últimas 4 semanas; nuestro sistema evalúa semanas individuales).
 
-\textbf{Implicación metodológica:} Este resultado refuerza la necesidad del enfoque data-driven (clustering) adoptado en la presente investigación: establecer la ``verdad operativa'' mediante patrones objetivos de sensores, en lugar de depender exclusivamente de autorreportes con reconocidas limitaciones de sesgo \cite{Prince2008}. Prince et al. documentan concordancia limitada (Kappa<0.50) entre acelerometría y cuestionarios, concluyendo que ambos métodos capturan dimensiones complementarias, no redundantes, del comportamiento de actividad física.
+\textbf{Implicación metodológica:} Este resultado refuerza la necesidad del enfoque data-driven (\textit{clustering}) adoptado en la presente investigación: establecer la ``verdad operativa'' mediante patrones objetivos de sensores, en lugar de depender exclusivamente de autorreportes con reconocidas limitaciones de sesgo \cite{Prince2008}. Prince \textit{et al.}. documentan concordancia limitada (Kappa<0.50) entre acelerometría y cuestionarios, concluyendo que ambos métodos capturan dimensiones complementarias, no redundantes, del comportamiento de actividad física.
 
 % ============================================================================
 \section{Tesis}
 \label{sec:tesis}
 % ============================================================================
 
-La principal aportación de esta investigación es el desarrollo y la validación de un sistema experto, basado en lógica difusa, capaz de clasificar con alta fiabilidad (F1-Score = 0.840) los patrones de comportamiento sedentario semanal a partir de datos biométricos multivariados, longitudinales y recopilados en condiciones de vida libre. Demostramos la constatación de la hipótesis de investigación al confirmar que el modelo interpretable, fundamentado en reglas de conocimiento clínico, converge significativamente con una clasificación objetiva derivada de un análisis de conglomerados no supervisado.
+La principal aportación de esta investigación es el desarrollo y la validación de un sistema experto, basado en lógica difusa, capaz de clasificar con alta fiabilidad (\textit{F1-Score} \textit{LOUO} = 0.780) los patrones de comportamiento sedentario semanal a partir de datos biométricos multivariados, longitudinales y recopilados en condiciones de vida libre. Demostramos la constatación de la hipótesis de investigación al confirmar que el modelo interpretable, fundamentado en reglas de conocimiento clínico, converge significativamente con una clasificación objetiva derivada de un análisis de conglomerados no supervisado.
 
-Fundamentalmente, el estudio revela que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa, un hallazgo que subraya la superioridad de los modelos sistémicos sobre los análisis univariados tradicionales para la evaluación de comportamientos complejos en salud. La \Cref{fig:diagrama_tesis} sintetiza visualmente el sistema completo, mostrando el flujo desde la captura de datos biométricos mediante wearables hasta la clasificación final mediante el sistema de inferencia difusa.
+Fundamentalmente, el estudio revela que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa, un hallazgo que subraya la superioridad de los modelos sistémicos sobre los análisis univariados tradicionales para la evaluación de comportamientos complejos en salud. La \Cref{fig:diagrama_tesis} sintetiza visualmente el sistema completo, mostrando el flujo desde la captura de datos biométricos mediante \textit{wearables} hasta la clasificación final mediante el sistema de inferencia difusa.
 
 \begin{figure}[htbp]
     \centering

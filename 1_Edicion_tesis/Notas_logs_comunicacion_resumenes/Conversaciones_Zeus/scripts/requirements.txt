@@ -1,0 +1,12 @@
+# Requisitos para scripts de persistencia Zeus
+# Instalar con: pip install -r requirements.txt
+
+# Para crear GitHub Issues
+PyGithub>=2.1.1
+
+# Para procesamiento de texto (opcional)
+python-dateutil>=2.8.2
+
+# Para validación (opcional)
+jsonschema>=4.19.0
+

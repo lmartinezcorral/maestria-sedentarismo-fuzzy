@@ -12,7 +12,7 @@
 \section{Análisis Comparativo Exhaustivo de Investigaciones Previas}
 \label{sec:anexo_tabla_completa}
 
-Esta sección presenta el análisis comparativo exhaustivo de 17 investigaciones representativas sobre clasificación de comportamiento sedentario y actividad física mediante dispositivos wearables. La tabla abarca diversas técnicas metodológicas (lógica difusa, machine learning, deep learning, métodos estadísticos), tipos de validación (destacando LOUO/LOSO) y aplicaciones en contextos de vida libre. Para facilitar la lectura, la tabla se presenta en orientación horizontal (landscape).
+Esta sección presenta el análisis comparativo exhaustivo de 17 investigaciones representativas sobre clasificación de comportamiento sedentario y actividad física mediante dispositivos \textit{wearables}. La tabla abarca diversas técnicas metodológicas (lógica difusa, machine learning, deep learning, métodos estadísticos), tipos de validación (destacando \textit{LOUO}/LOSO) y aplicaciones en contextos de vida libre. Para facilitar la lectura, la tabla se presenta en orientación horizontal (landscape).
 
 % Tabla completa en landscape (17 artículos)
 \begin{landscape}
@@ -54,20 +54,20 @@ Esta sección presenta el análisis comparativo exhaustivo de 17 investigaciones
 
 % ========== FUZZY LOGIC ==========
 
-Capitoli et al. (2025) \cite{Capitoli2025FuzzyXAI} & 
+Capitoli \textit{et al.}. (2025) \cite{Capitoli2025FuzzyXAI} & 
 Diagnóstico clínico interpretable con lógica difusa probabilística & 
-Fuzzy Logic (interpretable) & 
+\textit{fuzzy} Logic (interpretable) & 
 Datos clínicos hospitalarios & 
 Clínico & 
 Validación clínica & 
 Interpretabilidad 100\% & 
-Clínicos controlan proceso diagnóstico. Fuzzy = XAI \\
+Clínicos controlan proceso diagnóstico. \textit{fuzzy} = XAI \\
 
 \midrule
 
-Marashi-Hosseini et al. (2023) \cite{MarashiHosseini2023Dietary} & 
+Marashi-Hosseini \textit{et al.}. (2023) \cite{MarashiHosseini2023Dietary} & 
 Sistema decisión dietética para pacientes múltiples condiciones crónicas & 
-Fuzzy Logic Mamdani (1144 reglas) & 
+\textit{fuzzy} Logic \textit{Mamdani} (1144 reglas) & 
 Datos dietéticos + clínicos & 
 100 & 
 Validación vs nutricionistas & 
@@ -76,82 +76,82 @@ Precisión &
 
 \midrule
 
-Gonçalves et al. (2021) \cite{Goncalves2021} & 
-Reconocimiento actividad humana con clustering + fuzzy & 
-K-Means ($k=2$) $\rightarrow$ FIS Mamdani & 
+Gonçalves \textit{et al.}. (2021) \cite{Goncalves2021} & 
+Reconocimiento actividad humana con \textit{clustering} + \textit{fuzzy} & 
+\textit{K-Means} ($k=2$) $\rightarrow$ FIS \textit{Mamdani} & 
 Sensores inerciales (IMU) & 
 --- & 
 Validación estabilidad & 
 Estabilidad clasificación & 
-ÚNICO precedente clustering $\rightarrow$ fuzzy supervisado \\
+ÚNICO precedente \textit{clustering} $\rightarrow$ \textit{fuzzy} supervisado \\
 
 \midrule
 
 % ========== DEEP LEARNING ==========
 
-Khan et al. (2024) \cite{Khan2024Wearable} & 
+Khan \textit{et al.}. (2024) \cite{Khan2024Wearable} & 
 Reconocimiento actividad física con sensores inerciales + deep learning & 
 Deep Learning (CNNs + LSTMs) & 
-Sensores inerciales wearable & 
+Sensores inerciales \textit{wearable} & 
 --- & 
 K-fold CV & 
-Accuracy & 
+\textit{Accuracy} & 
 Alta precisión. Requiere datos masivos + no interpretable \\
 
 \midrule
 
-Bassani et al. (2025) \cite{Bassani2025DLHAR} & 
+Bassani \textit{et al.}. (2025) \cite{Bassani2025DLHAR} & 
 Deep Learning para reconocimiento actividad física en tareas manuales & 
 Deep Learning (varios modelos) & 
 Acelerómetros & 
 --- & 
 70/30 vs LOSO & 
-Accuracy & 
+\textit{Accuracy} & 
 \textbf{70/30: 95.7\%} $\rightarrow$ \textbf{LOSO: 90.3\%}. Generalización robusta requiere LOSO \\
 
 \midrule
 
 % ========== MACHINE LEARNING CLÁSICO ==========
 
-Fuller et al. (2021) \cite{Fuller2021Predicting} & 
-Clasificación lying, sitting, walking, running con Apple Watch + Fitbit & 
+Fuller \textit{et al.}. (2021) \cite{Fuller2021Predicting} & 
+Clasificación lying, sitting, walking, running con \textit{Apple Watch} + Fitbit & 
 Random Forest & 
-Apple Watch + Fitbit (acelerómetro) & 
+\textit{Apple Watch} + Fitbit (acelerómetro) & 
 33 & 
 LOOCV & 
-Accuracy & 
-Accuracy $>$90\% para posturas. BYOD validado \\
+\textit{Accuracy} & 
+\textit{Accuracy} $>$90\% para posturas. BYOD validado \\
 
 \midrule
 
-Mathew et al. (2024) \cite{Mathew2024LOSO} & 
+Mathew \textit{et al.}. (2024) \cite{Mathew2024LOSO} & 
 Medición uso funcional mano en parálisis cerebral unilateral con ML & 
 Machine Learning (varios modelos) & 
 Acelerómetros (muñeca) & 
 22 & 
 Personalizado vs LOSO & 
-F1-Score & 
+\textit{F1-Score} & 
 \textbf{Personalizado: F1=0.896} $\rightarrow$ \textbf{LOSO: F1=0.584}. Evidencia sobreajuste $N$ pequeño \\
 
 \midrule
 
-Rehman et al. (2024) \cite{Rehman2024LOSO} & 
-Estudio comparativo validación + extracción características en HAR wearables & 
+Rehman \textit{et al.}. (2024) \cite{Rehman2024LOSO} & 
+Estudio comparativo validación + extracción características en HAR \textit{wearables} & 
 Random Forest & 
-Sensores inerciales wearables & 
+Sensores inerciales \textit{wearables} & 
 --- & 
 LOSO vs k-fold & 
-Accuracy & 
+\textit{Accuracy} & 
 \textbf{LOSO: 76\%} vs \textbf{k-fold: 89\%}. Data leakage justifica LOUO \\
 
 \midrule
 
 % ========== MÉTODOS ESTADÍSTICOS ==========
 
-Salim et al. (2024) \cite{Salim2024STEPHEN} & 
+Salim \textit{et al.}. (2024) \cite{Salim2024STEPHEN} & 
 Detección tiempo sedentario + bouts con Hidden Semi-Markov Model & 
 Hidden Semi-Markov Model & 
-Wearables consumo (muñeca) & 
+\textit{wearables} consumo (muñeca) & 
 --- & 
 Validación vs verdad operativa & 
 Sensibilidad/ Especificidad & 
@@ -159,7 +159,7 @@ Detección precisa sedentary bouts. Método estadístico avanzado \\
 
 \midrule
 
-Migueles et al. (2022) \cite{Migueles2022GRANADA} & 
+Migueles \textit{et al.}. (2022) \cite{Migueles2022GRANADA} & 
 Consenso análisis acelerómetro para comportamientos físicos en epidemiología & 
 Consenso metodológico & 
 Acelerómetros (varios) & 
@@ -172,10 +172,10 @@ Estándar internacional para análisis PA/sedentarismo \\
 
 % ========== VALIDACIÓN WEARABLES ==========
 
-Lyons et al. (2024) \cite{Lyons2024StandHour} & 
-Definición umbrales actividad que activan ``Stand Hour'' en Apple Watch & 
+Lyons \textit{et al.}. (2024) \cite{Lyons2024StandHour} & 
+Definición umbrales actividad que activan ``Stand Hour'' en \textit{Apple Watch} & 
 Estudio observacional & 
-Apple Watch (energía activa + pasos) & 
+\textit{Apple Watch} (energía activa + pasos) & 
 --- & 
 Análisis umbral & 
 Umbrales Stand Hour & 
@@ -183,10 +183,10 @@ Deconstruye proxy sedentarismo comercial. Umbrales caja negra identificados \\
 
 \midrule
 
-O'Grady et al. (2024) \cite{OGrady2024AppleWatch} & 
-Validación HRV + RHR en Apple Watch Series 9 y Ultra 2 & 
+O'Grady \textit{et al.}. (2024) \cite{OGrady2024AppleWatch} & 
+Validación \textit{HRV} + RHR en \textit{Apple Watch} Series 9 y Ultra 2 & 
 Estudio validación & 
-Apple Watch vs Polar H10 (gold standard) & 
+\textit{Apple Watch} vs Polar H10 (gold standard) & 
 39 & 
 Validación concurrente & 
 MAPE & 
@@ -194,7 +194,7 @@ MAPE &
 
 \midrule
 
-Ji et al. (2023) \cite{Ji2023Scratch} & 
+Ji \textit{et al.}. (2023) \cite{Ji2023Scratch} & 
 Evaluación scratch nocturno con actigrafía en pacientes dermatitis atópica & 
 Machine Learning & 
 Actigrafía (ActiGraph) & 
@@ -207,7 +207,7 @@ Sensibilidad/ Especificidad &
 
 % ========== XAI + INTERPRETABILIDAD ==========
 
-Bienefeld et al. (2023) \cite{Bienefeld2023XAI} & 
+Bienefeld \textit{et al.}. (2023) \cite{Bienefeld2023XAI} & 
 Resolver dilema XAI: brecha necesidades clínicos vs objetivos desarrolladores & 
 Estudio cualitativo & 
 Entrevistas + cuestionarios & 
@@ -218,23 +218,23 @@ Clínicos requieren transparencia global. Desarrolladores enfocan local \\
 
 \midrule
 
-Deng et al. (2023) \cite{Deng2023LharJBHI} & 
-HAR ligero en wearables con knowledge distillation & 
+Deng \textit{et al.}. (2023) \cite{Deng2023LharJBHI} & 
+HAR ligero en \textit{wearables} con knowledge distillation & 
 Deep Learning (ligero) & 
-Sensores wearables & 
+Sensores \textit{wearables} & 
 --- & 
 Validación experimental & 
-Accuracy + eficiencia & 
-\textbf{IEEE JBHI} (revista objetivo). HAR eficiente wearables \\
+\textit{Accuracy} + eficiencia & 
+\textbf{IEEE JBHI} (revista objetivo). HAR eficiente \textit{wearables} \\
 
 \midrule
 
 % ========== FISIOLOGÍA + HRV ==========
 
-Godkin et al. (2025) \cite{Godkin2025Context} & 
+Godkin \textit{et al.}. (2025) \cite{Godkin2025Context} & 
 Medir RHR durante vida diaria: impacto contexto conductual + criterios metodológicos & 
 Estudio observacional & 
-Wearables (RHR + acelerómetro) & 
+\textit{wearables} (RHR + acelerómetro) & 
 --- & 
 Análisis contextual & 
 RHR por contexto & 
@@ -242,14 +242,14 @@ RHR por contexto &
 
 \midrule
 
-Marino et al. (2024) \cite{Marino2024ARIC} & 
-Asociaciones PA + HRV con función cognitiva + demencia (ARIC Neurocognitive Study) & 
+Marino \textit{et al.}. (2024) \cite{Marino2024ARIC} & 
+Asociaciones PA + \textit{HRV} con función cognitiva + demencia (ARIC Neurocognitive Study) & 
 Análisis cohorte longitudinal & 
 ECG ambulatorio 2 semanas + acelerómetro & 
 961 & 
 Análisis regresión & 
 Odds Ratio (OR) & 
-Mayor PA + HRV $\rightarrow$ mejor cognición. Relación no lineal PA-HRV-salud cerebral \\
+Mayor PA + \textit{HRV} $\rightarrow$ mejor cognición. Relación no lineal PA-\textit{HRV}-salud cerebral \\
 
 \midrule
 
@@ -322,11 +322,11 @@ Esta sección presenta la nomenclatura matemática utilizada en el sistema de in
 \\
 \multicolumn{2}{@{}l}{\textit{\textbf{Reglas de Inferencia y Activación}}} \\
 \(R_r\) & Regla de inferencia \(r\) (\(r \in \{1,2,3,4,5\}\)) \\
-\(\mathcal{R}\) & Base de reglas (conjunto de 5 reglas Mamdani) \\
+\(\mathcal{R}\) & Base de reglas (conjunto de 5 reglas \textit{Mamdani}) \\
 \(w_r^{(j)}\) & Activación (firing strength) de regla \(R_r\) para observación \(j\) \\
 \(\mathbf{w}^{(j)}\) & Vector de activaciones \(\in \mathbb{R}^5\) \\
-\(T(a, b)\) & T-norm (operador AND fuzzy): \(T(a,b) = \min(a,b)\) \\
-\(y_r\) & Output crisp de la regla \(R_r\) \\
+\(T(a, b)\) & T-norm (operador AND \textit{fuzzy}): \(T(a,b) = \min(a,b)\) \\
+\(y_r\) & \textit{output} crisp de la regla \(R_r\) \\
 \(\mathbf{y}_{\text{salidas}}\) & Vector de salidas de reglas \([1.0, 0.0, 0.9, 0.5, 0.7]^T\) \\
 \\
 \multicolumn{2}{@{}l}{\textit{\textbf{Defuzzificación y Clasificación}}} \\
@@ -336,20 +336,20 @@ Esta sección presenta la nomenclatura matemática utilizada en el sistema de in
 \(\|\mathbf{w}\|_1\) & Norma L1 del vector (suma de componentes) \\
 \\
 \multicolumn{2}{@{}l}{\textit{\textbf{Validación LOOU}}} \\
-\(\mathcal{D}\) & Dataset completo (1,337 semanas, 10 usuarios) \\
+\(\mathcal{D}\) & \textit{dataset} completo (1,337 semanas, 10 usuarios) \\
 \(\mathcal{D}_{\text{train}}^{(i)}\) & Conjunto de entrenamiento en fold \(i\) (9 usuarios) \\
 \(\mathcal{D}_{\text{test}}^{(i)}\) & Conjunto de prueba en fold \(i\) (1 usuario) \\
 \(n_i\) & Número de semanas del usuario \(i\) \\
-\(F1^{(i)}\) & F1-Score en fold \(i\) (usuario \(i\) como test) \\
-\(\overline{F1}_{\text{LOOU}}\) & F1-Score promedio LOOU (10 folds) \\
-\(\sigma_{F1}\) & Desviación estándar de F1-Score entre folds \\
+\(F1^{(i)}\) & \textit{F1-Score} en fold \(i\) (usuario \(i\) como test) \\
+\(\overline{F1}_{\text{LOOU}}\) & \textit{F1-Score} promedio \textit{LOOU} (10 folds) \\
+\(\sigma_{F1}\) & Desviación estándar de \textit{F1-Score} entre folds \\
 \(CV\) & Coeficiente de variación (\%) \\
 \\
 \multicolumn{2}{@{}l}{\textit{\textbf{Clustering (Verdad Operativa)}}} \\
 \(K\) & Número de clusters (K=2) \\
 \(\mathbf{C}_k\) & Centroide del cluster \(k\) (\(k \in \{0,1\}\)) \\
 \(c^{(j)}\) & Cluster asignado a semana \(j\) (verdad operativa) \\
-\(S\) & Silhouette Score (métrica de calidad clustering) \\
+\(S\) & Silhouette Score (métrica de calidad \textit{clustering}) \\
 \\
 \multicolumn{2}{@{}l}{\textit{\textbf{Métricas de Evaluación}}} \\
 \(\text{TP}\) & True Positives (verdaderos positivos) \\
@@ -358,9 +358,9 @@ Esta sección presenta la nomenclatura matemática utilizada en el sistema de in
 \(\text{FN}\) & False Negatives (falsos negativos) \\
 \(\text{Precision}\) & Precisión: \(\text{TP}/(\text{TP}+\text{FP})\) \\
 \(\text{Recall}\) & Sensibilidad: \(\text{TP}/(\text{TP}+\text{FN})\) \\
-\(F1\) & F1-Score: \(2 \cdot \text{Prec} \cdot \text{Rec} / (\text{Prec} + \text{Rec})\) \\
+\(F1\) & \textit{F1-Score}: \(2 \cdot \text{Prec} \cdot \text{Rec} / (\text{Prec} + \text{Rec})\) \\
 \(\text{MCC}\) & Matthews Correlation Coefficient \\
-\(\text{Acc}\) & Accuracy (exactitud): \((\text{TP}+\text{TN})/N\) \\
+\(\text{Acc}\) & \textit{Accuracy} (exactitud): \((\text{TP}+\text{TN})/N\) \\
 \\
 \multicolumn{2}{@{}l}{\textit{\textbf{Operadores y Notación Matemática}}} \\
 \(\min(a, b)\) & Mínimo de \(a\) y \(b\) \\

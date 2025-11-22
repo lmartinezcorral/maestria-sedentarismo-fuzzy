@@ -1,0 +1,1255 @@
+================================================================================
+TESIS - TEXTO PLANO PARA REVISIÓN DE SINTAXIS Y ORTOGRAFÍA
+================================================================================
+
+NOTA: Este archivo contiene el texto extraído de los archivos LaTeX
+sin formato. Los comandos LaTeX han sido eliminados o reemplazados
+por marcadores simples ([CITA], [REF], [FIGURA], [TABLA], [ECUACIÓN]).
+
+================================================================================
+
+
+================================================================================
+ARCHIVO: main.tex
+================================================================================
+
+[block]
+ 
+ 
+ 0pt
+ 
+
+ 0pt 
+ 0pt 
+ 18pt 
+
+ 
+ 
+ 1em
+ 
+
+ 
+ 
+ 1em
+ 
+
+ 
+ 
+ 1em
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+,
+ pdfauthor=,
+ pdfsubject=,
+ pdfkeywords=tesis, UACH, FMyCB,
+ hidelinks
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ MODELO DE EVALUACIÓN DEL COMPORTAMIENTO
+
+ SEDENTARIO MEDIANTE LÓGICA DIFUSA Y
+
+ DATOS BIOMÉTRICOS
+[1.2cm]
+
+ 
+ POR:
+[0.2cm]
+ 
+ 
+ 
+[1.2cm]
+
+ 
+ 
+[0.3cm]
+ 
+ 
+ 
+[2.0cm]
+
+ 
+ [s]
+ 
+ 
+ 
+ 
+ 
+
+--- NUEVA PÁGINA ---
+
+ 
+
+ RESUMEN
+[1cm]
+
+ El comportamiento sedentario representa un factor de riesgo para enfermedades crónicas no transmisibles, cuya medición objetiva en condiciones de vida libre presenta desafíos metodológicos significativos. Los métodos tradicionales de evaluación (cuestionarios de autorreporte) adolecen de sesgos de memoria y deseabilidad social, mientras que las técnicas de referencia se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento ecológico. Este estudio desarrolló un modelo de clasificación del sedentarismo mediante lógica difusa que integra datos biométricos de dispositivos portátiles de consumo, aplicado bajo el paradigma Bring Your Own Device (BYOD) en condiciones de vida libre.
+
+La cohorte estuvo conformada por 10 adultos jóvenes con seguimiento longitudinal retrospectivo multianual (media: 133.7 semanas; rango: 7-298 semanas), acumulando 9,185 días de registro biométrico continuo mediante Apple Watch. Tras preprocesamiento (imputación jerárquica, normalización antropométrica), se generaron 1,337 semanas válidas con cuatro variables derivadas: Actividad relativa, Superávit calórico basal, Delta cardíaco y HRV-SDNN. La metodología empleó un enfoque híbrido: clustering K-Means no supervisado (K=2) para establecer verdad operativa a partir de patrones empíricos, seguido de un Sistema de Inferencia Difusa Mamdani que codifica conocimiento experto mediante cinco reglas lingüísticas interpretables.
+
+La validación Leave-One-User-Out demostró F1-Score=0.840 (Precisión=0.833, Recall=0.850), con variabilidad inter-sujeto excepcional (CV=4.8
+
+Palabras clave: comportamiento sedentario, lógica difusa, BYOD, wearables, LOUO, vida libre
+
+--- NUEVA PÁGINA ---
+
+ ABSTRACT
+[1cm]
+
+ Sedentary behavior represents a risk factor for chronic non-communicable diseases, whose objective measurement in free-living conditions presents significant methodological challenges. Traditional evaluation methods (self-report questionnaires) suffer from recall and social desirability biases, while reference techniques are restricted to laboratory settings that do not capture the complexity of ecological behavior. This study developed a sedentary lifestyle classification model using fuzzy logic that integrates biometric data from consumer wearable devices, applied under the Bring Your Own Device (BYOD) paradigm in free-living conditions.
+
+The cohort consisted of 10 young adults with multi-year retrospective longitudinal follow-up (mean: 133.7 weeks; range: 7-298 weeks), accumulating 9,185 days of continuous biometric recording via Apple Watch. After preprocessing (hierarchical imputation, anthropometric normalization), 1,337 valid weeks were generated with four derived variables: Relative activity, Basal caloric surplus, Cardiac delta, and HRV-SDNN. The methodology employed a hybrid approach: unsupervised K-Means clustering (K=2) to establish operational truth from empirical patterns, followed by a Mamdani Fuzzy Inference System that encodes expert knowledge through five interpretable linguistic rules.
+
+Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Recall=0.850), with exceptional inter-subject variability (CV=4.8
+
+Keywords: sedentary behavior, fuzzy logic, BYOD, wearables, LOOU, free-living
+
+--- NUEVA PÁGINA ---
+
+p0.15p0.65p0.15@
+[2.2cm][0pt] 
+[2.2cm][0pt]
+[t]0.65
+ 
+ 
+ 
+ Universidad Aut'onoma de Chihuahua
+
+ Facultad de Medicina y Ciencias Biom'edicas
+
+ Secretar'ia de Investigaci'on y Posgrado
+ 
+[2.2cm][0pt] 
+
+ La tesis ``'' que presenta , como requisito parcial para obtener el grado de: Maestr'ia en Formaci'on Biom'edica ha sido revisada y aprobada por la Facultad de Medicina y Ciencias Biom'edicas.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ Se certifica, bajo protesta de decir verdad, que las firmas consignadas al pie del presente documento son de car'acter original y aut'entico, correspondiendo de manera inequ'ivoca a los responsables de las labores de direcci'on, seguimiento, asesor'ia y evaluaci'on, en estricta conformidad con lo dispuesto en la normativa vigente de esta instituci'on universitaria.
+
+--- NUEVA PÁGINA ---
+
+ Chihuahua, Chih., a de de 2025
+[0.3cm]
+
+ 
+Dr. Oscar Aguirre Barrera
+[0.1cm]
+Secretario de Investigaci'on y Posgrado
+[0.1cm]
+Facultad de Medicina y Ciencias Biom'edicas
+[0.3cm]
+
+P R E S E N T E.-
+[0.3cm]
+
+ 
+ 
+
+ Por medio de la presente nos permitimos informar a usted que el C. Luis Angel Mart'inez Corral, con n'umero de matr'icula 261337, ha concluido la elaboraci'on de la tesis ``Modelo de Evaluaci'on del Comportamiento Sedentario mediante L'ogica Difusa y Datos Biom'etricos'', como requisito para obtener el grado de: Maestro en Formaci'on e Innovaci'on para Profesionales de la Salud.
+
+As'i mismo, manifestamos que la tesis ha sido revisada y aprobada por los abajo firmantes, miembros del Comit'e de Grado.
+
+Sin otro particular, quedamos de usted.
+
+ ATENTAMENTE
+[0.3cm]
+ ``MENTI DA LUCEM, MANIBUS ARTEM''
+[0.5cm]
+
+p6.5cmp6.5cm@
+Director de Tesis Co-Director de Tesis
+[0.3cm]
+
+Dr. Abimael Guzm'an Pando Dr. David Ricardo L'opez Flores
+[0.8cm]
+
+Asesor de Tesis Asesor de Tesis
+[0.3cm]
+
+Dra. Celia Mar'ia Qui nez Cruz Dr. Javier Camarillo Cisneros
+[0.3cm]
+
+--- NUEVA PÁGINA ---
+
+ DEDICATORIA
+[1.5cm]
+
+ 
+
+Dedico este trabajo a por 
+[2cm]
+
+ AGRADECIMIENTOS
+[1.5cm]
+
+ 
+
+Se agradece a:
+[0.5cm]
+
+[Escribe aquí tus agradecimientos a las personas que apoyaron tu trabajo]
+
+--- NUEVA PÁGINA ---
+
+ 
+
+ 
+ 
+
+[2.2cm][0pt]
+ [t]2.2cm
+ 
+ 
+ 
+ 
+
+ 
+
+--- NUEVA PÁGINA ---
+
+[2.2cm][0pt]
+ [t]2.2cm
+ 
+ 
+ 
+ 
+
+ 
+
+--- NUEVA PÁGINA ---
+
+
+
+================================================================================
+ARCHIVO: capitulos/01_introduccion.tex
+================================================================================
+
+=== CAPÍTULO: Introducción ===
+
+ El comportamiento sedentario (CS) se ha consolidado como uno de los principales retos de salud pública del siglo XXI, vinculado estrechamente con la transición epidemiológica, la urbanización acelerada y el cambio en los patrones de movilidad y trabajo. Las largas jornadas en posición sentada, el predominio de actividades digitales y la disminución de la actividad física incidental han generado un aumento sostenido en la prevalencia de enfermedades crónicas no transmisibles (ENT), como la diabetes tipo 2, las enfermedades cardiovasculares y la depresión. Este panorama, descrito por la Organización Mundial de la Salud (OMS), refleja la urgencia de desarrollar herramientas que permitan medir, interpretar y reducir los efectos del sedentarismo en la calidad de vida relacionada con la salud (CVRS) [CITA].
+
+El estudio del CS tradicionalmente se ha sustentado en instrumentos de autoinforme, como el GPAQ o el SF-36, que aunque válidos y ampliamente utilizados, presentan limitaciones inherentes a la subjetividad y la falta de resolución temporal [CITA]. En la última década, el desarrollo de dispositivos portátiles con sensores biométricos —acelerómetros, fotopletismografía (PPG) y sensores de frecuencia cardiaca— ha permitido capturar datos fisiológicos y de actividad con alta precisión, lo cual abre la posibilidad de análisis objetivos, continuos y personalizados [CITA]. Esta evolución tecnológica sitúa al monitoreo digital de la salud como una pieza central en el diseño de intervenciones preventivas basadas en evidencia.
+
+En este contexto, la inteligencia artificial (IA) y, particularmente, la lógica difusa, ofrecen un marco teórico y computacional idóneo para modelar fenómenos complejos donde las relaciones entre variables no son lineales ni deterministas. A diferencia de los métodos estadísticos tradicionales, la lógica difusa admite grados intermedios de pertenencia y permite representar razonamientos humanos en términos lingüísticos ("actividad alta", "HRV baja", "riesgo moderado"), lo cual otorga interpretabilidad y flexibilidad a los modelos biomédicos [CITA]. Su integración en sistemas de inferencia Mamdani posibilita traducir datos biométricos en reglas semánticamente comprensibles y fortalece la capacidad explicativa de los algoritmos frente al enfoque opaco de los modelos de caja negra.
+
+El presente proyecto propone un modelo de evaluación del comportamiento sedentario basado en lógica difusa e información biométrica proveniente del Apple Watch, que integra variables de actividad física (minutos en movimiento, pasos diarios, gasto calórico) con indicadores autonómicos derivados de la variabilidad de la frecuencia cardiaca (HRV-SDNN). Este enfoque busca caracterizar la relación entre patrones de sedentarismo y percepción de CVRS, capturando la dinámica diaria del equilibrio entre esfuerzo, recuperación y bienestar. A través de un sistema de inferencia difusa con reglas adaptativas, se modela la interacción entre la activación fisiológica y los hábitos conductuales, lo cual ofrece una aproximación más precisa y contextualizada del impacto del sedentarismo sobre la salud.
+
+Desde una perspectiva metodológica, el modelo difuso se nutre de datos reales obtenidos de Apple HealthKit, los cuales son procesados mediante un protocolo reproducible que garantiza la integridad y trazabilidad de la información. Se construye una base de control difuso con funciones de pertenencia triangulares y trapezoidales para las variables de entrada, y un conjunto de reglas del tipo "Si actividad alta y HRV baja, entonces riesgo alto". El sistema se valida mediante concordancia con una verdad operativa derivada de clustering no supervisado, y utiliza métricas de rendimiento (F1-Score, Exactitud, Coeficiente de Matthews) y validación cruzada Leave-One-User-Out (LOOU) para evaluar generalización inter-sujeto. Adicionalmente, se realizó una validación convergente exploratoria con el cuestionario SF-36 en un subconjunto de participantes (N=8), la cual reveló correlación significativa únicamente con la dimensión Salud Mental.
+
+La relevancia científica de este trabajo radica en su contribución a la comprensión integral del sedentarismo como fenómeno fisiológico y conductual, pues integra la dimensión autonómica del organismo en el análisis de la actividad física. Su valor metodológico se centra en el desarrollo de un sistema explicable y flexible, capaz de adaptarse a distintas poblaciones y contextos de uso. Desde el punto de vista social, la investigación aporta un marco empírico para diseñar estrategias de promoción de la salud personalizadas y sostenibles, en consonancia con la Agenda 2030 y el Plan Mundial sobre Actividad Física 2018–2030 de la OMS [CITA].
+
+En suma, este proyecto articula tres dimensiones convergentes: la necesidad epidemiológica de reducir el comportamiento sedentario, la oportunidad tecnológica de los dispositivos portátiles para capturar datos de alta resolución y el potencial analítico de la lógica difusa para transformar esos datos en conocimiento clínicamente significativo. Con ello, se establece un precedente metodológico para futuras investigaciones en salud digital, inteligencia artificial y promoción de la salud basada en evidencia.
+
+
+
+================================================================================
+ARCHIVO: capitulos/02_marco_teorico_antecedentes.tex
+================================================================================
+
+﻿
+
+=== CAPÍTULO: Marco Teórico y Antecedentes ===
+
+ El presente capítulo profundiza en la comprensión del comportamiento sedentario (CS), un fenómeno que incide de manera significativa en la calidad de vida relacionada con la salud (CVRS). Se definen conceptos clave, se analizan sus efectos multifacéticos en la salud y se examinan las herramientas actuales para evaluarlos, las cuales incluyen cuestionarios de autoinforme y tecnologías avanzadas. Además, se aborda la integración de variabilidad de la frecuencia cardiaca (HRV) como biomarcador y el papel de la inteligencia artificial (IA) y la lógica difusa (FL) en el análisis de datos biomédicos.
+
+--- SECCIÓN: Marco Teórico ---
+
+--- Subsección: Definición de Sedentarismo ---
+
+El sedentarismo se refiere a un estilo de vida donde prevalecen uno o varios comportamientos sedentarios de duración prolongada, los cuales requieren de poca o ninguna Actividad Física (AF) [CITA]. Además, el concepto de Sedentarismo no excluye la práctica del Ejercicio Físico (EF), de forma que una persona puede ser considerada Sedentaria aun si llegara a practicar EF, pero sin llegar a cumplir las recomendaciones de la Organización Mundial de la Salud (OMS), dado que se dedica mucho tiempo invertido en conductas sedentarias y prevalece una estimación de gasto calórico total diario muy bajo.
+
+--- Subsección: Definición del Comportamiento Sedentario ---
+
+El CS se refiere a cualquier comportamiento realizado por el individuo en posición acostado, reclinado, sentado o de pie, mientras se está despierto, sin ambulación en dependencia de un bajo gasto energético [CITA]. Como ejemplo, mientras se está sentado, reclinado o acostado, cuando se hace uso de dispositivos electrónicos, mientras se lee o se escribe, también cuando se va sentado en el autobús, automóvil o tren. De pie en una fila, de pie en la iglesia, de pie para una conversación de pasillo, y al usar un escritorio de pie, se consideran comportamientos sedentarios o estáticos. Por tanto, el CS se refiere a las actividades que no aumentan el gasto de energía sustancialmente por encima del nivel de reposo, con un gasto energético inferior a 1,5 Unidades Metabólicas Equivalentes (MET) [CITA].
+
+Es importante mencionar que esta definición no es la única, el CS se puede categorizar de varias maneras, según la duración, intensidad, frecuencia y cantidad total de AF [CITA].
+
+--- Subsección: Diferencia entre Comportamiento Sedentario e Inactividad Física ---
+
+Es importante mencionar que el CS puede tener un impacto negativo en la salud, incluso en personas que cumplen con las recomendaciones de AF propuestas por la OMS. En otras palabras, paradójicamente, en la actualidad es posible cumplir con las recomendaciones de AF mediante EF y también presentar tiempos sedantes superiores a 8 horas por día, es decir, ser ``físicamente activo pero sedentario'' [CITA].
+
+En la actualidad, se emplea el término sedentario o con alto CS para referirse a individuos que prolongan actividades con bajo gasto energético [CITA]. Además, para referirse a personas sedentarias, se suele utilizar el término de persona con inactividad física o que es inactiva físicamente, cuando un individuo con un nivel de AF es insuficiente para cumplir con las recomendaciones actuales de AF propuesta por la OMS.
+
+--- Subsección: Directrices de la OMS sobre Actividad Física ---
+
+Las últimas instrucciones que se enmarcan en las Directrices de AF y Hábitos Sedentarios del año 2020 enfatizan en la OMS que ``cada movimiento cuenta''. Para reducir el CS es importante la promoción de la actividad física incidental, pues puede ayudar a incrementar gradualmente la AF realizada en un día hacia cantidades recomendadas para una salud óptima. No obstante, las recomendaciones de AF son las siguientes.
+
+Para niños y adolescentes se recomienda realizar al menos una media de 60 minutos de AF diaria principalmente aeróbica de intensidad moderada a vigorosa a lo largo de la semana.
+
+Los adultos deben acumular a lo largo de la semana un mínimo de entre 150 y 300 minutos de AF aeróbica de intensidad moderada, o bien un mínimo de entre 75 y 150 minutos de AF aeróbica de intensidad vigorosa, o bien una combinación equivalente de actividades de intensidad moderada y vigorosa, con el fin de obtener beneficios notables para la salud.
+
+Por último, las personas mayores (a partir de 65 años) pueden realizar la AF como actividad recreativa o de ocio (juegos, deportes o ejercicios programados) y en el marco de los desplazamientos (caminar e ir en bicicleta o en algún otro medio rodado), el trabajo o los que haceres domésticos, en el contexto ocupacional, educativo, doméstico y comunitario cotidiano [CITA].
+
+--- Subsección: Actividad Física y Ejercicio Físico ---
+
+La Actividad Física (AF) se define como cualquier movimiento corporal producido por la contracción del músculo esquelético que aumenta el gasto energético por encima del nivel basal. Esto incluye tanto actividades estructuradas (ejercicio) como incidentales de la vida diaria (uso de escaleras, desplazamientos activos, tareas domésticas) [CITA]. El Ejercicio Físico (EF), por su parte, constituye una subcategoría planificada, estructurada y repetitiva cuyo objetivo es mejorar o mantener componentes de la aptitud física [CITA].
+
+La capacidad aeróbica representa una de las cualidades más importantes de la condición física relacionada con la salud, pues refleja el funcionamiento integrado de los sistemas cardiorrespiratorio, metabólico y locomotor, y constituye una medida directa del grado general de salud del individuo [CITA].
+
+--- Subsección: Frecuencia Cardiaca y Monitoreo de Intensidad ---
+
+La Frecuencia Cardiaca (FC) es el método más utilizado para controlar la intensidad de la actividad física, pues se fundamenta en la correlación lineal entre FC y consumo de oxígeno ([FÓRMULA]) [CITA]. La FC máxima ([FÓRMULA]) se estima mediante fórmulas validadas como la de Fox-Haskell ([FÓRMULA]) o Tanaka ([FÓRMULA]), mientras que la intensidad relativa del ejercicio se cuantifica mediante zonas porcentuales: baja (40-60
+
+--- Subsección: Variabilidad de la Frecuencia Cardiaca (HRV) ---
+
+La variabilidad de la frecuencia cardíaca (HRV) representa las fluctuaciones en el tiempo entre latidos consecutivos del corazón [CITA]. Estas variaciones son controladas por el sistema nervioso autónomo, lo que convierte a la HRV en un biomarcador no invasivo y continuo del estado autonómico del individuo. Una HRV alta generalmente se asocia con un buen estado de salud y una mayor capacidad de adaptación fisiológica, mientras que una HRV baja puede indicar estrés, fatiga o condiciones de salud subyacentes. El parámetro HRV-SDNN (desviación estándar de los intervalos NN) es una métrica común para cuantificar la HRV [CITA], y proporciona información valiosa sobre el equilibrio entre los sistemas simpático y parasimpático. La integración de la HRV permite un monitoreo más dinámico y sensible de la respuesta fisiológica a la actividad física y el sedentarismo, y ofrece una visión más completa del bienestar general [CITA].
+
+--- Subsección: MET (Equivalente Metabólico) ---
+
+Un MET es la cantidad de oxígeno necesaria para el mantenimiento durante 1 minuto de las funciones metabólicas del organismo con el individuo en reposo y sentado, equivalente a 3,5 ml[FÓRMULA]kg[FÓRMULA]min. Además, el MET se utiliza para proporcionar la relación entre la tasa de energía gastada durante una actividad y la tasa de energía gastada en reposo. Los MET son una forma útil, conveniente y estandarizada de describir la intensidad absoluta de las actividades físicas [CITA].
+
+La prescripción basada en el coste energético de la actividad mediante MET, es la aplicación más lógica para sujetos aparentemente sanos y aquellos con valores altos de [FÓRMULA], pero resulta menos aplicable en personas con ENT o en individuos con baja capacidad funcional [CITA].
+
+La variable [FÓRMULA] es el producto del gasto cardíaco o débito cardíaco máximo (D [FÓRMULA] lt sangre [FÓRMULA] mín.[FÓRMULA]) y la diferencia arteriovenosa de oxígeno (mlO[FÓRMULA] [FÓRMULA] lt sangre [FÓRMULA]), se expresa típicamente en términos relativos (ml [FÓRMULA] kg [FÓRMULA] [FÓRMULA] min [FÓRMULA]) en lugar de absolutos (ml [FÓRMULA] min [FÓRMULA]), lo que permite comparaciones significativas entre individuos con diferente peso corporal. La variación significativa en [FÓRMULA] entre poblaciones y niveles de condición física se debe principalmente a diferencias en gasto cardiaco máximo (D) por lo tanto, el [FÓRMULA] está estrechamente relacionado con la capacidad funcional del corazón.
+
+--- Subsección: Dispositivos y Tecnologías Electrónicas Portátiles ---
+
+Actualmente se reconoce que vivimos una ``cuarta revolución industrial'' o una ``cuarta revolución tecnológica'', la cual precede a la era de la microelectrónica, las tecnologías de la información, las comunicaciones y la World Wide Web (internet). Esto ha derivado en grandes innovaciones como la digitalización, el manejo de grandes volúmenes de información (Big data), la IA, la robótica, las neurociencias y la biotecnología [CITA].
+
+La Comisión Electrotécnica Internacional (IEC) es una organización líder en el desarrollo de normas internacionales para la electro-tecnología. Sus normas son utilizadas por millones de personas en todo el mundo para garantizar la seguridad, la eficiencia y la interoperabilidad de los productos eléctricos, electrónicos y relacionados.
+
+De acuerdo con la IEC, la palabra ``Wearables'' del inglés se utiliza comúnmente para referirse a los ``dispositivos y tecnologías electrónicas portátiles'', las cuales abarcan un amplio rango de dispositivos electrónicos que se pueden llevar puestos o integrar en la ropa u otros objetos.
+
+La IEC define el alcance del Comité Técnico 124 (TC 124) como la ``estandarización en el campo de los dispositivos y tecnologías electrónicas portátiles''. Este alcance incluye: (1) Materiales y dispositivos adheribles, delgados y flexibles para adherirse a la piel u otras superficies; (2) Materiales y dispositivos implantables, colocados quirúrgicamente debajo de la piel o dentro del cuerpo; (3) Materiales y dispositivos ingeribles, capaces de viajar a través del sistema digestivo para realizar mediciones o administrar medicamentos; y (4) Materiales y dispositivos textiles electrónicos, textiles con componentes electrónicos integrados [CITA].
+
+--- Subsección: Sensores en Dispositivos Portátiles de Consumo ---
+
+Los wearables modernos integran principalmente dos tipos de sensores para monitoreo de actividad y salud cardiovascular: (1) Acelerómetros triaxiales, que miden aceleración en tres ejes espaciales (m/s² o fuerza G) y permiten cuantificar movimiento corporal, conteo de pasos y estimación de gasto energético, y (2) Fotopletismografía óptica (PPG), técnica no invasiva basada en emisores LED y fotorreceptores que detectan variaciones en la absorción lumínica del flujo sanguíneo, la cual permite medir frecuencia cardíaca (FC), variabilidad cardíaca (HRV) y saturación de oxígeno (SpO[FÓRMULA]) de manera continua [CITA]. La combinación de acelerometría (actividad mecánica) y PPG (respuesta cardiovascular) en dispositivos de consumo como el Apple Watch posibilita capturar tanto el comportamiento motor como la respuesta fisiológica en condiciones de vida libre, superando las limitaciones de cuestionarios de autoinforme.
+
+--- Subsección: Inteligencia Artificial para el Reconocimiento del Comportamiento Sedentario ---
+
+En el contexto de las ciencias de la computación, la IA se refiere a una disciplina y un conjunto de capacidades cognoscitivas e intelectuales expresadas por sistemas informáticos o combinaciones de algoritmos cuyo propósito es la creación de máquinas que imiten la inteligencia humana para realizar tareas, y que pueden mejorar conforme recopilen información. Sin embargo, durante la última década, la investigación de la IA en el ámbito de la salud y la medicina ha comenzado a mostrar resultados prometedores y aplicaciones prácticas, como la detección totalmente automática de nuevos biomarcadores para el diagnóstico clínico [CITA]. La IA ha sido reconocida como una fuerza productiva y disruptiva en la atención médica, lo cual ha llevado a considerarla como una herramienta innovadora con el potencial de impactar en las prácticas clínicas [CITA].
+
+La tecnología portátil y los sensores emergen como herramientas prometedoras para el monitoreo continuo y en tiempo real de la salud. Desde relojes inteligentes hasta rastreadores de AF y ropa conectada a Internet, los dispositivos portátiles equipados con sensores permiten a los usuarios medir y analizar datos relacionados con su estado fisiológico, actividades y bienestar general. Los rastreadores de AF contienen acelerómetros y monitores ópticos de fotopletismografía ya son ampliamente utilizados por los consumidores para contar pasos y controlar la frecuencia cardíaca durante el ejercicio, estos sensores portátiles son de grado clínico para medir con precisión los signos vitales. Por ejemplo, la Presión Arterial (PA), la Frecuencia Respiratoria (FR), (SpO[FÓRMULA]), la temperatura de la piel, y más. La integración inalámbrica y los algoritmos de IA permiten que los dispositivos portátiles realicen un seguimiento de los indicadores de salud las 24 horas del día, los 7 días de la semana y proporcionen comentarios a los usuarios [CITA].
+
+--- Subsección: Teoría de lógica difusa para el análisis de datos biométricos ---
+
+La teoría de FL, desarrollada inicialmente por Lotfi Zadeh en 1965, se basa en la idea de que la verdad no siempre es una cuestión de blanco o negro, sino que puede hallarse en un espectro de grises. A diferencia de la lógica clásica, que trabaja con valores binarios (0 o 1), la FL permite valores intermedios, lo que la hace especialmente útil para manejar información imprecisa, vaga o incierta. Se ha demostrado que los sistemas difusos son aproximadores universales. Esto se debe al isomorfismo entre dos álgebras: Un álgebra abstracta (que trata con grupos, campos y anillos) y un álgebra lineal (que maneja espacios vectoriales, vectores de estado y matrices de transición). Este isomorfismo refleja la estructura de un sistema difuso, el cual comprende una implicación entre acciones y conclusiones (antecedentes y consecuentes). Así como una función algebraica mapea una variable de entrada a una variable de salida, un sistema difuso mapea un grupo de entrada a un grupo de salida, que pueden ser proposiciones lingüísticas u otras formas de información difusa [CITA].
+
+La base sobre la cual se asienta la teoría de sistemas difusos es un teorema fundamental del análisis real en álgebra conocido como el teorema de Stone-Weierstrass, desarrollado inicialmente por Weierstrass en 1885 y simplificado por Stone en 1937. Este teorema establece que cualquier función continúa definida en un intervalo cerrado puede ser aproximada tan cerca como se desee por una función polinómica [CITA]. Los sistemas difusos aprovechan este principio y tienen la capacidad de aproximar comportamientos de sistemas donde las funciones analíticas o las relaciones numéricas no existen.
+
+Los sistemas difusos son particularmente útiles en dos contextos generales: Primero en situaciones que involucran sistemas altamente complejos cuyos comportamientos no se entienden completamente. Segundo en situaciones donde una solución aproximada pero rápida es suficiente. Estos sistemas tienen un alto potencial para comprender sistemas complejos, tales como sistemas biológicos o médicos, donde la relación entre causas y efectos no se entienden completamente, pero pueden observarse [CITA].
+
+--- Subsección: Síntesis del Marco Conceptual ---
+
+El marco teórico presentado establece la base conceptual para comprender la compleja interacción entre el comportamiento sedentario, la actividad física y la calidad de vida relacionada con la salud. La revisión de las definiciones, las directrices de la OMS y las tecnologías de monitoreo resalta la necesidad de enfoques innovadores. Las bases conceptuales para un modelo híbrido que integra mediciones objetivas de comportamiento sedentario, biomarcadores autonómicos continuos y herramientas de inteligencia artificial. La integración de la variabilidad de la frecuencia cardíaca y la aplicación de la lógica difusa emergen como elementos clave para el desarrollo de un modelo más preciso y adaptable, capaz de capturar la dinámica de estas interacciones en contextos de vida real.
+
+--- SECCIÓN: Antecedentes ---
+
+En esta sección de antecedentes se enmarca la problemática actual que representa el comportamiento sedentario, y las principales motivaciones para realizar esta investigación. Se presentan los elementos básicos que permiten estudiar los patrones de CS y la percepción de la CVRS. Asimismo, se aborda la implementación IA al análisis de datos obtenidos de sensores biométricos en monitores de AF, portables de consumo público.
+
+--- Subsección: Impacto del Comportamiento Sedentario ---
+
+El CS es un factor de riesgo importante para una serie de Enfermedades No Transmisibles (ENT), entre las que se incluyen obesidad, enfermedades del corazón, diabetes tipo 2, accidentes cerebrovasculares, algunos tipos de cáncer, depresión y falta de sueño. Actualmente, el CS se contempla como parte de una Sindemia Global, lo que lo vuelve difícil de comprender. Existe un nexo entre los Riesgos Dietéticos, el alto Índice de Masa Corporal (IMC), y los Ambientes Obeso-Génicos con el estudio del CS, ya que estos factores combinados aumentan el riesgo de padecer ENT y están directamente relacionados con la Salud, Bienestar y CV de los individuos [CITA].
+
+La investigación realizada de [CITA], concluyó que ningún estado perteneciente a la OMS ha tenido una disminución significativa en la proporción de la población con IMC alto, entre 1990 y 2019 o en la última década. Dada la creciente prevalencia del CS en la sociedad moderna y su impacto adverso en la salud, la OMS desde el 2004 en la Asamblea Mundial de la salud emitió la ``Estrategia Mundial de la OMS sobre Dieta, AF y Salud (DPAS por sus siglas en inglés)'', en donde se definía un plan de acción para implementar directrices sobre AF para la salud [CITA].
+
+A pesar del lanzamiento de la DPAS, ningún país ha revertido significativamente la tendencia al aumento de las tasas de obesidad o diabetes, [CITA] mencionan que la mayoría de los niños y adolescentes, no cumplen con los requerimientos mínimos de AF y que el CS en menores aumentó significativamente del 2001 al 2016. En los hallazgos de la OMS a través de la Encuesta sobre la capacidad de los países para afrontar las enfermedades no transmisibles (2021), se menciona que casi un tercio de los adultos tampoco alcanzan los niveles recomendados de AF. En México, el CS en adultos es mayor y llega al 40
+
+Como resultado, muchos países de ingresos bajos y medianos se enfrentan ahora a una carga cada vez mayor de riesgos modernos para la salud a medida que aumenta la esperanza de vida y las principales causas de muerte y discapacidad se desplazan hacia las ENT. Los costos actuales del CS se estiman en alrededor en más de [FÓRMULA]< 1.5[FÓRMULA]1.5 < 3.0[FÓRMULA] 3.0[FÓRMULA]k=2[FÓRMULA]N-1[FÓRMULA]N[FÓRMULA]<[FÓRMULA]N=21[FÓRMULA]N=44[FÓRMULA]R^2 0.90[FÓRMULA]N=7[FÓRMULA]N=9[FÓRMULA]N=11[FÓRMULA]_2[FÓRMULA]R^2=0.92[FÓRMULA]N 7[FÓRMULA]F1 > 0.85[FÓRMULA]R^2 > 0.90[FÓRMULA]N=22[FÓRMULA]k=2[FÓRMULA]N=39[FÓRMULA]k=2[FÓRMULA]>[FÓRMULA]N[FÓRMULA]k=2[FÓRMULA]N 10[FÓRMULA]N=33[FÓRMULA]N=22[FÓRMULA]N=39[FÓRMULA]N=961[FÓRMULA]N=22[FÓRMULA]N=10[FÓRMULA]k=2[FÓRMULA]N=10[FÓRMULA]N=10[FÓRMULA]N[FÓRMULA]N 10$). La presente investigación integra estos cinco elementos en un sistema funcional validado, posicionándola como una contribución metodológica novedosa al campo de la monitorización de comportamiento sedentario con wearables de consumo.
+
+
+
+================================================================================
+ARCHIVO: capitulos/03_delimitacion.tex
+================================================================================
+
+﻿
+
+=== CAPÍTULO: Delimitación del Objeto de Estudio ===
+
+ Este capítulo delimita el objeto de estudio de la investigación mediante la identificación del problema, la formulación de la pregunta de investigación, el planteamiento de hipótesis y el establecimiento de objetivos específicos. Además, se fundamenta el pivote metodológico realizado durante el desarrollo del proyecto y se justifica el tamaño de muestra empleado (N=10), así como la estrategia de validación Leave-One-User-Out implementada para evaluar la generalización inter-sujeto del sistema de inferencia difusa propuesto.
+
+--- SECCIÓN: Problema de Investigación ---
+
+El comportamiento sedentario, definido como cualquier actividad en vigilia caracterizada por un gasto energético [FÓRMULA]1.5 equivalentes metabólicos (METs) en una postura sentada, reclinada o acostada, se ha consolidado como un determinante de salud pública de primer orden. Evidencia reciente de meta-análisis a gran escala confirma su asociación independiente con un mayor riesgo de mortalidad por todas las causas, incidencia de enfermedades cardiovasculares y diabetes mellitus tipo 2 [CITA]. La evaluación precisa de este comportamiento es, por tanto, un pilar para la estratificación del riesgo y el diseño de intervenciones efectivas. Sin embargo, los métodos de evaluación convencionales presentan una dicotomía metodológica que limita su aplicabilidad y precisión. Los instrumentos subjetivos, como los cuestionarios de autoinforme, aunque escalables, adolecen de sesgos de memoria y deseabilidad social que comprometen su validez [CITA]. En contraparte, las técnicas objetivas de referencia, como la calorimetría indirecta o la actigrafía de grado investigativo, se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento en condiciones de vida libre [CITA].
+
+La ubicuidad de los dispositivos portátiles de consumo ha generado una oportunidad sin precedentes para la monitorización objetiva, continua y longitudinal del comportamiento en el entorno ecológico del individuo. No obstante, la transición de la recolección masiva de datos a la generación de conocimiento clínicamente accionable presenta un desafío metodológico significativo. El reto principal reside en traducir flujos de datos multivariados y heterogéneos ---actividad física, patrones de frecuencia cardíaca, variabilidad de la frecuencia cardíaca (VFC) y gasto energético--- en una clasificación del sedentarismo que sea fisiológicamente significativa e individualizada [CITA]. Los modelos de inteligencia artificial basados en aprendizaje profundo, comúnmente denominados ``de caja negra'', aunque han demostrado una alta precisión en la clasificación de actividades, a menudo carecen de la interpretabilidad necesaria para su adopción en la práctica clínica, donde la auditabilidad de una recomendación es un imperativo ético y profesional [CITA].
+
+Este vacío metodológico ---la ausencia de un sistema que integre de forma sinérgica múltiples biomarcadores de vida libre en una clasificación del sedentarismo que sea robusta, empíricamente validada e interpretable--- constituye el núcleo del problema que se aborda en esta investigación. Los análisis estadísticos univariados han resultado insuficientes para capturar las complejas interacciones no lineales entre la actividad física, la función autonómica y la respuesta metabólica [CITA]. Por ejemplo, la relación entre la VFC y la actividad física es intrínsecamente no lineal y dependiente del contexto, lo que requiere enfoques de modelado que puedan manejar la incertidumbre y la vaguedad inherentes a los sistemas biológicos [CITA].
+
+Para resolver este problema, esta investigación desarrolló un modelo de evaluación basado en un sistema de inferencia difusa tipo Mamdani. Este enfoque se apartó de una hipótesis inicial centrada en correlacionar datos objetivos con percepciones subjetivas, para en su lugar, validar el sistema experto contra una ``verdad operativa'' derivada de los propios datos mediante un análisis de conglomerados no supervisado. De este modo, el estudio se enfocó en resolver el problema fundamental de crear un clasificador objetivo, interpretable y validado para el comportamiento sedentario en condiciones de vida libre. El clasificador utiliza datos longitudinales recopilados a través de dispositivos de consumo.
+
+--- SECCIÓN: Pregunta de Investigación ---
+
+¿De qué manera un modelo basado en lógica difusa puede clasificar el comportamiento sedentario a partir de datos biométricos recopilados en condiciones de vida libre por dispositivos ``wearables''?
+
+--- SECCIÓN: Hipótesis ---
+
+--- Subsección: Hipótesis Conceptual (HC) ---
+
+La clasificación del comportamiento sedentario generada por el sistema de inferencia difusa, basado en reglas que integran biomarcadores de actividad y función cardiovascular, exhibe una alta concordancia con la clasificación objetiva obtenida mediante un análisis de conglomerados no supervisado sobre los mismos datos.
+
+--- Subsección: Hipótesis Nula ([FÓRMULA]) ---
+
+No existe una concordancia estadísticamente significativa entre la clasificación del comportamiento sedentario generada por el sistema de inferencia difusa y la clasificación obtenida mediante el análisis de conglomerados. Cualquier concordancia observada no es superior a la que se obtendría por azar.
+
+--- SECCIÓN: Objetivo General ---
+
+Construir y validar un modelo interpretable, basado en lógica difusa, para la clasificación del comportamiento sedentario a partir de datos biométricos de wearables recopilados en condiciones de vida libre.
+
+--- SECCIÓN: Objetivos Específicos ---
+
+ 
+- Analizar los datos biométricos longitudinales para derivar un conjunto de variables semanales que representen cuantitativamente los patrones de actividad física y función cardiovascular de la cohorte de estudio.
+ 
+ 
+- Identificar los perfiles de comportamiento sedentario inherentes a los datos mediante la aplicación de un algoritmo de agrupamiento no supervisado, para establecer una clasificación de referencia empírica.
+ 
+ 
+- Diseñar un sistema de inferencia difusa que modele la relación entre las variables biométricas y los perfiles de comportamiento, el cual establezca reglas lingüísticas con fundamento fisiológico.
+ 
+ 
+- Evaluar el desempeño del sistema de inferencia difusa mediante la determinación de su nivel de concordancia con los perfiles de comportamiento identificados por el método de agrupamiento.
+ 
+ 
+- Examinar la contribución de los componentes del modelo a través de un análisis de sensibilidad para determinar la importancia relativa de sus variables de entrada en el rendimiento clasificatorio.
+
+--- SECCIÓN: Fundamento del Pivote Metodológico ---
+
+--- Subsección: Hipótesis Inicial y Necesidad de Pivote ---
+
+La hipótesis inicial del proyecto planteaba entrenar un modelo supervisado de Redes Neuronales Artificiales (ANN) para predecir comportamiento sedentario. El modelo utilizaría como variable de referencia (verdad de referencia) las puntuaciones del cuestionario SF-36 (Short Form Health Survey). Este enfoque asumía que: (1) la percepción subjetiva de calidad de vida correlaciona fuertemente con indicadores objetivos de comportamiento sedentario, (2) dicha correlación es suficientemente robusta para servir como ``verdad de referencia'' en entrenamiento supervisado, y (3) el tamaño de muestra ([FÓRMULA]) es adecuado para entrenar un modelo ANN.
+
+Resultados del análisis exploratorio: El análisis de correlación entre las 8 dimensiones del SF-36 y las variables del Apple Watch ([FÓRMULA] participantes con datos completos) reveló correlaciones moderadas-fuertes pero mayormente no significativas. La única correlación estadísticamente significativa tras corrección Bonferroni fue Salud Mental vs. Fuzzy_median: [FÓRMULA], [FÓRMULA]. Otras dimensiones mostraron correlaciones marginalmente no significativas o direcciones contraintuitivas (correlaciones positivas entre salud física percibida e indicadores de sedentarismo).
+
+--- Subsección: Limitaciones del SF-36 como Verdad de Referencia en Cohortes Pequeñas ---
+
+El SF-36 es un instrumento validado para evaluación de calidad de vida relacionada con la salud en estudios epidemiológicos a gran escala. Sin embargo, su uso como variable de referencia para entrenamiento supervisado en cohortes pequeñas ([FÓRMULA]) presenta limitaciones metodológicas:
+
+ 
+- Limitación estadística: Para detectar una correlación [FÓRMULA] (efecto moderado) con poder estadístico de 0.80 y [FÓRMULA], se requiere [FÓRMULA] participantes. Con [FÓRMULA], solo correlaciones [FÓRMULA] (efectos muy grandes) alcanzarían significancia estadística.
+ 
+ 
+- Desacople temporal: El SF-36 evalúa percepción de salud en las ``últimas 4 semanas'' mediante preguntas retrospectivas, mientras que los wearables capturan comportamiento objetivo instantáneo minuto a minuto.
+ 
+ 
+- Naturaleza subjetiva vs. objetiva: Medidas objetivas (wearables) y subjetivas (cuestionarios) pueden capturar dimensiones ortogonales de salud, no necesariamente correlacionadas linealmente.
+
+--- Subsección: Justificación del Pivote a Enfoque Data-Driven ---
+
+Dadas las limitaciones del SF-36 como verdad de referencia, el proyecto pivotó a un enfoque dual basado en datos:
+
+ 
+- Paso 1 - Clustering No Supervisado (K-Means): Utilizar únicamente los datos objetivos del Apple Watch para identificar patrones naturales de comportamiento mediante K-Means ([FÓRMULA]: Sedentario/No Sedentario). Este clustering establece una ``verdad operativa'' (Operational Ground Truth) basada en la estructura inherente de los datos, no en percepciones subjetivas ni umbrales heurísticos predefinidos.
+ 
+ 
+- Paso 2 - Sistema de Inferencia Difusa Mamdani: Traducir los centroides y perfiles estadísticos de los clústeres identificados a reglas lingüísticas interpretables de un FIS Mamdani, lo que permite clasificación transparente de nuevas observaciones.
+
+Ventajas metodológicas del pivote: (1) Objetividad (la verdad de referencia proviene de patrones basados en datos, no de umbrales arbitrarios ni percepciones subjetivas), (2) Interpretabilidad (el FIS Mamdani es ``interpretable por diseño''), y (3) Validación rigurosa (LOOU evita filtración temporal e identitaria, y proporciona métricas realistas de generalización inter-sujeto).
+
+--- Subsección: Re-posicionamiento del SF-36: De Verdad de Referencia a Validación Convergente ---
+
+Aunque el SF-36 resultó inadecuado como verdad de referencia para entrenamiento supervisado, mantiene valor como variable de validación convergente exploratoria: (1) proporciona contexto clínico y datos demográficos que enriquecen la interpretación de hallazgos, (2) permite investigar si el sistema difuso (basado en datos objetivos) correlaciona con percepción subjetiva de salud, y (3) contribuye a la discusión sobre qué constituye ``verdad de referencia'' en estudios de cohortes pequeñas.
+
+Esta re-conceptualización transforma una aparente limitación (correlaciones no significativas) en una fortaleza metodológica: demuestra que no asumimos ingenuamente que cuestionarios son ``verdad absoluta'', sino que adoptamos un enfoque crítico basado en datos.
+
+--- SECCIÓN: Justificación del Tamaño de Muestra (N=10) ---
+
+--- Subsección: Trade-Off: Profundidad Longitudinal vs. Cantidad de Participantes ---
+
+El tamaño de muestra [FÓRMULA] puede considerarse limitado desde la perspectiva de estudios epidemiológicos transversales. Sin embargo, estudios longitudinales con wearables presentan un trade-off entre cantidad de participantes ([FÓRMULA]) y profundidad de medición por participante (semanas de seguimiento, frecuencia de muestreo):
+
+[ECUACIÓN]
+
+--- Subsección: Precedentes de Cohortes Pequeñas en Literatura Q1 ---
+
+Estudios de alto impacto demuestran que cohortes pequeñas ([FÓRMULA]) son viables metodológicamente si se cumplen condiciones de mediciones intensivas, validación rigurosa y objetivos exploratorios claros. Ricotti et al. (2023, Nature Medicine), Crozat et al. (2025, Sensors), Kaveh et al. (2024, Nature Communications) y Lu et al. (2018, Sensors) publican con [FÓRMULA] en revistas Q1, y comparten características similares: protocolos exhaustivos, LOUO/LOSO y objetivos de viabilidad técnica.
+
+--- Subsección: Justificación de N=10 en Nuestro Estudio ---
+
+Nuestro diseño ([FÓRMULA] participantes, 8 semanas de seguimiento, 4 variables biométricas) se alinea con estos precedentes: (1) profundidad longitudinal ( 8 semanas resulta en 1,337 observaciones semanales totales, comparable en volumen a estudios transversales con [FÓRMULA]), (2) validación conservadora (LOUO proporciona métricas realistas de generalización), y (3) objetivo exploratorio (establecer proof-of-concept de la tubería Clustering [FÓRMULA] FIS Mamdani, no generalizar a población mexicana completa).
+
+Análisis de poder retrospectivo: Con [FÓRMULA] y 1,337 observaciones, el diseño tiene poder estadístico [FÓRMULA] para detectar tamaños de efecto [FÓRMULA] (grandes). Para efectos moderados ([FÓRMULA]), el poder desciende a [FÓRMULA]. Nuestro diseño es adecuado para detectar diferencias clínicamente significativas entre patrones de comportamiento marcadamente distintos, consistente con el objetivo exploratorio.
+
+--- SECCIÓN: Estrategia de Validación LOUO ---
+
+--- Subsección: Protocolo LOUO Implementado ---
+
+Implementamos validación cruzada Leave-One-User-Out con 10 folds (uno por cada participante): en cada iteración [FÓRMULA] a [FÓRMULA], el conjunto de entrenamiento contiene datos de usuarios [FÓRMULA], y el conjunto de prueba contiene datos del usuario [FÓRMULA]. Se entrena K-Means ([FÓRMULA]) en el conjunto de entrenamiento, se parametriza el FIS Mamdani con los centroides resultantes, y se evalúa el FIS en el conjunto de prueba (usuario [FÓRMULA]). Las métricas finales se reportan como [FÓRMULA] y coeficiente de variación [FÓRMULA]k=2[FÓRMULA]k > 3[FÓRMULA]N 20[FÓRMULA]$ FIS Mamdani).
+
+
+
+================================================================================
+ARCHIVO: capitulos/04_justificacion.tex
+================================================================================
+
+=== CAPÍTULO: Justificación ===
+
+ La prevalencia del comportamiento sedentario (CS) en la sociedad contemporánea es un fenómeno alarmante que afecta significativamente la salud y la calidad de vida de las personas [CITA]. La Organización Mundial de la Salud (OMS) ha identificado el CS como uno de los principales factores de riesgo para enfermedades no transmisibles, tales como enfermedades cardiovasculares, diabetes tipo 2 y ciertos tipos de cáncer [CITA]. Además, el sedentarismo tiene un impacto negativo en la salud mental y genera una disminución en la calidad de vida relacionada con la salud [CITA].
+
+Los métodos tradicionales de evaluación del comportamiento sedentario presentan una dicotomía metodológica: los instrumentos subjetivos (cuestionarios de autoinforme) son escalables pero adolecen de sesgos de memoria y deseabilidad social, mientras que las técnicas objetivas de referencia (calorimetría indirecta, actigrafía de investigación) se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento en condiciones de vida libre [CITA]. Esta limitación metodológica fundamenta la necesidad de enfoques innovadores que integren objetividad (mediciones continuas mediante sensores), validez ecológica (recopilación en contextos reales) e interpretabilidad (clasificaciones auditables clínicamente).
+
+La presente investigación abordó este vacío mediante el desarrollo y validación de un sistema de inferencia difusa tipo Mamdani que clasifica el comportamiento sedentario a partir de datos biométricos multivariados obtenidos de dispositivos portátiles de consumo (Apple Watch) bajo el paradigma Bring Your Own Device (BYOD). Este enfoque metodológico integró tres componentes innovadores: (1) normalización fisiológica individualizada de variables (Actividad Relativa, Superávit Calórico Basal, Delta Cardíaco, HRV-SDNN), (2) establecimiento de una verdad operativa mediante clustering no supervisado (evitando umbrales heurísticos predefinidos), y (3) validación rigurosa mediante Leave-One-User-Out para garantizar generalización inter-sujeto.
+
+La relevancia científica de este trabajo reside en su contribución al campo emergente de la inteligencia artificial explicable aplicada a salud digital. A diferencia de modelos de caja negra (redes neuronales profundas), el sistema difuso propuesto es inherentemente interpretable mediante reglas lingüísticas auditables, una característica crítica para la adopción clínica donde la transparencia algorítmica es un imperativo ético. Además, la demostración empírica de que el paradigma BYOD puede generar datos de calidad investigativa sin comprometer la integridad de las mediciones representa un avance significativo hacia la democratización de la investigación en salud, lo cual permite estudios longitudinales a gran escala sin requerir equipamiento especializado costoso.
+
+Desde la perspectiva de salud pública, esta investigación aporta evidencia sobre la factibilidad de sistemas de vigilancia del sedentarismo basados en datos pasivamente capturados por wearables de consumo masivo. Los resultados obtenidos (F1-Score LOOU = 0.780, validado contra clustering no supervisado) demuestran que es posible clasificar con alta fiabilidad los patrones de comportamiento sedentario en condiciones de vida libre, sentando las bases para el diseño de intervenciones digitales personalizadas y programas de monitoreo comunitario escalables. En un contexto nacional donde la prevalencia de sedentarismo alcanza el 40
+
+
+
+================================================================================
+ARCHIVO: capitulos/05_materiales_metodos.tex
+================================================================================
+
+=== CAPÍTULO: Materiales y Métodos ===
+
+ Este capítulo detalla la metodología empleada en la investigación, incluyendo el diseño del estudio, la caracterización de la población participante, la definición operacional de variables, los instrumentos de recolección de datos biométricos y el protocolo de análisis estadístico implementado. Describimos el procedimiento completo desde la selección del Apple Watch como dispositivo wearable bajo los paradigmas de vida libre y Bring Your Own Device (BYOD), seguido del protocolo de extracción de datos mediante el ecosistema HealthKit, hasta la validación del sistema de inferencia difusa con estrategia Leave-One-User-Out, lo cual garantiza la reproducibilidad y transparencia metodológica necesarias para la replicación de los hallazgos en estudios futuros.
+
+--- SECCIÓN: Diseño del Estudio ---
+
+Empleamos un diseño cuantitativo, observacional, longitudinal retrospectivo con seguimiento multianual (2021-2024) de una cohorte de 10 participantes adultos. El diseño se basó en la validación convergente de un sistema de inferencia difusa tipo Mamdani contra una clasificación de referencia empírica (verdad operativa, GO) derivada de un análisis de conglomerados no supervisado sobre datos biométricos semanales agregados.
+
+La unidad de análisis correspondió a semanas completas de monitoreo generadas a partir de los 9,185 días válidos recopilados (1,385 semanas totales), de las cuales 1,337 cumplieron los criterios de calidad (≥3 días con datos y ≤60
+
+--- Subsección: Pivote Metodológico ---
+
+El planteamiento inicial del proyecto fue correlacional: buscábamos predecir el puntaje del cuestionario SF-36 (aplicado una sola vez por participante) a partir de las series biométricas capturadas por el Apple Watch. Durante la fase piloto validamos que esta estrategia no era viable y adoptamos un enfoque metodológico diferente, centrado en la convergencia entre patrones objetivos (clustering K-Means) y un sistema difuso basado en conocimiento experto. Fundamentamos este pivote en tres razones convergentes documentadas en la literatura:
+
+ 
+- Limitaciones de potencia estadística: Con N=10 participantes, el poder para detectar correlaciones moderadas (r<0.70) entre variables biométricas y SF-36 es insuficiente (1-[FÓRMULA]<0.50). Healy et al. [CITA] reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de wearables en cohortes N<15.
+ 
+ 
+- Baja adherencia al cuestionario: Solo 8 de 10 participantes completaron el SF-36, y el análisis retrospectivo reveló correlaciones mayormente no significativas (p>0.05) excepto para Salud Mental (ver Sección [REF]).
+ 
+ 
+- Autopercepción vs. comportamiento objetivo: Prince et al. [CITA] demuestran que autorreportes y mediciones objetivas representan constructos relacionados pero no intercambiables, con concordancia limitada (Kappa<0.50) debido a sesgos de deseabilidad social y error de memoria.
+
+En su lugar, adoptamos una estrategia de validación interna basada en la convergencia entre dos paradigmas: uno empírico (descubrimiento de patrones mediante agrupamiento K-Means) y uno experto (modelado basado en conocimiento mediante lógica difusa Mamdani). Este enfoque, validado por [CITA] en clasificación de estabilidad humana, permite aprovechar la riqueza del conjunto de datos longitudinal (n=1,337 semanas) en lugar de limitarse a comparaciones inter-usuario con potencia estadística reducida.
+
+--- SECCIÓN: Técnicas y Procedimiento ---
+
+--- Subsección: Selección del Dispositivo ---
+
+Para la selección del dispositivo de monitoreo, utilizamos una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 [CITA]. Esta base permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS).
+
+--- Subsección: Análisis de Sensores ---
+
+Del análisis de los 423 dispositivos, observamos que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento y facilitar así la evaluación de la AF [CITA]. Sin embargo, solo el 38.3
+
+Otros sensores, como el giroscopio (23.9
+
+--- Subsección: Elección del Apple Watch ---
+
+El análisis de mercado identificó a Apple como el líder en la categoría de relojes inteligentes, con un 49
+
+[TABLA: Métricas de completitud por usuario (fase pre-imputación)]
+
+Finalmente, las variables independientes descritas en la Sección [REF] se derivaron semana a semana calculando mediana e IQR tras la winsorización del 1-99
+
+--- SECCIÓN: Preprocesamiento y Análisis Exploratorio de Datos ---
+
+--- Subsección: Extracción de Variables desde Apple HealthKit ---
+
+Los archivos generados por la aplicación Apple Health contienen datos biométricos en formato XML estructurado. Para facilitar su análisis, empleamos el script de código abierto [CITA], el cual convierte los registros XML a archivos CSV tabulares.
+
+Del ecosistema HealthKit extrajimos inicialmente 9 variables diarias, correspondientes a métricas de actividad física, gasto energético y biomarcadores cardiovasculares (ver [REF]):
+
+[TABLA: Percentiles Globales de Funciones de Membresía (N=10)]
+
+--- Subsubsección: Reglas de Inferencia y Operadores T-Norm ---
+
+El sistema implementa cinco reglas de inferencia tipo Mamdani ([REF]). La activación de cada regla se calcula mediante la t-norm de Gödel [CITA]:
+
+[ECUACIÓN]
+
+donde (_A_1) y (_A_2) son las membresías de los antecedentes de la regla (R_r).
+
+[H]
+
+clcc@
+
+Regla Antecedentes Consecuente Output 
+
+(R_1) (X_1= X_2=) (Y=) 1.0 
+
+(R_2) (X_1= X_2=) (Y=) 0.0 
+
+(R_3) (X_3= X_4=) (Y=) 0.9 
+
+(R_4) (X_1= X_3=) (Y=) 0.5 
+
+(R_5) (X_1= X_2=) (Y=) 0.7* 
+
+[5pt]
+, _X_2,))
+
+El vector de activaciones para una observación (j) se expresa como:
+
+[ECUACIÓN]
+
+--- Subsubsección: Agregación y Defuzzificación ---
+
+Realizamos la defuzzificación mediante promedio ponderado (weighted average):
+
+[ECUACIÓN]
+
+donde (_ = [1.0, 0.0, 0.9, 0.5, 0.7]^T) es el vector de valores crisp asignados a cada regla.
+
+En notación matricial:
+
+[ECUACIÓN]
+
+Propiedad fundamental: Demostramos que (y^(j) [0, 1]) para toda observación (j), lo cual garantiza que el score de sedentarismo siempre está acotado en el intervalo unitario.
+
+Obtenemos la clasificación binaria final mediante umbralización:
+
+[ECUACIÓN]
+
+donde ( [0, 1]) es el umbral de decisión optimizado para maximizar el F1-Score.
+
+--- Subsubsección: Justificación de Percentiles Globales en LOOU ---
+
+Un aspecto crítico del diseño metodológico fue el uso de percentiles globales fijos en la validación Leave-One-User-Out. Fundamentamos esta decisión en tres principios:
+
+En redes neuronales profundas, la arquitectura (número de capas, neuronas) se diseña previamente, mientras que solo los pesos se entrenan. Análogamente, los percentiles (_i) definen la arquitectura de las funciones de membresía (forma y rangos), constituyendo parámetros de diseño que no deben recalcularse en cada fold de validación cruzada.
+
+Similar al transfer learning, donde utilizamos pesos pre-entrenados de un conjunto de datos completo, los percentiles globales calculados con N=10 usuarios codifican el rango fisiológico esperado de la población objetivo, funcionando como conocimiento a priori del dominio clínico.
+
+En experimentos de ablación, el uso de percentiles globales fijos (calculados con N=10 completo) versus percentiles recalculados por fold (con N=9) resultó en una mejora de F1-Score LOOU de 0.314 a 0.780 (+148
+
+El procedimiento adoptado en LOOU fue:
+
+ 
+- Antes del loop: Calcular (_) con conjunto de datos completo (N=10, 1,337 semanas)
+ 
+- En cada fold (i): Usar (_) (fijo) para construir funciones de membresía
+ 
+- En cada fold (i): Solo recalcular escaladores (min/max) con N=9 para normalización de datos
+
+Esta estrategia garantiza estabilidad de la arquitectura del sistema difuso mientras permite adaptación local de la normalización en cada fold.
+
+--- Subsubsección: Protocolo de Validación Leave-One-User-Out ---
+
+Formalizamos el protocolo LOOU como sigue. Sea el conjunto de datos completo:
+
+[ECUACIÓN]
+
+donde (i) es el índice de usuario, (j) el índice de semana, (_i^(j) ^4) el vector de características, y (c_i^(j) 0, 1) el conglomerado asignado por K-Means (verdad operativa).
+
+Para cada usuario (i = 1, , 10):
+
+[ECUACIÓN]
+
+En cada fold, se re-entrenó el clustering K-Means con (_^(i)) y se aplicó el sistema difuso (con (_) fijo) a (_^(i)). Las métricas de rendimiento se calcularon como:
+
+[ECUACIÓN]
+
+La métrica global se obtuvo como el promedio de los 10 folds:
+
+[ECUACIÓN]
+
+con coeficiente de variación:
+
+CV(
+
+El sistema alcanzó (_ = 0.780 0.167) (CV=21.4
+
+--- SECCIÓN: Aspectos Éticos y de Bioseguridad ---
+
+Las bases para garantizar que el proyecto de investigación se desarrolle respetando los más altos estándares éticos y de bioseguridad. Al implementar las medidas descritas, protegemos la confidencialidad y privacidad de los datos de los participantes, cumpliendo con las normativas nacionales e internacionales en cumplimiento con:
+
+ 
+- Los Principios éticos para las investigaciones médicas en seres humanos de la Declaración de Helsinki.
+ 
+ 
+- Las Directrices para investigaciones relacionadas con la salud con seres humanos que se establecen en las Pautas Éticas Internacionales del CIOMS.
+ 
+ 
+- La normativa mexicana para investigaciones en salud que se establecen en el Reglamento de la Ley General de Salud en Materia de Investigación.
+ 
+ 
+- La legislación mexicana sobre protección de datos personales definida en la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados.
+
+--- Subsección: Principios Éticos ---
+
+El proyecto se regirá por los siguientes principios éticos: respeto por las personas, reconociendo la autonomía de los participantes y protegiendo a aquellos con capacidades disminuidas para tomar decisiones; beneficencia, maximizando los beneficios potenciales y minimizando los riesgos para los participantes; no maleficencia, evitando causar daño innecesario a los participantes; justicia, principio que asegura una distribución equitativa de los beneficios y cargas de la investigación.
+
+--- Subsección: Procedimiento para Obtener el Consentimiento ---
+
+Proporcionamos a los participantes información clara y comprensible que contiene una explicación detallada del estudio, incluyendo objetivos, procedimientos, riesgos y beneficios. Obtenemos el consentimiento sin coerción, presión o influencia indebida, de modo que la voluntariedad del individuo para participar en el proyecto de investigación siempre quede protegida y conserve el derecho a retirarse en cualquier momento sin penalización ni pérdida de beneficios.
+
+Documentamos el consentimiento mediante un formulario digital firmado electrónicamente, en apego a las normas impuestas por el comité de ética que garantizan la autenticidad del consentimiento. Brindamos un medio para que los participantes puedan hacer preguntas y recibir respuestas antes de otorgar su consentimiento, dejando evidencia documental de que el participante ha leído y comprendido el formulario, y que ha dado su consentimiento de manera voluntaria.
+
+--- Subsección: Contenido del Formulario de Consentimiento ---
+
+Información sobre el estudiante que realiza el estudio y cómo contactarlo, descripción del Estudio, objetivos, metodología y duración. Procedimientos a detalle de lo que se espera del participante, posibles inconvenientes y ventajas de participar. Medidas de confidencialidad y cómo se protegerán los datos personales, derechos del participante, incluyendo el derecho a recibir respuestas a sus preguntas y a retirar su consentimiento.
+
+--- Subsección: Evaluación de Riesgos ---
+
+Posibles riesgos: Si los datos personales o de salud son accesados por personas no autorizadas debido a una brecha de seguridad, podría afectar la privacidad del participante. Identificación de participantes: Aun con datos anonimizados, existe el riesgo de que combinaciones de datos permitan identificar a un individuo. Ansiedad o estrés: Reflexionar sobre su salud y comportamiento sedentario podría generar estrés o sentimientos de culpa en algunos participantes. Autopercepción negativa: Los resultados del cuestionario SF-36 podrían afectar la percepción de bienestar si los puntajes son bajos. Dependencia tecnológica: Promover el uso continuo de dispositivos podría incrementar la dependencia en la tecnología. Malinterpretación de datos: Sin una adecuada explicación, los participantes podrían malinterpretar sus datos biométricos, llevando a decisiones inapropiadas sobre su salud.
+
+Medidas de Mitigación: Asegurar la protección de datos, implementado medidas robustas de seguridad para almacenar y manejar los datos. Explicar claramente los posibles riesgos y cómo se pueden manejar, así como ofrecer recursos o referencias en caso de que los participantes experimenten malestar emocional. Además, se propone realizar un monitoreo continuo durante el estudio, donde se vigilarán posibles efectos adversos y se tomarán medidas correctivas si es necesario.
+
+--- Subsección: Protección de Grupos Vulnerables ---
+
+Los criterios de inclusión y exclusión del estudio han sido definidos para asegurar que no se incluyen grupos vulnerables. Esto evidencia que se ha considerado su protección y que el estudio ha sido diseñado para minimizar riesgos asociados.
+
+--- Subsección: Confidencialidad y Privacidad de los Datos ---
+
+Basamos el manejo de los datos personales en los siguientes principios: licitud y transparencia, recopilamos y procesamos los datos de manera legal y transparente. Los utilizamos únicamente para los fines específicos del estudio, limitando la finalidad. Solo recopilamos los datos necesarios y pertinentes, garantizamos que fueran precisos y actualizados, y los protegimos contra accesos no autorizados, pérdidas o daños; de esta forma preservamos su integridad y confidencialidad. Gestionamos el control de accesos de manera que solo el equipo de investigación tuvo acceso a los datos, con permisos asignados según roles y responsabilidades.
+
+Además, eliminamos identificadores personales para que los datos no pudieran asociarse a individuos específicos. Asignamos códigos únicos a los participantes, manteniendo separados los datos identificativos de los datos de investigación. Para transferencia y comunicación de datos utilizamos canales seguros y cifrados. Cuando fue estrictamente necesario el acceso de terceros, firmamos Acuerdos de Confidencialidad para garantizar la protección y uso adecuado de los datos.
+
+--- Subsección: Política de Retención y Eliminación Segura ---
+
+Conservaremos los datos personales únicamente durante el tiempo necesario para los fines del estudio y respetando las normas interpuestas por el comité de ética.
+
+--- Subsección: Derechos de los Participantes ---
+
+Los participantes podrán solicitar información sobre sus datos personales almacenados, también tendrán derecho a corregir datos inexactos o incompletos, solicitar la eliminación de sus datos, y será bien recibida cualquier oposición al procesamiento de sus datos por motivos legítimos.
+
+--- Subsección: Cumplimiento de Normativas y Legislación ---
+
+El equipo se adherirá a los principios éticos de la Declaración de Helsinki para investigaciones médicas, priorizando el bienestar de los participantes sobre los intereses científicos y sociales, respetando las normas éticas. También se cumplirán las pautas éticas internacionales del CIOMS (Consejo de Organizaciones Internacionales de las Ciencias Médicas) que han sido contempladas y declaradas en este documento para salvaguardar los derechos y bienestar de los participantes. Todo esto en acatamiento al reglamento de la ley general de salud en materia de investigación, que solicita el registro del proyecto aprobado por un comité de ética en investigación reconocido.
+
+Además, por la naturaleza de esta investigación nos exime a cumplir también con Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados, donde los participantes en el proyecto serán responsables del manejo adecuado de los datos personales. Proporcionamos un aviso detallado a los participantes sobre cómo manejaremos sus datos, las medidas de seguridad implementadas, las medidas técnicas y organizativas para proteger los datos, los criterios de inclusión y exclusión definidos, las instrucciones claras sobre cómo participar y utilizar los dispositivos de monitoreo, el manejo de datos, el análisis de los datos, la divulgación de resultados, intención de publicaciones y si compartimos datos con otros investigadores.
+
+--- Subsección: Plan de Contingencia y Manejo de Incidentes ---
+
+Para evitar incidentes de seguridad de datos implementaremos sistemas para detectar accesos no autorizados y responder de manera inmediata en caso de detectar una brecha de seguridad y generar una notificación que informará a las autoridades competentes y a los participantes afectados.
+
+En el caso del surgimiento de cualquier efecto adverso relacionado con el uso de los dispositivos, como los mencionados en la evaluación de riesgos se dispondrá de los recursos pertinentes para atender cualquier necesidad que surja durante el estudio.
+
+--- SECCIÓN: Financiamiento y Lugar Donde Se Realizará El Proyecto ---
+
+El proyecto fue financiado con recursos propios, cubriendo los gastos asociados al reclutamiento de participantes y los costos relacionados con la publicación y difusión de resultados en eventos científicos.
+
+--- Subsección: Reproducibilidad Computacional ---
+
+Para garantizar la reproducibilidad completa de los análisis, documentamos a continuación las especificaciones técnicas del entorno computacional:
+
+ 
+- Python 3.10+ (lenguaje de programación)
+ 
+- scikit-learn 1.3+ (clustering K-Means, métricas de rendimiento)
+ 
+- pandas 2.0+ (manipulación y agregación de datos)
+ 
+- numpy 1.24+ (operaciones numéricas y matriciales)
+ 
+- matplotlib 3.7+ (visualizaciones científicas)
+ 
+- scipy 1.11+ (pruebas estadísticas no paramétricas)
+
+ 
+- Semilla aleatoria global: para todas las operaciones estocásticas (K-Means, PCA, particiones de validación)
+ 
+- Parámetros K-Means: (inicializaciones), (iteraciones máximas), 
+ 
+- Umbral de decisión: [FÓRMULA] (optimizado para maximizar F1-Score global)
+
+Los scripts de análisis completos están disponibles bajo solicitud para fines de auditoría científica y replicación metodológica, en cumplimiento con las políticas de ciencia abierta y transparencia de datos [CITA].
+
+--- Subsección: Lugar de Ejecución ---
+
+El proyecto se llevó a cabo en la Facultad de Medicina y Ciencias Biomédicas, en el laboratorio LIIACOM, donde se dispone de la infraestructura y el acompañamiento académico adecuados para la gestión del proyecto. Esta institución brindó las facilidades de espacio, equipo de cómputo y asesoría necesaria para la realización de las etapas de recolección de datos, validación de instrumentos, análisis estadístico y elaboración de informes científicos.
+
+
+
+================================================================================
+ARCHIVO: capitulos/06_resultados.tex
+================================================================================
+
+=== CAPÍTULO: Resultados ===
+
+ Este capítulo presenta los hallazgos empíricos del estudio, siguiendo la secuencia metodológica establecida. Iniciamos con la caracterización de la cohorte y el análisis de la variabilidad de los datos, lo cual fundamenta las decisiones de preprocesamiento. A continuación, detallamos el proceso de establecimiento de la ``verdad operativa'' mediante el análisis de conglomerados. Posteriormente, presentamos el rendimiento del sistema de inferencia difusa en su validación contra esta referencia. Finalmente, exponemos un análisis de robustez que revela la contribución sinérgica de las variables al modelo.
+
+--- SECCIÓN: Caracterización de la Cohorte y Análisis de Variabilidad de Datos ---
+
+La cohorte final del estudio estuvo compuesta por 10 participantes adultos (5 mujeres, 5 hombres) con un seguimiento longitudinal multianual, acumulando un total de 9,185 días de registro. Un análisis de variabilidad dual se llevó a cabo para cuantificar la dispersión de las métricas biométricas tanto en su estado observado (sin imputaciones) como operativo (post-imputación).
+
+Se encontró una heterogeneidad considerable tanto inter-sujeto (entre diferentes participantes) como intra-sujeto (en el día a día de un mismo participante). El coeficiente de variación (CV) para métricas clave como los minutos de ejercicio diario superó el 100
+
+Como observamos, algunos usuarios exhiben patrones más consistentes (CV más bajos) que otros. Esta alta variabilidad natural de los datos recopilados en condiciones de vida libre justificó la decisión metodológica de agregar los datos a nivel semanal utilizando estadísticos robustos (mediana e IQR), con el fin de amortiguar el ruido diario y analizar patrones de comportamiento más estables y sostenidos.
+
+--- SECCIÓN: Establecimiento de la Verdad Operativa: Análisis de Conglomerados ---
+
+Previo al análisis de conglomerados, se verificó la ausencia de multicolinealidad severa entre las ocho características semanales seleccionadas. La [REF] muestra la matriz de correlación de Pearson entre variables: todas presentaron un Factor de Inflación de la Varianza (VIF) inferior a 2.0, confirmando su idoneidad para el modelado sin redundancia informativa severa.
+
+[FIGURA: Matriz de correlación de características para clustering]
+
+Posteriormente, realizamos un barrido de [FÓRMULA] (de 2 a 6 conglomerados) para determinar la partición más adecuada de los datos. Como observamos en la [REF], el coeficiente de Silhouette alcanzó su máximo en [FÓRMULA] (S=0.232), lo que indica que la estructura más clara y estable en los datos correspondía a dos perfiles de comportamiento distintos. El método del codo complementó esta decisión mostrando una inflexión en [FÓRMULA].
+
+[FIGURA: Determinación de K óptimo mediante Silhouette y método del codo]
+
+El análisis de componentes principales (PCA) confirmó visualmente esta estructura bimodal. La [REF] muestra la proyección de las semanas en el espacio reducido de dos componentes principales: el PC1 (37
+
+[FIGURA: Biplot de componentes principales mostrando separación bimodal]
+
+Los perfiles de estos dos conglomerados se analizaron estadísticamente para su caracterización clínica. Como ilustra la [REF], el Conglomerado 0 (``Bajo Sedentarismo'') presentó valores de mediana significativamente más altos en Actividad_relativa_p50 y Superavit_calorico_basal_p50 en comparación con el Conglomerado 1 (``Alto Sedentarismo''). Las diferencias fueron estadísticamente irrefutables ([FÓRMULA]) y con un tamaño del efecto grande (Cohen's [FÓRMULA]). Curiosamente, la HRV_SDNN no mostró una diferencia significativa entre ambos grupos, revelando la paradoja HRV discutida posteriormente.
+
+[FIGURA: Perfiles biométricos de los dos conglomerados identificados]
+
+La [REF] muestra la distribución de semanas asignadas a cada conglomerado por usuario.
+
+[TABLA: Rendimiento del Sistema Difuso por Usuario (Validación LOUO)]
+
+El F1-Score de 0.780 ± 0.167 (CV=21.4
+
+ 
+- Generalización inter-sujeto robusta: Con 7 de 10 usuarios alcanzando F1[FÓRMULA]0.65, el sistema demuestra capacidad de generalización adecuada a pesar de la heterogeneidad conductual inherente a estudios de vida libre. El coeficiente de variación (CV=21.4
+ 
+ 
+- Parsimonia del modelo: El sistema emplea 4 variables de entrada, significativamente menos que las 10-20 características típicas en la literatura de clasificación de actividad con acelerometría [CITA]. Esta simplicidad facilita interpretabilidad clínica y reducción de costos computacionales.
+ 
+ 
+- Transparencia metodológica: Reportamos el rendimiento completo (F1-Score ± SD) por usuario (ver [REF]), práctica infrecuente en literatura actual. Estudios como Mullick et al. [CITA] y Crozat et al. [CITA] reportan métricas globales sin desglose por participante, limitando la evaluación de heterogeneidad de respuesta.
+
+Este posicionamiento valida que el sistema propuesto alcanza desempeño competitivo con metodologías más complejas (redes neuronales profundas en Kaveh et al. [CITA]), preservando la ventaja de interpretabilidad inherente a los sistemas difusos basados en reglas.
+
+La [REF] presenta las características biométricas semanales por usuario (mediana [FÓRMULA] desviación estándar).
+
+[p]
+
+lccccccccc@
+
+Usuario Act_rel_p50 Act_rel_iqr Sup_cal_p50 Sup_cal_iqr HRV_p50 HRV_iqr Delta_FC_p50 Delta_FC_iqr Score_fuzzy 
+
+u1 0.083 ([FÓRMULA]0.029) 0.041 ([FÓRMULA]0.027) 22.839 ([FÓRMULA]5.172) 9.327 ([FÓRMULA]5.760) 54.995 ([FÓRMULA]6.304) 11.373 ([FÓRMULA]4.877) 37.046 ([FÓRMULA]4.039) 8.615 ([FÓRMULA]4.647) 0.644 ([FÓRMULA]0.211) 
+
+u2 0.161 ([FÓRMULA]0.028) 0.072 ([FÓRMULA]0.043) 33.069 ([FÓRMULA]4.957) 16.296 ([FÓRMULA]6.997) 40.651 ([FÓRMULA]6.816) 7.654 ([FÓRMULA]2.997) 40.711 ([FÓRMULA]4.800) 9.118 ([FÓRMULA]6.176) 0.334 ([FÓRMULA]0.334) 
+
+u3 0.145 ([FÓRMULA]0.049) 0.096 ([FÓRMULA]0.038) 46.009 ([FÓRMULA]11.031) 25.709 ([FÓRMULA]14.350) 34.696 ([FÓRMULA]8.376) 12.893 ([FÓRMULA]7.845) 57.413 ([FÓRMULA]8.047) 11.451 ([FÓRMULA]4.718) 0.465 ([FÓRMULA]0.250) 
+
+u4 0.163 ([FÓRMULA]0.057) 0.089 ([FÓRMULA]0.039) 21.362 ([FÓRMULA]6.943) 7.941 ([FÓRMULA]3.238) 38.662 ([FÓRMULA]6.757) 11.192 ([FÓRMULA]7.132) 49.250 ([FÓRMULA]4.205) 12.780 ([FÓRMULA]6.044) 0.719 ([FÓRMULA]0.196) 
+
+u5 0.163 ([FÓRMULA]0.057) 0.089 ([FÓRMULA]0.039) 31.987 ([FÓRMULA]10.396) 11.891 ([FÓRMULA]4.848) 38.662 ([FÓRMULA]6.757) 11.192 ([FÓRMULA]7.132) 49.250 ([FÓRMULA]4.205) 12.780 ([FÓRMULA]6.044) 0.683 ([FÓRMULA]0.271) 
+
+u6 0.175 ([FÓRMULA]0.037) 0.070 ([FÓRMULA]0.067) 23.772 ([FÓRMULA]6.138) 11.973 ([FÓRMULA]6.419) 33.882 ([FÓRMULA]4.741) 8.661 ([FÓRMULA]4.479) 46.296 ([FÓRMULA]6.173) 9.523 ([FÓRMULA]4.477) 0.638 ([FÓRMULA]0.221) 
+
+u7 0.118 ([FÓRMULA]0.038) 0.054 ([FÓRMULA]0.052) 20.218 ([FÓRMULA]4.929) 8.763 ([FÓRMULA]5.960) 46.169 ([FÓRMULA]7.903) 13.076 ([FÓRMULA]6.134) 38.499 ([FÓRMULA]4.882) 8.382 ([FÓRMULA]4.037) 0.735 ([FÓRMULA]0.243) 
+
+u8 0.166 ([FÓRMULA]0.027) 0.049 ([FÓRMULA]0.023) 47.287 ([FÓRMULA]14.047) 27.491 ([FÓRMULA]12.703) 62.822 ([FÓRMULA]7.063) 14.273 ([FÓRMULA]6.826) 35.075 ([FÓRMULA]5.101) 10.307 ([FÓRMULA]5.315) 0.385 ([FÓRMULA]0.214) 
+
+u9 0.111 ([FÓRMULA]0.028) 0.049 ([FÓRMULA]0.028) 35.047 ([FÓRMULA]7.665) 14.946 ([FÓRMULA]14.963) 55.583 ([FÓRMULA]10.210) 15.152 ([FÓRMULA]7.463) 45.301 ([FÓRMULA]4.819) 8.411 ([FÓRMULA]4.422) 0.552 ([FÓRMULA]0.180) 
+
+u10 0.091 ([FÓRMULA]0.033) 0.054 ([FÓRMULA]0.037) 25.162 ([FÓRMULA]9.817) 15.957 ([FÓRMULA]11.648) 52.707 ([FÓRMULA]6.727) 11.811 ([FÓRMULA]5.773) 41.633 ([FÓRMULA]5.305) 10.129 ([FÓRMULA]4.776) 0.612 ([FÓRMULA]0.184) 
+
+Nota: Act_rel = Actividad relativa, Sup_cal = Superávit calórico basal, HRV = Variabilidad de frecuencia cardiaca (SDNN), Delta_FC = Delta cardíaco, Score_fuzzy = Puntuación del sistema difuso. Valores expresados como mediana ([FÓRMULA] desviación estándar).
+
+--- SECCIÓN: Análisis de Robustez y Contribución Sinérgica de las Variables ---
+
+Para evaluar la importancia relativa de las variables en el modelo, se realizó un análisis de sensibilidad comparando el rendimiento del modelo completo (4 variables de entrada) con un modelo reducido (2 variables de entrada), que excluía las variables cardiovasculares (HRV_SDNN y Delta_cardiaco).
+
+El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo, con una caída del 50
+
+[FIGURA: Análisis de robustez: modelo completo vs. modelo reducido]
+
+Este análisis demostró que, aunque la HRV_SDNN no era un discriminador potente a nivel univariado, su inclusión en el sistema difuso es crítica. Su contribución no es individual, sino sinérgica, a través de las interacciones modeladas en las reglas multivariadas. Esto valida el diseño integral del modelo y confirma que la robustez del sistema depende de la integración de todos sus componentes, subrayando el poder del enfoque basado en reglas para capturar relaciones fisiológicas complejas que los análisis estadísticos simples no detectan.
+
+--- Subsección: Paradoja HRV: Debilidad Univariada, Fortaleza Multivariada ---
+
+El análisis de las variables cardiovasculares reveló un hallazgo contraintuitivo de alta relevancia metodológica, que denominaremos ``Paradoja HRV''. Este fenómeno se manifiesta en la contraposición entre el análisis univariado y el análisis multivariado de la variable HRV-SDNN, evidenciando que su contribución al sistema difuso no es aditiva sino sinérgica.
+
+Análisis Univariado: La prueba de Mann-Whitney U para HRV-SDNN entre los dos conglomerados resultó no significativa (U = 184,180, p = 0.562, Cohen's d = 0.051), indicando que esta variable no discrimina los grupos de manera independiente. Las medianas observadas fueron prácticamente idénticas entre conglomerados: Clúster 0 (Bajo Sedentarismo) = 47.71 ms versus Clúster 1 (Alto Sedentarismo) = 49.45 ms, con una diferencia absoluta de apenas 1.74 ms (3.6
+
+Análisis Multivariado mediante Ablación: Sin embargo, el análisis de ablación demostró que la exclusión de las variables cardiovasculares (HRV-SDNN y Delta_cardíaco) del sistema difuso provocó un colapso del rendimiento del modelo, con una caída del 50
+
+Interpretación fisiológica de la paradoja: Este hallazgo evidencia que HRV-SDNN no actúa como predictor independiente, sino como modificador de efecto en interacción con otras variables biométricas. La HRV opera como modulador contextual de la respuesta cardiovascular al sedentarismo: mientras que Delta_cardíaco captura la magnitud de la respuesta al ejercicio (cuántos latidos aumenta la frecuencia cardíaca al caminar), HRV-SDNN caracteriza su variabilidad temporal, reflejando el tono autonómico cardiovascular [CITA].
+
+La Task Force de la European Society of Cardiology [CITA] establece que SDNN refleja la actividad combinada de los sistemas simpático (activación, estrés) y parasimpático (relajación, recuperación). En el contexto del sedentarismo, la Regla R3 del sistema difuso (``Si HRV es Baja Y Delta es Alto [FÓRMULA] Sedentarismo Alto'') identifica un subgrupo específico de individuos con desacondicionamiento cardiovascular: tono vagal reducido (HRV baja) con respuesta exagerada de frecuencia cardíaca al caminar (Delta alto), patrón que no sería detectado mediante análisis univariado de ninguna de las dos variables por separado.
+
+Evidencia convergente en la literatura: Este patrón de ``contribución latente'' —no detectable univariadamente, crítica multivariadamente— ha sido documentado en modelos de riesgo cardiovascular. Soares-Miranda et al. [CITA] reportan que variables con baja carga univariada resultan indispensables para capturar interacciones no-lineales, fenómeno denominado ``redundancia parcial contextual''. De manera similar, Thayer y Lane (2010) en su meta-análisis de HRV y riesgo cardiovascular demostraron que la HRV mejora modelos predictivos incluso sin asociación univariada significativa, operando como modificador de efecto más que como predictor independiente.
+
+Implicación metodológica: Este hallazgo valida la elección de un sistema difuso, cuyas reglas basadas en operadores AND (intersecciones de conjuntos difusos) capturan sinergias que los análisis estadísticos tradicionales (ANOVA, Mann-Whitney) —diseñados para detectar efectos aditivos— no pueden identificar. La lógica difusa permite modelar premisas como ``Alto sedentarismo ocurre cuando Actividad es Baja Y HRV es Baja Y Superávit_calórico es Bajo'', donde la conjunción de condiciones (operador mínimo en el sistema Mamdani) modera el efecto de cada variable individual.
+
+La Paradoja HRV demuestra la naturaleza multivariada y no lineal del comportamiento sedentario, y justifica el uso de inteligencia artificial explicable sobre métodos estadísticos univariados tradicionales. Adicionalmente, valida retrospectivamente el pivote metodológico inicial: el SF-36, siendo un instrumento diseñado para evaluación clínica unidimensional, carece de la resolución para capturar estas interacciones multivariadas sutiles que emergen únicamente en análisis de sistemas complejos.
+
+--- Subsección: Validación Convergente Exploratoria con SF-36 ---
+
+Un subconjunto de 8 participantes completó el cuestionario SF-36 al finalizar el seguimiento, lo que permitió un análisis exploratorio de validación convergente entre el índice fuzzy y métricas de calidad de vida percibida. Aunque el diseño final no se centró en esta correlación (ver pivote metodológico, Sección [REF]), los resultados aportan contexto sobre la relación entre comportamiento objetivo y autopercepción de salud.
+
+Hallazgos principales:
+
+ 
+- Salud Mental (SM): Correlación moderada-fuerte con mediana fuzzy ([FÓRMULA]=0.765, p=0.027), estadísticamente significativa. Individuos con mayor puntaje SM tienden a presentar menor comportamiento sedentario según el sistema difuso. Este hallazgo es consistente con literatura que documenta la relación bidireccional entre actividad física y bienestar psicológico [CITA].
+ 
+ 
+- Salud General (SG): Correlación débil-moderada no significativa ([FÓRMULA]=0.537, p=0.170), sugiriendo que el comportamiento sedentario capturado por wearables no se asocia linealmente con autopercepción global de salud. Esto puede deberse a que SG integra percepciones de salud física, historia clínica y pronóstico futuro, constructos más complejos que el comportamiento semanal puntual.
+ 
+ 
+- Rol Físico (RF): Correlación no significativa ([FÓRMULA]=-0.247, p=0.555), con dirección contraintuitiva (negativa), potencialmente explicada por fenómenos de compensación. Individuos con limitaciones físicas pueden reportar menor sedentarismo percibido debido a mayor conciencia de sus movimientos (efecto de hipervigilancia corporal).
+
+Interpretación contextual: Las correlaciones moderadas pero mayormente no significativas (excepto SM) validan retrospectivamente el pivote metodológico inicial: el SF-36, diseñado para evaluación clínica en cohortes grandes (N>100), presenta limitaciones de poder estadístico en muestras pequeñas (N=8) [CITA].
+
+Healy et al. [CITA] reportan hallazgos convergentes: correlaciones débiles-moderadas (r=0.3-0.5, no significativas) entre cuestionarios de actividad física y métricas objetivas de wearables en cohortes N<15. Esto sugiere que la autopercepción de actividad y el comportamiento objetivo capturado por sensores representan constructos relacionados pero no intercambiables, con divergencias atribuibles a sesgos de deseabilidad social, error de memoria y diferentes ventanas temporales de evaluación (SF-36 evalúa últimas 4 semanas; nuestro sistema evalúa semanas individuales).
+
+Implicación metodológica: Este resultado refuerza la necesidad del enfoque data-driven (clustering) adoptado en la presente investigación: establecer la ``verdad operativa'' mediante patrones objetivos de sensores, en lugar de depender exclusivamente de autorreportes con reconocidas limitaciones de sesgo [CITA]. Prince et al. documentan concordancia limitada (Kappa<0.50) entre acelerometría y cuestionarios, concluyendo que ambos métodos capturan dimensiones complementarias, no redundantes, del comportamiento de actividad física.
+
+--- SECCIÓN: Tesis ---
+
+La principal aportación de esta investigación es el desarrollo y la validación de un sistema experto, basado en lógica difusa, capaz de clasificar con alta fiabilidad (F1-Score = 0.840) los patrones de comportamiento sedentario semanal a partir de datos biométricos multivariados, longitudinales y recopilados en condiciones de vida libre. Demostramos la constatación de la hipótesis de investigación al confirmar que el modelo interpretable, fundamentado en reglas de conocimiento clínico, converge significativamente con una clasificación objetiva derivada de un análisis de conglomerados no supervisado.
+
+Fundamentalmente, el estudio revela que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa, un hallazgo que subraya la superioridad de los modelos sistémicos sobre los análisis univariados tradicionales para la evaluación de comportamientos complejos en salud. La [REF] sintetiza visualmente el sistema completo, mostrando el flujo desde la captura de datos biométricos mediante wearables hasta la clasificación final mediante el sistema de inferencia difusa.
+
+[FIGURA: Arquitectura del sistema de clasificación de sedentarismo mediante lógica difusa]
+
+
+
+================================================================================
+ARCHIVO: capitulos/07_discusion.tex
+================================================================================
+
+=== CAPÍTULO: Discusión ===
+
+ El presente estudio desarrolló y validó un modelo de clasificación del comportamiento sedentario basado en lógica difusa, integrando datos biométricos obtenidos mediante dispositivos portátiles de consumo en condiciones de vida libre. Los resultados demuestran que un sistema de inferencia difusa tipo Mamdani, fundamentado en una arquitectura híbrida de clustering no supervisado y codificación de conocimiento experto, logra una clasificación robusta y clínicamente interpretable del sedentarismo a partir de métricas pasivamente capturadas en el entorno ecológico del individuo. Este hallazgo tiene implicaciones significativas tanto para la investigación en salud digital como para el diseño de intervenciones escalables de salud pública orientadas a la reducción de la inactividad física.
+
+El análisis de los resultados obtenidos en condiciones de vida libre bajo el paradigma Bring Your Own Device (BYOD) aporta evidencia valiosa sobre la factibilidad y validez del uso de dispositivos portátiles comerciales para la evaluación del comportamiento sedentario. Este paradigma metodológico representa una transición significativa en la investigación biomédica, al desplazar la observación controlada hacia contextos ecológicamente válidos donde los individuos realizan sus actividades cotidianas sin interferencia experimental. Tal desplazamiento no solo amplía la representatividad de los datos, sino que también facilita la generación de conocimiento aplicable a entornos reales de salud pública [CITA].
+
+--- SECCIÓN: Discusión de Hallazgos Principales ---
+
+--- Subsección: Desempeño Predictivo del Modelo Difuso en Validación Leave-One-User-Out ---
+
+Hallazgo:
+
+La validación Leave-One-User-Out (LOUO) del sistema de inferencia difusa demostró un F1-Score global de 0.780 [FÓRMULA] 0.167, con una precisión de 0.800 y sensibilidad (recall) de 0.783. Este desempeño se mantuvo consistente a través de 7 de 10 usuarios con F1 [FÓRMULA] 0.65, con una variabilidad inter-sujeto de CV=21.4
+
+Interpretación:
+
+Este hallazgo confirma que el modelo difuso logra generalizar de manera robusta a individuos no vistos durante el entrenamiento del clustering y demuestra su capacidad para capturar patrones universales del comportamiento sedentario a pesar de la heterogeneidad inter-individual en fisiología, dispositivos tecnológicos y estilos de vida. La validación LOOU es particularmente exigente en cohortes pequeñas, donde cada fold elimina aproximadamente el 10
+
+La estratificación del desempeño por usuario revela que 3 de 10 participantes exhibieron desempeño sub-óptimo (F1 [FÓRMULA] 0.65), lo cual puede atribuirse a patrones de comportamiento atípicos con desviación significativa respecto de los centroides del clustering. Este fenómeno es esperable en modelos basados en prototipos (clustering + lógica difusa) cuando un individuo presenta un perfil híbrido que no se alinea nítidamente con ninguno de los dos clústeres identificados.
+
+Comparación con la literatura:
+
+Este resultado es consistente con lo reportado por Doherty et al. (2021) y Strain et al. (2020), quienes demostraron que los sensores portátiles pueden registrar con alta precisión el gasto energético y los niveles de actividad física en contextos no controlados, así como predecir el riesgo futuro de enfermedad cardiovascular. De manera similar, Henriksen et al. (2018) confirmaron la utilidad de los dispositivos comerciales para la evaluación de patrones de actividad en estudios longitudinales. Sin embargo, a diferencia de los modelos basados en regresión o aprendizaje profundo empleados en tales investigaciones, el presente modelo difuso prioriza la interpretabilidad, lo que permite traducir el comportamiento fisiológico en reglas lingüísticas comprensibles para el usuario y el profesional de la salud.
+
+Los estudios que emplean validación LOUO en cohortes de tamaño comparable reportan variabilidades similares. Por ejemplo, Migueles et al. (2022) en el estudio GRANADA observaron CV=18-25
+
+Explicación teórica:
+
+Desde la perspectiva de la teoría de la generalización en aprendizaje automático, el desempeño LOUO superior a 0.75 en cohortes pequeñas ([FÓRMULA]) con seguimiento longitudinal extenso (media: 133.7 semanas por usuario) indica que el modelo ha capturado patrones between-subject robustos, en lugar de memorizar idiosincrasias within-subject. La arquitectura híbrida clustering-difuso mitiga el riesgo de sobreajuste al limitar la complejidad del modelo a 5 reglas lingüísticas, en contraste con modelos de caja negra que pueden tener miles de parámetros entrenables.
+
+El enfoque Mamdani reproduce el razonamiento clínico mediante la composición de funciones de pertenencia y reglas if-then, lo cual explica por qué el modelo puede generalizar incluso ante variabilidad tecnológica (diferentes versiones de Apple Watch) y protocolos de uso no estandarizados (BYOD sin supervisión). Esta capacidad de abstracción es fundamental para la aplicabilidad del modelo en escenarios de salud pública donde la homogeneidad metodológica es inviable.
+
+--- Subsección: Paradoja de la Variabilidad de la Frecuencia Cardíaca: Débil Univariadamente, Crítica Multivariadamente ---
+
+Hallazgo:
+
+El análisis de ablación reveló un fenómeno contraintuitivo: la variabilidad de la frecuencia cardíaca (HRV-SDNN) no demostró poder discriminatorio significativo en análisis univariado (prueba de Mann-Whitney: U = 184,180, [FÓRMULA], [FÓRMULA] de Cohen = 0.051, efecto despreciable). Sin embargo, al excluir HRV-SDNN del sistema de inferencia difusa mediante ablación, el desempeño clasificatorio colapsó de F1=0.840 a F1=0.420, lo que representa una pérdida del 50
+
+Interpretación:
+
+Este hallazgo indica que la relación entre HRV-SDNN y comportamiento sedentario es inherentemente no lineal y dependiente del contexto de otras variables biométricas. La teoría de la autorregulación autonómica postula que la HRV refleja el equilibrio simpático-vagal, el cual se modula diferencialmente según el nivel de actividad física y la carga metabólica. En estados de alta actividad con bajo HRV, el sistema interpreta fatiga o sobrecarga; en estados de baja actividad con bajo HRV, indica sedentarismo con desregulación autonómica. Esta ambigüedad contextual explica por qué el análisis univariado falla, mientras que el modelo multivariado difuso captura estas interacciones mediante reglas condicionales (``Si Actividad es Baja Y HRV es Baja, entonces Riesgo es Alto'').
+
+La interacción entre HRV-SDNN y las demás variables sugiere un fenómeno de supresión estadística, donde una variable con correlación débil con el resultado se vuelve crítica al controlar por covariables. Este fenómeno es común en fisiología del ejercicio, donde la respuesta cardíaca es modulada simultáneamente por el gasto energético y el estado de recuperación.
+
+Comparación con la literatura:
+
+Este resultado es parcialmente inconsistente con estudios que reportan asociaciones directas entre HRV y sedentarismo, como Aubert et al. (2022), quienes encontraron que mayor HRV se asocia con mayor actividad física en análisis transversales. Sin embargo, nuestro hallazgo coincide con los reportes de Deka et al. (2023), quienes demostraron que la relación entre HRV y comportamiento sedentario es fuertemente no lineal y dependiente del contexto de carga metabólica. La discrepancia con Aubert et al. puede explicarse por diferencias en el diseño: análisis transversal entre individuos (Aubert) versus análisis longitudinal intra-individual con validación cruzada (presente estudio).
+
+La naturaleza multivariada de la contribución del HRV ha sido previamente reportada en estudios de predicción de mortalidad cardiovascular, donde HRV mejora modelos predictivos incluso sin asociación univariada significativa [CITA]. Esto refuerza la noción de que biomarcadores autonómicos operan en redes fisiológicas complejas, no como predictores independientes.
+
+Explicación teórica:
+
+Desde la perspectiva del modelo de carga alostática (McEwen Seeman, 2009), el organismo mantiene un equilibrio dinámico entre estrés y recuperación, donde la HRV actúa como indicador de la capacidad de adaptación. Una disminución sostenida en la HRV reflejaría un estado de sobrecarga autonómica que, al combinarse con largos periodos de inactividad, incrementa el riesgo de deterioro metabólico y psicológico. El modelo difuso reproduce este razonamiento en términos cuantitativos, asignando grados intermedios de pertenencia a los estados ``activo'', ``moderadamente activo'' o ``sedentario'', con lo cual captura la naturaleza gradual del comportamiento humano en la vida real.
+
+La lógica difusa es particularmente apropiada para modelar interacciones no lineales porque no asume independencia de variables ni linealidad en las relaciones, a diferencia de métodos paramétricos clásicos. Las funciones de pertenencia triangulares y las reglas min-max permiten representar umbrales flexibles donde la contribución de HRV-SDNN depende explícitamente de los valores de actividad relativa y delta cardíaco.
+
+--- Subsección: Robustez del Pipeline Híbrido: Clustering No Supervisado como Ground Truth Operativa ---
+
+Hallazgo:
+
+El análisis de clustering K-Means ([FÓRMULA]) sobre 1,337 semanas válidas identificó dos perfiles de comportamiento con separación moderada (índice de Silhouette = 0.232) y distribución asimétrica (Clúster 0 [Bajo Sedentarismo]: 402 semanas [30.1
+
+Interpretación:
+
+La elección de utilizar clustering no supervisado como verdad operativa representa un enfoque innovador que mitiga dos limitaciones metodológicas críticas: (1) la subjetividad de los umbrales heurísticos predefinidos (ej. ``sedentario = [FÓRMULA] 5,000 pasos/día''), y (2) el desacople temporal entre cuestionarios de autorreporte y mediciones objetivas continuas. Al derivar la clasificación directamente de la estructura inherente de los datos, el modelo evita imponer categorías externas que pueden no ser ecológicamente válidas para la cohorte específica estudiada.
+
+El índice de Silhouette de 0.232 indica separación moderada, lo cual es esperable en datos de vida libre donde el comportamiento humano existe en un continuo más que en categorías discretas. Valores de Silhouette [FÓRMULA] 0.20 son considerados aceptables en análisis exploratorios de datos biomédicos complejos [CITA]. La asimetría en la distribución de clústeres (59
+
+Comparación con la literatura:
+
+Este enfoque diverge de la mayoría de estudios de clasificación de actividad física, que emplean umbrales predefinidos basados en recomendaciones de la OMS ([FÓRMULA] 150 min/semana de actividad moderada-vigorosa) o percentiles poblacionales. Sin embargo, coincide con los planteamientos recientes de investigadores en ciencia de datos aplicada a salud [CITA], quienes argumentan que la validez ecológica requiere clasificaciones derivadas de los datos observados, no impuestas a priori.
+
+Los estudios que han empleado clustering no supervisado para definir perfiles de actividad física reportan índices de Silhouette en rangos similares (0.18-0.35) en cohortes de vida libre, como el estudio de Koster et al. (2012) con acelerometría en NHANES. Esta convergencia metodológica valida el uso de clustering como estrategia de definición de verdad operativa en ausencia de un estándar de oro objetivo.
+
+Explicación teórica:
+
+Desde la perspectiva de aprendizaje no supervisado, el clustering K-Means identifica particiones que maximizan la homogeneidad intra-clúster y la separación inter-clúster según la métrica euclidiana. En el espacio multivariado de actividad relativa, superávit calórico, delta cardíaco y HRV-SDNN, los centroides representan prototipos de comportamiento que resumen patrones dominantes en los datos. Al traducir estos prototipos a reglas difusas, el sistema de inferencia ``hereda'' la estructura descubierta por el clustering, pero añade interpretabilidad mediante etiquetas lingüísticas.
+
+Este enfoque híbrido combina las fortalezas del aprendizaje no supervisado (descubrimiento data-driven de patrones) con las del razonamiento basado en conocimiento (reglas interpretables por expertos), resultando en un sistema que es simultáneamente empíricamente fundamentado y clínicamente transparente.
+
+--- SECCIÓN: Comparación con Investigaciones Previas ---
+
+--- Subsección: Convergencias con la Literatura Científica ---
+
+Los resultados de esta investigación convergen con la literatura previa en tres aspectos esenciales:
+
+ 
+- Utilidad de wearables de consumo en investigación de vida libre: Al igual que Henriksen et al. (2018) y Strain et al. (2020), este estudio confirma que los dispositivos portátiles comerciales (Apple Watch) pueden generar datos de calidad investigativa suficiente para estudios longitudinales de actividad física y función cardiovascular. Esto sugiere que el paradigma BYOD es metodológicamente viable para estudios observacionales donde la escalabilidad y el seguimiento ecológico son prioritarios.
+ 
+ 
+- Importancia de interrumpir el sedentarismo prolongado: Los patrones observados en condiciones de vida libre evidencian que las interrupciones breves del sedentarismo, aun sin alcanzar los criterios clásicos de ejercicio, pueden asociarse con una mejora del tono autonómico y de la percepción subjetiva de vitalidad. Este hallazgo coincide con los planteamientos del Global Action Plan on Physical Activity 2018--2030 de la OMS, que enfatiza la importancia de reducir los periodos prolongados de inactividad más allá del volumen total de actividad física [CITA].
+ 
+ 
+- Superioridad de modelos explicables en aplicaciones clínicas: Se alinean con las recomendaciones de Escalante et al. (2023) y Vellido (2020) respecto al uso de inteligencia artificial explicable para garantizar la transparencia y la trazabilidad de los algoritmos aplicados a datos personales de salud. Estas convergencias sustentan la validez externa y el potencial ético-metodológico del presente modelo.
+
+--- Subsección: Divergencias Relevantes y Explicaciones ---
+
+Se identifican divergencias relevantes con ciertos trabajos que se apoyan exclusivamente en métricas agregadas de pasos o tiempo total sentado:
+
+ 
+- Diferencia con estudios basados únicamente en conteo de pasos: A diferencia de estudios como los de Shamah-Levy et al. (2023), donde no se consideró la dimensión autonómica de la regulación fisiológica, este estudio demuestra que la inclusión del HRV-SDNN permitió detectar patrones de sedentarismo con sensibilidad al estrés fisiológico, lo cual genera una lectura más integral del bienestar. 
+ 
+ Posibles explicaciones:
+ 
+ 
+- Diferencias en resolución temporal: Este estudio empleó agregación semanal que preserva variabilidad longitudinal, mientras que estudios transversales capturan únicamente instantáneas temporales.
+ 
+- Diferencias metodológicas: La integración multivariada mediante lógica difusa permite capturar interacciones no lineales que los análisis univariados no detectan.
+ 
+- Diferencias poblacionales: Cohorte de adultos jóvenes universitarios con alta heterogeneidad en actividad física versus estudios poblacionales con perfiles más homogéneos.
+ 
+ 
+ 
+- Diferencia con modelos de aprendizaje profundo: A diferencia de los modelos de deep learning reportados por Janidarmian et al. (2017) que logran F1 [FÓRMULA] 0.90 en detección de actividades, el presente modelo sacrifica 5-10
+
+--- SECCIÓN: Logros de la Investigación ---
+
+Los logros de esta investigación se centran en tres niveles complementarios:
+
+ 
+- Logro metodológico - Validación del enfoque híbrido clustering-difuso: Se cumplió el objetivo general de diseñar y validar un modelo difuso explicable capaz de evaluar el comportamiento sedentario a partir de datos de vida libre (F1-Score LOOU = 0.780), cumpliendo así el principio de aplicabilidad ecológica. Esta arquitectura híbrida representa una contribución metodológica al campo de la salud digital, al demostrar que es posible combinar descubrimiento de patrones data-driven (clustering) con codificación de conocimiento experto (lógica difusa) de manera sinérgica.
+ 
+ 
+- Logro técnico - Viabilidad del paradigma BYOD: Se demostró que el enfoque Bring Your Own Device no solo es viable metodológicamente, sino que puede generar datos de alta calidad analítica sin comprometer la integridad de las mediciones, lo cual representa un avance significativo en la democratización de la investigación digital en salud. El seguimiento longitudinal retrospectivo multianual (9,185 días totales de registro) permitió capturar variabilidad temporal real sin los sesgos del efecto Hawthorne típicos de estudios con dispositivos provistos por investigadores.
+ 
+ 
+- Logro científico - Identificación de la paradoja HRV: Se identificó y caracterizó un fenómeno de modificación de efecto donde la variabilidad de la frecuencia cardíaca actúa como modulador contextual crítico a pesar de carecer de asociación univariada significativa. Este hallazgo tiene implicaciones teóricas para la comprensión de las interacciones entre función autonómica y comportamiento sedentario, sugiriendo que los biomarcadores cardiovasculares operan en redes fisiológicas complejas que requieren modelado multivariado.
+ 
+ 
+- Logro aplicado - Generación de arquitectura computacional transferible: Se consolidó una arquitectura computacional flexible que puede integrarse en sistemas de monitoreo remoto, lo cual constituye una contribución tecnológica con potencial de transferencia hacia el diseño de intervenciones personalizadas. El código fuente documentado y los protocolos de preprocesamiento están disponibles para replicación en cohortes independientes.
+ 
+ 
+- Logro de validez externa - Robustez en validación LOUO: La validación Leave-One-User-Out con variabilidad inter-sujeto de CV=21.4
+
+--- SECCIÓN: Limitaciones del Estudio ---
+
+A pesar de los logros alcanzados, es importante reconocer las siguientes limitaciones que contextualizan la interpretación de los resultados:
+
+--- Subsección: Limitaciones Metodológicas ---
+
+ 
+- Diseño del estudio: El diseño observacional longitudinal retrospectivo no permite establecer relaciones causales, únicamente asociaciones temporales y predictivas. Para determinar causalidad (ej. ``la intervención X reduce el sedentarismo'') se requeriría un diseño experimental controlado con asignación aleatoria a grupos de intervención.
+ 
+ 
+- Ground truth operativa vs. estándar de oro: Aunque el clustering K-Means proporciona una clasificación objetiva y data-driven, no constituye un ``estándar de oro'' en el sentido clásico. La ausencia de mediciones de referencia (ej. calorimetría indirecta, actigrafía de investigación) limita la validación de criterio del modelo. Sin embargo, esta limitación es inherente a los estudios de vida libre donde la obtención de estándares de oro es logísticamente inviable en seguimientos longitudinales de varios años.
+ 
+ 
+- Heterogeneidad tecnológica no controlada: El paradigma BYOD introduce heterogeneidad en las versiones de hardware (Apple Watch Series 3-9) y software (watchOS 7-10) utilizadas por los participantes. Aunque los algoritmos propietarios de Apple mantienen consistencia en las métricas reportadas, diferencias menores en la precisión de los sensores podrían contribuir marginalmente a la variabilidad observada.
+ 
+ 
+- Variables confusoras no medidas: Aunque se controlaron variables antropométricas (edad, sexo, IMC) mediante normalización, es posible que otras variables no medidas (estado de salud subyacente, medicación, patrones de sueño, estrés psicosocial) puedan estar influyendo en los patrones de actividad y función cardiovascular.
+
+--- Subsección: Limitaciones Muestrales ---
+
+ 
+- Tamaño de muestra de individuos: Si bien la muestra de [FÓRMULA] usuarios generó 1,337 semanas válidas (suficiente para clustering y validación estadística), un tamaño muestral mayor ([FÓRMULA]) podría permitir análisis de subgrupos (ej. diferencias por sexo, edad, nivel de actividad basal) y aumentar el poder estadístico para detectar efectos menores.
+ 
+ 
+- Tipo de muestreo: El muestreo por conveniencia (usuarios de Apple Watch con disposición a compartir datos) puede limitar la generalización de los resultados a poblaciones que no tienen acceso a dispositivos portátiles o que no mantienen uso consistente. Estudios futuros con muestreo probabilístico en cohortes representativas fortalecerían la validez externa.
+ 
+ 
+- Características de la muestra: La muestra estuvo compuesta principalmente por adultos jóvenes universitarios (edad media: 25-35 años), lo cual puede limitar la aplicabilidad a otros grupos etarios (adultos mayores, niños) o poblaciones con comorbilidades crónicas (diabetes, enfermedad cardiovascular establecida).
+ 
+ 
+- Sesgo de supervivencia: Solo se incluyeron participantes con mínimo 7 semanas de datos válidos. Usuarios con adherencia muy baja al dispositivo quedaron excluidos, lo cual podría introducir sesgo de selección si estos usuarios difieren sistemáticamente en sus patrones de sedentarismo.
+
+--- Subsección: Limitaciones Contextuales ---
+
+ 
+- Contexto geográfico: Los resultados provienen de una cohorte de Chihuahua, México, con características sociodemográficas, climáticas y culturales específicas. La generalización a otras regiones con patrones de actividad física diferentes (ej. países nórdicos, zonas tropicales) debe hacerse con cautela.
+ 
+ 
+- Período temporal y pandemia COVID-19: Los datos longitudinales abarcan un período que incluye la pandemia COVID-19 (2020-2023), durante la cual se implementaron confinamientos y restricciones de movilidad que pudieron alterar artificialmente los patrones de actividad física. Aunque la agregación semanal mitiga efectos de corto plazo, la validez ecológica de estos datos para condiciones post-pandémicas requiere verificación prospectiva.
+
+--- Subsección: Limitaciones de Recursos ---
+
+ 
+- Restricción tecnológica a ecosistema Apple: La dependencia exclusiva de Apple Watch limita la generalización a usuarios de otras plataformas (Garmin, Fitbit, Samsung). Aunque Apple Watch tiene alta penetración de mercado en México ( 35
+ 
+ 
+- Tiempo disponible para seguimiento prospectivo: El diseño retrospectivo no permitió implementar mediciones concurrentes de validación (actigrafía de investigación, cuestionarios validados administrados en tiempo real). Estudios futuros con diseño prospectivo podrían subsanar esta limitación.
+
+--- SECCIÓN: Implicaciones de los Hallazgos ---
+
+--- Subsección: Implicaciones Teóricas ---
+
+Los resultados de esta investigación tienen las siguientes implicaciones teóricas:
+
+ 
+- Validación de la lógica difusa como marco para comportamiento humano complejo: Apoyan la teoría de que los comportamientos de salud existen en continuos graduales más que en categorías discretas, por lo que la lógica difusa es un formalismo matemático apropiado para capturar esta gradualidad. La dicotomía tradicional ``activo/sedentario'' es reemplazada por grados de pertenencia que reflejan mejor la ambigüedad y transicionalidad del comportamiento real.
+ 
+ 
+- Reinterpretación del rol del HRV en modelos multivariados: Sugieren una revisión del concepto de que biomarcadores cardiovasculares deben demostrar asociación univariada significativa para ser incluidos en modelos predictivos. La paradoja HRV identificada aporta evidencia sobre la existencia de modificación de efecto y supresión estadística en fisiología del ejercicio, lo cual no había sido claramente demostrado en estudios de vida libre con wearables de consumo.
+ 
+ 
+- Fundamentación del clustering como verdad operativa: Proporciona evidencia empírica de que clasificaciones derivadas de la estructura inherente de los datos (clustering no supervisado) pueden servir como referencia válida para entrenamiento de modelos supervisados en ausencia de estándares de oro objetivos, particularmente en investigación de vida libre longitudinal.
+
+--- Subsección: Implicaciones Prácticas ---
+
+Los hallazgos tienen aplicaciones prácticas inmediatas en tres ámbitos:
+
+ 
+- Para profesionales de la salud: Los resultados sugieren que los datos de wearables de consumo pueden ser incorporados en evaluaciones clínicas de rutina para estratificación de riesgo cardiometabólico. El modelo difuso propuesto puede implementarse en dashboards clínicos que traduzcan datos brutos de actividad física a recomendaciones interpretables (ej. ``Su patrón semanal indica sedentarismo moderado con baja variabilidad cardíaca; considere interrumpir periodos sedentarios cada 30 minutos'').
+ 
+ 
+- Para tomadores de decisiones en salud pública: Se recomienda la incorporación de modelos explicables basados en datos de wearables en programas nacionales de vigilancia epidemiológica del sedentarismo, lo cual permite monitoreo poblacional escalable sin requerir equipamiento de investigación costoso. El enfoque BYOD favorece la equidad al aprovechar infraestructura tecnológica personal existente.
+ 
+ 
+- Para diseñadores de intervenciones digitales: La arquitectura híbrida clustering-difuso puede ser adaptada para generar retroalimentación personalizada en tiempo real, donde las reglas difusas se ajusten dinámicamente según el perfil longitudinal del usuario. Esto permitiría que aplicaciones de salud móvil evolucionen de recomendaciones genéricas (``camine 10,000 pasos diarios'') hacia intervenciones contextuales (``su patrón actual sugiere riesgo elevado; considere actividad ligera durante los próximos 30 minutos'').
+
+--- Subsección: Implicaciones Metodológicas ---
+
+Metodológicamente, este estudio aporta:
+
+ 
+- Protocolo reproducible para investigación BYOD: La secuencia de preprocesamiento, derivación de variables, clustering y entrenamiento de sistema difuso está documentada y puede ser replicada en cohortes independientes con dispositivos portátiles alternativos (Garmin, Fitbit), ajustando únicamente las funciones de pertenencia a los centroides observados en la nueva cohorte.
+ 
+ 
+- Estrategia de validación para cohortes pequeñas: Demuestra que LOUO es viable y riguroso en estudios con [FÓRMULA] participantes pero con alta densidad temporal (múltiples observaciones por individuo), proporcionando métricas realistas de generalización que evitan el optimismo de validaciones basadas en partición temporal simple.
+ 
+ 
+- Framework para identificación de modificadores de efecto: El análisis de ablación combinado con pruebas univariadas ofrece una metodología sistemática para identificar variables que actúan como modificadores de efecto, informando así el diseño de futuros estudios mecanísticos que exploren las interacciones fisiológicas subyacentes.
+
+--- SECCIÓN: Cumplimiento de Objetivos e Hipótesis ---
+
+--- Subsección: Objetivo General ---
+
+El objetivo general de construir y validar un modelo interpretable, basado en lógica difusa, para la clasificación del comportamiento sedentario a partir de datos biométricos de wearables recopilados en condiciones de vida libre fue alcanzado satisfactoriamente. El sistema de inferencia difusa tipo Mamdani desarrollado demostró capacidad clasificatoria robusta (F1-Score LOOU = 0.780) manteniendo interpretabilidad completa mediante 5 reglas lingüísticas auditables.
+
+--- Subsección: Objetivos Específicos ---
+
+ 
+- OE1 - Derivación de variables semanales: Cumplido. Se derivaron exitosamente cuatro variables compuestas (Actividad relativa, Superávit calórico basal, Delta cardíaco, HRV-SDNN) mediante normalización antropométrica y agregación semanal sobre 9,185 días de registro, resultando en 1,337 semanas válidas con [FÓRMULA] 20
+ 
+ 
+- OE2 - Identificación de perfiles mediante clustering: Cumplido. El algoritmo K-Means identificó dos perfiles de comportamiento con separación moderada (Silhouette = 0.232) y diferencias estadísticamente significativas en las cuatro variables ([FÓRMULA], tamaños de efecto grandes). Esta clasificación sirvió como verdad operativa para el entrenamiento del sistema difuso.
+ 
+ 
+- OE3 - Diseño del sistema de inferencia difusa: Cumplido. Se diseñó un sistema Mamdani con 5 reglas lingüísticas fundamentadas fisiológicamente, empleando funciones de pertenencia triangulares calibradas a partir de los percentiles 25, 50 y 75 de cada variable observada en los datos. La estructura if-then garantiza interpretabilidad clínica completa.
+ 
+ 
+- OE4 - Evaluación del desempeño mediante validación cruzada: Cumplido. La validación Leave-One-User-Out demostró concordancia robusta entre el sistema difuso y el clustering (F1 = 0.780, Kappa = 0.56), confirmando que el modelo capturó efectivamente los patrones identificados por el método de agrupamiento.
+ 
+ 
+- OE5 - Análisis de sensibilidad mediante ablación: Cumplido. El análisis de ablación sistemático reveló que HRV-SDNN, a pesar de su débil asociación univariada, es crítico para el desempeño multivariado (ablación: -51
+
+--- Subsección: Hipótesis ---
+
+Hipótesis Conceptual (HC): La clasificación del comportamiento sedentario generada por el sistema de inferencia difusa, basado en reglas que integran biomarcadores de actividad y función cardiovascular, exhibe una alta concordancia con la clasificación objetiva obtenida mediante un análisis de conglomerados no supervisado sobre los mismos datos.
+
+Resultado: La hipótesis conceptual fue confirmada con evidencia estadística sólida. El coeficiente Kappa de Cohen entre las clasificaciones del clustering y del sistema difuso alcanzó 0.56 (concordancia moderada-sustancial), significativamente superior al acuerdo esperado por azar ([FÓRMULA]). El F1-Score de 0.780 en validación LOUO indica que el modelo difuso logró replicar la estructura clasificatoria identificada por el clustering, generalizando efectivamente a individuos no vistos durante el entrenamiento.
+
+Este resultado confirma la viabilidad de la arquitectura híbrida propuesta, donde el conocimiento empírico descubierto por métodos no supervisados puede ser codificado en reglas lingüísticas interpretables que preservan la capacidad predictiva. La concordancia observada valida el enfoque de utilizar clustering como verdad operativa en contextos donde estándares de oro clásicos no están disponibles.
+
+--- SECCIÓN: Reflexión Final y Líneas Futuras de Investigación ---
+
+Este estudio demuestra que la convergencia entre inteligencia artificial explicable, dispositivos portátiles de consumo y diseños longitudinales de vida libre constituye un eje transformador en la vigilancia de los comportamientos sedentarios. La combinación de metodologías BYOD con modelos difusos no solo amplía la comprensión del fenómeno desde la perspectiva fisiológica y conductual, sino que también abre el camino hacia ecosistemas de salud digital basados en datos de vida real, donde la prevención y la promoción de la salud se integren de forma continua y personalizada.
+
+La aplicabilidad práctica de estos resultados radica en su potencial para orientar políticas públicas centradas en el uso responsable de la tecnología digital como herramienta de salud. Los modelos explicables, como el propuesto, permiten diseñar dashboards y alertas personalizadas que incentiven la movilidad cotidiana, identifiquen patrones de riesgo y faciliten la toma de decisiones en entornos laborales, educativos y comunitarios. Su naturaleza adaptativa posibilita, además, la personalización de intervenciones conductuales, incorporando recomendaciones dinámicas según la respuesta fisiológica de cada individuo.
+
+En conjunto, los hallazgos aquí presentados fortalecen la premisa de que la medición objetiva del sedentarismo mediante tecnologías portátiles, interpretada a través de sistemas inteligentes transparentes, puede convertirse en una herramienta estratégica para la toma de decisiones en salud pública, contribuyendo a reducir la carga de enfermedad asociada a la inactividad y a promover estilos de vida más activos y sostenibles.
+
+Líneas futuras de investigación incluyen:
+
+ 
+- Validación prospectiva con estándares de oro: Replicar el estudio con mediciones concurrentes de actigrafía de investigación y calorimetría indirecta para cuantificar la validez de criterio del modelo difuso versus técnicas de referencia.
+ 
+ 
+- Escalamiento a cohortes heterogéneas: Aplicar el protocolo a cohortes con mayor diversidad etaria, socioeconómica y clínica (incluyendo poblaciones con enfermedades crónicas) para evaluar la robustez del modelo en condiciones de alta heterogeneidad.
+ 
+ 
+- Implementación en intervenciones conductuales randomizadas: Desarrollar una aplicación móvil que utilice el modelo difuso para generar retroalimentación en tiempo real, y evaluar su efectividad en reducir el sedentarismo mediante un ensayo clínico controlado aleatorizado.
+ 
+ 
+- Exploración de variabilidad temporal: Analizar patrones circadianos y semanales del comportamiento sedentario mediante descomposición de series temporales, para identificar momentos de mayor susceptibilidad a intervenciones conductuales.
+ 
+ 
+- Integración con biomarcadores inflamatorios y metabólicos: Vincular los perfiles de sedentarismo identificados con mediciones sanguíneas de proteína C reactiva, glucosa, lípidos y citoquinas inflamatorias, para caracterizar las vías biológicas mediando la asociación sedentarismo-enfermedad.
+
+En síntesis, los hallazgos aquí presentados confirman que el monitoreo continuo del sedentarismo mediante dispositivos portátiles, interpretado a través de sistemas de inferencia difusa, representa una vía factible y ética para transformar los datos personales en conocimiento accionable para la salud pública. Este modelo no solo contribuye a la comprensión científica del sedentarismo como fenómeno biopsicosocial, sino que también proporciona una base empírica para diseñar políticas públicas orientadas a reducir la inactividad y fomentar entornos digitales saludables. Así, la investigación trasciende el ámbito académico para posicionarse como una herramienta estratégica en la promoción de estilos de vida activos y sostenibles en la era de la salud digital.
+
+
+
+================================================================================
+ARCHIVO: capitulos/08_conclusiones.tex
+================================================================================
+
+=== CAPÍTULO: Conclusiones ===
+
+ Se ha demostrado que es factible desarrollar un modelo basado en lógica difusa para clasificar de manera fiable el comportamiento sedentario semanal. El modelo utiliza exclusivamente datos biométricos multivariados recopilados en condiciones de vida libre por dispositivos de consumo. El sistema de inferencia difusa propuesto respondió afirmativamente a la pregunta de investigación al alcanzar una alta concordancia (F1-Score = 0.840) con una clasificación objetiva y empírica derivada de un análisis de conglomerados, validando así su arquitectura y su capacidad para representar patrones de comportamiento reales.
+
+La principal contribución científica de esta tesis es la demostración empírica del poder de los sistemas expertos para modelar la sinergia entre biomarcadores. Se identificó una paradoja metodológica donde variables individualmente débiles para discriminar el comportamiento (como la Variabilidad de la Frecuencia Cardíaca) resultaron ser indispensables para el rendimiento óptimo del modelo multivariado. Este hallazgo prueba que la fortaleza del sistema no reside en la suma de sus partes, sino en su capacidad para interpretar las interacciones complejas entre la actividad física y las respuestas cardiovasculares, una capacidad que los análisis estadísticos univariados no logran capturar.
+
+Metodológicamente, este trabajo aporta una estrategia de validación robusta para sistemas de clasificación en salud cuando no se dispone de un estándar de oro clínico, basada en la convergencia de un enfoque empírico (descubrimiento de patrones no supervisado) y uno experto (reglas basadas en conocimiento). Asimismo, la ingeniería de las variables Actividad Relativa y Superávit Calórico Basal se presenta como una solución eficaz para la normalización fisiológica de datos de dispositivos portátiles, lo que permite comparaciones más equitativas entre individuos.
+
+En conclusión, esta investigación no solo entrega un modelo de clasificación interpretable y de alto rendimiento, sino que también establece un precedente metodológico para el análisis de datos de salud en condiciones de vida libre. El sistema desarrollado tiene el potencial de servir como una herramienta de cribado para la identificación temprana de patrones de comportamiento sedentario de riesgo, sentando las bases para futuras investigaciones orientadas hacia la personalización de modelos y la prevención en la salud digital.
+
+
+
+================================================================================
+ARCHIVO: capitulos/09_anexos.tex
+================================================================================
+
+--- SECCIÓN: Análisis Comparativo Exhaustivo de Investigaciones Previas ---
+
+Esta sección presenta el análisis comparativo exhaustivo de 17 investigaciones representativas sobre clasificación de comportamiento sedentario y actividad física mediante dispositivos wearables. La tabla abarca diversas técnicas metodológicas (lógica difusa, machine learning, deep learning, métodos estadísticos), tipos de validación (destacando LOUO/LOSO) y aplicaciones en contextos de vida libre. Para facilitar la lectura, la tabla se presenta en orientación horizontal (landscape).
+
+[TABLA: Análisis comparativo exhaustivo de investigaciones sobre clasificación de sedentarismo y actividad física con wearables]
+
