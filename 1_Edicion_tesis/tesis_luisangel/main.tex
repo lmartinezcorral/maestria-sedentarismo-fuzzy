@@ -124,7 +124,7 @@
 
 % Lugar y fecha
 \newcommand{\miCiudad}{Chihuahua, Chih., M\'exico}
-\newcommand{\miFecha}{27 de Octubre de 2025}
+\newcommand{\miFecha}{9 de Diciembre de 2025}
 
 % Ruta del logo (ya incluido en figuras/)
 \newcommand{\miLogo}{figuras/logo_uach_portada.png}  % Logo UACH para portada
@@ -143,7 +143,7 @@
 \newcommand{\miCodirector}{Dr. David Ricardo L\'opez Flores}
 \newcommand{\miCodirectorCargo}{Co director de tesis}
 
-\newcommand{\miAsesorUno}{Dra. Celia Mar\'ia Qui\~nez Cruz}
+\newcommand{\miAsesorUno}{Dra. Celia Mar\'ia Qui\~nonez Cruz}
 \newcommand{\miAsesorUnoCargo}{Asesor(a)}
 
 \newcommand{\miAsesorDos}{Dr. Javier Camarillo Cisneros}
@@ -228,14 +228,14 @@
 \onehalfspacing
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 
-\noindent El comportamiento sedentario representa un factor de riesgo para enfermedades crónicas no transmisibles, cuya medición objetiva en condiciones de vida libre presenta desafíos metodológicos significativos. Los métodos tradicionales de evaluación (cuestionarios de autorreporte) adolecen de sesgos de memoria y deseabilidad social, mientras que las técnicas de referencia se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento ecológico. Este estudio desarrolló un modelo de clasificación del sedentarismo mediante lógica difusa que integra datos biométricos de dispositivos portátiles de consumo, aplicado bajo el paradigma \textit{Bring Your Own Device} (\textit{BYOD}) en condiciones de vida libre.
+\noindent El comportamiento sedentario (CS), definido como actividad en vigilia con gasto energético ≤1.5 METs, constituye el cuarto factor de riesgo de mortalidad según la OMS, asociándose directamente al desarrollo de diversas condiciones fisiopatológicas. Su medición objetiva en condiciones de vida libre representa un vacío metodológico, pues los cuestionarios de autoinforme (ej. IPAQ) presentan sesgo de memoria, mientras que las técnicas de laboratorio como calorimetría indirecta y actigrafía entre otras técnicas de laboratorio, no capturan la complejidad del comportamiento humano. Este estudio desarrolló un modelo de clasificación del sedentarismo mediante lógica difusa que integra datos biométricos de dispositivos \textit{wearables}, aplicado bajo el paradigma \textit{Bring Your Own Device} (\textit{BYOD}) en condiciones de vida libre.
 
-La cohorte estuvo conformada por 10 adultos jóvenes con seguimiento longitudinal retrospectivo multianual (media: 133.7 semanas; rango: 7-298 semanas), acumulando 9,185 días de registro biométrico continuo mediante \textit{Apple Watch}. Tras preprocesamiento (imputación jerárquica, normalización antropométrica), se generaron 1,337 semanas válidas con cuatro variables derivadas: Actividad relativa, Superávit calórico basal, Delta cardíaco y \textit{HRV-SDNN}. La metodología empleó un enfoque híbrido: \textit{clustering} \textit{K-Means} no supervisado (K=2) para establecer verdad operativa a partir de patrones empíricos, seguido de un Sistema de Inferencia Difusa \textit{Mamdani} que codifica conocimiento experto mediante cinco reglas lingüísticas interpretables.
+La cohorte se conformó por 10 adultos jóvenes con seguimiento retrospectivo multianual mediante \textit{Apple Watch}. Se propusieron cuatro variables derivadas: actividad relativa, superávit calórico basal, delta cardíaco y variabilidad de la frecuencia cardíaca (\textit{HRV}). La metodología empleó \textit{clustering} \textit{K-Means} no supervisado para establecer verdad operativa, y un Sistema de Inferencia Difusa \textit{Mamdani} para realizar la clasificación de comportamiento sedentario mediante cinco reglas lingüísticas interpretables.
 
-La validación Leave-One-User-Out demostró \textit{F1-Score}=0.780 (Precisión=0.833, \textit{Recall}=0.850), con variabilidad inter-sujeto excepcional (CV=4.8\%), superando estudios comparables. El análisis de ablación reveló que HRV-SDNN, aunque débil discriminador univariado (p=0.24), resulta crítico en modelo multivariado (ablación: -50\% F1-Score). El sistema propuesto clasifica comportamiento sedentario con alta fiabilidad, preservando interpretabilidad clínica mediante reglas transparentes aplicables en monitorización ecológica de salud pública.
+El sistema se validó mediante Leave-One-User-Out, demostrando un \textit{F1-Score}=0.780±0.167 (CV=21.4\%), resultados que validan una herramienta fiable y transparente para el diseño de intervenciones de salud personalizadas, contribuyendo a la mitigación de este riesgo sanitario mediante la promoción de estilos de vida activos alineados con la Estrategia Mundial de la OMS (DPAS) y la meta 3.4 de los Objetivos de Desarrollo Sostenible (ODS).
 
 \vspace{0.5cm}
-\noindent\textbf{Palabras clave:} comportamiento sedentario, lógica difusa, \textit{BYOD}, \textit{wearables}, \textit{LOUO}, vida libre
+\noindent\textbf{Palabras clave:} Comportamiento sedentario, Lógica Difusa, \textit{BYOD}, \textit{Wearables}, \textit{LOUO}.
 
 % --------------- ABSTRACT EN INGLÉS (Pág. 3 - SIN NUMERACIÓN) ---------------
 \newpage
@@ -251,14 +251,14 @@ La validación Leave-One-User-Out demostró \textit{F1-Score}=0.780 (Precisión=
 \onehalfspacing
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 
-\noindent Sedentary behavior represents a risk factor for chronic non-communicable diseases, whose objective measurement in free-living conditions presents significant methodological challenges. Traditional evaluation methods (self-report questionnaires) suffer from \textit{Recall} and social desirability biases, while reference techniques are restricted to laboratory settings that do not capture the complexity of ecological behavior. This study developed a sedentary lifestyle classification model using \textit{fuzzy} logic that integrates biometric data from consumer \textit{wearable} devices, applied under the \textit{Bring Your Own Device} (\textit{BYOD}) paradigm in free-living conditions.
+\noindent Sedentary behavior (SB), defined as any wakeful activity with energy expenditure ≤1.5 METs, constitutes the fourth leading risk factor for mortality according to the WHO, being directly associated with the development of various pathophysiological conditions. Its objective measurement in free-living conditions represents a methodological gap, as self-report questionnaires (e.g., IPAQ) exhibit memory bias, while laboratory techniques such as indirect calorimetry and actigraphy, among other laboratory techniques, fail to capture the complexity of human behavior. This study developed a sedentary behavior classification model using \textit{fuzzy} logic that integrates biometric data from \textit{wearable} devices, applied under the \textit{Bring Your Own Device} (\textit{BYOD}) paradigm in free-living conditions.
 
-The cohort consisted of 10 young adults with multi-year retrospective longitudinal follow-up (mean: 133.7 weeks; range: 7-298 weeks), accumulating 9,185 days of continuous biometric recording via \textit{Apple Watch}. After preprocessing (hierarchical imputation, anthropometric normalization), 1,337 valid weeks were generated with four derived variables: Relative activity, Basal caloric surplus, Cardiac delta, and \textit{HRV-SDNN}. The methodology employed a hybrid approach: unsupervised \textit{K-Means} \textit{clustering} (K=2) to establish operational truth from empirical patterns, followed by a \textit{Mamdani} \textit{fuzzy} Inference System that encodes expert knowledge through five interpretable linguistic rules.
+The cohort consisted of 10 young adults with multi-year retrospective follow-up via \textit{Apple Watch}. Four derived variables were proposed: relative activity, basal caloric surplus, cardiac delta, and heart rate variability (\textit{HRV}). The methodology employed unsupervised \textit{K-Means} \textit{clustering} to establish operational truth, and a \textit{Mamdani} \textit{fuzzy} Inference System to perform sedentary behavior classification through five interpretable linguistic rules.
 
-Leave-One-User-Out validation demonstrated \textit{F1-Score}=0.780 (\textit{Precision}=0.833, \textit{Recall}=0.850), with exceptional inter-subject variability (CV=4.8\%), surpassing comparable studies. Ablation analysis revealed that HRV-SDNN, although a weak univariate discriminator (p=0.24), is critical in the multivariate model (ablation: -50\% F1-Score). The proposed system classifies sedentary behavior with high reliability, preserving clinical interpretability through transparent rules applicable in ecological public health monitoring.
+The system was validated using Leave-One-User-Out, demonstrating an \textit{F1-Score}=0.780±0.167 (CV=21.4\%), results that validate a reliable and transparent tool for designing personalized health interventions, contributing to the mitigation of this health risk through the promotion of active lifestyles aligned with the WHO Global Strategy on Diet, Physical Activity and Health (DPAS) and Sustainable Development Goal 3.4 (SDG).
 
 \vspace{0.5cm}
-\noindent\textbf{Keywords:} sedentary behavior, \textit{fuzzy} logic, \textit{BYOD}, \textit{wearables}, \textit{LOOU}, free-living
+\noindent\textbf{Keywords:} Sedentary behavior, \textit{Fuzzy} logic, \textit{BYOD}, \textit{Wearables}, \textit{LOUO}.
 
 % --------------- HOJA DE FIRMAS NUEVA (Pág. 4 - SIN NUMERACIÓN) ---------------
 \newpage
@@ -285,7 +285,7 @@ Leave-One-User-Out validation demonstrated \textit{F1-Score}=0.780 (\textit{Prec
 
 % Primer párrafo justificado SIN SANGRÍA (Times 12, sin negritas)
 {\fontsize{12}{14}\selectfont
-\noindent La tesis ``\miTitulo'' que presenta \miAutor, como requisito parcial para obtener el grado de: Maestr\'ia en Formaci\'on Biom\'edica ha sido revisada y aprobada por la Facultad de Medicina y Ciencias Biom\'edicas.
+\noindent La tesis ``\miTitulo'' que presenta \miAutor, como requisito parcial para obtener el grado de: \miGrado\ ha sido revisada y aprobada por \miFacultad.
 }
 
 \vspace{18pt}
@@ -346,15 +346,15 @@ Leave-One-User-Out validation demonstrated \textit{F1-Score}=0.780 (\textit{Prec
 \end{flushleft}
 
 \begin{flushright}
-{\fontsize{12}{14}\selectfont Chihuahua, Chih., a \underline{\hspace{1.5cm}} de \underline{\hspace{1.5cm}} de 2025}\\[0.3cm]
+{\fontsize{12}{14}\selectfont \miCiudad, a \miFecha}\\[0.3cm]
 \end{flushright}
 
 % Destinatario (quien recibe la carta) - SIN sangría izquierda, alineado a la izquierda
 \noindent
 {\fontsize{12}{14}\selectfont 
-Dr. Oscar Aguirre Barrera\\[0.1cm]
-Secretario de Investigaci\'on y Posgrado\\[0.1cm]
-Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
+\miSecretario\\[0.1cm]
+\miSecretarioCargo\\[0.1cm]
+\miFacultad\\[0.3cm]
 
 P {\hspace{0.15cm}} R {\hspace{0.15cm}} E {\hspace{0.15cm}} S {\hspace{0.15cm}} E {\hspace{0.15cm}} N {\hspace{0.15cm}} T {\hspace{0.15cm}} E.-\\[0.3cm]
 }
@@ -364,7 +364,7 @@ P {\hspace{0.15cm}} R {\hspace{0.15cm}} E {\hspace{0.15cm}} S {\hspace{0.15cm}} 
 \setlength{\parindent}{0cm}   % Sin sangría en primera línea de párrafos
 \setlength{\parskip}{0.2cm}   % Espacio entre párrafos
 
-\noindent Por medio de la presente nos permitimos informar a usted que el C. Luis Angel Mart\'inez Corral, con n\'umero de matr\'icula 261337, ha concluido la elaboraci\'on de la tesis ``Modelo de Evaluaci\'on del Comportamiento Sedentario mediante L\'ogica Difusa y Datos Biom\'etricos'', como requisito para obtener el grado de: \textbf{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}.
+\noindent Por medio de la presente nos permitimos informar a usted que el C. \miAutor, con n\'umero de matr\'icula 261337, ha concluido la elaboraci\'on de la tesis ``\miTitulo'', como requisito para obtener el grado de: \textbf{\miGrado}.
 
 As\'i mismo, manifestamos que la tesis ha sido revisada y aprobada por los abajo firmantes, miembros del Comit\'e de Grado.
 
@@ -397,28 +397,42 @@ Dra. Celia Mar\'ia Qui\~nez Cruz & Dr. Javier Camarillo Cisneros\\[0.3cm]
 
 % Dedicatoria
 \begin{center}
-{\fontsize{14}{16}\selectfont\bfseries DEDICATORIA}\\[1.5cm]
+{\fontsize{14}{16}\selectfont\bfseries\itshape DEDICATORIA}\\[0.5cm]
 \end{center}
 
 \begin{flushleft}
-{\fontsize{12}{14}\selectfont 
+\singlespacing
+\justifying
+{\itshape\fontsize{12}{14}\selectfont 
 
-Dedico este trabajo a \underline{\hspace{3cm}} por \underline{\hspace{3cm}}\\[2cm]
+A Dios, por la bendición diaria de la vida, por guiar mi camino y darme la fortaleza necesaria para alcanzar cada meta.
+
+A mis padres, por su amor incondicional, por su ejemplo y por haberme enseñado que la disciplina y la constancia son los pilares de todo logro. Su apoyo y confianza han sido el cimiento sobre el cual he construido cada paso de mi formación.
+
+Y a Nahomi Muñoz, mi prometida, compañera y cómplice en esta travesía. Gracias por tu paciencia, por creer en mí incluso cuando las fuerzas flaqueaban, por acompañarme durante estos dos años de esfuerzo y dedicación, y por ser la fuente constante de inspiración que da sentido y equilibrio a mi vida. En ti encuentro el reflejo de lo que deseo ser: un profesional pleno, pero también un ser humano que crece, ama y construye un futuro compartido. Este logro académico no solo marca el cierre de una etapa, sino el inicio de un proyecto de vida que se fortalece a tu lado.
 
 }
 \end{flushleft}
 
 % Agradecimientos
 \begin{center}
-{\fontsize{14}{16}\selectfont\bfseries AGRADECIMIENTOS}\\[1.5cm]
+{\fontsize{14}{16}\selectfont\bfseries\itshape AGRADECIMIENTOS}\\[0.5cm]
 \end{center}
 
 \begin{flushleft}
-{\fontsize{12}{14}\selectfont 
+\singlespacing
+\justifying
+{\itshape\fontsize{12}{14}\selectfont 
 
-Se agradece a:\\[0.5cm]
+A mis amigos, por su comprensión y apoyo incondicional, por entender que en esta etapa crucial de mi desarrollo profesional hubo momentos en los que no pude estar presente, pero en los que siempre conté con su paciencia y respaldo sincero.
 
-[Escribe aquí tus agradecimientos a las personas que apoyaron tu trabajo]
+A mi director de tesis, el Dr. Abimael Guzmán Pando, y a mi co-director, el Dr. David Ricardo López Flores, por transmitirme su conocimiento y fomentar en mí aprendizajes significativos que hoy forman parte esencial de mi crecimiento profesional. Gracias por su paciencia, tolerancia y perseverancia para llevar este proyecto a buen término.
+
+A mis asesores del comité tutorial, la Dra. Celia María Quiñonez Cruz y el Dr. Javier Camarillo Cisneros, por su orientación y valiosas observaciones que contribuyeron a elevar el rigor y la calidad científica de esta investigación.
+
+A mis docentes de la Maestría, en especial al Dr. Luis Gibrán Juárez Hernández, por su genuino interés en formarnos como investigadores, y a la Dra. Haydeé Parra Acosta, por su liderazgo y compromiso en mantener este programa bajo los más altos estándares de calidad académica y científica, brindándonos una base sólida para nuestro desarrollo profesional.
+
+Al Dr. Javier Bernabé González Bustos, Secretario de Investigación y Posgrado de la FCCF-UACH, por facilitar la base de perfiles expertos para la validación del instrumento en la primera etapa de esta investigación y por sus valiosos consejos en mis primeros pasos como investigador. Asimismo, expreso mi reconocimiento a la Dra. Ma. de los Ángeles Bibiano Mejía y al Dr. Hugo Eduardo Irigoyen Gutiérrez, por su orientación y apoyo desde la licenciatura, cuyo impulso y recomendación fueron determinantes para dar el salto hacia este proceso de maestría y lograr mi incorporación a este programa académico.
 
 }
 \end{flushleft}
