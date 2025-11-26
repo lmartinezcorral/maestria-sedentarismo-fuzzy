@@ -97,6 +97,20 @@
   {1em}
 
 % ============================================================================
+% CONFIGURACIÓN DE BIBLIOGRAFÍA (BIBLATEX-APA 7)
+% ============================================================================
+% Configuración centralizada para uniformizar citas en todo el documento
+% ============================================================================
+
+% Configuración de biblatex para APA 7
+% Forzar uso de "et al." en citas con más de 2 autores
+\RequirePackage[style=apa,backend=biber,natbib,
+                maxcitenames=2,mincitenames=1,
+                maxnames=2,minnames=1,
+                uniquename=init,
+                uniquelist=minyear]{biblatex}
+
+% ============================================================================
 % FIN DE HOJA DE ESTILOS
 % ============================================================================
 

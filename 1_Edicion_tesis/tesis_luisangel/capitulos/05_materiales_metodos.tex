@@ -35,19 +35,19 @@ En su lugar, adoptamos una estrategia de validación interna basada en la conver
 \subsection{Selección del Dispositivo}
 \label{subsec:seleccion_dispositivo}
 
-Para la selección del dispositivo de monitoreo, utilizamos una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 \citep{Henriksen2021ReplicationData}. Esta base permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS).
+Para la selección del dispositivo de monitoreo, utilizamos una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 \cite{Henriksen2021ReplicationData}. Esta base permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS).
 
 \subsection{Análisis de Sensores}
 \label{subsec:analisis_sensores}
 
-Del análisis de los 423 dispositivos, observamos que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento y facilitar así la evaluación de la AF \citep{Henriksen2021ReplicationData}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \citep{Pinto2023Physiology}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente y alcanzó un 55\% en los dispositivos lanzados en 2016, lo cual refleja su creciente relevancia en la monitorización de la salud \citep{Henriksen2018}.
+Del análisis de los 423 dispositivos, observamos que todos cuentan con un acelerómetro, esencial para medir la intensidad y frecuencia del movimiento y facilitar así la evaluación de la AF \cite{Henriksen2021ReplicationData}. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \cite{Pinto2023Physiology}. Aunque en 2011 solo el 14\% de los wearables incluían PPG, esta tecnología creció significativamente y alcanzó un 55\% en los dispositivos lanzados en 2016, lo cual refleja su creciente relevancia en la monitorización de la salud \cite{Henriksen2018}.
 
-Otros sensores, como el giroscopio (23.9\%) y el GPS (29.6\%), también destacan por su utilidad. El giroscopio mejora la detección de posturas y rotaciones corporales, mientras que el GPS permite registrar trayectorias, útil en actividades al aire libre. Sensores menos comunes, como el magnetómetro (18.2\%) y el barómetro (13.5\%), tienen aplicaciones específicas, pero son menos relevantes para este estudio \citep{Henriksen2018}.
+Otros sensores, como el giroscopio (23.9\%) y el GPS (29.6\%), también destacan por su utilidad. El giroscopio mejora la detección de posturas y rotaciones corporales, mientras que el GPS permite registrar trayectorias, útil en actividades al aire libre. Sensores menos comunes, como el magnetómetro (18.2\%) y el barómetro (13.5\%), tienen aplicaciones específicas, pero son menos relevantes para este estudio \cite{Henriksen2018}.
 
 \subsection{Elección del Apple Watch}
 \label{subsec:eleccion_apple_watch}
 
-El análisis de mercado identificó a Apple como el líder en la categoría de relojes inteligentes, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \citep{Canalys2024Wearables}. Esta predominancia y la uniformidad en sus dispositivos justifican la elección del Apple Watch como el dispositivo más adecuado, asegurando una mayor representatividad de datos y compatibilidad con herramientas de análisis avanzadas. La \Cref{tab:wearables_comparison_extended} resume la matriz de decisión empleada, incorporando a los principales proveedores disponibles en México.
+El análisis de mercado identificó a Apple como el líder en la categoría de relojes inteligentes, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \cite{Canalys2024Wearables}. Esta predominancia y la uniformidad en sus dispositivos justifican la elección del Apple Watch como el dispositivo más adecuado, asegurando una mayor representatividad de datos y compatibilidad con herramientas de análisis avanzadas. La \Cref{tab:wearables_comparison_extended} resume la matriz de decisión empleada, incorporando a los principales proveedores disponibles en México.
 
 \begin{table}[H]
     \centering
@@ -76,7 +76,7 @@ El análisis de mercado identificó a Apple como el líder en la categoría de r
 \subsection{Protocolo del Instrumento}
 \label{subsec:protocolo_instrumento}
 
-Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos \textit{Apple Watch}, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en \textit{Swift}, lo cual garantizó la integridad y seguridad de los datos a través de un procedimiento manual estructurado y replicable \citep{Apple2024HealthKit}.
+Para la implementación del instrumento se estableció un protocolo específico para la extracción y procesamiento de variables biométricas obtenidas de dispositivos \textit{Apple Watch}, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque permitió recopilar las métricas necesarias sin desarrollar una aplicación personalizada ni programar en \textit{Swift}, lo cual garantizó la integridad y seguridad de los datos a través de un procedimiento manual estructurado y replicable \cite{Apple2024HealthKit}.
 
 
 
@@ -89,9 +89,9 @@ La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodoló
     \label{fig:diagrama_flujo}
 \end{figure}
 
-Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en \textit{Swift}. Los participantes generaron un archivo \path{export.zip} a través de la aplicación Apple Health en sus dispositivos. Recibimos y almacenamos cada archivo en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente descomprimimos los archivos para acceder a los datos en formato \textit{XML}. Utilizamos el script de código abierto \nolinkurl{apple_health_data_converter.py}, disponible en \textit{GitHub}, para convertir los archivos \textit{XML} a formato \textit{CSV}, facilitando su manejo y análisis estadístico posterior \citep{Gaur2024AppleHealth}.
+Este enfoque basado en scripts reutilizables garantiza la reproducibilidad del proceso sin requerir desarrollo de aplicaciones nativas en \textit{Swift}. Los participantes generaron un archivo \path{export.zip} a través de la aplicación Apple Health en sus dispositivos. Recibimos y almacenamos cada archivo en un entorno seguro, asignándole un código único de participante para asegurar la confidencialidad y trazabilidad de la información. Posteriormente descomprimimos los archivos para acceder a los datos en formato \textit{XML}. Utilizamos el script de código abierto \nolinkurl{apple_health_data_converter.py}, disponible en \textit{GitHub}, para convertir los archivos \textit{XML} a formato \textit{CSV}, facilitando su manejo y análisis estadístico posterior \cite{Gaur2024AppleHealth}.
 
-Identificamos los archivos \nolinkurl{ActiveEnergyBurned.csv}, \nolinkurl{AppleExerciseTime.csv}, \nolinkurl{AppleStandHour.csv}, \nolinkurl{AppleStandTime.csv}, \nolinkurl{DistanceWalkingRunning.csv}, \nolinkurl{HeartRate.csv}, \nolinkurl{StepCount.csv}, \nolinkurl{WalkingHeartRateAverage.csv} y extrajimos las métricas específicas relevantes para el estudio \citep{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente desarrollamos un código personalizado en \textit{Python} utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del \textit{Apple Watch} de cada participante, filtramos los registros utilizando la columna \texttt{sourceName}, seleccionando únicamente los datos asociados al dispositivo específico del participante y excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
+Identificamos los archivos \nolinkurl{ActiveEnergyBurned.csv}, \nolinkurl{AppleExerciseTime.csv}, \nolinkurl{AppleStandHour.csv}, \nolinkurl{AppleStandTime.csv}, \nolinkurl{DistanceWalkingRunning.csv}, \nolinkurl{HeartRate.csv}, \nolinkurl{StepCount.csv}, \nolinkurl{WalkingHeartRateAverage.csv} y extrajimos las métricas específicas relevantes para el estudio \cite{Apple2024HealthKit,Gaur2024AppleHealth}. Posteriormente desarrollamos un código personalizado en \textit{Python} utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos y \texttt{numpy} para operaciones numéricas. Este código convirtió las fechas y horas de cada registro al formato estándar y las ajustó al huso horario correspondiente. Para garantizar que los datos provinieran exclusivamente del \textit{Apple Watch} de cada participante, filtramos los registros utilizando la columna \texttt{sourceName}, seleccionando únicamente los datos asociados al dispositivo específico del participante y excluyendo posibles registros de otros dispositivos o aplicaciones vinculadas.
 
 \begin{figure}[htbp]
     \centering
@@ -498,7 +498,7 @@ El análisis de variabilidad permitió cuantificar la heterogeneidad inter-sujet
 \subsection{Fase 2: Establecimiento de la Verdad Operativa mediante Clustering}
 \label{subsec:fase2_clustering}
 
-Aplicamos el algoritmo \textit{K-Means} sobre el conjunto de 1,337 semanas válidas, configurado con semilla aleatoria fija (random\_state=42) y 10 inicializaciones (n\_init=10) para garantizar reproducibilidad \citep{Pedregosa2011sklearn}. En el código distribuido (scikit-learn 1.4) estos parámetros se explicitan para evitar resultados diferentes debidos a cambios en la inicialización por defecto. Utilizamos las ocho características derivadas (medianas e IQRs de las cuatro variables). Determinamos el número óptimo de conglomerados (K) mediante:
+Aplicamos el algoritmo \textit{K-Means} sobre el conjunto de 1,337 semanas válidas, configurado con semilla aleatoria fija (random\_state=42) y 10 inicializaciones (n\_init=10) para garantizar reproducibilidad \cite{Pedregosa2011sklearn}. En el código distribuido (scikit-learn 1.4) estos parámetros se explicitan para evitar resultados diferentes debidos a cambios en la inicialización por defecto. Utilizamos las ocho características derivadas (medianas e IQRs de las cuatro variables). Determinamos el número óptimo de conglomerados (K) mediante:
 
 \begin{itemize}
     \item \textbf{Coeficiente de Silhouette:} Cuantifica la cohesión intra-conglomerado y separación inter-conglomerado. Valores >0.50 indican estructura bien definida \cite{Rousseeuw1987}.
@@ -587,7 +587,7 @@ En resumen, matemáticamente el sistema consta de: (a) conjuntos difusos y funci
 \subsection{Formalización Matemática del Sistema de Inferencia Difusa}
 \label{subsec:formalizacion_sistema_difuso}
 
-El sistema de inferencia difusa implementado sigue el modelo de \textbf{Mamdani} \citep{Mamdani1975}, que permite la construcción de reglas lingüísticas interpretables mediante la teoría de conjuntos difusos \citep{Zadeh1965}. Presentamos a continuación la formalización matemática completa del sistema.
+El sistema de inferencia difusa implementado sigue el modelo de \textbf{Mamdani} \cite{Mamdani1975}, que permite la construcción de reglas lingüísticas interpretables mediante la teoría de conjuntos difusos \cite{Zadeh1965}. Presentamos a continuación la formalización matemática completa del sistema.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Conjuntos Difusos y Variables Lingüísticas}
@@ -690,7 +690,7 @@ Presentamos los valores específicos calculados sobre la cohorte completa (N=10 
 \subsubsection{Reglas de Inferencia y Operadores T-Norm}
 \label{subsubsec:reglas_inferencia}
 
-El sistema implementa cinco reglas de inferencia tipo \textit{Mamdani} (\Cref{tab:reglas_difusas}). La activación de cada regla se calcula mediante la \textbf{t-norm de Gödel} \citep{Ross2010}:
+El sistema implementa cinco reglas de inferencia tipo \textit{Mamdani} (\Cref{tab:reglas_difusas}). La activación de cada regla se calcula mediante la \textbf{t-norm de Gödel} \cite{Ross2010}:
 
 \begin{equation}
 w_r^{(j)} = T\left(\mu_{A_1}(x_{i_1}^{(j)}), \mu_{A_2}(x_{i_2}^{(j)})\right), \quad \text{con } T(a, b) = \min(a, b)
@@ -829,7 +829,7 @@ CV(\%) = \frac{\sigma_{F1}}{\overline{F1}_{\text{LOOU}}} \times 100
 \label{eq:cv_loou}
 \end{equation}
 
-El sistema alcanzó \(\overline{F1}_{\text{LOOU}} = 0.780 \pm 0.167\) (CV=21.4\%), con 7 de 10 usuarios obteniendo F1 \(\geq\) 0.65, lo que demuestra capacidad de generalización inter-sujeto adecuada para una cohorte piloto de N=10 \citep{Alinia2020}.
+El sistema alcanzó \(\overline{F1}_{\text{LOOU}} = 0.780 \pm 0.167\) (CV=21.4\%), con 7 de 10 usuarios obteniendo F1 \(\geq\) 0.65, lo que demuestra capacidad de generalización inter-sujeto adecuada para una cohorte piloto de N=10 \cite{Alinia2020}.
 
 % ============================================================================
 % FIN DE FORMALIZACIÓN MATEMÁTICA (ATLAS)
@@ -941,7 +941,7 @@ Para garantizar la reproducibilidad completa de los análisis, documentamos a co
     \item \textbf{Umbral de decisión:} $\tau=0.30$ (optimizado para maximizar \textit{F1-Score} global)
 \end{itemize}
 
-Los scripts de análisis completos están disponibles bajo solicitud para fines de auditoría científica y replicación metodológica, en cumplimiento con las políticas de ciencia abierta y transparencia de datos \citep{Wilkinson2016FAIR}.
+Los scripts de análisis completos están disponibles bajo solicitud para fines de auditoría científica y replicación metodológica, en cumplimiento con las políticas de ciencia abierta y transparencia de datos \cite{Wilkinson2016FAIR}.
 
 \subsection{Lugar de Ejecución}
 
