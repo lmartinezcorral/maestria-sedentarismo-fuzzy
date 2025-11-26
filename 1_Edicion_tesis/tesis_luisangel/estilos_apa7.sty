@@ -97,6 +97,25 @@
   {1em}
 
 % ============================================================================
+% CONFIGURACIÓN DE CAPTIONS PARA TABLAS (APA 7)
+% ============================================================================
+% Formato: Renglón 1: "Tabla X.Y" (negritas 12pt)
+%          Renglón 2: nombre de la tabla (cursiva 12pt)
+% ============================================================================
+\RequirePackage{caption}
+\DeclareCaptionFormat{tableformat}{%
+  \textbf{#1}\\[0.5em]%
+  \textit{#3}%
+}
+\captionsetup[table]{
+  format=tableformat,
+  font={normalfont},
+  labelsep=none,
+  justification=justified,
+  singlelinecheck=false
+}
+
+% ============================================================================
 % CONFIGURACIÓN DE BIBLIOGRAFÍA (BIBLATEX-APA 7)
 % ============================================================================
 % Configuración centralizada para uniformizar citas en todo el documento

@@ -91,28 +91,38 @@ Por su parte, la ley de incompatibilidad de Zadeh establece una limitación fund
 \subsection{La Lógica Difusa en la Salud Digital y el Monitoreo Biométrico}
 \label{subsec:logica_difusa_salud_digital}
 
-Inicialmente, las aplicaciones de la lógica difusa se concentraron en la ingeniería de control a partir de la década de 1970 \cite{Strefezza2009Logica}. Sin embargo, su capacidad para modelar sistemas complejos de manera más sencilla, junto con sus fundamentos matemáticos precisos, propició su expansión a diversas áreas como la medicina. En la actualidad, los avances han llevado a una integración creciente de la lógica difusa con otras técnicas de inteligencia artificial (IA) y aprendizaje automático (ML), dando lugar a sistemas híbridos, como los sistemas neuro-difusos \cite{Ahmadi2018Diseases}. Esta fusión mejora la capacidad de procesar y analizar grandes volúmenes de datos fisiológicos en tiempo real, facilitando la identificación de patrones sutiles como lo podemos apreciar en la \Cref{tab:comparativo_logica_difusa}.
+Inicialmente, las aplicaciones de la lógica difusa se concentraron en la ingeniería de control a partir de la década de 1970 \cite{Strefezza2009Logica}. Sin embargo, su capacidad para modelar sistemas complejos de manera más sencilla, junto con sus fundamentos matemáticos precisos, propició su expansión a diversas áreas como la medicina. En la actualidad, los avances han llevado a una integración creciente de la lógica difusa con otras técnicas de IA y ML, dando lugar a sistemas híbridos, como los sistemas neuro-difusos \cite{Ahmadi2018Diseases}. Esta fusión mejora la capacidad de procesar y analizar grandes volúmenes de datos fisiológicos en tiempo real, facilitando la identificación de patrones sutiles como lo podemos apreciar en la \Cref{tab:comparativo_logica_difusa}.
 
-\begin{table}[htbp]
-\centering
+\begin{longtable}{@{}p{3cm}p{2.5cm}p{2.5cm}p{4cm}p{1.5cm}@{}}
 \caption{Cuadro Comparativo de Artículos sobre Lógica Difusa en Aplicaciones Sanitarias}
-\label{tab:comparativo_logica_difusa}
-\begin{tabular}{@{}p{3cm}p{2.5cm}p{2.5cm}p{4cm}p{1.5cm}@{}}
+\label{tab:comparativo_logica_difusa} \\
 \toprule
-\textbf{Técnicas de Lógica Difusa} & \textbf{Área de Aplicación} & \textbf{Tipos de Datos} & \textbf{Hallazgos Clave} & \textbf{Año} \\
+\fontsize{12}{14.4}\selectfont\textbf{Técnicas de Lógica Difusa} & \fontsize{12}{14.4}\selectfont\textbf{Área de Aplicación} & \fontsize{12}{14.4}\selectfont\textbf{Tipos de Datos} & \fontsize{12}{14.4}\selectfont\textbf{Hallazgos Clave} & \fontsize{12}{14.4}\selectfont\textbf{Año} \\
 \midrule
-Sistema basado en lógica difusa en marco de IA, teoría de conjuntos difusos & Diagnóstico de Patologías (Informes de Laboratorio) & Parámetros cuantitativos de laboratorio (RDW, MCV) & Precisión impresionante, 83\% de probabilidad de identificar ``normal'', mejora en precisión, recall y F-measure con más diagnósticos. & 2024 \\
+\endfirsthead
+
+\multicolumn{5}{c}{\textit{(Continuación de Tabla \ref{tab:comparativo_logica_difusa})}} \\
+\toprule
+\fontsize{12}{14.4}\selectfont\textbf{Técnicas de Lógica Difusa} & \fontsize{12}{14.4}\selectfont\textbf{Área de Aplicación} & \fontsize{12}{14.4}\selectfont\textbf{Tipos de Datos} & \fontsize{12}{14.4}\selectfont\textbf{Hallazgos Clave} & \fontsize{12}{14.4}\selectfont\textbf{Año} \\
 \midrule
-Mapas Cognitivos Difusos (FCM), reglas difusas, variables lingüísticas & Diagnóstico de COVID-19 & Síntomas clínicos (fiebre, tos, disnea, GI), historial de contacto & Herramienta viable de apoyo a la decisión, probabilidad de diagnóstico (ej. 72\% para COVID-19). & 2020 \\
+\endhead
+
 \midrule
-Lógica difusa para pertenencia difusa, análisis multicriterio & Planificación de Comidas Personalizadas & Datos nutricionales, preferencias alimentarias, restricciones de salud & Planes de comidas flexibles y optimizados, considera múltiples factores (costo, cocina, tiempo). & 2023 \\
-\midrule
-Lógica de primer orden con semántica difusa, algoritmo de razonamiento espacial & Reconocimiento de Nervios en Imágenes Médicas & Imágenes de RM anatómicas T2 y de difusión & Permite la planificación quirúrgica precisa, visualización de nervios en gemelo digital 3D, explicabilidad directa. & 2025 \\
-\midrule
-Sistema experto difuso, fuzificación, mecanismo de inferencia, defuzificación & Control Metabólico en Diabetes Mellitus Tipo 2 & Edad, IMC, tabaquismo, estrés, ejercicio, tratamiento farmacológico, dieta & Asiste a médicos en la evaluación del control metabólico. & 2018 \\
+\multicolumn{5}{r}{\textit{Continúa en la siguiente página...}} \\
+\endfoot
+
 \bottomrule
-\end{tabular}
-\end{table}
+\endlastfoot
+\fontsize{12}{14.4}\selectfont Sistema basado en lógica difusa en marco de IA, teoría de conjuntos difusos & \fontsize{12}{14.4}\selectfont Diagnóstico de Patologías (Informes de Laboratorio) & \fontsize{12}{14.4}\selectfont Parámetros cuantitativos de laboratorio (RDW, MCV) & \fontsize{12}{14.4}\selectfont Precisión impresionante, 83\% de probabilidad de identificar ``normal'', mejora en precisión, recall y F-measure con más diagnósticos. & \fontsize{12}{14.4}\selectfont 2024 \\
+\midrule
+\fontsize{12}{14.4}\selectfont Mapas Cognitivos Difusos (FCM), reglas difusas, variables lingüísticas & \fontsize{12}{14.4}\selectfont Diagnóstico de COVID-19 & \fontsize{12}{14.4}\selectfont Síntomas clínicos (fiebre, tos, disnea, GI), historial de contacto & \fontsize{12}{14.4}\selectfont Herramienta viable de apoyo a la decisión, probabilidad de diagnóstico (ej. 72\% para COVID-19). & \fontsize{12}{14.4}\selectfont 2020 \\
+\midrule
+\fontsize{12}{14.4}\selectfont Lógica difusa para pertenencia difusa, análisis multicriterio & \fontsize{12}{14.4}\selectfont Planificación de Comidas Personalizadas & \fontsize{12}{14.4}\selectfont Datos nutricionales, preferencias alimentarias, restricciones de salud & \fontsize{12}{14.4}\selectfont Planes de comidas flexibles y optimizados, considera múltiples factores (costo, cocina, tiempo). & \fontsize{12}{14.4}\selectfont 2023 \\
+\midrule
+\fontsize{12}{14.4}\selectfont Lógica de primer orden con semántica difusa, algoritmo de razonamiento espacial & \fontsize{12}{14.4}\selectfont Reconocimiento de Nervios en Imágenes Médicas & \fontsize{12}{14.4}\selectfont Imágenes de RM anatómicas T2 y de difusión & \fontsize{12}{14.4}\selectfont Permite la planificación quirúrgica precisa, visualización de nervios en gemelo digital 3D, explicabilidad directa. & \fontsize{12}{14.4}\selectfont 2025 \\
+\midrule
+\fontsize{12}{14.4}\selectfont Sistema experto difuso, fuzificación, mecanismo de inferencia, defuzificación & \fontsize{12}{14.4}\selectfont Control Metabólico en Diabetes Mellitus Tipo 2 & \fontsize{12}{14.4}\selectfont Edad, IMC, tabaquismo, estrés, ejercicio, tratamiento farmacológico, dieta & \fontsize{12}{14.4}\selectfont Asiste a médicos en la evaluación del control metabólico. & \fontsize{12}{14.4}\selectfont 2018 \\
+\end{longtable}
 
 Este cuadro es fundamental para comprender la amplitud y profundidad de las aplicaciones de la lógica difusa en entornos clínicos. Al organizar sistemáticamente la información, permite una rápida visión general de los avances, facilita la comparación de diferentes enfoques metodológicos y sus idoneidades para diversos problemas clínicos, y destaca los resultados tangibles y las mejoras de rendimiento logradas por estos sistemas.
 
@@ -241,7 +251,7 @@ La variabilidad de frecuencia cardíaca (\textit{HRV}) no solo es un indicador d
 La \Cref{tab:comparativa_investigaciones_condensada} presenta un análisis comparativo de investigaciones clave relacionadas con la clasificación de comportamiento sedentario y actividad física mediante dispositivos \textit{wearables}. La tabla destaca estudios metodológicamente relevantes que emplean validación cruzada Leave-One-User-Out (\textit{LOUO}/LOSO), \textit{wearables} comerciales (\textit{Apple Watch}) y técnicas de lógica difusa. Para un análisis exhaustivo de la literatura que incluye 17 investigaciones representativas, consultar el Anexo B.
 
 % Tabla condensada (7 artículos clave)
-\footnotesize
+\fontsize{12}{14.4}\selectfont
 \begin{longtable}{@{}p{1.8cm}p{2.2cm}p{1.5cm}p{1.3cm}p{0.8cm}p{1.2cm}p{1.8cm}p{1.5cm}@{}}
 \caption{Investigaciones clave sobre clasificación de sedentarismo y actividad física con wearables (tabla condensada)}
 \label{tab:comparativa_investigaciones_condensada} \\
