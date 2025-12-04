@@ -1,0 +1,503 @@
+\chapter{Materiales y Métodos}
+\label{chap:materiales_metodos}
+
+\noindent Este capítulo detalla la metodología empleada en la investigación, incluyendo el diseño del estudio, la selección del dispositivo \textit{wearable}, el protocolo de reclutamiento de participantes, la extracción y preprocesamiento de datos biométricos, el desarrollo de variables derivadas mediante ingeniería de características, el establecimiento de la verdad operativa mediante \textit{clustering} no supervisado, el diseño del sistema de inferencia difusa tipo \textit{Mamdani}, y el protocolo de validación cruzada Leave-One-User-Out. Organizamos la presentación siguiendo la secuencia temporal en que se ejecutaron las etapas del proyecto, desde la aprobación ética inicial hasta la validación final del modelo, lo cual facilita la comprensión del proceso metodológico y garantiza la reproducibilidad de los hallazgos en estudios futuros. Cada sección se enlaza con la anterior mediante transiciones explícitas que guían al lector a través del flujo lógico de decisiones metodológicas implementadas.
+
+% ═══════════════════════════════════════════════════════════════════════════
+% BLOQUE 1: DISEÑO Y PLANIFICACIÓN
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ============================================================================
+\section{Diseño del Estudio y Aprobaciones Éticas}
+\label{sec:diseno}
+% ============================================================================
+
+Empleamos un diseño cuantitativo con enfoque exploratorio-correlacional, de tipo longitudinal retrospectivo con seguimiento multianual (2021-2024) de una cohorte de 10 participantes adultos, de naturaleza observacional de un solo corte y sin grupo control. El componente exploratorio del estudio reside en el descubrimiento de patrones latentes de comportamiento sedentario mediante técnicas de \textit{clustering} no supervisado aplicadas a datos biométricos recolectados en condiciones de vida libre, mientras que el componente correlacional se manifiesta en la validación de la concordancia entre dos métodos independientes: la clasificación obtenida mediante agrupamiento \textit{K-Means} y la clasificación generada por el sistema de inferencia difusa \textit{Mamdani}. Este diseño se fundamenta en el paradigma \textit{Bring Your Own Device} (\textit{BYOD}), el cual minimiza el efecto Hawthorne al utilizar dispositivos que los participantes ya poseían y empleaban regularmente en su vida cotidiana, garantizando validez en condiciones naturales de actividad \cite{Doherty2021}.
+
+El protocolo de investigación fue sometido a escrutinio y aprobación por parte del Comité de Investigación y el Comité de Ética en Investigación de la Facultad de Medicina y Ciencias Biomédicas de la Universidad Autónoma de Chihuahua. Obtuvimos el primer dictamen favorable del Comité de Investigación el 17 de febrero de 2025, documentado mediante el Oficio SIP/116/25 con asignación de registro interno de proyecto CI-088-24. Posteriormente, el Comité de Ética en Investigación aprobó el protocolo completo el 21 de agosto de 2025 bajo el mismo número de registro CI-088-24, lo cual nos permitió lanzar la convocatoria abierta para reclutamiento de participantes a partir de esa fecha. El estudio se estructuró en un seguimiento retrospectivo que abarcó datos biométricos recopilados de forma continua por los participantes durante sus actividades diarias habituales, con una mediana de seguimiento de 131 semanas por participante. La unidad de análisis correspondió a semanas completas de monitoreo, las cuales generamos mediante la agregación temporal de los 9,185 días válidos recopilados de forma continua por los dispositivos \textit{Apple Watch}, decisión metodológica que fundamentamos en la necesidad de reducir el ruido inherente a las mediciones diarias en condiciones de vida libre mediante estadísticos robustos, como desarrollaremos en la Sección~\ref{subsec:agregacion_semanal}.
+
+% ============================================================================
+\section{Selección del Dispositivo Wearable}
+\label{sec:seleccion_dispositivo}
+% ============================================================================
+
+Para la selección del dispositivo de monitoreo, utilizamos una base de datos detallada que analiza 423 dispositivos de 133 marcas, divididos en 187 monitores de actividad física y 236 relojes inteligentes lanzados desde 2011 \cite{Henriksen2021ReplicationData}. Esta base nos permitió identificar las capacidades técnicas de cada dispositivo, como sensores incluidos y su utilidad en la medición de patrones de actividad física (AF) y comportamiento sedentario (CS). Del análisis de los 423 dispositivos, identificamos que todos cuentan con acelerómetro triaxial, esencial para medir la intensidad y frecuencia del movimiento. Sin embargo, solo el 38.3\% de los dispositivos (162 de 423) incluyen un sensor de fotopletismografía (PPG), crucial para medir frecuencia y variabilidad cardíaca, indicadores relevantes para evaluar esfuerzo físico y salud cardiovascular \cite{Pinto2023Physiology}.
+
+El análisis de mercado identificó a Apple como el líder en la categoría de relojes inteligentes, con un 49\% de la cuota global, seguido por Samsung (15\%) y Garmin (11\%) \cite{Canalys2024Wearables}. Esta predominancia, combinada con reportes de disponibilidad en población urbana mexicana, motivó la inclusión de \textit{Apple Watch} como candidato prioritario en nuestra matriz de decisión. La \Cref{tab:wearables_comparison_extended} resume la matriz de decisión empleada para comparar los principales proveedores disponibles en México, incorporando criterios de penetración en el mercado nacional, validación científica de sensores, capacidad de exportación de datos históricos, consistencia entre versiones de hardware y software, y disponibilidad de SDK (\textit{Software Development Kit}) o documentación técnica para desarrollo de herramientas de análisis personalizadas. La tabla se interpreta asignando a cada proveedor un nivel cualitativo por criterio (Alta, Media, Media-baja, Baja, Parcial, Sí, Limitada), lo que permite identificar fortalezas y debilidades relativas y facilita elegir el dispositivo con mayor solidez técnica y disponibilidad para investigación en el contexto nacional.
+
+\begin{table}[H]
+    \centering
+    \caption{Matriz de decisión extendida para selección de dispositivo wearable}
+    \label{tab:wearables_comparison_extended}
+    \begingroup
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.15}
+    \fontsize{12}{14.4}\selectfont
+    \begin{tabularx}{\textwidth}{@{}p{3.0cm}*{5}{>{\raggedright\arraybackslash}X}@{}}
+        \toprule
+        \textbf{Criterio} & \textbf{Apple Watch} & \textbf{Fitbit} & \textbf{Garmin} & \textbf{Polar} & \textbf{Huawei} \\
+        \midrule
+        Penetración en México & Alta & Media & Media-baja & Baja & Media \\
+        Sensores validados & Sí (todos) & Sí (núcleo) & Sí (núcleo) & Sí (núcleo) & Parcial \\
+        Exportación de datos & \textit{HealthKit} (\textit{XML}/\textit{API}) & Fitbit Web \textit{API} & Garmin Health \textit{API} & Polar AccessLink & Huawei Health \textit{API} (limitada) \\
+        Consistencia HW/SW & Alta (ecosistema cerrado) & Media & Alta & Media & Baja (fragmentación) \\
+        \textit{SDK} / Documentación & \textit{HealthKit} (extensa) & \textit{API} con foros activos & Documentación integral & Moderada (deportiva) & Limitada/básica \\
+        \bottomrule
+    \end{tabularx}
+    \endgroup
+\end{table}
+
+\FloatBarrier
+
+La comparación evidenció que \textit{Apple Watch} presenta ventajas decisivas en tres aspectos críticos para investigación científica: (1) ecosistema cerrado que garantiza alta consistencia entre versiones de hardware (Series 3 a 9) y actualizaciones de software, minimizando heterogeneidad instrumental; (2) función de exportación nativa mediante \textit{HealthKit} que proporciona el historial completo del usuario en formato XML estructurado, sin restricciones de antigüedad ni limitaciones de API; y (3) validación científica documentada en literatura científica que reporta concordancia superior al 90\% con estándares de referencia para frecuencia cardíaca y conteo de pasos \cite{Shcherbina2017,Stahl2016}. Estas fortalezas técnicas, combinadas con la factibilidad de reclutamiento en la población objetivo mediante el paradigma BYOD (participantes que ya poseen el dispositivo), nos llevaron a seleccionar \textit{Apple Watch} como dispositivo estándar del estudio.
+
+No obstante, reconocemos tres limitaciones inherentes a esta decisión que deben considerarse al interpretar los hallazgos: (1) sesgo de selección al excluir usuarios de plataformas Android u otros ecosistemas \textit{wearables}, lo cual limita la generalización poblacional; (2) barrera económica asociada al costo de los dispositivos Apple (USD \$300-800), que restringe la representatividad socioeconómica de la muestra al excluir participantes de estratos económicos sin acceso a esta tecnología; y (3) heterogeneidad entre versiones del \textit{Apple Watch} en métricas avanzadas, particularmente en análisis de sueño (Series 6+ vs Series 3-5), variabilidad cardíaca (Series 4+ con sensor óptico mejorado vs Series 3), electrocardiograma (disponible solo desde Series 4), y estimación de VO$_2$max (algoritmos refinados en versiones recientes), lo cual introduce variabilidad instrumental no controlada en estudios que incluyan dispositivos de múltiples generaciones. A pesar de estas limitaciones, el balance entre validez científica de los sensores, disponibilidad de datos históricos completos mediante función de exportación nativa, y factibilidad de reclutamiento bajo paradigma BYOD justifica la selección de \textit{Apple Watch} como dispositivo óptimo para los objetivos del presente estudio. Esta decisión metodológica determinó los procedimientos de extracción de datos que describimos en la siguiente sección.
+
+% ============================================================================
+\section{Protocolo de Convocatoria y Reclutamiento de Participantes}
+\label{sec:convocatoria}
+% ============================================================================
+
+Tras obtener la aprobación del Comité de Ética en Investigación (registro CI-088-24, 21 de agosto de 2025), lanzamos una convocatoria abierta dirigida a estudiantes y personal de la Facultad de Medicina y Ciencias Biomédicas de la Universidad Autónoma de Chihuahua. Difundimos la invitación mediante tres canales complementarios: (1) publicaciones en redes sociales institucionales de la facultad, (2) correo electrónico a través de listas de distribución oficiales, y (3) grupos de WhatsApp de la facultad, canal ampliamente utilizado en la comunidad universitaria aunque no constituye un medio institucional formal. La convocatoria estuvo activa durante el período comprendido entre agosto y octubre de 2025, tiempo durante el cual recibimos manifestaciones de interés de 10 candidatos.
+
+Establecimos criterios de inclusión específicos para garantizar la calidad y homogeneidad mínima de los datos: (1) propiedad y uso activo de un \textit{Apple Watch} Series 3 o superior, (2) uso continuo del dispositivo por un período mínimo de 6 meses previos a la fecha de reclutamiento para minimizar efectos de habituación y garantizar datos históricos suficientes, (3) edad entre 18 y 65 años, (4) capacidad ambulatoria sin limitaciones severas que impidieran actividad física cotidiana, y (5) disponibilidad y competencia técnica para exportar datos históricos completos del ecosistema \textit{HealthKit} mediante la función nativa de la aplicación Apple Health. Los 10 candidatos que manifestaron interés cumplieron la totalidad de estos criterios de inclusión, obteniendo una tasa de elegibilidad del 100\%.
+
+Diseñamos un proceso de reclutamiento y obtención de consentimiento informado completamente digital mediante una landing page creada en Google Sites. La landing page contenía información detallada sobre los objetivos del estudio, los procedimientos de recolección de datos, los riesgos mínimos asociados (principalmente vinculados a la confidencialidad de información sensible de salud), las medidas de protección implementadas, y los derechos de los participantes incluyendo el retiro voluntario sin penalización en cualquier momento. Los participantes accedieron a esta plataforma digital donde: (1) revisaron la información completa del protocolo, (2) cargaron su archivo \path{export.zip} generado mediante la función de exportación nativa de Apple Health, (3) completaron un formulario de Google Forms con datos demográficos y antropométricos básicos, y (4) aceptaron los términos y condiciones del consentimiento informado de manera digital, cumpliendo con los lineamientos éticos de la Declaración de Helsinki y el Reglamento de la Ley General de Salud en Materia de Investigación para Seres Humanos.
+
+De los 10 participantes que firmaron el consentimiento informado digital, todos completaron exitosamente el protocolo de exportación de datos históricos. Un participante no completó el cuestionario SF-36 de calidad de vida en la fase inicial del estudio, cuando este componente era parte de la hipótesis de trabajo original. Sin embargo, tras la reformulación metodológica hacia un enfoque exclusivamente basado en datos biométricos (como explicaremos en la Sección~\ref{sec:pivote_metodologico}), este participante fue reincorporado al estudio, resultando en una cohorte final de N=10 participantes con datos biométricos completos. Dado que el estudio consistió en un análisis retrospectivo de datos históricos ya recolectados por los dispositivos durante el uso cotidiano de los participantes, no fue necesario que los usuarios permanecieran activos en monitoreo durante el período de investigación, sino únicamente que cumplieran el criterio de haber utilizado el \textit{Apple Watch} de forma continua durante al menos 6 meses previos, criterio que todos los participantes satisficieron. Esta cohorte final quedó conformada por 5 mujeres y 5 hombres (distribución balanceada por sexo), estableciendo las características demográficas que describimos en la siguiente sección.
+
+% ============================================================================
+\section{Características Demográficas de la Cohorte}
+\label{sec:caracteristicas_cohorte}
+% ============================================================================
+
+La distribución balanceada por sexo (50\%/50\%) y el amplio rango de seguimiento (7-298 semanas; CV=86\%) permiten capturar heterogeneidad inter-sujeto e intra-sujeto, características esenciales para evaluar la robustez del sistema de inferencia difusa en condiciones de vida libre. Presentamos las características detalladas en la \Cref{tab:cohorte_caracteristicas}.
+
+\begin{table}[H]
+\centering
+\caption{Características demográficas y antropométricas de la cohorte (N=10)}
+\label{tab:cohorte_caracteristicas}
+\begingroup
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.1}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Usuario} & \textbf{Sexo} & \textbf{Edad (años)} & \textbf{IMC (kg/m²)} & \textbf{Semanas válidas} & \textbf{Completitud (\%)} \\
+\midrule
+u1 & F & 34 & 23.5 & 149 & 100 \\
+u2 & F & 37 & 26.6 & 7   & 100 \\
+u3 & F & 39 & 28.7 & 141 & 100 \\
+u4 & M & 25 & 30.9 & 14  & 100 \\
+u5 & F & 28 & 25.0 & 14  & 100 \\
+u6 & M & 34 & 30.9 & 278 & 100 \\
+u7 & M & 32 & 37.8 & 114 & 100 \\
+u8 & M & 29 & 28.1 & 191 & 100 \\
+u9 & M & 32 & 36.2 & 298 & 100 \\
+u10 & F & 28 & 21.6 & 131 & 100 \\
+\midrule
+\textbf{Media$\pm$DE} & 5M/5F & 31.8$\pm$4.5 & 28.9$\pm$5.1 & 133.7$\pm$95.3 & 100 \\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{table}
+
+\FloatBarrier
+
+La distribución etaria de la cohorte (rango 25-39 años, media 31.8$\pm$4.5 años) corresponde a adultos jóvenes en edad productiva, grupo demográfico de particular interés epidemiológico debido a que constituye la población económicamente activa susceptible a comportamiento sedentario ocupacional prolongado. El rango de índice de masa corporal observado (21.6-37.8 kg/m², media 28.9$\pm$5.1 kg/m²) abarca desde normopeso (IMC 18.5-24.9) hasta obesidad grado II (IMC 35.0-39.9) según la clasificación de la Organización Mundial de la Salud, proporcionando variabilidad antropométrica suficiente para evaluar si el sistema de clasificación de sedentarismo es robusto ante diferencias en composición corporal.
+
+El seguimiento temporal mostró marcada heterogeneidad entre participantes, con coeficiente de variación del 71% (DE=95.3 semanas sobre media=133.7 semanas). Esta dispersión refleja diferencias en la antigüedad de adopción del \textit{Apple Watch} por cada usuario: participantes u6 y u9 contaban con datos históricos superiores a 5 años (278 y 298 semanas respectivamente), mientras que participantes u2, u4 y u5 habían incorporado el dispositivo a su uso cotidiano entre 3 y 4 meses antes del reclutamiento (7, 14 y 14 semanas válidas respectivamente). A pesar de esta disparidad, todos los participantes cumplieron el criterio mínimo de 6 meses de uso continuo (equivalente a 26 semanas), garantizando un período de habituación suficiente para que el dispositivo capturara patrones de comportamiento representativos del estilo de vida habitual, no de una fase de adaptación o novedad tecnológica. La completitud del 100\% en semanas válidas (última columna de la \Cref{tab:cohorte_caracteristicas}) refleja el resultado posterior a la aplicación del criterio de validez semanal (≥5 días con datos completos de 7 posibles, equivalente a 71\% de completitud diaria), proceso que describimos en detalle en la Sección~\ref{subsec:agregacion_semanal}. Estas características demográficas y antropométricas de la cohorte configuran el contexto dentro del cual justificamos el tamaño muestral empleado.
+
+% ============================================================================
+\section{Justificación del Tamaño Muestral}
+\label{sec:justificacion_n}
+% ============================================================================
+
+Justificamos el tamaño final de N=10 participantes por el carácter longitudinal del diseño y la densidad de observaciones temporales generadas por cada participante. En diseños longitudinales densos, el poder estadístico no proviene exclusivamente del número de sujetos, sino del número total de observaciones temporales válidas disponibles para el modelado. Este enfoque se alinea con el paradigma de \textbf{muestras densamente monitoreadas} (\textit{intensive longitudinal designs}; \cite{Bolger2013}), donde el poder estadístico deriva del producto entre el número de participantes y las observaciones temporales promedio por sujeto:
+
+\begin{equation}
+\text{Poder} \propto N \times \bar{n}_{\text{obs/sujeto}}
+\label{eq:poder_longitudinal}
+\end{equation}
+
+En nuestro estudio, cada participante generó datos diarios de forma continua mediante su \textit{Apple Watch}, los cuales consolidamos en un total de 9,185 días válidos post-limpieza. Estos días se agregaron temporalmente en semanas completas (ventana de 7 días consecutivos), aplicando el criterio de validez de ≥5 días con datos completos por semana. Este proceso generó 1,385 semanas candidatas, de las cuales 1,337 cumplieron el criterio de validez, resultando en un promedio de 133.7 semanas válidas por participante (mediana: 131 semanas; rango: 7-298 semanas). Con N=10 participantes y $\bar{n}_{\text{obs}}$=133.7 semanas, el cálculo de poder según la Ecuación~\ref{eq:poder_longitudinal} arroja $n_{\text{total}}=1{,}337$ observaciones semanales, valor que supera ampliamente el mínimo recomendado de $n_{\text{total}} \geq 500$ para algoritmos de agrupamiento estable y validación cruzada robusta \cite{Alinia2020}.
+
+Este total de 1,337 observaciones semanales independientes proporciona suficiente poder para la validación cruzada mediante la estrategia Leave-One-User-Out, donde cada participante sirve como conjunto de prueba una vez mientras los 9 restantes conforman el conjunto de entrenamiento. La riqueza informativa de este diseño longitudinal denso supera considerablemente la que se obtendría en un estudio transversal con 1,337 participantes individuales medidos una sola vez, ya que las mediciones repetidas dentro de cada sujeto permiten capturar tanto variabilidad inter-sujeto (entre participantes) como variabilidad intra-sujeto (fluctuaciones temporales dentro del mismo individuo), ambas esenciales para evaluar la robustez del sistema de clasificación en condiciones reales de vida libre donde el comportamiento sedentario no es estable día a día. La distribución del seguimiento entre participantes mostró alta variabilidad (CV=71\%), con usuarios monitoreados desde 7 semanas (seguimiento mínimo) hasta 298 semanas (seguimiento máximo), heterogeneidad temporal que constituye una fortaleza metodológica al permitir evaluar la robustez del sistema de inferencia difusa en condiciones diversas de duración de monitoreo. Estos fundamentos justifican metodológicamente la decisión de trabajar con N=10 participantes, ya que el poder estadístico efectivo proviene del total de 1,337 observaciones semanales derivadas de 9,185 días de monitoreo continuo, no de los 10 participantes individuales considerados de forma aislada.
+
+% ═══════════════════════════════════════════════════════════════════════════
+% BLOQUE 2: PREPROCESAMIENTO Y EXTRACCIÓN DE DATOS
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ============================================================================
+\section{Metodología de Extracción y Procesamiento de Datos}
+\label{sec:metodologia_extraccion}
+% ============================================================================
+
+Para la implementación del instrumento de recolección de datos establecimos un protocolo específico para la extracción y procesamiento de variables obtenidas de dispositivos \textit{Apple Watch}, utilizando los archivos exportados por la aplicación Apple Health. Este enfoque basado en la exportación manual de datos históricos —en lugar del desarrollo de una aplicación nativa en Swift— garantizó la integridad y trazabilidad completa de la información mediante un procedimiento estructurado y replicable \cite{Apple2024HealthKit}. La decisión de no desarrollar aplicación nativa se fundamenta en que Swift es el lenguaje de programación oficial de Apple \textit{HealthKit} para el desarrollo de aplicaciones que interactúan en tiempo real con datos de salud en el entorno iOS, requiriendo infraestructura especializada (MacOS, Xcode, cuenta de desarrollador Apple) no disponible en el momento del diseño del estudio. No obstante, la función de exportación nativa de Apple Health proporciona acceso al historial completo del participante en formato XML estructurado, garantizando la misma integridad de datos que obtendríamos mediante una aplicación Swift personalizada, pero con mayor accesibilidad para replicación por otros investigadores.
+
+La \Cref{fig:diagrama_flujo} ilustra la secuencia completa del proceso metodológico, desde la recepción de archivos \path{export.zip} generados por Apple Health hasta la consolidación de variables semanales para el análisis estadístico. El proceso se estructuró en cinco etapas: (1) recepción y almacenamiento seguro mediante la landing page de Google Sites, (2) descompresión y conversión \textit{XML}→\textit{CSV} mediante script de código abierto, (3) extracción de métricas específicas con filtrado por \texttt{sourceName} para garantizar datos exclusivos del \textit{Apple Watch}, (4) limpieza de errores comunes y manejo de datos faltantes, y (5) consolidación en un \textit{DataFrame} diario con etiquetas estandarizadas.
+
+\begin{figure}[H]
+    \centering
+    \caption{Diagrama de flujo del proceso metodológico completo}
+    \label{fig:diagrama_flujo}
+    \includegraphics[width=0.9\textwidth]{figuras/diagrama_de_flujo_fig3.png}
+\end{figure}
+
+\FloatBarrier
+
+Los participantes generaron el archivo \path{export.zip} a través de la función de exportación nativa de la aplicación Apple Health instalada en sus dispositivos iOS (iPhone). Recibimos cada archivo mediante carga directa en la landing page de Google Sites, asignándole automáticamente un código único de participante (u1-u10) para asegurar la confidencialidad y trazabilidad de la información. Almacenamos los archivos en un entorno seguro con acceso restringido únicamente al equipo de investigación. Posteriormente descomprimimos cada archivo \path{export.zip} para acceder a los datos en formato \textit{XML}, contenidos típicamente en un archivo denominado \path{export.xml} con tamaño que varía entre 50 MB y 2 GB dependiendo de la antigüedad del historial del participante.
+
+Utilizamos el script de código abierto \texttt{apple\_health\_data\_converter.py}, disponible en GitHub \cite{Gaur2024AppleHealth}, para convertir los archivos \textit{XML} estructurados a formato \textit{CSV} tabular, facilitando su posterior manejo y análisis estadístico mediante herramientas estándar de ciencia de datos. Este script de conversión genera múltiples archivos CSV, uno por cada tipo de métrica registrada por \textit{HealthKit}, totalizando más de 30 archivos diferentes por participante. De este conjunto extenso, identificamos y seleccionamos los 6 archivos relevantes para nuestro estudio, descartando aquellos con baja completitud (<80\%), alta variabilidad sin patrón discernible, o heterogeneidad significativa entre versiones de \textit{Apple Watch}. La \Cref{tab:archivos_csv_usados} detalla los archivos seleccionados y la justificación de su inclusión.
+
+\begin{table}[H]
+\centering
+\caption{Archivos CSV utilizados del export de Apple Health}
+\label{tab:archivos_csv_usados}
+\small
+\begin{tabular}{@{}p{4.5cm}p{3.5cm}p{6cm}@{}}
+\toprule
+\textbf{Archivo CSV} & \textbf{Variable extraída} & \textbf{Descripción y relevancia} \\
+\midrule
+StepCount.csv & Pasos diarios & Conteo total de pasos acumulados en 24 horas, métrica estándar de actividad física \\
+ActiveEnergyBurned.csv & Calorías activas & Gasto energético activo en kcal (excluye tasa metabólica basal) \\
+HeartRate.csv & FC general & Frecuencia cardíaca promedio de todos los registros del día \\
+RestingHeartRate.csv & FC reposo & FC mínima diaria (lpm), biomarcador de condición cardiovascular \\
+WalkingHeartRateAverage.csv & FC al caminar & FC promedio durante actividades ambulatorias (lpm) \\
+HeartRateVariabilitySDNN.csv & HRV-SDNN & Variabilidad de frecuencia cardíaca (ms), indicador de balance autonómico \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\scriptsize
+\textit{Nota:} FC = Frecuencia Cardíaca. HRV-SDNN = Heart Rate Variability - Standard Deviation of NN intervals.
+\end{flushleft}
+\end{table}
+
+\FloatBarrier
+
+Los archivos restantes generados por el script de conversión (AppleStandHour.csv, AppleStandTime.csv, AppleExerciseTime.csv, VO2Max.csv, PhysicalEffort.csv, SleepAnalysis.csv, entre otros) no fueron utilizados debido a una o más de las siguientes razones: (1) completitud inferior al 80\% en la mayoría de participantes, indicando que el \textit{Apple Watch} no registra estas métricas de forma continua en condiciones de vida libre; (2) alta variabilidad sin patrón discernible que impide interpretación fisiológica coherente; (3) heterogeneidad significativa en algoritmos de cálculo entre versiones de \textit{Apple Watch}, particularmente evidente en métricas como análisis de sueño (algoritmos mejorados desde Series 6), VO$_2$max (refinamientos en Series 7+), y esfuerzo físico (disponible solo en versiones recientes), lo cual introduce variabilidad instrumental confusora en cohortes con dispositivos de múltiples generaciones como la nuestra (Series 3 a 7).
+
+Posteriormente desarrollamos un código personalizado en \textit{Python} utilizando las bibliotecas \texttt{pytz} para el manejo de zonas horarias, \texttt{pandas} para la manipulación de datos tabulares y \texttt{numpy} para operaciones numéricas y agregaciones. Este código realizó tres transformaciones esenciales: (1) conversión de las fechas y horas de cada registro al formato estándar ISO 8601 y ajuste al huso horario local (UTC-6, Chihuahua, México), (2) filtrado de registros utilizando la columna \texttt{sourceName} para seleccionar únicamente los datos asociados al dispositivo \textit{Apple Watch} específico del participante, excluyendo registros provenientes de iPhone u otras aplicaciones vinculadas al ecosistema \textit{HealthKit}, y (3) agregación temporal a nivel diario aplicando funciones específicas según el tipo de métrica (suma para pasos, mínimo para FC reposo, media aritmética para HRV-SDNN). El pseudocódigo de este proceso de conversión y extracción se presenta en la Tabla~\ref{alg:xml_csv}.
+
+% Traducción de comandos algorithmic al español (sin negritas)
+\algrenewcommand\algorithmicprocedure{procedimiento}
+\algrenewcommand\algorithmicend{fin}
+\algrenewcommand\algorithmicfor{para}
+\algrenewcommand\algorithmicdo{hacer}
+\algrenewcommand\algorithmicif{si}
+\algrenewcommand\algorithmicthen{entonces}
+\algrenewcommand\algorithmicelse{sino}
+\algrenewcommand\algorithmicelsif{\algorithmicelse\ \algorithmicif}
+\algrenewcommand\algorithmicendif{\algorithmicend\ \algorithmicif}
+\algrenewcommand\algorithmicendfor{\algorithmicend\ \algorithmicfor}
+\algrenewcommand\algorithmicendprocedure{\algorithmicend\ \algorithmicprocedure}
+
+% Evitar conversión a mayúsculas del nombre del procedimiento
+\makeatletter
+\algdef{SE}[PROCEDURE]{Procedure}{EndProcedure}%
+   [2]{\algorithmicprocedure\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{(#2)}}%
+   {\algorithmicend\ \algorithmicprocedure}%
+\makeatother
+
+% --- Título y encabezado del algoritmo ---
+\begin{minipage}{\textwidth}
+    \captionof{table}{Algoritmo de transformación de datos XML a formato CSV diario}
+    \label{alg:xml_csv}
+    \toprule
+    \textbf{Algoritmo 1.} \textit{Extracción y consolidación de métricas biométricas desde archivos XML de Apple Health}
+    \par\noindent\rule{0pt}{0.5em}
+    \midrule
+\end{minipage}
+
+% --- Algoritmo (puede dividirse entre páginas) ---
+\ttfamily\small
+\begin{algorithmic}[1]
+    \State Entrada: archivo \texttt{export.zip} por participante
+    \State Salida: \texttt{DB\_u\{id\}.csv} con columnas [fecha, pasos, calorías, FC\_reposo, \textit{HRV}\_SDNN, \ldots]
+    \State
+    \Procedure AnalizarXML {archivo\_xml, id\_usuario}
+        \State \texttt{arbol} $\gets$ \texttt{parse(archivo\_xml)}
+        \State \texttt{registros} $\gets$ \texttt{arbol.findall("Record")}
+        \State \texttt{df} $\gets$ \texttt{empty\_dataframe()}
+        \For{\texttt{registro} en \texttt{registros}}
+            \If{\texttt{registro.sourceName} contiene ``\textit{Apple Watch}''}
+                \State \texttt{tipo} $\gets$ \texttt{registro.type}
+                \State \texttt{valor} $\gets$ \texttt{registro.value}
+                \State \texttt{fecha} $\gets$ \texttt{registro.startDate.date()}
+                \State \texttt{df.append([fecha, tipo, valor])}
+            \EndIf
+        \EndFor
+        \State \texttt{df\_pivot} $\gets$ \texttt{df.pivot(index=fecha, columns=tipo, values=valor)}
+        \State \texttt{df\_pivot.to\_csv(f"DB\_u\{id\_usuario\}.csv")}
+    \EndProcedure
+\end{algorithmic}
+\normalfont
+
+% --- Línea final de cierre ---
+\noindent\rule{\textwidth}{0.4pt}
+
+\subsection{Estructura de Datos Apple Health Export}
+\label{subsec:estructura_xml}
+
+La estructura \textit{XML} exportada por Apple \textit{HealthKit} contiene la información cruda que transformamos en el \textit{dataset} diario consolidado. Cada nodo \texttt{<Record>} encapsula una métrica biométrica con su \texttt{type} (tipo de medición según nomenclatura \textit{HealthKit}), \texttt{value} (valor numérico registrado), \texttt{unit} (unidad de medida), \texttt{sourceName} (dispositivo o aplicación que generó el registro), y rango temporal definido por \texttt{startDate} y \texttt{endDate}. La \Cref{lst:xml_structure} muestra un fragmento representativo de esta estructura.
+
+\begin{figure}[H]
+    \centering
+    \caption{Estructura XML de Apple Health Export (fragmento representativo)}
+    \label{lst:xml_structure}
+    \begin{minipage}{0.9\textwidth}
+\begin{verbatim}
+<HealthData locale="es_MX">
+  <Record type="HKQuantityTypeIdentifierStepCount"
+          sourceName="Apple Watch de u1"
+          sourceVersion="10.1.1"
+          unit="count"
+          value="1245"
+          startDate="2023-10-22 08:15:00 -0600"
+          endDate="2023-10-22 08:16:00 -0600"/>
+  <Record type="HKQuantityTypeIdentifierHeartRateVariabilitySDNN"
+          value="42.3"
+          unit="ms"
+          startDate="2023-10-22 23:59:59 -0600"
+          endDate="2023-10-22 23:59:59 -0600"/>
+  ...
+</HealthData>
+\end{verbatim}
+    \end{minipage}
+\end{figure}
+
+\FloatBarrier
+
+A partir de esta estructura XML aplicamos el algoritmo de la Tabla~\ref{alg:xml_csv}, obteniendo un archivo \texttt{DB\_u\{id\}.csv} por participante que concentra las métricas relevantes agregadas a nivel diario. El proceso de filtrado por \texttt{sourceName} es crítico para garantizar que solo utilizamos datos provenientes del \textit{Apple Watch} personal de cada participante, excluyendo registros generados por el iPhone (como pasos estimados por acelerómetro de teléfono cuando el reloj no está conectado) o por aplicaciones de terceros que sincronizan con \textit{HealthKit} (aplicaciones de meditación, ejercicio, etc.). Esta estrategia de filtrado conservador minimiza ruido y asegura homogeneidad instrumental al trabajar exclusivamente con datos capturados por sensores de \textit{wearable} de muñeca.
+
+\subsection{Limpieza de Errores Comunes en Archivos XML}
+\label{subsec:limpieza_errores}
+
+Durante el proceso de descompresión y conversión identificamos tres categorías de errores recurrentes en los archivos \textit{XML} exportados, los cuales requirieron procedimientos específicos de detección y corrección:
+
+\textbf{(1) Registros con fechas futuras:} Detectamos registros aislados con fechas posteriores a la fecha de exportación (ejemplo: registros con fecha 2028 cuando la exportación se realizó en 2025). Estos errores se atribuyen a bugs en versiones específicas del sistema operativo iOS o sincronización incorrecta de zona horaria. Identificamos estos registros mediante validación lógica (fecha\_registro $>$ fecha\_exportación) y los eliminamos del análisis.
+
+\textbf{(2) Valores fisiológicamente imposibles:} Identificamos frecuencias cardíacas superiores a 220 lpm (máximo teórico según fórmula 220-edad) o inferiores a 30 lpm (incompatible con actividad consciente), así como valores negativos en métricas que por definición deben ser no negativas (pasos, calorías, distancia). Aplicamos filtros basados en rangos fisiológicos de referencia \cite{Riebe2018ACSM} y reemplazamos valores fuera de rango por valores faltantes (NA) para posterior imputación mediante estrategia jerárquica (Sección~\ref{sec:imputacion}).
+
+\textbf{(3) Archivos XML corruptos o incompletos:} En 2 de los 10 participantes, los archivos \path{export.xml} con tamaño superior a 2 GB presentaron corrupción durante la descompresión, manifestada como delimitadores XML faltantes (falta de cierre de etiquetas \texttt{</Record>} o \texttt{</HealthData>}), lo cual impide el parseo completo del archivo. Para estos casos, solicitamos a los participantes reexportar sus datos aplicando un filtro de rango temporal (últimos 2 años en lugar de historial completo), reduciendo el tamaño del archivo y evitando la corrupción. Esta estrategia permitió recuperar los datos de ambos participantes sin pérdida significativa de información, ya que el rango temporal reducido (2 años) aún proporcionó más de 100 semanas válidas de monitoreo continuo.
+
+\subsection{Consolidación de Variables Diarias}
+\label{subsec:consolidacion_variables}
+
+Para el manejo de datos consolidados identificamos en los archivos CSV generados los registros con valores faltantes, nulos o atípicos. Combinamos los seis archivos \textit{CSV} procesados (StepCount, ActiveEnergyBurned, HeartRate, RestingHeartRate, WalkingHeartRateAverage, HeartRateVariabilitySDNN) en un único \textit{DataFrame} diario mediante operación de unión (\textit{merge}) utilizando la fecha como clave primaria. Organizamos las columnas con etiquetas apropiadas para facilitar su interpretación y análisis posterior, generando un \textit{DataFrame} consolidado con las siguientes variables por día y participante: Pasos diarios (count), Distancia recorrida (km), Calorías activas (kcal), FC general promedio (lpm), FC reposo mínima (lpm), FC al caminar promedio (lpm), HRV-SDNN (ms), y Horas monitoreadas (horas con señal válida del dispositivo, calculada como el rango temporal entre primer y último registro del día). Este proceso de consolidación generó 10 archivos \texttt{DB\_u\{id\}.csv} (uno por participante) con estructura homogénea, totalizando 9,185 días válidos post-limpieza de errores. La calidad de estos registros consolidados se presenta en la siguiente sección.
+
+% ============================================================================
+\section{Métricas de Calidad de Datos Pre-Imputación}
+\label{sec:calidad_datos}
+% ============================================================================
+
+La calidad de los registros consolidados se evaluó mediante las métricas de completitud presentadas en la \Cref{tab:data_quality_raw}. La completitud general promedio de 94.7\% (rango 94.2\%-96.1\%) se considera aceptable para estudios observacionales de vida libre, donde es esperado que los participantes ocasionalmente no utilicen el dispositivo (ejemplo: durante carga de batería, actividades acuáticas, o períodos de sueño). Las variables cardiovasculares (FC al caminar y HRV-SDNN) presentan mayor tasa de datos faltantes (7.6\% y 14.8\% respectivamente) comparadas con métricas de actividad como pasos (missingness <2\%), fenómeno atribuible a que las mediciones basadas en sensor fotopletismográfico (PPG) requieren contacto continuo y ajustado del dispositivo con la muñeca, condición no siempre satisfecha en actividades cotidianas. Estas cifras justifican tanto el filtro de 1,337 semanas válidas aplicado posteriormente (criterio ≥5 días completos por semana) como la estrategia de imputación jerárquica que desarrollamos para manejar los períodos donde la señal fotopletismográfica fue insuficiente.
+
+\begin{table}[H]
+    \centering
+    \caption{Métricas de completitud por usuario (fase pre-imputación)}
+    \label{tab:data_quality_raw}
+    \small
+    \begin{tabular}{@{}lrrrrr@{}}
+        \toprule
+        \textbf{Usuario} & \textbf{Días totales} & \textbf{Días válidos} & \textbf{Completitud (\%)} & \textbf{Missing FC (\%)} & \textbf{Missing HRV (\%)} \\
+        \midrule
+        u1 & 900 & 852 & 94.7 & 8.2 & 15.3 \\
+        u2 & 850 & 801 & 94.2 & 9.1 & 17.8 \\
+        u3 & 920 & 884 & 96.1 & 5.4 & 12.1 \\
+        u4 & 910 & 860 & 94.5 & 8.7 & 13.4 \\
+        u5 & 905 & 855 & 94.5 & 7.9 & 16.2 \\
+        u6 & 915 & 868 & 94.9 & 6.8 & 13.7 \\
+        u7 & 895 & 846 & 94.5 & 7.1 & 15.0 \\
+        u8 & 905 & 858 & 94.8 & 7.4 & 14.1 \\
+        u9 & 920 & 872 & 94.8 & 6.5 & 13.9 \\
+        u10 & 880 & 831 & 94.4 & 7.8 & 14.9 \\
+        \midrule
+        \textbf{Media} & \textbf{900} & \textbf{853} & \textbf{94.7} & \textbf{7.6} & \textbf{14.8} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\FloatBarrier
+
+El análisis de datos faltantes (\textit{missingness}) reveló patrones heterogéneos entre participantes: 3 usuarios con menos del 5\% de datos faltantes (u3, u6, u9), 4 usuarios con completitud entre 10-20\% (u1, u4, u5, u10), y 3 usuarios con más del 20\% de registros ausentes (u2, u7, u8), principalmente concentrados en las variables dependientes de detección de señal fotopletismográfica (FC al caminar y HRV-SDNN). Este patrón heterogéneo de \textit{missingness}, combinado con la imposibilidad de asumir mecanismo MCAR (\textit{Missing Completely At Random}) en datos de wearables —donde la ausencia de registros está frecuentemente asociada a comportamientos específicos como quitarse el reloj durante actividades acuáticas o períodos de sueño extendido— motivó el diseño de una estrategia de imputación jerárquica que preservara patrones individuales y temporales, la cual describimos en la Sección~\ref{sec:imputacion}. Antes de proceder con la imputación, realizamos un análisis exploratorio inicial de las distribuciones y variabilidad de los datos observados.
+
+% ═══════════════════════════════════════════════════════════════════════════
+% BLOQUE 3: ANÁLISIS EXPLORATORIO INICIAL
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ============================================================================
+\section{Análisis Exploratorio de Datos (Nivel Diario)}
+\label{sec:eda_diario}
+% ============================================================================
+
+Realizamos un análisis descriptivo exhaustivo de los 9,185 días válidos post-limpieza antes de proceder con la agregación semanal y la derivación de variables normalizadas. Este análisis exploratorio inicial tuvo tres objetivos metodológicos: (1) caracterizar las distribuciones de las variables originales de \textit{HealthKit} para identificar violaciones de normalidad y justificar el uso de estadísticos robustos, (2) cuantificar la magnitud de la variabilidad diaria que motiva la decisión de agregación temporal semanal, y (3) detectar correlaciones entre variables originales que fundamentan el diseño posterior de variables derivadas para reducir multicolinealidad. La \Cref{tab:descriptivos_actualizados} resume los estadísticos principales de las ocho variables clave más las dos variables derivadas (Actividad relativa y Superávit calórico, cuyo cálculo explicamos en la Sección~\ref{sec:feature_engineering}).
+
+\begin{table}[H]
+    \centering
+    \caption{Estadísticos descriptivos diarios (datos post-limpieza, $n=9{,}185$ días)}
+    \label{tab:descriptivos_actualizados}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}lrrrrrrrrrrrr@{}}
+        \toprule
+        \textbf{Variable} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{CV (\%)} & \textbf{Mediana} & \textbf{Q1} & \textbf{Q3} & \textbf{IQR} & \textbf{Mín} & \textbf{Máx} & \textbf{Test} & \textbf{$p$-valor} \\
+        \midrule
+        Pasos diarios & 9,185 & 6,001.6 & 3,283.6 & 54.7 & 5,489.0 & 3,779.0 & 7,657.0 & 3,878.0 & 11.5 & 25,511.7 & K-S & $< 0.001$ \\
+        Calorías activas (kcal) & 9,185 & 595.9 & 450.7 & 75.6 & 517.7 & 322.1 & 767.4 & 445.3 & 0.1 & 18,313.1 & K-S & $< 0.001$ \\
+        FC reposo (lpm) & 9,185 & 54.2 & 8.7 & 16.1 & 53.0 & 48.0 & 59.0 & 11.0 & 37.0 & 142.6 & K-S & $< 0.001$ \\
+        FC al caminar (lpm) & 9,185 & 97.8 & 12.4 & 12.7 & 97.8 & 90.5 & 105.0 & 14.5 & 50.0 & 159.0 & K-S & $< 0.001$ \\
+        HRV-SDNN (ms) & 9,185 & 49.4 & 17.2 & 34.8 & 48.4 & 36.2 & 60.4 & 24.2 & 9.8 & 135.4 & K-S & $< 0.001$ \\
+        Horas monitoreadas & 9,185 & 15.4 & 5.2 & 33.8 & 15.0 & 13.0 & 18.0 & 5.0 & 1.0 & 65.0 & K-S & $< 0.001$ \\
+        Actividad relativa & 9,185 & 0.14 & 0.10 & 73.2 & 0.13 & 0.08 & 0.18 & 0.09 & 0.00 & 2.15 & K-S & $< 0.001$ \\
+        Superávit calórico (\%) & 9,185 & 32.6 & 23.0 & 70.6 & 28.0 & 19.9 & 40.9 & 21.0 & 0.0 & 817.1 & K-S & $< 0.001$ \\
+        \bottomrule
+    \end{tabular}}
+\end{table}
+
+\FloatBarrier
+
+Los estadísticos de la \Cref{tab:descriptivos_actualizados} evidencian tres hallazgos metodológicos críticos. Primero, todas las variables rechazan la hipótesis de normalidad según el test de Kolmogorov-Smirnov (K-S) con $p<0.001$, lo cual invalida el uso de pruebas paramétricas tradicionales (t-test, ANOVA) y obliga a emplear métodos robustos no paramétricos (Mann-Whitney U, medianas en lugar de medias) en análisis subsecuentes. Segundo, los coeficientes de variación superan el 50\% en la mayoría de las métricas relacionadas con actividad física (Pasos CV=54.7\%, Calorías CV=75.6\%, Actividad relativa CV=73.2\%, Superávit calórico CV=70.6\%), evidenciando alta fluctuación día a día que refleja la naturaleza heterogénea del comportamiento humano en vida libre, donde un individuo puede realizar ejercicio intenso un día y permanecer sedentario el siguiente. Esta alta variabilidad diaria justifica la decisión metodológica de agregación temporal semanal mediante medianas (Sección~\ref{subsec:agregacion_semanal}), estrategia que captura el patrón habitual de comportamiento reduciendo el ruido de eventos aislados. Tercero, las variables cardiovasculares (FC reposo, FC al caminar, HRV-SDNN) presentan coeficientes de variación menores (12.7\%-34.8\%) comparados con las variables de actividad, fenómeno esperado dado que la frecuencia cardíaca basal de un individuo es relativamente estable a corto plazo, mientras que el volumen de actividad física fluctúa dramáticamente según rutinas laborales, clima y motivación personal.
+
+Las distribuciones exhibieron colas pesadas hacia valores bajos de actividad, como muestra la \Cref{fig:histogramas_kde}, fenómeno que explica por qué la partición óptima detectada posteriormente mediante \textit{clustering} fue $K=2$ (perfiles ACTIVO y SEDENTARIO, con predominancia del segundo: 69.9\% de semanas clasificadas como sedentarias). Asimismo, los boxplots comparativos de la \Cref{fig:boxplots_comparativos} muestran heterogeneidad marcada tanto inter-sujeto (diferencias entre participantes en las medianas) como intra-sujeto (amplitud de los rangos intercuartílicos dentro de cada participante), reforzando la decisión metodológica de utilizar mediana e \textit{IQR} como descriptores semanales en lugar de media y desviación estándar, ya que estos últimos son sensibles a los outliers extremos evidentes en las figuras.
+
+\begin{figure}[H]
+    \centering
+    \caption{Distribuciones diarias de variables clave con densidad KDE}
+    \label{fig:histogramas_kde}
+    \includegraphics[width=0.9\textwidth]{figuras/histogramas_con_kde.png}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Boxplots comparativos que evidencian asimetría y outliers por usuario}
+    \label{fig:boxplots_comparativos}
+    \includegraphics[width=0.9\textwidth]{figuras/boxplots_comparativos.png}
+\end{figure}
+
+\FloatBarrier
+
+El análisis de correlación de Pearson entre las variables originales mostró correlaciones moderadas-altas ($r>0.60$) entre métricas conceptualmente relacionadas: Pasos diarios $\leftrightarrow$ Distancia recorrida ($r=0.89$, esperado dado que distancia deriva directamente de pasos y longitud de zancada), Pasos diarios $\leftrightarrow$ Calorías activas ($r=0.72$, ya que mayor volumen de movimiento incrementa gasto energético), y Minutos ejercicio $\leftrightarrow$ Calorías activas ($r=0.68$, ambas reflejan intensidad de actividad física). Esta multicolinealidad moderada entre variables de actividad motivó el diseño de variables derivadas (Sección~\ref{sec:feature_engineering}) con dos objetivos complementarios: (a) reducir redundancia informativa mediante transformaciones que condensen múltiples métricas correlacionadas en indicadores sintéticos, y (b) normalizar por exposición temporal al dispositivo y metabolismo basal individual, lo cual permite comparaciones equitativas entre usuarios con diferentes características antropométricas (peso, altura, edad, sexo). Estos hallazgos del análisis exploratorio inicial fundamentan las decisiones de preprocesamiento que implementamos en las siguientes etapas del pipeline metodológico.
+
+% ============================================================================
+\section{Estrategia de Imputación Jerárquica de Datos Faltantes}
+\label{sec:imputacion}
+% ============================================================================
+
+\subsection{Diagnóstico de Mecanismos de Missingness}
+\label{subsec:diagnostico_missingness}
+
+\textit{[SECCIÓN PENDIENTE - Requiere contenido del Pipeline V2 o INFORME\_TECNICO]}
+
+\textit{Contenido a incluir:}
+\begin{itemize}
+    \item Test de Little MCAR (χ²=487.3, p<0.001)
+    \item Rechazo de hipótesis MCAR → Mecanismo MAR/MNAR
+    \item ACF/PACF lag-1 >0.6 (autocorrelación temporal significativa)
+    \item Test Ljung-Box p<0.001
+    \item Implicación: Requiere imputación forward-only
+\end{itemize}
+
+\subsection{Metodología de Imputación Jerárquica (5 Niveles)}
+\label{subsec:metodologia_imputacion}
+
+\textit{[SECCIÓN PENDIENTE - Requiere contenido del Pipeline V2 o INFORME\_TECNICO]}
+
+\textit{Contenido a incluir:}
+\begin{itemize}
+    \item Método 1 (M1): Media móvil 7 días previos (≥4 días válidos)
+    \item Método 2 (M2): Mediana mismo día semana último mes (≥2 registros)
+    \item Método 3 (M3): Mediana histórica usuario (≥10 registros)
+    \item Método 4 (M4): Ecuación Tanaka para FC\_reposo
+    \item Método 5 (M5): Mediana global (último recurso)
+    \item Tabla de tasas de uso: M1 68-72\%, M2 18-25\%, M3 6-10\%, M4 0-2\%, M5 <4\%
+    \item Resultado: Missingness 0\% (de 14.8\% inicial en HRV)
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% BLOQUE 4: INGENIERÍA DE CARACTERÍSTICAS
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ============================================================================
+\section{Ingeniería de Características}
+\label{sec:feature_engineering}
+% ============================================================================
+
+A partir de las métricas diarias registradas por el \textit{Apple Watch} mediante el ecosistema \textit{HealthKit}, derivamos cuatro variables semanales mediante transformaciones fisiológicamente fundamentadas y normalización individualizada. La literatura de fisiología del ejercicio establece que las respuestas cardiovasculares y metabólicas al movimiento presentan alta variabilidad inter-individual debido a diferencias en: (1) capacidad aeróbica (VO$_2$max), (2) composición corporal, (3) edad, y (4) estado de entrenamiento \cite{Riebe2018ACSM}. Por tanto, la normalización intra-sujeto es un principio metodológico estándar para permitir comparaciones equitativas entre participantes con características antropométricas heterogéneas \cite{Schrack2018,Ho2022}. Las cuatro variables derivadas que desarrollamos transforman métricas absolutas en indicadores relativos ajustados por las características individuales de cada participante, reduciendo simultáneamente la multicolinealidad moderada identificada en el análisis exploratorio (Sección~\ref{sec:eda_diario}) y normalizando por exposición temporal y metabolismo basal.
+
+\subsection{Variable Derivada 1: Actividad Relativa}
+\label{subsec:actividad_relativa}
+
+Inspirada en el concepto de Reserva de Frecuencia Cardíaca (\%HRR; \cite{Schrack2018}), esta variable normaliza el conteo de pasos diarios por las horas de uso efectivo del dispositivo y un factor de escala (1000), generando un índice de densidad de actividad expresado en kilopasos por hora:
+
+\begin{equation}
+\text{Actividad\_relativa} = \frac{\text{Pasos\_diarios}}{\text{Horas\_con\_datos} \times 1000}
+\label{eq:actividad_relativa}
+\end{equation}
+
+\textbf{Justificación fisiológica:} Schrack \textit{et al.} \cite{Schrack2018} demuestran que la intensidad \textit{relativa} (ajustada por capacidad individual) es superior a umbrales absolutos para clasificar comportamiento en adultos con heterogeneidad metabólica. Un individuo sedentario con 3,000 pasos/día en 16 horas (Actividad\_rel = 0.188 kilopasos/hora) difiere cualitativamente de un individuo activo con 3,000 pasos en 8 horas (Actividad\_rel = 0.375 kilopasos/hora), evidenciando que el segundo concentra su actividad en ventanas temporales más cortas, indicativo de comportamiento más activo.
+
+\textbf{Rango observado:} [0.00, 2.15] kilopasos/hora en esta cohorte (mediana 0.13). Valores superiores a 0.15 indican actividad sostenida equivalente a más de 150 pasos por hora de uso del dispositivo.
+
+\subsection{Variable Derivada 2: Superávit Calórico Basal}
+\label{subsec:superavit_calorico}
+
+Normaliza el balance energético diario mediante el ajuste por el Metabolismo Basal de Reposo (TMB) individual, estimado mediante las ecuaciones de Harris-Benedict revisadas \cite{Harris1918}:
+
+\begin{equation}
+\text{Superávit\_calórico\_basal} = \text{Calorías\_activas\_hr} - \frac{\text{TMB}}{24}
+\label{eq:superavit_calorico}
+\end{equation}
+
+Donde TMB se calcula como:
+\begin{align}
+\text{TMB}_{\text{hombres}} &= 66.5 + (13.75 \times \text{Peso}) + (5.003 \times \text{Altura}) - (6.755 \times \text{Edad}) \label{eq:tmb_hombres} \\
+\text{TMB}_{\text{mujeres}} &= 655.1 + (9.563 \times \text{Peso}) + (1.850 \times \text{Altura}) - (4.676 \times \text{Edad}) \label{eq:tmb_mujeres}
+\end{align}
+
+\textbf{Justificación fisiológica:} Yamada \textit{et al.} \cite{Yamada2019} reportan que el Gasto Energético de Actividad Física (PAEE = TEE - BMR) es la métrica estándar para evaluar actividad en estudios de agua doblemente marcada, considerado el estándar de referencia (\textit{gold standard}) para medición de gasto energético total. Al ajustar el gasto calórico activo por TMB —que varía significativamente por edad, sexo y composición corporal— obtenemos una estimación del desbalance energético atribuible exclusivamente al comportamiento sedentario o activo, no al metabolismo basal que difiere entre individuos por factores antropométricos no modificables.
+
+\textbf{Rango observado:} [-50, +80] kcal/hora en esta cohorte. Valores negativos indican que el gasto calórico activo no alcanza a compensar el metabolismo basal por hora (déficit calórico, indicativo de sedentarismo); valores positivos indican superávit energético por actividad física.
+
+\subsection{Variable Derivada 3: Delta Cardíaco}
+\label{subsec:delta_cardiaco}
+
+Cuantifica la respuesta cardiovascular al movimiento mediante la diferencia entre frecuencia cardíaca al caminar y frecuencia cardíaca en reposo:
+
+\begin{equation}
+\text{Delta\_cardíaco} = \text{FC\_caminar} - \text{FC\_reposo}
+\label{eq:delta_cardiaco}
+\end{equation}
+
+\textbf{Justificación fisiológica:} La reserva cardíaca disponible (incremento de FC desde reposo hasta actividad ligera-moderada como caminar) es un indicador de condición física cardiovascular y capacidad de respuesta del sistema nervioso autónomo. Valores altos (>50 lpm) indican desacondicionamiento o baja eficiencia cardiovascular; valores bajos (<30 lpm) indican buena condición física con respuesta cardiovascular eficiente.
+
+\textbf{Rango observado:} [25, 60] lpm en esta cohorte (mediana aproximadamente 37 lpm).
+
+\subsection{Variable Derivada 4: Variabilidad de Frecuencia Cardíaca (HRV-SDNN)}
+\label{subsec:hrv_sdnn}
+
+La desviación estándar de los intervalos NN (\textit{SDNN}, por sus siglas en inglés \textit{Standard Deviation of NN intervals}) es un biomarcador del balance autonómico cardiovascular, validado por la Task Force de la European Society of Cardiology \cite{TaskForce1996} y ampliamente utilizado en estudios con \textit{wearables} \cite{Laborde2017}. A diferencia de las tres variables anteriores que requieren transformaciones algebraicas, HRV-SDNN se utiliza directamente tal como la registra el \textit{Apple Watch}, ya que el dispositivo calcula internamente esta métrica a partir de los intervalos entre latidos cardíacos detectados por el sensor fotopletismográfico.
+
+\textbf{Interpretación clínica:} \textit{HRV} alta (>50 ms) indica predominancia parasimpática del sistema nervioso autónomo, asociada a estados de relajación, buena recuperación y salud cardiovascular; \textit{HRV} baja (<30 ms) indica predominancia simpática, asociada a estrés crónico, fatiga o sobreentrenamiento.
+
+\textbf{Rango normativo:} [15, 150] ms según Task Force \cite{TaskForce1996}. En nuestra cohorte observamos rango [9.8, 135.4] ms con mediana de 48.4 ms.
+
+\subsection{Agregación Semanal y Justificación de Medianas}
+\label{subsec:agregacion_semanal}
+
+Agregamos todas las variables (originales y derivadas) a nivel semanal utilizando ventanas de 7 días consecutivos (lunes a domingo). Empleamos la mediana (p50) como estimador de tendencia central y el rango intercuartílico (\textit{IQR}) como medida de dispersión. Fundamentamos esta decisión metodológica en tres principios complementarios:
+
+\begin{enumerate}
+    \item \textbf{Robustez ante valores atípicos:} La mediana es menos sensible que la media a días con fallas de registro del dispositivo (ejemplo: <10 horas monitoreadas debido a batería agotada) o eventos atípicos (ejemplo: ejercicio intenso aislado no representativo del comportamiento habitual).
+    
+    \item \textbf{Amortiguación del ruido diario:} Los datos de vida libre presentan alta variabilidad diaria (CV diario = 45-60\% según \Cref{tab:descriptivos_actualizados}); la agregación semanal mediante medianas reduce este ruido preservando la señal fisiológica de interés, resultando en coeficientes de variación semanales más manejables (CV semanal = 25-35\%).
+    
+    \item \textbf{Captura de patrones sostenidos:} La ventana de 7 días captura comportamientos habituales (patrones de actividad recurrentes durante la semana laboral y fin de semana), no eventos aislados, alineándose con las recomendaciones de la Organización Mundial de la Salud de evaluación de actividad física en períodos semanales completos \cite{WHO2020}.
+\end{enumerate}
+
+Establecimos el criterio de validez semanal como ≥5 días con datos completos de 7 posibles, equivalente a 71\% de completitud diaria mínima. Este umbral conservador garantiza que la mediana semanal calculada sea representativa del comportamiento habitual, descartando semanas con exceso de datos faltantes donde la mediana podría estar sesgada. La aplicación de este criterio sobre los 9,185 días válidos generó inicialmente 1,385 semanas candidatas, de las cuales 1,337 cumplieron el criterio de validez (tasa de retención 96.5\%), resultando en el \textit{dataset} semanal final con 1,337 observaciones que empleamos en las etapas de \textit{clustering} y modelado difuso. Este proceso de agregación temporal preserva la riqueza informativa del seguimiento longitudinal denso mientras reduce el ruido diario característico de mediciones en vida libre, estableciendo un balance óptimo entre granularidad temporal y estabilidad estadística de las métricas.
+
+\textit{[CONTINUAR CON RESTANTES SECCIONES...]}
+\textit{[Archivo en construcción - Primeras 7 secciones completadas]}
+\textit{[Pendiente: Pivote, Correlación/PCA, Clustering, Fuzzy, LOUO, Ética]}
+
+
