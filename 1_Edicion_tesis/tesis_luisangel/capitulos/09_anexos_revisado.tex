@@ -1,0 +1,394 @@
+﻿% ============================================================================
+% ANEXOS
+% ============================================================================
+
+\chapter*{Anexos}
+\addcontentsline{toc}{chapter}{Anexos}
+
+% ============================================================================
+% ANEXO B: TABLA COMPLETA ESTADO DEL ARTE
+% ============================================================================
+
+\section{An├ílisis Comparativo Exhaustivo de Investigaciones Previas}
+\label{sec:anexo_tabla_completa}
+
+Esta secci├│n presenta el an├ílisis comparativo exhaustivo de 17 investigaciones representativas sobre clasificaci├│n de comportamiento sedentario y actividad f├¡sica mediante dispositivos wearables. La tabla abarca diversas t├®cnicas metodol├│gicas (l├│gica difusa, machine learning, deep learning, m├®todos estad├¡sticos), tipos de validaci├│n (destacando LOUO/LOSO) y aplicaciones en contextos de vida libre. Para facilitar la lectura, la tabla se presenta en orientaci├│n horizontal (landscape).
+
+% Tabla completa en landscape (17 art├¡culos)
+\begin{landscape}
+\footnotesize
+\begin{longtable}{@{}p{1.8cm}p{2.5cm}p{1.8cm}p{1.5cm}p{0.9cm}p{1.3cm}p{2.0cm}p{1.8cm}@{}}
+\caption{An├ílisis comparativo exhaustivo de investigaciones sobre clasificaci├│n de sedentarismo y actividad f├¡sica con wearables}
+\label{tab:comparativa_investigaciones_completa} \\
+\toprule
+\textbf{Autor (A├▒o)} & 
+\textbf{Objetivo} & 
+\textbf{T├®cnica} & 
+\textbf{Datos/ Wearable} & 
+\textbf{N} & 
+\textbf{Validaci├│n} & 
+\textbf{M├®trica Principal} & 
+\textbf{Resultado} \\
+\midrule
+\endfirsthead
+
+\multicolumn{8}{c}{\textit{(Continuaci├│n de Tabla \ref{tab:comparativa_investigaciones_completa})}} \\
+\toprule
+\textbf{Autor (A├▒o)} & 
+\textbf{Objetivo} & 
+\textbf{T├®cnica} & 
+\textbf{Datos/ Wearable} & 
+\textbf{N} & 
+\textbf{Validaci├│n} & 
+\textbf{M├®trica Principal} & 
+\textbf{Resultado} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{8}{r}{\textit{Contin├║a en la siguiente p├ígina...}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+% ========== FUZZY LOGIC ==========
+
+Capitoli et al. (2025) \cite{Capitoli2025FuzzyXAI} & 
+Diagn├│stico cl├¡nico interpretable con l├│gica difusa probabil├¡stica & 
+Fuzzy Logic (interpretable) & 
+Datos cl├¡nicos hospitalarios & 
+Cl├¡nico & 
+Validaci├│n cl├¡nica & 
+Interpretabilidad 100\% & 
+Cl├¡nicos controlan proceso diagn├│stico. Fuzzy = XAI \\
+
+\midrule
+
+Marashi-Hosseini et al. (2023) \cite{MarashiHosseini2023Dietary} & 
+Sistema decisi├│n diet├®tica para pacientes m├║ltiples condiciones cr├│nicas & 
+Fuzzy Logic Mamdani (1144 reglas) & 
+Datos diet├®ticos + cl├¡nicos & 
+100 & 
+Validaci├│n vs nutricionistas & 
+Precisi├│n & 
+97\% precisi├│n. Sistema experto fuzzy riguroso \\
+
+\midrule
+
+Gon├ºalves et al. (2021) \cite{Goncalves2021} & 
+Reconocimiento actividad humana con clustering + fuzzy & 
+K-Means ($k=2$) $\rightarrow$ FIS Mamdani & 
+Sensores inerciales (IMU) & 
+--- & 
+Validaci├│n estabilidad & 
+Estabilidad clasificaci├│n & 
+├ÜNICO precedente clustering $\rightarrow$ fuzzy supervisado \\
+
+\midrule
+
+% ========== DEEP LEARNING ==========
+
+Khan et al. (2024) \cite{Khan2024Wearable} & 
+Reconocimiento actividad f├¡sica con sensores inerciales + deep learning & 
+Deep Learning (CNNs + LSTMs) & 
+Sensores inerciales wearable & 
+--- & 
+K-fold CV & 
+Accuracy & 
+Alta precisi├│n. Requiere datos masivos + no interpretable \\
+
+\midrule
+
+Bassani et al. (2025) \cite{Bassani2025DLHAR} & 
+Deep Learning para reconocimiento actividad f├¡sica en tareas manuales & 
+Deep Learning (varios modelos) & 
+Aceler├│metros & 
+--- & 
+70/30 vs LOSO & 
+Accuracy & 
+\textbf{70/30: 95.7\%} $\rightarrow$ \textbf{LOSO: 90.3\%}. Generalizaci├│n robusta requiere LOSO \\
+
+\midrule
+
+% ========== MACHINE LEARNING CL├üSICO ==========
+
+Fuller et al. (2021) \cite{Fuller2021Predicting} & 
+Clasificaci├│n lying, sitting, walking, running con Apple Watch + Fitbit & 
+Random Forest & 
+Apple Watch + Fitbit (aceler├│metro) & 
+33 & 
+LOOCV & 
+Accuracy & 
+Accuracy $>$90\% para posturas. BYOD validado \\
+
+\midrule
+
+Mathew et al. (2024) \cite{Mathew2024LOSO} & 
+Medici├│n uso funcional mano en par├ílisis cerebral unilateral con ML & 
+Machine Learning (varios modelos) & 
+Aceler├│metros (mu├▒eca) & 
+22 & 
+Personalizado vs LOSO & 
+F1-Score & 
+\textbf{Personalizado: F1=0.896} $\rightarrow$ \textbf{LOSO: F1=0.584}. Evidencia sobreajuste $N$ peque├▒o \\
+
+\midrule
+
+Rehman et al. (2024) \cite{Rehman2024LOSO} & 
+Estudio comparativo validaci├│n + extracci├│n caracter├¡sticas en HAR wearables & 
+Random Forest & 
+Sensores inerciales wearables & 
+--- & 
+LOSO vs k-fold & 
+Accuracy & 
+\textbf{LOSO: 76\%} vs \textbf{k-fold: 89\%}. Data leakage justifica LOUO \\
+
+\midrule
+
+% ========== M├ëTODOS ESTAD├ìSTICOS ==========
+
+Salim et al. (2024) \cite{Salim2024STEPHEN} & 
+Detecci├│n tiempo sedentario + bouts con Hidden Semi-Markov Model & 
+Hidden Semi-Markov Model & 
+Wearables consumo (mu├▒eca) & 
+--- & 
+Validaci├│n vs verdad operativa & 
+Sensibilidad/ Especificidad & 
+Detecci├│n precisa sedentary bouts. M├®todo estad├¡stico avanzado \\
+
+\midrule
+
+Migueles et al. (2022) \cite{Migueles2022GRANADA} & 
+Consenso an├ílisis aceler├│metro para comportamientos f├¡sicos en epidemiolog├¡a & 
+Consenso metodol├│gico & 
+Aceler├│metros (varios) & 
+--- & 
+Revisi├│n sistem├ítica & 
+Gu├¡as metodol├│gicas & 
+Est├índar internacional para an├ílisis PA/sedentarismo \\
+
+\midrule
+
+% ========== VALIDACI├ôN WEARABLES ==========
+
+Lyons et al. (2024) \cite{Lyons2024StandHour} & 
+Definici├│n umbrales actividad que activan ``Stand Hour'' en Apple Watch & 
+Estudio observacional & 
+Apple Watch (energ├¡a activa + pasos) & 
+--- & 
+An├ílisis umbral & 
+Umbrales Stand Hour & 
+Deconstruye proxy sedentarismo comercial. Umbrales caja negra identificados \\
+
+\midrule
+
+O'Grady et al. (2024) \cite{OGrady2024AppleWatch} & 
+Validaci├│n HRV + RHR en Apple Watch Series 9 y Ultra 2 & 
+Estudio validaci├│n & 
+Apple Watch vs Polar H10 (gold standard) & 
+39 & 
+Validaci├│n concurrente & 
+MAPE & 
+\textbf{HRV MAPE=28.88\%}, \textbf{RHR MAPE=5.91\%}. Limitaciones sensor PPG \\
+
+\midrule
+
+Ji et al. (2023) \cite{Ji2023Scratch} & 
+Evaluaci├│n scratch nocturno con actigraf├¡a en pacientes dermatitis at├│pica & 
+Machine Learning & 
+Actigraf├¡a (ActiGraph) & 
+--- & 
+\textbf{LOSO evaluation} & 
+Sensibilidad/ Especificidad & 
+\textbf{Nature npj Digital Medicine}. Precedente metodol├│gico cl├¡nico LOSO \\
+
+\midrule
+
+% ========== XAI + INTERPRETABILIDAD ==========
+
+Bienefeld et al. (2023) \cite{Bienefeld2023XAI} & 
+Resolver dilema XAI: brecha necesidades cl├¡nicos vs objetivos desarrolladores & 
+Estudio cualitativo & 
+Entrevistas + cuestionarios & 
+112 & 
+An├ílisis cualitativo & 
+Temas identificados & 
+Cl├¡nicos requieren transparencia global. Desarrolladores enfocan local \\
+
+\midrule
+
+Deng et al. (2023) \cite{Deng2023LharJBHI} & 
+HAR ligero en wearables con knowledge distillation & 
+Deep Learning (ligero) & 
+Sensores wearables & 
+--- & 
+Validaci├│n experimental & 
+Accuracy + eficiencia & 
+\textbf{IEEE JBHI} (revista objetivo). HAR eficiente wearables \\
+
+\midrule
+
+% ========== FISIOLOG├ìA + HRV ==========
+
+Godkin et al. (2025) \cite{Godkin2025Context} & 
+Medir RHR durante vida diaria: impacto contexto conductual + criterios metodol├│gicos & 
+Estudio observacional & 
+Wearables (RHR + aceler├│metro) & 
+--- & 
+An├ílisis contextual & 
+RHR por contexto & 
+\textbf{RHR sedentario $\neq$ RHR sue├▒o}. Contextos auton├│micos diferentes. Clasificaci├│n fisiol├│gica vs postural \\
+
+\midrule
+
+Marino et al. (2024) \cite{Marino2024ARIC} & 
+Asociaciones PA + HRV con funci├│n cognitiva + demencia (ARIC Neurocognitive Study) & 
+An├ílisis cohorte longitudinal & 
+ECG ambulatorio 2 semanas + aceler├│metro & 
+961 & 
+An├ílisis regresi├│n & 
+Odds Ratio (OR) & 
+Mayor PA + HRV $\rightarrow$ mejor cognici├│n. Relaci├│n no lineal PA-HRV-salud cerebral \\
+
+\midrule
+
+% ========== INVESTIGACI├ôN ACTUAL (├ÜLTIMA FILA) ==========
+
+\textbf{Mart├¡nez-Corral (2025)} \newline \textbf{[Investigaci├│n Actual]} & 
+\textbf{Clasificaci├│n comportamiento sedentario mediante l├│gica difusa + datos biom├®tricos Apple Watch (HRV, aceler├│metro)} & 
+\textbf{Clustering K-Means ($k=2$) $\rightarrow$ Fuzzy Mamdani (4 variables)} & 
+\textbf{Apple Watch (PPG + IMU) vida libre} & 
+\textbf{10 (5F/5M)} & 
+\textbf{LOUO (10-fold)} & 
+\textbf{F1-Score} & 
+\textbf{F1-global=0.840, F1-LOUO=0.780$\pm$0.167. Interpretabilidad 100\%. BYOD validado. ├Ünico estudio clustering$\rightarrow$fuzzy + LOUO + HRV sedentarismo} \\
+
+\end{longtable}
+\end{landscape}
+
+% ============================================================================
+% TABLA DE NOMENCLATURA (ATLAS)
+% ============================================================================
+
+\section{Nomenclatura y Simbolog├¡a Matem├ítica}
+\label{sec:nomenclatura}
+
+Esta secci├│n presenta la nomenclatura matem├ítica utilizada en el sistema de inferencia difusa y an├ílisis estad├¡stico.
+
+\subsection{S├¡mbolos Matem├íticos Generales}
+
+% Tabla multi-p├ígina con longtable (permite continuaci├│n autom├ítica)
+\begin{longtable}{@{}p{3cm}p{10cm}@{}}
+\caption{S├¡mbolos y Notaci├│n Matem├ítica del Sistema Difuso}
+\label{tab:nomenclatura} \\
+\toprule
+\textbf{S├¡mbolo} & \textbf{Descripci├│n} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\textit{(Continuaci├│n de Tabla \ref{tab:nomenclatura})}} \\
+\toprule
+\textbf{S├¡mbolo} & \textbf{Descripci├│n} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{Contin├║a en la siguiente p├ígina...}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+\multicolumn{2}{@{}l}{\textit{\textbf{Conjuntos y Funciones de Membres├¡a}}} \\
+\(\tilde{A}\) & Conjunto difuso \\
+\(\mu_{\tilde{A}}(x)\) & Funci├│n de membres├¡a del conjunto difuso \(\tilde{A}\) \\
+\(X\) & Universo de discurso (conjunto cl├ísico de valores posibles) \\
+\(X_i\) & Variable de entrada \(i\) (\(i \in \{1,2,3,4\}\)) \\
+\(Y\) & Variable de salida (├ìndice de Sedentarismo) \\
+\(T_i\) & Conjunto de t├®rminos ling├╝├¡sticos de variable \(i\) \\
+\(\mathbf{P}_i\) & Matriz de percentiles \(3 \times 3\) para variable \(X_i\) \\
+\(p_{k,i}\) & Percentil \(k\) de la variable \(X_i\) \\
+\(\mathbf{M}^{(j)}\) & Matriz de membres├¡as \(4 \times 3\) para observaci├│n \(j\) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Variables Fisiol├│gicas}}} \\
+\(\text{Act}_{\text{rel}}\) & Actividad Relativa (min movimiento / hrs monitoreadas) \\
+\(\text{Sup}_{\text{cal}}\) & Super├ívit Cal├│rico Basal (\% del TMB) \\
+\(\text{HRV-SDNN}\) & Variabilidad Card├¡aca (desviaci├│n est├índar intervalos RR) \\
+\(\Delta_{\text{FC}}\) & Delta Card├¡aco (FC caminata - FC reposo) \\
+\(\text{TMB}\) & Tasa Metab├│lica Basal (kcal/d├¡a, ec. Mifflin-St Jeor) \\
+\(\text{GCA}\) & Gasto Cal├│rico Activo (kcal/d├¡a) \\
+\(\text{FC}\) & Frecuencia Card├¡aca (latidos por minuto) \\
+\(\text{IQR}\) & Rango Intercuart├¡lico (Q3 - Q1) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Reglas de Inferencia y Activaci├│n}}} \\
+\(R_r\) & Regla de inferencia \(r\) (\(r \in \{1,2,3,4,5\}\)) \\
+\(\mathcal{R}\) & Base de reglas (conjunto de 5 reglas Mamdani) \\
+\(w_r^{(j)}\) & Activaci├│n (firing strength) de regla \(R_r\) para observaci├│n \(j\) \\
+\(\mathbf{w}^{(j)}\) & Vector de activaciones \(\in \mathbb{R}^5\) \\
+\(T(a, b)\) & T-norm (operador AND fuzzy): \(T(a,b) = \min(a,b)\) \\
+\(y_r\) & Output crisp de la regla \(R_r\) \\
+\(\mathbf{y}_{\text{salidas}}\) & Vector de salidas de reglas \([1.0, 0.0, 0.9, 0.5, 0.7]^T\) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Defuzzificaci├│n y Clasificaci├│n}}} \\
+\(y^{(j)}\) & Score de sedentarismo defuzzificado para semana \(j\) \\
+\(\hat{y}^{(j)}\) & Clasificaci├│n binaria (0=Bajo, 1=Alto sedentarismo) \\
+\(\tau\) & Umbral de decisi├│n para binarizaci├│n \\
+\(\|\mathbf{w}\|_1\) & Norma L1 del vector (suma de componentes) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Validaci├│n LOOU}}} \\
+\(\mathcal{D}\) & Dataset completo (1,337 semanas, 10 usuarios) \\
+\(\mathcal{D}_{\text{train}}^{(i)}\) & Conjunto de entrenamiento en fold \(i\) (9 usuarios) \\
+\(\mathcal{D}_{\text{test}}^{(i)}\) & Conjunto de prueba en fold \(i\) (1 usuario) \\
+\(n_i\) & N├║mero de semanas del usuario \(i\) \\
+\(F1^{(i)}\) & F1-Score en fold \(i\) (usuario \(i\) como test) \\
+\(\overline{F1}_{\text{LOOU}}\) & F1-Score promedio LOOU (10 folds) \\
+\(\sigma_{F1}\) & Desviaci├│n est├índar de F1-Score entre folds \\
+\(CV\) & Coeficiente de variaci├│n (\%) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Clustering (Verdad Operativa)}}} \\
+\(K\) & N├║mero de clusters (K=2) \\
+\(\mathbf{C}_k\) & Centroide del cluster \(k\) (\(k \in \{0,1\}\)) \\
+\(c^{(j)}\) & Cluster asignado a semana \(j\) (verdad operativa) \\
+\(S\) & Silhouette Score (m├®trica de calidad clustering) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{M├®tricas de Evaluaci├│n}}} \\
+\(\text{TP}\) & True Positives (verdaderos positivos) \\
+\(\text{TN}\) & True Negatives (verdaderos negativos) \\
+\(\text{FP}\) & False Positives (falsos positivos) \\
+\(\text{FN}\) & False Negatives (falsos negativos) \\
+\(\text{Precision}\) & Precisi├│n: \(\text{TP}/(\text{TP}+\text{FP})\) \\
+\(\text{Recall}\) & Sensibilidad: \(\text{TP}/(\text{TP}+\text{FN})\) \\
+\(F1\) & F1-Score: \(2 \cdot \text{Prec} \cdot \text{Rec} / (\text{Prec} + \text{Rec})\) \\
+\(\text{MCC}\) & Matthews Correlation Coefficient \\
+\(\text{Acc}\) & Accuracy (exactitud): \((\text{TP}+\text{TN})/N\) \\
+\\
+\multicolumn{2}{@{}l}{\textit{\textbf{Operadores y Notaci├│n Matem├ítica}}} \\
+\(\min(a, b)\) & M├¡nimo de \(a\) y \(b\) \\
+\(\max(a, b)\) & M├íximo de \(a\) y \(b\) \\
+\(\mathbb{E}[\cdot]\) & Valor esperado (esperanza matem├ítica) \\
+\(\mathbb{1}[\cdot]\) & Funci├│n indicadora (1 si verdadero, 0 si falso) \\
+\(\|\mathbf{v}\|_2\) & Norma euclidiana (L2) del vector \(\mathbf{v}\) \\
+\(\|\mathbf{v}\|_1\) & Norma L1 (suma de valores absolutos) \\
+\(\mathbb{R}\) & Conjunto de n├║meros reales \\
+\(\mathbb{R}^+\) & Conjunto de n├║meros reales positivos \\
+\(\mathbb{R}^{n}\) & Espacio euclidiano n-dimensional \\
+\([a, b]\) & Intervalo cerrado de \(a\) a \(b\) \\
+\(\arg\min_x f(x)\) & Argumento que minimiza la funci├│n \(f(x)\) \\
+\(\forall\) & Para todo (cuantificador universal) \\
+\(\exists\) & Existe (cuantificador existencial) \\
+\(\in\) & Pertenece a (relaci├│n de pertenencia) \\
+\(\subset\) & Subconjunto de \\
+\(\setminus\) & Diferencia de conjuntos \\
+\(\land\) & Conjunci├│n l├│gica (AND) \\
+\(\Rightarrow\) & Implicaci├│n l├│gica (THEN) \\
+\end{longtable}
+
+% ============================================================================
+% FIN DE NOMENCLATURA (ATLAS)
+% ============================================================================
+
+% Aqu├¡ se incluir├ín otros anexos de la tesis
+% Por ejemplo: consentimiento informado, instrumentos, etc.
+
+
+

@@ -1,0 +1,55 @@
+﻿% ============================================================================
+% CAP├ìTULO 1: INTRODUCCI├ôN
+% ============================================================================
+% 
+% INSTRUCCIONES GENERALES:
+% - Este cap├¡tulo presenta una visi├│n general de la investigaci├│n
+% - Debe ser claro, conciso y motivar al lector
+% - Extensi├│n t├¡pica: 10-15 p├íginas
+% - Reemplaza TODO el texto entre [corchetes]
+% ============================================================================
+
+\chapter{Introducci├│n}
+\label{cap:introduccion}
+
+% ----------------------------------------------------------------------------
+% CONTENIDO REQUERIDO PARA INTRODUCCI├ôN:
+% ----------------------------------------------------------------------------
+% Este cap├¡tulo debe incluir una visi├│n general de:
+% - El contexto y relevancia del tema de investigaci├│n
+% - La problem├ítica que abordas
+% - Una breve descripci├│n de lo que har├ís
+% - La estructura del documento
+%
+% NOTA IMPORTANTE: La Delimitaci├│n del Objeto de Estudio (planteamiento del
+%                  problema, pregunta de investigaci├│n, hip├│tesis, objetivos)
+%                  va en el CAP├ìTULO 3, NO aqu├¡.
+% ----------------------------------------------------------------------------
+
+\noindent El comportamiento sedentario (CS) se ha consolidado como uno de los principales retos de salud p├║blica del siglo XXI, vinculado estrechamente con la transici├│n epidemiol├│gica, la urbanizaci├│n acelerada y el cambio en los patrones de movilidad y trabajo. Las largas jornadas en posici├│n sentada, el predominio de actividades digitales y la disminuci├│n de la actividad f├¡sica incidental han generado un aumento sostenido en la prevalencia de enfermedades cr├│nicas no transmisibles (ENT), como la diabetes tipo 2, las enfermedades cardiovasculares y la depresi├│n. Este panorama, descrito por la Organizaci├│n Mundial de la Salud (OMS), refleja la urgencia de desarrollar herramientas que permitan medir, interpretar y reducir los efectos del sedentarismo en la calidad de vida relacionada con la salud (CVRS) \cite{WHO2020,Bull2020,Guthold2020}.
+
+El estudio del CS tradicionalmente se ha sustentado en instrumentos de autoinforme, como el GPAQ o el SF-36, que aunque v├ílidos y ampliamente utilizados, presentan limitaciones inherentes a la subjetividad y la falta de resoluci├│n temporal \cite{Romero2022,ShamahLevy2023}. En la ├║ltima d├®cada, el desarrollo de dispositivos port├ítiles con sensores biom├®tricos ÔÇöaceler├│metros, fotopletismograf├¡a (PPG) y sensores de frecuencia cardiacaÔÇö ha permitido capturar datos fisiol├│gicos y de actividad con alta precisi├│n, lo cual abre la posibilidad de an├ílisis objetivos, continuos y personalizados \cite{Henriksen2018,White2019,Strain2020}. Esta evoluci├│n tecnol├│gica sit├║a al monitoreo digital de la salud como una pieza central en el dise├▒o de intervenciones preventivas basadas en evidencia.
+
+En este contexto, la inteligencia artificial (IA) y, particularmente, la l├│gica difusa, ofrecen un marco te├│rico y computacional id├│neo para modelar fen├│menos complejos donde las relaciones entre variables no son lineales ni deterministas. A diferencia de los m├®todos estad├¡sticos tradicionales, la l├│gica difusa admite grados intermedios de pertenencia y permite representar razonamientos humanos en t├®rminos ling├╝├¡sticos ("actividad alta", "HRV baja", "riesgo moderado"), lo cual otorga interpretabilidad y flexibilidad a los modelos biom├®dicos \cite{Zadeh1965,Ross2010,Kaur2022}. Su integraci├│n en sistemas de inferencia Mamdani posibilita traducir datos biom├®tricos en reglas sem├ínticamente comprensibles y fortalece la capacidad explicativa de los algoritmos frente al enfoque opaco de los modelos de caja negra.
+
+El presente proyecto propone un modelo de evaluaci├│n del comportamiento sedentario basado en l├│gica difusa e informaci├│n biom├®trica proveniente del Apple Watch, que integra variables de actividad f├¡sica (minutos en movimiento, pasos diarios, gasto cal├│rico) con indicadores auton├│micos derivados de la variabilidad de la frecuencia cardiaca (HRV-SDNN). Este enfoque busca caracterizar la relaci├│n entre patrones de sedentarismo y percepci├│n de CVRS, capturando la din├ímica diaria del equilibrio entre esfuerzo, recuperaci├│n y bienestar. A trav├®s de un sistema de inferencia difusa con reglas adaptativas, se modela la interacci├│n entre la activaci├│n fisiol├│gica y los h├íbitos conductuales, lo cual ofrece una aproximaci├│n m├ís precisa y contextualizada del impacto del sedentarismo sobre la salud.
+
+Desde una perspectiva metodol├│gica, el modelo difuso se nutre de datos reales obtenidos de Apple HealthKit, los cuales son procesados mediante un protocolo reproducible que garantiza la integridad y trazabilidad de la informaci├│n. Se construye una base de control difuso con funciones de pertenencia triangulares y trapezoidales para las variables de entrada, y un conjunto de reglas del tipo "Si actividad alta y HRV baja, entonces riesgo alto". El sistema se valida mediante concordancia con una verdad operativa derivada de clustering no supervisado, y utiliza m├®tricas de rendimiento (F1-Score, Exactitud, Coeficiente de Matthews) y validaci├│n cruzada Leave-One-User-Out (LOOU) para evaluar generalizaci├│n inter-sujeto. Adicionalmente, se realiz├│ una validaci├│n convergente exploratoria con el cuestionario SF-36 en un subconjunto de participantes (N=8), la cual revel├│ correlaci├│n significativa ├║nicamente con la dimensi├│n Salud Mental.
+
+La relevancia cient├¡fica de este trabajo radica en su contribuci├│n a la comprensi├│n integral del sedentarismo como fen├│meno fisiol├│gico y conductual, pues integra la dimensi├│n auton├│mica del organismo en el an├ílisis de la actividad f├¡sica. Su valor metodol├│gico se centra en el desarrollo de un sistema explicable y flexible, capaz de adaptarse a distintas poblaciones y contextos de uso. Desde el punto de vista social, la investigaci├│n aporta un marco emp├¡rico para dise├▒ar estrategias de promoci├│n de la salud personalizadas y sostenibles, en consonancia con la Agenda 2030 y el Plan Mundial sobre Actividad F├¡sica 2018ÔÇô2030 de la OMS \cite{WHO2018}.
+
+En suma, este proyecto articula tres dimensiones convergentes: la necesidad epidemiol├│gica de reducir el comportamiento sedentario, la oportunidad tecnol├│gica de los dispositivos port├ítiles para capturar datos de alta resoluci├│n y el potencial anal├¡tico de la l├│gica difusa para transformar esos datos en conocimiento cl├¡nicamente significativo. Con ello, se establece un precedente metodol├│gico para futuras investigaciones en salud digital, inteligencia artificial y promoci├│n de la salud basada en evidencia.
+
+% ----------------------------------------------------------------------------
+% SECCI├ôN: Organizaci├│n del Documento
+% ----------------------------------------------------------------------------
+% [Eliminado: Organizaci├│n del Documento]
+
+% ============================================================================
+% NOTAS FINALES:
+% ============================================================================
+% - Recuerda citar fuentes relevantes usando \cite{clave_referencia}
+% - Mant├®n un tono acad├®mico pero accesible
+% - Evita entrar en detalles metodol├│gicos (eso va en Cap. 5)
+% - No incluyas objetivos ni hip├│tesis aqu├¡ (eso va en Cap. 3)
+% ============================================================================

@@ -23,36 +23,36 @@ Previo al análisis de conglomerados, se verificó la ausencia de multicolineali
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\textwidth]{figuras/matriz_correlacion_features_clustering.png}
     \caption{Matriz de correlación de características para clustering}
     \label{fig:matriz_correlacion}
+    \includegraphics[width=0.85\textwidth]{figuras/matriz_correlacion_features_clustering.png}
 \end{figure}
 
 Posteriormente, realizamos un barrido de $K$ (de 2 a 6 conglomerados) para determinar la partición más adecuada de los datos. Como observamos en la \Cref{fig:silhouette_elbow}, el coeficiente de Silhouette alcanzó su máximo en $K=2$ (S=0.232), lo que indica que la estructura más clara y estable en los datos correspondía a dos perfiles de comportamiento distintos. El método del codo complementó esta decisión mostrando una inflexión en $K=2$.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{figuras/PCA_elbow_vs_shilloete.png}
     \caption{Determinación de K óptimo mediante Silhouette y método del codo}
     \label{fig:silhouette_elbow}
+    \includegraphics[width=0.9\textwidth]{figuras/PCA_elbow_vs_shilloete.png}
 \end{figure}
 
 El análisis de componentes principales (PCA) confirmó visualmente esta estructura bimodal. La \Cref{fig:pca_biplot} muestra la proyección de las semanas en el espacio reducido de dos componentes principales: el PC1 (37\% de varianza explicada) separa claramente los dos grupos, estando fuertemente influenciado por las variables de actividad y gasto calórico.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{figuras/PCA_biplot.png}
     \caption{Biplot de componentes principales mostrando separación bimodal}
     \label{fig:pca_biplot}
+    \includegraphics[width=0.95\textwidth]{figuras/PCA_biplot.png}
 \end{figure}
 
 Los perfiles de estos dos conglomerados se analizaron estadísticamente para su caracterización clínica. Como ilustra la \Cref{fig:perfiles_clusters}, el Conglomerado 0 (``Bajo Sedentarismo'') presentó valores de mediana significativamente más altos en Actividad\_relativa\_p50 y Superavit\_calorico\_basal\_p50 en comparación con el Conglomerado 1 (``Alto Sedentarismo''). Las diferencias fueron estadísticamente irrefutables ($p < .001$) y con un tamaño del efecto grande (Cohen's $d > 0.9$). Curiosamente, la \textit{HRV}\_SDNN no mostró una diferencia significativa entre ambos grupos, revelando la paradoja \textit{HRV} discutida posteriormente.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{figuras/perfiles_de_clusters.png}
     \caption{Perfiles biométricos de los dos conglomerados identificados}
     \label{fig:perfiles_clusters}
+    \includegraphics[width=0.95\textwidth]{figuras/perfiles_de_clusters.png}
 \end{figure}
 
 La \Cref{tab:distribucion_clusters_usuario} muestra la distribución de semanas asignadas a cada conglomerado por usuario.
@@ -211,9 +211,9 @@ El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{figuras/analisis_robustez.png}
     \caption{Análisis de robustez: modelo completo vs. modelo reducido}
     \label{fig:analisis_robustez}
+    \includegraphics[width=0.9\textwidth]{figuras/analisis_robustez.png}
 \end{figure}
 
 Este análisis demostró que, aunque la \textit{HRV}\_SDNN no era un discriminador potente a nivel univariado, su inclusión en el sistema difuso es crítica. Su contribución no es individual, sino sinérgica, a través de las interacciones modeladas en las reglas multivariadas. Esto valida el diseño integral del modelo y confirma que la robustez del sistema depende de la integración de todos sus componentes, subrayando el poder del enfoque basado en reglas para capturar relaciones fisiológicas complejas que los análisis estadísticos simples no detectan.
@@ -223,7 +223,7 @@ Este análisis demostró que, aunque la \textit{HRV}\_SDNN no era un discriminad
 
 El análisis de las variables cardiovasculares reveló un hallazgo contraintuitivo de alta relevancia metodológica, que denominaremos ``Paradoja \textit{HRV}''. Este fenómeno se manifiesta en la contraposición entre el análisis univariado y el análisis multivariado de la variable \textit{HRV-SDNN}, evidenciando que su contribución al sistema difuso no es aditiva sino sinérgica.
 
-\textbf{Análisis Univariado:} La prueba de Mann-Whitney U para \textit{HRV-SDNN} entre los dos conglomerados resultó no significativa (U = 184,180, p = 0.562, Cohen's d = 0.051), indicando que esta variable no discrimina los grupos de manera independiente. Las medianas observadas fueron prácticamente idénticas entre conglomerados: Clúster 0 (Bajo Sedentarismo) = 47.71 ms versus Clúster 1 (Alto Sedentarismo) = 49.45 ms, con una diferencia absoluta de apenas 1.74 ms (3.6\% de la mediana global). El tamaño del efecto despreciable (d = 0.051) confirma la ausencia de diferenciación clínicamente relevante en términos univariados.
+\textbf{Análisis Univariado:} la prueba de Mann-Whitney U para \textit{HRV-SDNN} entre los dos conglomerados resultó no significativa (U = 184,180, p = 0.562, Cohen's d = 0.051), indicando que esta variable no discrimina los grupos de manera independiente. Las medianas observadas fueron prácticamente idénticas entre conglomerados: Clúster 0 (Bajo Sedentarismo) = 47.71 ms versus Clúster 1 (Alto Sedentarismo) = 49.45 ms, con una diferencia absoluta de apenas 1.74 ms (3.6\% de la mediana global). El tamaño del efecto despreciable (d = 0.051) confirma la ausencia de diferenciación clínicamente relevante en términos univariados.
 
 \textbf{Análisis Multivariado mediante Ablación:} Sin embargo, el análisis de ablación demostró que la exclusión de las variables cardiovasculares (\textit{HRV-SDNN} y Delta\_cardíaco) del sistema difuso provocó un colapso del rendimiento del modelo, con una caída del 50\% en el F1-Score (de 0.840 a 0.420, p $<$ 0.001). Esta degradación masiva del desempeño evidencia que HRV-SDNN es crítica para la capacidad clasificatoria del sistema, a pesar de su aparente irrelevancia en análisis univariado.
 
@@ -268,7 +268,7 @@ Fundamentalmente, el estudio revela que la robustez del sistema no reside en el 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{figuras/diagrama_de_tesis.png}
     \caption{Arquitectura del sistema de clasificación de sedentarismo mediante lógica difusa}
     \label{fig:diagrama_tesis}
+    \includegraphics[width=0.95\textwidth]{figuras/diagrama_de_tesis.png}
 \end{figure}

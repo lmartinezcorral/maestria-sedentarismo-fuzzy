@@ -116,6 +116,29 @@
 }
 
 % ============================================================================
+% CONFIGURACIÓN DE CAPTIONS PARA FIGURAS (APA 7)
+% ============================================================================
+% Formato: Renglón 1: "Figura X" (negritas 12pt)
+%          Renglón 2: título de la figura (cursiva 12pt)
+%          Imagen
+%          Nota (si es necesaria, al final)
+% ============================================================================
+\DeclareCaptionFormat{figureformat}{%
+  \textbf{#1}\\[0.5em]%
+  \textit{#3}%
+}
+\captionsetup[figure]{
+  format=figureformat,
+  font={normalfont},
+  labelsep=none,
+  justification=justified,
+  singlelinecheck=false,
+  position=above,
+  aboveskip=12pt,
+  belowskip=6pt
+}
+
+% ============================================================================
 % CONFIGURACIÓN DE BIBLIOGRAFÍA (BIBLATEX-APA 7)
 % ============================================================================
 % Configuración centralizada para uniformizar citas en todo el documento
@@ -128,6 +151,126 @@
                 maxnames=2,minnames=1,
                 uniquename=init,
                 uniquelist=minyear]{biblatex}
+
+% ============================================================================
+% CONFIGURACIÓN DE LISTINGS PARA CÓDIGO (ESTILO IDE/VSCode)
+% ============================================================================
+% Opcional: Descomentar si se necesita mostrar código fuente real
+% ============================================================================
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+
+% ============================================================================
+% PALETA DE COLORES OFICIAL - FACULTAD DE MEDICINA Y CIENCIAS BIOMÉDICAS
+% ============================================================================
+% Colores oficiales de la identidad visual de la facultad
+% ============================================================================
+\definecolor{facultad-purple-dark}{HTML}{571E72}      % Morado oscuro
+\definecolor{facultad-magenta}{HTML}{AA03C0}          % Magenta brillante
+\definecolor{facultad-cream-light}{HTML}{FEF7CD}      % Amarillo crema claro
+\definecolor{facultad-purple-medium}{HTML}{A733EA}   % Morado medio
+\definecolor{facultad-rose-purple}{HTML}{A4579F}      % Rosa púrpura
+\definecolor{facultad-gold}{HTML}{D0A433}             % Amarillo dorado
+\definecolor{facultad-cream}{HTML}{F1F0D9}            % Crema muy claro
+\definecolor{facultad-purple-dark2}{HTML}{750CA3}     % Morado oscuro 2
+
+% Colores para código usando paleta oficial
+\definecolor{codebackground}{HTML}{F1F0D9}            % Fondo: Crema muy claro
+\definecolor{codeforeground}{HTML}{571E72}           % Texto: Morado oscuro
+\definecolor{codekeyword}{HTML}{A733EA}               % Keywords: Morado medio
+\definecolor{codestring}{HTML}{D0A433}                % Strings: Amarillo dorado
+\definecolor{codecomment}{HTML}{A4579F}               % Comentarios: Rosa púrpura
+\definecolor{codefunction}{HTML}{AA03C0}              % Funciones: Magenta brillante
+\definecolor{codeborder}{HTML}{571E72}                % Borde: Morado oscuro
+
+% Estilo para código Python (fondo claro, ideal para impresión)
+\lstdefinestyle{pythoncode}{
+    language=Python,
+    basicstyle=\ttfamily\fontsize{10}{12}\selectfont\color{codeforeground},
+    backgroundcolor=\color{codebackground},
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{codeborder},
+    linewidth=0.8pt,
+    keywordstyle=\color{codekeyword}\bfseries,
+    commentstyle=\color{codecomment}\itshape,
+    stringstyle=\color{codestring},
+    functionstyle=\color{codefunction},
+    numbers=left,
+    numberstyle=\tiny\color{codeforeground!60},
+    stepnumber=1,
+    numbersep=8pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=false,
+    captionpos=b,
+    xleftmargin=12pt,
+    xrightmargin=12pt,
+    framexleftmargin=8pt,
+    framexrightmargin=8pt,
+    aboveskip=6pt,
+    belowskip=6pt
+}
+
+% Estilo para pseudocódigo (sin resaltado de sintaxis, fondo claro)
+% Usa paleta oficial de la facultad
+\lstdefinestyle{pseudocode}{
+    basicstyle=\ttfamily\fontsize{9.5}{11.5}\selectfont\color{codeforeground},
+    backgroundcolor=\color{codebackground},
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{codeborder!80},
+    linewidth=1pt,
+    numbers=left,
+    numberstyle=\tiny\ttfamily\color{codeforeground!50},
+    stepnumber=1,
+    numbersep=6pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=false,
+    captionpos=b,
+    xleftmargin=0pt,
+    xrightmargin=0pt,
+    framexleftmargin=0pt,
+    framexrightmargin=0pt,
+    aboveskip=3pt,
+    belowskip=3pt
+}
+
+% Estilo predeterminado (sin fondo, solo borde - más conservador)
+\lstdefinestyle{codeplain}{
+    basicstyle=\ttfamily\fontsize{10}{12}\selectfont,
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{black!30},
+    linewidth=0.8pt,
+    numbers=left,
+    numberstyle=\tiny\color{gray!50},
+    stepnumber=1,
+    numbersep=8pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=false,
+    captionpos=b,
+    xleftmargin=12pt,
+    xrightmargin=12pt,
+    framexleftmargin=8pt,
+    framexrightmargin=8pt,
+    aboveskip=6pt,
+    belowskip=6pt
+}
+
+% Estilo predeterminado (conservador, sin fondo)
+\lstset{style=codeplain}
 
 % ============================================================================
 % FIN DE HOJA DE ESTILOS

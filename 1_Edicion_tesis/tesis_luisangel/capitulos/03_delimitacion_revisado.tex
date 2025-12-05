@@ -1,0 +1,158 @@
+﻿\chapter{Delimitación del Objeto de Estudio}
+\label{chap:delimitacion}
+
+\noindent Este capítulo delimita el objeto de estudio de la investigación mediante la identificación del problema, la formulación de la pregunta de investigación, el planteamiento de hipótesis y el establecimiento de objetivos específicos. Además, se fundamenta el pivote metodológico realizado durante el desarrollo del proyecto y se justifica el tamaño de muestra empleado (N=10), así como la estrategia de validación Leave-One-User-Out implementada para evaluar la generalización inter-sujeto del sistema de inferencia difusa propuesto.
+
+% ============================================================================
+\section{Problema de Investigación}
+\label{sec:problema_investigacion}
+% ============================================================================
+
+El comportamiento sedentario, definido como cualquier actividad en vigilia caracterizada por un gasto energético $\leq$1.5 equivalentes metabólicos (METs) en una postura sentada, reclinada o acostada, se ha consolidado como un determinante de salud pública de primer orden. Evidencia reciente de meta-análisis a gran escala confirma su asociación independiente con un mayor riesgo de mortalidad por todas las causas, incidencia de enfermedades cardiovasculares y diabetes mellitus tipo 2 \citep{Katzmarzyk2023Impact,Santos2023CostInaction}. La evaluación precisa de este comportamiento es, por tanto, un pilar para la estratificación del riesgo y el diseño de intervenciones efectivas. Sin embargo, los métodos de evaluación convencionales presentan una dicotomía metodológica que limita su aplicabilidad y precisión. Los instrumentos subjetivos, como los cuestionarios de autoinforme, aunque escalables, adolecen de sesgos de memoria y deseabilidad social que comprometen su validez \citep{Healy2024,Prince2008}. En contraparte, las técnicas objetivas de referencia, como la calorimetría indirecta o la actigrafía de grado investigativo, se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento en condiciones de vida libre \citep{Migueles2022GRANADA}.
+
+La ubicuidad de los dispositivos portátiles de consumo ha generado una oportunidad sin precedentes para la monitorización objetiva, continua y longitudinal del comportamiento en el entorno ecológico del individuo. No obstante, la transición de la recolección masiva de datos a la generación de conocimiento clínicamente accionable presenta un desafío metodológico significativo. El reto principal reside en traducir flujos de datos multivariados y heterogéneos ---actividad física, patrones de frecuencia cardíaca, variabilidad de la frecuencia cardíaca (VFC) y gasto energético--- en una clasificación del sedentarismo que sea fisiológicamente significativa e individualizada \citep{Deka2023Nonlinear}. Los modelos de inteligencia artificial basados en aprendizaje profundo, comúnmente denominados ``de caja negra'', aunque han demostrado una alta precisión en la clasificación de actividades, a menudo carecen de la interpretabilidad necesaria para su adopción en la práctica clínica, donde la auditabilidad de una recomendación es un imperativo ético y profesional \citep{Vellido2020Importance}.
+
+Este vacío metodológico ---la ausencia de un sistema que integre de forma sinérgica múltiples biomarcadores de vida libre en una clasificación del sedentarismo que sea robusta, empíricamente validada e interpretable--- constituye el núcleo del problema que se aborda en esta investigación. Los análisis estadísticos univariados han resultado insuficientes para capturar las complejas interacciones no lineales entre la actividad física, la función autonómica y la respuesta metabólica \citep{Aubert2022GlobalMatrix}. Por ejemplo, la relación entre la VFC y la actividad física es intrínsecamente no lineal y dependiente del contexto, lo que requiere enfoques de modelado que puedan manejar la incertidumbre y la vaguedad inherentes a los sistemas biológicos \citep{Deka2023Nonlinear}.
+
+Para resolver este problema, esta investigación desarrolló un modelo de evaluación basado en un sistema de inferencia difusa tipo Mamdani. Este enfoque se apartó de una hipótesis inicial centrada en correlacionar datos objetivos con percepciones subjetivas, para en su lugar, validar el sistema experto contra una ``verdad operativa'' derivada de los propios datos mediante un análisis de conglomerados no supervisado. De este modo, el estudio se enfocó en resolver el problema fundamental de crear un clasificador objetivo, interpretable y validado para el comportamiento sedentario en condiciones de vida libre. El clasificador utiliza datos longitudinales recopilados a través de dispositivos de consumo.
+
+% ============================================================================
+\section{Pregunta de Investigación}
+\label{sec:pregunta_investigacion}
+% ============================================================================
+
+¿De qué manera un modelo basado en lógica difusa puede clasificar el comportamiento sedentario a partir de datos biométricos recopilados en condiciones de vida libre por dispositivos ``wearables''?
+
+% ============================================================================
+\section{Hipótesis}
+\label{sec:hipotesis}
+% ============================================================================
+
+\subsection{Hipótesis Conceptual (HC)}
+\label{subsec:hipotesis_conceptual}
+
+La clasificación del comportamiento sedentario generada por el sistema de inferencia difusa, basado en reglas que integran biomarcadores de actividad y función cardiovascular, exhibe una alta concordancia con la clasificación objetiva obtenida mediante un análisis de conglomerados no supervisado sobre los mismos datos.
+
+\subsection{Hipótesis Nula ($H_0$)}
+\label{subsec:hipotesis_nula}
+
+No existe una concordancia estadísticamente significativa entre la clasificación del comportamiento sedentario generada por el sistema de inferencia difusa y la clasificación obtenida mediante el análisis de conglomerados. Cualquier concordancia observada no es superior a la que se obtendría por azar.
+
+% ============================================================================
+\section{Objetivo General}
+\label{sec:objetivo_general}
+% ============================================================================
+
+Construir y validar un modelo interpretable, basado en lógica difusa, para la clasificación del comportamiento sedentario a partir de datos biométricos de wearables recopilados en condiciones de vida libre.
+
+% ============================================================================
+\section{Objetivos Específicos}
+\label{sec:objetivos_especificos}
+% ============================================================================
+
+\begin{enumerate}
+    \item Analizar los datos biométricos longitudinales para derivar un conjunto de variables semanales que representen cuantitativamente los patrones de actividad física y función cardiovascular de la cohorte de estudio.
+    
+    \item Identificar los perfiles de comportamiento sedentario inherentes a los datos mediante la aplicación de un algoritmo de agrupamiento no supervisado, para establecer una clasificación de referencia empírica.
+    
+    \item Diseñar un sistema de inferencia difusa que modele la relación entre las variables biométricas y los perfiles de comportamiento, el cual establezca reglas lingüísticas con fundamento fisiológico.
+    
+    \item Evaluar el desempeño del sistema de inferencia difusa mediante la determinación de su nivel de concordancia con los perfiles de comportamiento identificados por el método de agrupamiento.
+    
+    \item Examinar la contribución de los componentes del modelo a través de un análisis de sensibilidad para determinar la importancia relativa de sus variables de entrada en el rendimiento clasificatorio.
+\end{enumerate}
+
+% ============================================================================
+\section{Fundamento del Pivote Metodológico}
+\label{sec:fundamento_pivote}
+% ============================================================================
+
+\subsection{Hipótesis Inicial y Necesidad de Pivote}
+\label{subsec:hipotesis_inicial_pivote}
+
+La hipótesis inicial del proyecto planteaba entrenar un modelo supervisado de Redes Neuronales Artificiales (ANN) para predecir comportamiento sedentario. El modelo utilizaría como variable de referencia (\textit{verdad de referencia}) las puntuaciones del cuestionario SF-36 (Short Form Health Survey). Este enfoque asumía que: (1) la percepción subjetiva de calidad de vida correlaciona fuertemente con indicadores objetivos de comportamiento sedentario, (2) dicha correlación es suficientemente robusta para servir como ``verdad de referencia'' en entrenamiento supervisado, y (3) el tamaño de muestra ($N=10$) es adecuado para entrenar un modelo ANN.
+
+\textbf{Resultados del análisis exploratorio:} El análisis de correlación entre las 8 dimensiones del SF-36 y las variables del Apple Watch ($N=8$ participantes con datos completos) reveló correlaciones moderadas-fuertes pero mayormente no significativas. La única correlación estadísticamente significativa tras corrección Bonferroni fue Salud Mental vs.\ Fuzzy\_median: $r_s = 0.765$, $p = 0.027$. Otras dimensiones mostraron correlaciones marginalmente no significativas o direcciones contraintuitivas (correlaciones positivas entre salud física percibida e indicadores de sedentarismo).
+
+\subsection{Limitaciones del SF-36 como Verdad de Referencia en Cohortes Pequeñas}
+\label{subsec:limitaciones_sf36}
+
+El SF-36 es un instrumento validado para evaluación de calidad de vida relacionada con la salud en estudios epidemiológicos a gran escala. Sin embargo, su uso como \textit{variable de referencia para entrenamiento supervisado} en cohortes pequeñas ($N < 20$) presenta limitaciones metodológicas:
+
+\begin{enumerate}
+    \item \textbf{Limitación estadística:} Para detectar una correlación $r = 0.50$ (efecto moderado) con poder estadístico de 0.80 y $\alpha = 0.05$, se requiere $N \geq 29$ participantes. Con $N=8-10$, solo correlaciones $r > 0.75$ (efectos muy grandes) alcanzarían significancia estadística.
+    
+    \item \textbf{Desacople temporal:} El SF-36 evalúa percepción de salud en las ``últimas 4 semanas'' mediante preguntas retrospectivas, mientras que los wearables capturan comportamiento objetivo instantáneo minuto a minuto.
+    
+    \item \textbf{Naturaleza subjetiva vs.\ objetiva:} Medidas objetivas (wearables) y subjetivas (cuestionarios) pueden capturar dimensiones ortogonales de salud, no necesariamente correlacionadas linealmente.
+\end{enumerate}
+
+\subsection{Justificación del Pivote a Enfoque Data-Driven}
+\label{subsec:justificacion_pivote}
+
+Dadas las limitaciones del SF-36 como verdad de referencia, el proyecto pivotó a un \textbf{enfoque dual basado en datos}:
+
+\begin{enumerate}
+    \item \textbf{Paso 1 - Clustering No Supervisado (K-Means):} Utilizar únicamente los datos objetivos del Apple Watch para identificar patrones naturales de comportamiento mediante K-Means ($k=2$: Sedentario/No Sedentario). Este clustering establece una ``verdad operativa'' (Operational Ground Truth) basada en la estructura inherente de los datos, no en percepciones subjetivas ni umbrales heurísticos predefinidos.
+    
+    \item \textbf{Paso 2 - Sistema de Inferencia Difusa Mamdani:} Traducir los centroides y perfiles estadísticos de los clústeres identificados a reglas lingüísticas interpretables de un FIS Mamdani, lo que permite clasificación transparente de nuevas observaciones.
+\end{enumerate}
+
+\textbf{Ventajas metodológicas del pivote:} (1) \textbf{Objetividad} (la verdad de referencia proviene de patrones basados en datos, no de umbrales arbitrarios ni percepciones subjetivas), (2) \textbf{Interpretabilidad} (el FIS Mamdani es ``interpretable por diseño''), y (3) \textbf{Validación rigurosa} (LOOU evita filtración temporal e identitaria, y proporciona métricas realistas de generalización inter-sujeto).
+
+\subsection{Re-posicionamiento del SF-36: De Verdad de Referencia a Validación Convergente}
+\label{subsec:reposicionamiento_sf36}
+
+Aunque el SF-36 resultó inadecuado como verdad de referencia para entrenamiento supervisado, mantiene valor como \textit{variable de validación convergente exploratoria}: (1) proporciona contexto clínico y datos demográficos que enriquecen la interpretación de hallazgos, (2) permite investigar si el sistema difuso (basado en datos objetivos) correlaciona con percepción subjetiva de salud, y (3) contribuye a la discusión sobre \textit{qué constituye ``verdad de referencia''} en estudios de cohortes pequeñas.
+
+Esta re-conceptualización transforma una aparente limitación (correlaciones no significativas) en una \textit{fortaleza metodológica}: demuestra que no asumimos ingenuamente que cuestionarios son ``verdad absoluta'', sino que adoptamos un enfoque crítico basado en datos.
+
+% ============================================================================
+\section{Justificación del Tamaño de Muestra (N=10)}
+\label{sec:justificacion_n10}
+% ============================================================================
+
+\subsection{Trade-Off: Profundidad Longitudinal vs.\ Cantidad de Participantes}
+\label{subsec:tradeoff_longitudinal}
+
+El tamaño de muestra $N=10$ puede considerarse limitado desde la perspectiva de estudios epidemiológicos transversales. Sin embargo, estudios longitudinales con wearables presentan un \textit{trade-off} entre cantidad de participantes ($N$) y profundidad de medición por participante (semanas de seguimiento, frecuencia de muestreo):
+
+\begin{equation}
+\text{Información Total} \approx N_{\text{participantes}} \times T_{\text{semanas}} \times f_{\text{muestreo}}
+\end{equation}
+
+\subsection{Precedentes de Cohortes Pequeñas en Literatura Q1}
+\label{subsec:precedentes_cohortes_pequenas}
+
+Estudios de alto impacto demuestran que cohortes pequeñas ($N < 20$) son viables metodológicamente si se cumplen condiciones de mediciones intensivas, validación rigurosa y objetivos exploratorios claros. Ricotti et al. (2023, \textit{Nature Medicine}), Crozat et al. (2025, \textit{Sensors}), Kaveh et al. (2024, \textit{Nature Communications}) y Lu et al. (2018, \textit{Sensors}) publican con $N=7-21$ en revistas Q1, y comparten características similares: protocolos exhaustivos, LOUO/LOSO y objetivos de viabilidad técnica.
+
+\subsection{Justificación de N=10 en Nuestro Estudio}
+\label{subsec:justificacion_n10_estudio}
+
+Nuestro diseño ($N=10$ participantes, ~8 semanas de seguimiento, 4 variables biométricas) se alinea con estos precedentes: (1) profundidad longitudinal (~8 semanas resulta en ~1,337 observaciones semanales totales, comparable en volumen a estudios transversales con $N > 50$), (2) validación conservadora (LOUO proporciona métricas realistas de generalización), y (3) objetivo exploratorio (establecer proof-of-concept de la tubería Clustering $\rightarrow$ FIS Mamdani, no generalizar a población mexicana completa).
+
+\textbf{Análisis de poder retrospectivo:} Con $N=10$ y ~1,337 observaciones, el diseño tiene poder estadístico $> 0.80$ para detectar tamaños de efecto $d \geq 0.8$ (grandes). Para efectos moderados ($d=0.5$), el poder desciende a $\approx 0.55$. Nuestro diseño es \textit{adecuado} para detectar diferencias clínicamente significativas entre patrones de comportamiento marcadamente distintos, consistente con el objetivo exploratorio.
+
+% ============================================================================
+\section{Estrategia de Validación LOUO}
+\label{sec:estrategia_louo}
+% ============================================================================
+
+\subsection{Protocolo LOUO Implementado}
+\label{subsec:protocolo_louo}
+
+Implementamos validación cruzada Leave-One-User-Out con 10 folds (uno por cada participante): en cada iteración $i=1$ a $10$, el conjunto de entrenamiento contiene datos de usuarios $\{1,\ldots,10\} \setminus \{i\}$, y el conjunto de prueba contiene datos del usuario $i$. Se entrena K-Means ($k=2$) en el conjunto de entrenamiento, se parametriza el FIS Mamdani con los centroides resultantes, y se evalúa el FIS en el conjunto de prueba (usuario $i$). Las métricas finales se reportan como $F1 = \text{mean}(F1_1, \ldots, F1_{10}) \pm \text{SD}$ y coeficiente de variación $CV\% = (\text{SD}/\text{mean}) \times 100$.
+
+\subsection{Justificación Metodológica de LOUO}
+\label{subsec:justificacion_louo}
+
+La elección de LOUO sobre k-fold tradicional se fundamenta en: (1) evitar temporal leakage (no entrenar con semanas adyacentes a la semana de prueba), (2) simular despliegue real (cada validación involucra un sujeto no visto, exactamente el escenario clínico), y (3) revelar heterogeneidad (LOUO revela diferencias de desempeño entre usuarios que k-fold ocultaría al promediar).
+
+\subsection{Limitaciones Reconocidas y Trabajo Futuro}
+\label{subsec:limitaciones_trabajo_futuro}
+
+\textbf{Limitaciones de N=10:} (1) Generalización poblacional limitada (resultados reflejan cohorte específica de adultos jóvenes universitarios), (2) poder estadístico moderado (suficiente para efectos grandes, insuficiente para efectos pequeños), y (3) cada fold tiene solo 9 usuarios en entrenamiento (K-Means $k=2$ es apropiado, $k > 3$ sería sobre-parameterizado).
+
+\textbf{Trabajo futuro:} Validación externa en cohorte independiente ($N \geq 20$), análisis de validación temporal anidada, y exploración de modelos personalizados vs.\ modelo global.
+
+\textbf{Fortalezas que mitigan limitaciones:} Datos longitudinales ricos (~8 semanas vs.\ 1 sesión en múltiples estudios), multimodalidad (4 variables biométricas + contexto clínico), y objetivo exploratorio claro (proof-of-concept de tubería novel K-Means $\rightarrow$ FIS Mamdani).
