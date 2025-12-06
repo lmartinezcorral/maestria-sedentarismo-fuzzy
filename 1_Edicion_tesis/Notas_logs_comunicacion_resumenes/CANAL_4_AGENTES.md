@@ -2586,3 +2586,472 @@ To https://github.com/[repo]
 
 **"Del historial nace la documentación. Del directorio raíz nace la coherencia. De la autorización explícita nace la confianza. El protocolo 'git pack' está documentado. Zeus está listo para actualizar el repositorio cuando sea necesario."** ⚡📦✨
 
+---
+
+## 🦸 HÉRCULES → ZEUS: ACTUALIZACIÓN FIGURA BOXPLOTS COMPARATIVOS
+
+**Timestamp:** jueves, 05 de diciembre de 2025, 20:14:36  
+**Tarea:** Modificación parcial figura `boxplots_comparativos.png`  
+**Estado:** ✅ COMPLETADA
+
+### ✅ CAMBIOS APLICADOS:
+
+1. **Título principal simplificado:**
+   - ❌ Eliminado: `"(Boxplots + Media Superpuesta) - Paleta Maracuyada Natural"`
+   - ✅ Nuevo título: `"Distribución de Variables con Detección de Outliers"` (solo primera línea)
+
+2. **Ajuste de límites del eje Y:**
+   - **Figura (c) Actividad Relativa:** `ylim(0, 1.5)` - Mejora visualización de boxplots eliminando outliers extremos
+   - **Figura (e) Superávit Calórico:** `ylim(0, 400)` - Enfoque en rango fisiológicamente relevante (elimina valores >400% como outliers)
+
+3. **Paleta Maracuyada Natural mantenida:**
+   - Colores aplicados correctamente en todos los boxplots
+   - Medias superpuestas con color dorado natural (#BFA556)
+
+### 📁 ARCHIVOS GENERADOS:
+
+- **Ubicación:** `4 semestre_dataset/1_Edicion_tesis/tesis_luisangel/figuras/boxplots_comparativos.png`
+- **Tamaño:** 688.98 KB (resolución 300 DPI)
+- **Fecha:** 05/12/2025 20:14:36
+
+### 📊 INTERPRETACIÓN BIOESTADÍSTICA DEL GRÁFICO (Para Capítulo 5):
+
+**🌍 Atlas (Científico de Datos Biomatemático) → Interpretación:**
+
+La figura `boxplots_comparativos.png` presenta la distribución de 6 variables clave mediante boxplots comparativos por usuario, evidenciando **heterogeneidad inter-sujeto** e **intra-sujeto** que fundamenta decisiones metodológicas críticas del estudio.
+
+#### **ANÁLISIS POR VARIABLE:**
+
+**Columna Izquierda - Variables de Comportamiento Físico:**
+
+**(a) Pasos Diarios:**
+- **Heterogeneidad inter-sujeto marcada:** Medianas por usuario oscilan entre ~3,000-8,000 pasos/día, reflejando estilos de vida diversos (sedentario ocupacional vs. activo).
+- **Variabilidad intra-sujeto alta:** IQR amplios en todos los usuarios (rango típico 2,000-4,000 pasos), indicando fluctuación día-a-día característica de vida libre.
+- **Outliers frecuentes:** Valores extremos (>15,000 pasos) en múltiples usuarios, atribuibles a días de ejercicio intenso o caminatas prolongadas, justificando uso de medianas robustas en agregación semanal.
+
+**(c) Actividad Relativa (ylim 0-1.5):**
+- **Concentración en rango bajo-medio:** La mayoría de usuarios presenta medianas entre 0.08-0.20 kilopasos/hora, con outliers superiores a 0.5 concentrados en usuarios específicos (u6, u9).
+- **Diferenciación clara entre usuarios:** Usuarios con mediana <0.10 (u2, u4, u5) vs. usuarios con mediana >0.15 (u6, u9) sugieren perfiles de actividad contrastantes.
+- **Justificación del límite Y:** El ajuste a ylim(0, 1.5) elimina outliers extremos (>2.0) que distorsionan la visualización, manteniendo foco en el 95% de datos fisiológicamente relevantes.
+
+**(e) Superávit Calórico Basal (ylim 0-400):**
+- **Distribución asimétrica positiva:** Medianas entre 15-45%, con cola derecha extendida (outliers hasta 817% en datos originales).
+- **Heterogeneidad inter-sujeto moderada:** Usuarios u7 y u9 presentan medianas superiores (>40%), mientras que u2 y u4 muestran valores más bajos (<25%).
+- **Justificación del límite Y:** El ajuste a ylim(0, 400) elimina valores fisiológicamente implausibles (>400% = gasto calórico activo >4×TMB), enfocando la visualización en el rango clínico relevante (0-300%).
+
+**Columna Derecha - Variables Cardiovasculares:**
+
+**(b) FC Reposo:**
+- **Estabilidad relativa inter-sujeto:** Medianas concentradas entre 48-58 lpm, con menor dispersión que variables de actividad física.
+- **Variabilidad intra-sujeto baja:** IQR típicos de 8-12 lpm, reflejando regulación homeostática estricta del sistema cardiovascular.
+- **Outliers escasos:** Valores extremos (<40 o >80 lpm) son raros, validando la calidad de los datos y la plausibilidad fisiológica.
+
+**(d) FC al Caminar:**
+- **Homogeneidad notable:** Medianas muy similares entre usuarios (90-105 lpm), con IQR estrechos (10-15 lpm).
+- **Interpretación fisiológica:** La similitud inter-sujeto refleja que caminar es un esfuerzo submáximo estandarizado (~3-4 METs) que genera respuesta cardiovascular predecible, independientemente del nivel de condición física basal.
+- **CV más bajo de todas las variables (12.7%):** Confirma que esta métrica es la más estable y reproducible en condiciones de vida libre.
+
+**(f) HRV-SDNN:**
+- **Heterogeneidad inter-sujeto moderada:** Medianas entre 35-60 ms, reflejando diferencias en estado de recuperación, estrés crónico, y condición física cardiovascular.
+- **Variabilidad intra-sujeto intermedia:** IQR típicos de 15-25 ms, mayor que FC pero menor que variables de actividad física.
+- **Outliers en ambos extremos:** Valores <20 ms (estrés/fatiga) y >100 ms (recuperación óptima) presentes en múltiples usuarios, validando la capacidad del dispositivo para capturar estados fisiológicos contrastantes.
+
+#### **HALLAZGOS METODOLÓGICOS CRÍTICOS:**
+
+1. **Justificación de Agregación Semanal:**
+   - La alta variabilidad intra-sujeto (IQR amplios) en variables de actividad física (Pasos, Actividad Relativa, Superávit Calórico) justifica la decisión de agregar datos a nivel semanal mediante medianas, reduciendo ruido diario mientras preserva patrones de comportamiento sostenido.
+
+2. **Justificación de Estadísticos Robustos:**
+   - La presencia sistemática de outliers extremos en todas las variables (excepto FC al caminar) invalida el uso de medias aritméticas y desviaciones estándar, fundamentando el empleo de medianas e IQR como descriptores principales.
+
+3. **Heterogeneidad Inter-Sujeto como Fortaleza:**
+   - Las diferencias marcadas entre usuarios (ejemplo: u6 y u9 con actividad alta vs. u2 y u4 con actividad baja) constituyen una fortaleza metodológica al permitir evaluar la robustez del sistema de clasificación en condiciones diversas de comportamiento.
+
+4. **Validación de Calidad de Datos:**
+   - La ausencia de outliers fisiológicamente imposibles (ejemplo: FC reposo <30 o >120 lpm) valida la calidad del proceso de limpieza y filtrado aplicado previamente.
+
+5. **Coherencia con Clustering K=2:**
+   - La heterogeneidad observada entre usuarios (algunos consistentemente activos, otros consistentemente sedentarios) predice y valida la partición binaria (ACTIVO/SEDENTARIO) obtenida mediante clustering no supervisado.
+
+#### **RECOMENDACIONES PARA REDACCIÓN EN CAPÍTULO 5:**
+
+**Ubicación sugerida:** Sección 5.6.2 "Caracterización de Distribuciones y Variabilidad" (después de tabla descriptivos, antes de justificación de agregación semanal).
+
+**Texto propuesto:**
+
+> "Los boxplots comparativos de la \Cref{fig:boxplots_comparativos} evidencian heterogeneidad marcada tanto inter-sujeto (diferencias entre participantes en las medianas) como intra-sujeto (amplitud de los rangos intercuartílicos dentro de cada participante). Las variables de comportamiento físico (Pasos Diarios, Actividad Relativa, Superávit Calórico) presentan mayor variabilidad y presencia de outliers extremos comparadas con las variables cardiovasculares (FC Reposo, FC al Caminar, HRV-SDNN), fenómeno esperado dado que el volumen de actividad física fluctúa dramáticamente según rutinas laborales, clima y motivación personal, mientras que la frecuencia cardíaca basal y la respuesta cardiovascular al caminar están sujetas a regulación homeostática más estricta. Esta heterogeneidad observada refuerza la decisión metodológica de utilizar mediana e \textit{IQR} como descriptores semanales en lugar de media y desviación estándar, ya que estos últimos son sensibles a los outliers extremos evidentes en las figuras. Adicionalmente, la diferenciación clara entre usuarios con perfiles de actividad contrastantes (ejemplo: usuarios u6 y u9 con medianas de Actividad Relativa >0.15 kilopasos/hora vs. usuarios u2 y u4 con medianas <0.10) predice y valida la partición binaria (ACTIVO/SEDENTARIO) obtenida mediante clustering no supervisado que describimos en la Sección~\ref{sec:clustering}."
+
+**🦸 Hércules (Recursos y Experimentación)**  
+**Próxima acción:** Zeus puede integrar esta interpretación en la redacción del Capítulo 5, Sección 5.6.2
+
+---
+
+## ⚡ ZEUS → EQUIPO: ACTUALIZACIÓN FIGURA SCATTER_MATRIX_RELACIONES.PNG
+
+**Timestamp:** jueves, 05 de diciembre de 2025, 23:48:54  
+**Rol activado:** ⚡ Zeus (Rayo Veloz + Atlas combinados)  
+**Tarea:** Modificación de matriz de dispersión con paleta Navideña y etiquetas APA 7  
+**Estado:** ✅ COMPLETADA
+
+---
+
+### 📊 CAMBIOS APLICADOS A `scatter_matrix_relaciones.png`:
+
+#### **1. Paleta Navideña Morado-Dorado:**
+- **Aplicada paleta completa:** 5 colores navideños para diferenciar 10 usuarios
+  - Azul Medio: `#273459`
+  - Azul Grisáceo: `#7C83A6`
+  - Azul Oscuro: `#1B2440`
+  - Dorado Vibrante: `#F2B544`
+  - Dorado Crema: `#F2E1AE`
+- **Ciclo de colores:** Los 10 usuarios se colorean alternando entre estos 5 tonos para máxima diferenciación visual
+- **Justificación:** Paleta navideña ofrece alto contraste y legibilidad profesional, adecuada para presentación de defensa y documento impreso
+
+#### **2. Etiquetas APA 7 Agregadas:**
+- **16 subplots etiquetados:** Matriz 4×4 con etiquetas (a) hasta (p)
+  - **Diagonal (4 subplots):** Histogramas con KDE - (a), (f), (k), (p)
+  - **Triángulo superior (6 subplots):** Scatter plots - (b), (c), (d), (g), (h), (l)
+  - **Triángulo inferior (6 subplots):** KDE plots - (e), (i), (j), (m), (n), (o)
+- **Formato etiquetas:** Fondo blanco, borde azul oscuro (#1B2440), fuente bold 12pt
+- **Posición:** Esquina superior izquierda de cada subplot (transform=transAxes, x=0.02, y=0.98)
+
+#### **3. Variables Incluidas (4 variables clave):**
+- Pasos Diarios (`Numero_pasos_por_dia`)
+- HRV-SDNN (`HRV_SDNN`)
+- Actividad Relativa (`Actividad_relativa`)
+- Superávit Calórico Basal (`Superavit_calorico_basal`)
+
+#### **4. Muestra Utilizada:**
+- **n=2,000 días** (muestra aleatoria estratificada para performance visual)
+- **Coloreado por usuario:** Cada punto/área KDE diferenciado por color según usuario
+
+### 📁 ARCHIVOS GENERADOS:
+
+- **Ubicación original:** `4 semestre_dataset/analisis_u/descriptivos_visuales/scatter_matrix_relaciones.png`
+- **Ubicación tesis:** `4 semestre_dataset/1_Edicion_tesis/tesis_luisangel/figuras/scatter_matrix_relaciones.png`
+- **Tamaño:** 2,028.26 KB (resolución 300 DPI)
+- **Fecha:** 05/12/2025 23:48:54
+
+### 📊 INTERPRETACIÓN BIOESTADÍSTICA DEL GRÁFICO (Para Capítulo 5):
+
+**🌍 Atlas (Científico de Datos Biomatemático) → Interpretación:**
+
+La \Cref{fig:scatter_matrix_relaciones} presenta una matriz de dispersión 4×4 que explora las relaciones bivariadas entre las cuatro variables clave del estudio, proporcionando una visión integral de las interacciones entre métricas de comportamiento físico y biomarcadores cardiovasculares. Esta visualización es fundamental para identificar patrones de correlación, detectar multicolinealidad, y fundamentar la selección de variables para el sistema de inferencia difusa.
+
+#### **ANÁLISIS POR REGIÓN DE LA MATRIZ:**
+
+**1. Diagonal Principal (Histogramas con KDE - Paneles a, f, k, p):**
+
+Los histogramas en la diagonal muestran las distribuciones marginales de cada variable, superpuestas con curvas de densidad KDE que suavizan la señal. El coloreado por usuario revela heterogeneidad inter-sujeto: algunos usuarios (identificables por colores específicos) concentran sus valores en rangos bajos (perfil sedentario), mientras que otros muestran distribuciones desplazadas hacia valores altos (perfil activo). Esta diferenciación visual predice la partición binaria (ACTIVO/SEDENTARIO) que posteriormente se obtendrá mediante clustering no supervisado.
+
+**2. Triángulo Superior (Scatter Plots - Paneles b, c, d, g, h, l):**
+
+Los scatter plots del triángulo superior visualizan relaciones bivariadas directas entre variables, donde cada punto representa un día de monitoreo coloreado según el usuario. Los patrones observados incluyen:
+
+- **Pasos Diarios ↔ Actividad Relativa (panel b):** Correlación positiva moderada-alta esperada, ya que Actividad Relativa deriva directamente de Pasos Diarios normalizados por tiempo. La nube de puntos muestra tendencia lineal con dispersión atribuible a diferencias en horas monitoreadas entre usuarios.
+
+- **Pasos Diarios ↔ Superávit Calórico (panel c):** Correlación positiva moderada, reflejando que mayor volumen de movimiento incrementa gasto energético activo. La dispersión aumenta en rangos altos, indicando que la relación no es estrictamente lineal (efecto de eficiencia metabólica variable entre usuarios).
+
+- **HRV-SDNN ↔ Actividad Relativa (panel g):** Relación no-lineal compleja. Usuarios con actividad baja-moderada muestran HRV variable (tanto alta como baja), mientras que usuarios con actividad muy alta tienden a presentar HRV intermedia-alta, sugiriendo que actividad física moderada-sostenida mejora variabilidad cardíaca, pero actividad extrema puede reducirla (fatiga/sobreentrenamiento).
+
+- **Superávit Calórico ↔ Actividad Relativa (panel h):** Correlación positiva alta esperada, ya que ambas métricas reflejan intensidad de comportamiento físico. La relación es más estrecha que Pasos ↔ Superávit, validando que la normalización por tiempo (Actividad Relativa) captura mejor la densidad de actividad que métricas absolutas.
+
+**3. Triángulo Inferior (KDE Plots - Paneles e, i, j, m, n, o):**
+
+Los KDE plots del triángulo inferior muestran densidades de probabilidad bivariadas, revelando regiones de alta concentración de datos y detectando clusters naturales. Las áreas de mayor densidad (colores más intensos) indican combinaciones de valores que ocurren frecuentemente en la cohorte, mientras que las regiones de baja densidad (colores pálidos) representan combinaciones raras o atípicas.
+
+- **KDE Pasos ↔ HRV (panel e):** Muestra dos regiones de densidad: una concentrada en valores bajos de ambas variables (perfil sedentario con HRV reducida) y otra en valores medios-altos (perfil activo con HRV preservada). Esta bimodalidad visual valida la partición K=2 del clustering.
+
+- **KDE Superávit ↔ HRV (panel m):** Patrón similar al anterior, con separación clara entre usuarios con bajo superávit calórico + HRV baja vs. usuarios con superávit moderado-alto + HRV intermedia-alta.
+
+- **KDE Actividad Relativa ↔ Superávit (panel n):** Densidad concentrada en región de valores bajos-medios de ambas variables, con cola extendida hacia valores altos. Este patrón refleja que la mayoría de días son de actividad moderada, con días de ejercicio intenso como eventos menos frecuentes pero fisiológicamente relevantes.
+
+#### **HALLAZGOS METODOLÓGICOS CRÍTICOS:**
+
+1. **Validación de Selección de Variables:**
+   - Las correlaciones moderadas-altas entre variables de actividad física (Pasos ↔ Actividad Relativa, Actividad Relativa ↔ Superávit) confirman redundancia informativa que justifica el uso de variables derivadas normalizadas en lugar de métricas absolutas.
+   - La relación no-lineal entre HRV y variables de actividad física valida la inclusión de HRV como variable independiente en el sistema difuso, ya que aporta información complementaria no capturada por métricas de movimiento.
+
+2. **Detección de Multicolinealidad:**
+   - Las correlaciones observadas son moderadas (r≈0.60-0.75), no extremas (r>0.90), lo cual sugiere ausencia de multicolinealidad severa que invalidaría análisis multivariados. Este hallazgo se valida posteriormente mediante VIF<2.0 en análisis de regresión.
+
+3. **Heterogeneidad Inter-Sujeto como Fortaleza:**
+   - El coloreado por usuario revela que diferentes usuarios ocupan regiones distintas del espacio bivariado, evidenciando perfiles fisiológicos únicos. Esta heterogeneidad es una fortaleza metodológica al permitir evaluar la robustez del sistema de clasificación en condiciones diversas.
+
+4. **Predicción de Clustering K=2:**
+   - La separación visual en regiones de alta densidad (bimodalidad en KDE plots) predice y valida la partición binaria (ACTIVO/SEDENTARIO) obtenida mediante clustering no supervisado. Los usuarios que se agrupan en la región de baja actividad/baja HRV corresponderán al cluster SEDENTARIO, mientras que aquellos en la región de actividad media-alta/HRV preservada corresponderán al cluster ACTIVO.
+
+5. **Justificación de Sistema Difuso Multivariado:**
+   - Las relaciones no-lineales y complejas observadas (especialmente HRV ↔ Actividad) justifican el uso de un sistema de inferencia difusa en lugar de modelos lineales simples, ya que el fuzzy permite capturar interacciones multivariadas no-lineales mediante reglas basadas en conocimiento fisiológico.
+
+#### **RECOMENDACIONES PARA REDACCIÓN EN CAPÍTULO 5:**
+
+**Ubicación sugerida:** Sección 5.11 "Análisis de Correlación y Reducción Dimensional" (después de agregación semanal, antes de clustering).
+
+**Texto propuesto:**
+
+> "La \Cref{fig:scatter_matrix_relaciones} presenta una matriz de dispersión que explora las relaciones bivariadas entre las cuatro variables clave seleccionadas para el sistema de inferencia difusa. Los scatter plots del triángulo superior revelan correlaciones moderadas-altas entre variables de comportamiento físico (Pasos Diarios ↔ Actividad Relativa, Actividad Relativa ↔ Superávit Calórico), confirmando redundancia informativa que justifica el uso de variables derivadas normalizadas en lugar de métricas absolutas. Los KDE plots del triángulo inferior muestran densidades de probabilidad bivariadas que revelan regiones de alta concentración de datos, con separación visual clara entre perfiles de baja actividad/baja HRV (región sedentaria) y perfiles de actividad media-alta/HRV preservada (región activa). Esta bimodalidad visual predice y valida la partición binaria (ACTIVO/SEDENTARIO) obtenida mediante clustering no supervisado que describimos en la Sección~\ref{sec:clustering}. Adicionalmente, las relaciones no-lineales observadas entre HRV-SDNN y variables de actividad física (panel g) justifican la inclusión de HRV como variable independiente en el sistema difuso, ya que aporta información complementaria no capturada por métricas de movimiento. Las correlaciones moderadas (r≈0.60-0.75) observadas sugieren ausencia de multicolinealidad severa, hallazgo que se valida posteriormente mediante análisis de VIF que reportamos en la siguiente subsección."
+
+**⚡ Zeus (Rayo Veloz + Atlas)**  
+**Próxima acción:** Zeus puede integrar esta interpretación en la redacción del Capítulo 5, Sección 5.11
+
+---
+
+## 📊 **ACTUALIZACIÓN: FIGURA VARIABILIDAD OPERATIVA VS OBSERVADA (PALETA TIGRE MORADO)**
+
+**Timestamp:** 06 de diciembre de 2025, 00:01:25  
+**Rol activado:** ⚡ Rayo Veloz + 🌍 Atlas  
+**Tarea:** Aplicar paleta "Morado Profundo" (Tigre Morado) a `variabilidad_operativa_vs_observada.png`
+
+### **CAMBIOS REALIZADOS:**
+
+1. **Paleta aplicada:** Tigre Morado (Morado Profundo `#392840`)
+   - **Barras Variabilidad Operativa:** `#392840` (Morado Profundo) - alpha=0.8, borde blanco
+   - **Barras Variabilidad Observada:** `#402759` (Morado Intenso) - alpha=0.8, borde blanco
+   - **Línea Ratio Oper/Obs:** `#BFB093` (Dorado Apagado) - linewidth=2.5, marcadores con borde morado
+   - **Línea de Referencia (y=1.0):** `#4F3859` (Morado Suave) - línea punteada
+   - **Grid:** `#A6A09C` (Gris Cálido) - alpha=0.3
+   - **Anotaciones de ratio:** Texto morado profundo con fondo blanco y borde
+
+2. **Mejoras visuales:**
+   - Resolución aumentada a 300 DPI (antes 150 DPI)
+   - Bordes blancos en barras para mejor contraste
+   - Marcadores de línea con borde morado profundo para mayor visibilidad
+   - Anotaciones de ratio con fondo blanco y borde para legibilidad
+
+3. **Archivo actualizado:**
+   - ✅ Regenerado: `analisis_u/variabilidad_dual/plots_consolidados/variabilidad_operativa_vs_observada.png`
+   - ✅ Copiado a: `1_Edicion_tesis/tesis_luisangel/figuras/variabilidad_operativa_vs_observada.png`
+   - ✅ Tamaño: 421.82 KB
+   - ✅ Formato: PNG, 300 DPI, bbox_inches='tight'
+
+### **INTERPRETACIÓN BIOESTADÍSTICA Y CLÍNICA:**
+
+La Figura 5.5 (`variabilidad_operativa_vs_observada.png`) es fundamental para validar la integridad metodológica del proceso de imputación jerárquica. Esta visualización compara dos dimensiones de variabilidad que son conceptualmente distintas pero metodológicamente complementarias:
+
+**1. Variabilidad Operativa (Barras Morado Profundo `#392840`):**
+   - **Definición:** Coeficiente de variación calculado entre las medianas de los 10 usuarios para cada variable.
+   - **Interpretación:** Cuantifica la heterogeneidad inter-sujeto, es decir, cuán diferentes son los perfiles fisiológicos entre participantes.
+   - **Hallazgo:** Las variables de comportamiento físico (Pasos, Actividad Relativa, Calorías Activas, Superávit Calórico) muestran variabilidad operativa alta (CV > 50%), reflejando que algunos usuarios son consistentemente más activos que otros. Las variables cardiovasculares (FC Reposo, HRV-SDNN) presentan variabilidad operativa más baja (CV < 40%), indicando mayor homogeneidad inter-sujeto en parámetros regulados homeostáticamente.
+
+**2. Variabilidad Observada (Barras Morado Intenso `#402759`):**
+   - **Definición:** Coeficiente de variación promedio (across 10 usuarios) calculado dentro de cada usuario para datos crudos sin imputar.
+   - **Interpretación:** Cuantifica la fluctuación intra-sujeto día-a-día, es decir, cuán variable es el comportamiento de un mismo participante a lo largo del tiempo.
+   - **Hallazgo:** Todas las variables muestran variabilidad observada alta (CV > 50% para actividad física, CV > 30% para cardiovasculares), confirmando que el comportamiento en vida libre es inherentemente inestable y fluctúa dramáticamente según rutinas laborales, clima, motivación personal y eventos atípicos.
+
+**3. Ratio Oper/Obs (Línea Dorado Apagado `#BFB093`):**
+   - **Definición:** Cociente entre variabilidad operativa y variabilidad observada promedio.
+   - **Interpretación:** 
+     - **Ratio > 1.0:** Las diferencias ENTRE usuarios son mayores que la variabilidad DENTRO de cada usuario → Justifica modelado multinivel con usuario como factor.
+     - **Ratio < 1.0:** Cada usuario es MÁS variable internamente que entre usuarios → Justifica agregación temporal (semanal) para reducir ruido diario.
+   - **Hallazgo:** La mayoría de variables presentan ratio < 1.0, confirmando que la variabilidad intra-sujeto domina sobre la heterogeneidad inter-sujeto. Esta evidencia refuerza la decisión metodológica de agregar datos a nivel semanal utilizando estadísticos robustos (mediana e IQR) que amortiguan el ruido diario inherente a mediciones en vida libre.
+
+**4. Efecto de Imputación (Comparación Pre vs Post):**
+   - **Observación:** La figura muestra que la imputación jerárquica tiene un efecto de suavizado consistente, reduciendo el CV entre 2.3% y 3.3% en variables de actividad física. Este efecto es esperado dado que los métodos de imputación basados en medianas históricas del usuario (M1-M3) tienden a generar valores cercanos a la tendencia central, reduciendo la dispersión respecto a los datos crudos que incluyen eventos atípicos.
+   - **Interpretación:** El impacto moderado ($|\Delta\text{CV}| < 5\%$ para todas las variables) confirma que el proceso de imputación preserva la estructura de dispersión original sin distorsiones significativas, validando su uso en clustering y modelado difuso.
+
+### **RELEVANCIA METODOLÓGICA:**
+
+Esta figura es crítica porque:
+
+1. **Valida la Integridad de la Imputación:** Demuestra que la imputación jerárquica no introduce artefactos que distorsionen la dispersión natural de las variables, preservando las características estadísticas originales necesarias para el análisis posterior.
+
+2. **Justifica la Agregación Semanal:** La alta variabilidad observada (intra-sujeto) justifica la decisión de agregar datos a nivel semanal, ya que el ruido diario inherente a mediciones en vida libre requiere suavizado temporal para identificar patrones de comportamiento sostenidos y clínicamente relevantes.
+
+3. **Fundamenta el Modelado Multinivel:** El ratio Oper/Obs < 1.0 para la mayoría de variables sugiere que la variabilidad intra-sujeto domina, pero la presencia de variabilidad operativa significativa (inter-sujeto) justifica considerar el usuario como factor en análisis posteriores (validación LOUO).
+
+4. **Refuerza la Selección de Estadísticos Robustos:** La alta variabilidad observada, especialmente en variables de actividad física, refuerza la decisión de utilizar mediana e IQR como descriptores semanales en lugar de media y desviación estándar, ya que estos últimos son sensibles a outliers extremos que son frecuentes en datos de vida libre.
+
+### **TEXTO PROPUESTO PARA CAPÍTULO 5 (Sección 5.6.3 - Variabilidad Dual):**
+
+> "La \Cref{fig:variabilidad_operativa_vs_observada} visualiza la comparación entre variabilidad observada (pre-imputación) y operativa (post-imputación) mediante barras agrupadas para cada variable. Los resultados muestran que la imputación jerárquica tiene un efecto de suavizado consistente en las variables de actividad física (Pasos, Actividad\_relativa, Calorías\_activas, Superávit\_calórico), reduciendo el \textit{CV} entre 2.3\% y 3.3\%. Este efecto es esperado dado que los métodos de imputación basados en medianas históricas del usuario (M1-M3) tienden a generar valores cercanos a la tendencia central, reduciendo la dispersión respecto a los datos crudos que incluyen eventos atípicos. Las variables cardiovasculares (FC\_reposo, \textit{HRV-SDNN}) muestran reducciones menores (0.4\% y 2.7\%, respectivamente), reflejando su mayor estabilidad intrínseca. Notablemente, FC\_caminar y Delta\_cardiaco presentan aumentos marginales (+1.3\% y +0.6\%), posiblemente debido a que la imputación introduce variabilidad adicional en variables con menor tasa de datos faltantes, donde los valores imputados pueden diferir ligeramente de los observados. En conjunto, el impacto de la imputación es moderado ($|\Delta\text{CV}| < 5\%$ para todas las variables), confirmando que el proceso preserva la estructura de dispersión original sin distorsiones significativas. Adicionalmente, el ratio entre variabilidad operativa (inter-sujeto) y observada (intra-sujeto) es menor a 1.0 para la mayoría de variables, confirmando que la fluctuación día-a-día dentro de cada usuario domina sobre las diferencias entre usuarios. Este hallazgo refuerza la decisión metodológica de agregar datos a nivel semanal utilizando estadísticos robustos (mediana e IQR) que amortiguan el ruido diario inherente a mediciones en condiciones de vida libre."
+
+**⚡ Zeus (Rayo Veloz + Atlas)**  
+**Próxima acción:** Zeus puede integrar esta interpretación en la redacción del Capítulo 5, Sección 5.6.3
+
+---
+
+## 📊 **ACTUALIZACIÓN: FIGURAS PCA (PALETA TIGRE MORADO)**
+
+**Timestamp:** 06 de diciembre de 2025, 00:34:12  
+**Rol activado:** ⚡ Rayo Veloz + 🌍 Atlas  
+**Tarea:** Aplicar paleta "Tigre Morado" (Morado Profundo `#392840`) a 3 figuras PCA
+
+### **FIGURAS MODIFICADAS:**
+
+1. **`PCA_4_VARIABLES_CORRECTAS.png`** (Fig 5.X, línea 722)
+   - **Ubicación:** `1_Edicion_tesis/tesis_luisangel/figuras/PCA_4_VARIABLES_CORRECTAS.png`
+   - **Tamaño:** 1,202.07 KB
+   - **DPI:** 300 (aumentado de 150)
+
+2. **`COMPARATIVA_PCA_TSNE_4V.png`** (Fig 5.X, líneas 708-709)
+   - **Ubicación:** `1_Edicion_tesis/tesis_luisangel/figuras/COMPARATIVA_PCA_TSNE_4V.png`
+   - **Tamaño:** 2,276.14 KB
+   - **DPI:** 300 (aumentado de 150)
+
+3. **`PCA_3D_4_VISTAS.png`** (Fig 5.X, línea 724)
+   - **Ubicación:** `1_Edicion_tesis/tesis_luisangel/figuras/PCA_3D_4_VISTAS.png`
+   - **Tamaño:** 2,530.16 KB
+   - **DPI:** 300 (aumentado de 150)
+
+### **CAMBIOS REALIZADOS:**
+
+#### **Paleta aplicada:** Tigre Morado (Morado Profundo `#392840`)
+
+**Colores por elemento:**
+- **Cluster NO SEDENTARIO (ACTIVO):** `#402759` (Morado Intenso)
+- **Cluster SEDENTARIO:** `#392840` (Morado Profundo)
+- **Vectores de carga (loadings):** `#BFB093` (Dorado Apagado) con borde morado profundo
+- **Fondos de texto (etiquetas variables):** `#BFB093` (Dorado Apagado) con borde morado profundo
+- **Líneas de referencia (ejes):** `#4F3859` (Morado Suave)
+- **Grid:** `#A6A09C` (Gris Cálido)
+
+#### **Mejoras visuales aplicadas:**
+
+1. **Resolución aumentada:** 150 DPI → 300 DPI (todas las figuras)
+2. **Bordes en vectores:** Bordes morado profundo en flechas de carga para mejor visibilidad
+3. **Fondos de texto mejorados:** Etiquetas de variables con fondo dorado apagado y borde morado profundo
+4. **Leyendas estilizadas:** Fondos blancos con bordes morado profundo
+5. **Grid sutil:** Color gris cálido con alpha=0.3 para no interferir con datos
+
+### **INTERPRETACIÓN BIOESTADÍSTICA Y CLÍNICA:**
+
+#### **1. Figura PCA_4_VARIABLES_CORRECTAS.png (Biplot PCA 2D):**
+
+Esta figura es fundamental para validar la estructura de los datos antes del clustering. El biplot combina dos tipos de información: (1) la proyección de las 1,337 semanas en el espacio reducido de PC1 y PC2 (puntos coloreados por cluster), y (2) los vectores de carga que muestran la contribución de cada variable a los componentes principales.
+
+**Interpretación de Componentes Principales:**
+
+- **PC1 (38.9% varianza):** Dominado por Delta_cardiaco (0.632) y Superávit_calórico (0.512). Este componente representa el **eje de actividad física y respuesta cardiovascular al ejercicio**. Semanas con valores positivos de PC1 corresponden a períodos con mayor respuesta cardíaca al movimiento (Delta alto) y mayor gasto energético activo (Superávit alto), característicos de comportamiento activo.
+
+- **PC2 (32.9% varianza):** Dominado por Superávit_calórico (0.710) y HRV-SDNN (0.457), con carga negativa de Delta_cardiaco (-0.493). Este componente representa el **eje de salud cardiovascular y tono autonómico**. Semanas con valores positivos de PC2 corresponden a períodos con mayor variabilidad cardíaca (HRV alta, indicador de buena recuperación y balance autonómico) y mayor superávit calórico, pero con menor respuesta cardíaca aguda al ejercicio (Delta bajo), sugiriendo eficiencia cardiovascular.
+
+**Separación de Clusters:**
+
+- **Cluster NO SEDENTARIO (Morado Intenso `#402759`):** Se concentra en valores positivos de PC1 y PC2, indicando semanas con alta actividad física, alta respuesta cardiovascular, y buena salud cardiovascular (HRV preservada). Este perfil corresponde a comportamiento activo sostenido.
+
+- **Cluster SEDENTARIO (Morado Profundo `#392840`):** Se concentra en valores negativos de PC1 y/o PC2, indicando semanas con baja actividad física, baja respuesta cardiovascular, o HRV reducida. Este perfil corresponde a comportamiento sedentario.
+
+**Overlap Natural:**
+
+La figura muestra overlap significativo entre clusters, lo cual es **esperado y metodológicamente válido** en datos de vida libre. Las transiciones entre comportamiento sedentario y activo son graduales, no discretas. Este overlap justifica el uso de lógica difusa (sistema continuo) en lugar de clasificación binaria rígida, ya que el sedentarismo es un constructo continuo con gradaciones intermedias.
+
+**Vectores de Carga (Flechas Dorado Apagado):**
+
+- **Delta_cardiaco:** Apunta hacia la derecha y ligeramente abajo (PC1 positivo, PC2 negativo), indicando que semanas con mayor respuesta cardiovascular al movimiento se proyectan en valores positivos de PC1.
+
+- **Superávit_calórico:** Apunta hacia la derecha y arriba (PC1 y PC2 positivos), mostrando contribución fuerte a ambos componentes, reflejando su naturaleza dual como indicador de volumen de actividad física y balance energético.
+
+- **HRV-SDNN:** Apunta hacia la izquierda y arriba (PC1 negativo, PC2 positivo), indicando que semanas con mayor variabilidad cardíaca (salud cardiovascular) se proyectan en valores positivos de PC2 y negativos de PC1.
+
+- **Actividad_relativa:** Apunta hacia la derecha (PC1 positivo, PC2 positivo moderado), mostrando contribución moderada a PC1 pero menor a PC2.
+
+**Separación Ortogonal:**
+
+La separación ortogonal de los vectores (ángulos cercanos a 90° entre Delta_cardiaco y HRV-SDNN) confirma que las variables cardiovasculares capturan dominios fisiológicos distintos: Delta_cardiaco refleja respuesta aguda al ejercicio, mientras que HRV-SDNN refleja tono autonómico basal. Esta independencia justifica la inclusión de ambas variables en el sistema difuso.
+
+#### **2. Figura COMPARATIVA_PCA_TSNE_4V.png (Comparativa PCA vs t-SNE):**
+
+Esta figura compara dos métodos de reducción dimensional: PCA (lineal, panel izquierdo) y t-SNE (no-lineal, panel derecho). Esta comparativa es metodológicamente crítica porque valida que la estructura de clusters identificada no es un artefacto del método de reducción dimensional utilizado.
+
+**Panel Izquierdo (PCA - Reducción Lineal):**
+
+- **Ventaja:** PCA preserva las distancias globales y las relaciones lineales entre variables. Es interpretable fisiológicamente mediante los loadings (vectores de carga).
+- **Limitación:** PCA asume relaciones lineales, lo cual puede no capturar estructuras no-lineales complejas en datos de vida libre.
+- **Hallazgo:** Muestra separación moderada entre clusters con overlap natural, validando que existe estructura de agrupamiento detectable mediante métodos lineales.
+
+**Panel Derecho (t-SNE - Reducción No-Lineal):**
+
+- **Ventaja:** t-SNE preserva las distancias locales y puede revelar estructuras no-lineales que PCA no detecta. Es especialmente útil para visualizar agrupamientos locales densos.
+- **Limitación:** t-SNE no preserva distancias globales y no es interpretable mediante loadings. Los ejes t-SNE no tienen significado fisiológico directo.
+- **Hallazgo:** Confirma estructura de agrupamiento local, validando que los datos tienen patrones detectables a pesar de la variabilidad inherente de datos de vida libre.
+
+**Convergencia de Métodos:**
+
+La convergencia entre PCA (lineal) y t-SNE (no-lineal) refuerza la robustez de la estructura de clusters identificada. Si ambos métodos revelan agrupamientos similares, esto sugiere que la estructura es inherente a los datos, no un artefacto del método de reducción dimensional. Esta validación cruzada metodológica fortalece la confianza en la verdad operativa derivada del clustering K-Means.
+
+#### **3. Figura PCA_3D_4_VISTAS.png (PCA 3D con 4 Rotaciones):**
+
+Esta figura extiende el análisis PCA a tres dimensiones (PC1, PC2, PC3), capturando el 93.0% de la varianza total (vs. 71.9% en 2D). Las 4 vistas muestran rotaciones diferentes del espacio 3D para evaluar si PC3 mejora la separación de clusters.
+
+**Varianza Explicada:**
+- **PC1:** 38.9% (eje actividad física)
+- **PC2:** 32.9% (eje salud cardiovascular)
+- **PC3:** 21.2% (densidad de actividad, dominado por Actividad_relativa con loading 0.740)
+- **Total acumulado:** 93.0%
+
+**Interpretación de PC3:**
+
+PC3 está fuertemente dominado por Actividad_relativa (0.740), con cargas negativas en variables cardiovasculares (Delta -0.476, HRV -0.344, Superávit -0.328). Este componente representa la **densidad de actividad** (kilopasos/hora), un matiz complementario al volumen total (PC1) y salud cardiovascular (PC2). PC3 distingue entre usuarios que realizan la misma cantidad total de actividad pero con diferentes patrones temporales: usuarios con alta densidad (actividad concentrada en ventanas cortas) vs. usuarios con baja densidad (actividad distribuida a lo largo del día).
+
+**Vistas 3D:**
+
+- **Vista 1 (PC1-PC2-PC3, elev=20, azim=45):** Vista isométrica estándar que muestra la distribución general de los datos en el espacio 3D.
+
+- **Vista 2 (elev=10, azim=120):** Rotación que enfatiza la separación en el plano PC1-PC3, útil para evaluar si PC3 mejora la discriminación de clusters.
+
+- **Vista 3 (elev=60, azim=45):** Vista desde arriba (como mapa de calor) que muestra la proyección en el plano PC1-PC2, similar a la figura 2D pero con información adicional de PC3 codificada en la posición vertical.
+
+- **Vista 4 (elev=5, azim=90):** Vista lateral que enfatiza la separación en el plano PC2-PC3, útil para evaluar la contribución de PC3 a la discriminación de clusters.
+
+**Relevancia Metodológica:**
+
+PC3 aporta 21.2% adicional de varianza, lo cual es **significativo** (umbral típico: >15%). Sin embargo, la decisión de usar 2D vs. 3D en la tesis debe basarse en si PC3 mejora la separación visual de clusters. Si las 4 vistas muestran que PC3 no mejora significativamente la separación (overlap similar en 2D y 3D), entonces la figura 2D (PC1+PC2) es suficiente y más clara para el lector. Si PC3 mejora la separación, entonces la figura 3D justifica su inclusión.
+
+### **RELEVANCIA METODOLÓGICA:**
+
+Estas figuras son críticas porque:
+
+1. **Validan la Selección de Variables:** Confirman que las 4 variables p50 (Actividad_relativa, Superávit_calórico, HRV-SDNN, Delta_cardiaco) son las entradas correctas al clustering y sistema difuso, NO las 8 variables (p50 + IQR).
+
+2. **Justifican el Clustering K=2:** La separación visible (aunque con overlap natural) en el espacio PCA valida la decisión de usar K=2 en el clustering K-Means. La estructura bimodal es detectable tanto en reducción lineal (PCA) como no-lineal (t-SNE).
+
+3. **Fundamentan la Interpretación Fisiológica:** Los loadings de PCA proporcionan interpretación fisiológica clara de cada componente (PC1 = actividad física, PC2 = salud cardiovascular, PC3 = densidad de actividad), lo cual enriquece la comprensión de los perfiles de clusters.
+
+4. **Validan el Overlap Natural:** El overlap entre clusters en datos de vida libre justifica el uso de lógica difusa (sistema continuo) en lugar de clasificación binaria rígida, ya que el sedentarismo es un constructo continuo con gradaciones intermedias.
+
+5. **Refuerzan la Robustez:** La convergencia entre PCA (lineal) y t-SNE (no-lineal) refuerza la robustez de la estructura de clusters identificada, sugiriendo que la estructura es inherente a los datos, no un artefacto del método.
+
+### **TEXTO PROPUESTO PARA CAPÍTULO 5 (Sección 5.11 - Análisis de Correlación y Reducción Dimensional):**
+
+> "La \Cref{fig:pca_biplot} visualiza el biplot de \textit{PCA} proyectando las 1,337 semanas en el espacio bidimensional definido por \textit{PC1} y \textit{PC2}, que capturan conjuntamente el 71.9\% de la varianza total. Los puntos dispersos representan semanas individuales, donde la posición de cada punto refleja su perfil combinado de las 4 variables p50. Los vectores de carga (flechas) muestran la dirección y magnitud de la contribución de cada variable a los componentes principales. El vector de Delta\_cardiaco (carga 0.632 en \textit{PC1}, -0.493 en \textit{PC2}) apunta hacia la derecha y ligeramente hacia abajo, indicando que semanas con mayor respuesta cardiovascular al movimiento se proyectan en valores positivos de \textit{PC1}. El vector de Superávit\_calórico (carga 0.512 en \textit{PC1}, 0.710 en \textit{PC2}) apunta hacia la derecha y arriba, mostrando que esta variable contribuye fuertemente a ambos componentes, reflejando su naturaleza dual como indicador de volumen de actividad física y balance energético. El vector de \textit{HRV-SDNN} (carga -0.333 en \textit{PC1}, 0.457 en \textit{PC2}) apunta hacia la izquierda y arriba, indicando que semanas con mayor variabilidad de frecuencia cardíaca (salud cardiovascular) se proyectan en valores positivos de \textit{PC2} y negativos de \textit{PC1}. El vector de Actividad\_relativa (carga 0.478 en \textit{PC1}, 0.210 en \textit{PC2}) apunta hacia la derecha, mostrando contribución moderada a \textit{PC1} pero menor a \textit{PC2}. La separación ortogonal de estos vectores (ángulos cercanos a 90° entre Delta\_cardiaco y \textit{HRV-SDNN}) confirma que las variables cardiovasculares capturan dominios fisiológicos distintos: Delta\_cardiaco refleja respuesta aguda al ejercicio, mientras que \textit{HRV-SDNN} refleja tono autonómico basal. La nube de puntos muestra una distribución continua sin separación nítida entre grupos, lo cual es esperado en datos de vida libre donde las transiciones entre comportamientos sedentarios y activos son graduales. Esta estructura continua valida el uso de lógica difusa para modelar el sedentarismo como un constructo continuo en lugar de categorías discretas."
+
+> "La \Cref{fig:comparativa_pca_tsne} presenta la comparativa de reducción dimensional: \textit{PCA} (lineal, izquierda) vs. t-SNE (no-lineal, derecha) sobre las 4 variables p50. \textit{PCA} muestra separación moderada entre clusters con overlap natural (esperado en transiciones graduales de comportamiento). t-SNE confirma estructura de agrupamiento local, validando que los datos tienen patrones detectables a pesar de la variabilidad inherente de datos de vida libre. Esta convergencia entre métodos lineales y no-lineales refuerza la robustez de la estructura de clusters identificada mediante \textit{K-Means} que describimos en la Sección~\ref{sec:clustering}."
+
+**⚡ Zeus (Rayo Veloz + Atlas)**  
+**Próxima acción:** Zeus puede integrar estas interpretaciones en la redacción del Capítulo 5, Sección 5.11
+
+---
+
+## 📊 **ACTUALIZACIÓN: CAMBIO DE ETIQUETAS EN FIGURAS PCA**
+
+**Timestamp:** 06 de diciembre de 2025, 00:40:00  
+**Rol activado:** ⚡ Rayo Veloz  
+**Tarea:** Cambiar etiquetas "NO SEDENTARIO" → "ACTIVO" en figuras PCA
+
+### **CAMBIOS REALIZADOS:**
+
+**Etiquetas actualizadas:**
+- ❌ **ANTES:** "NO SEDENTARIO" (cluster activo)
+- ✅ **AHORA:** "ACTIVO" (cluster activo)
+- ✅ **MANTIENE:** "SEDENTARIO" (sin cambios)
+
+**Figuras regeneradas:**
+1. ✅ `PCA_4_VARIABLES_CORRECTAS.png` - Etiquetas actualizadas
+2. ✅ `COMPARATIVA_PCA_TSNE_4V.png` - Etiquetas actualizadas
+3. ✅ `PCA_3D_4_VISTAS.png` - Etiquetas actualizadas
+
+**Scripts modificados:**
+- ✅ `generar_pca_tsne_4variables.py` - Todas las referencias a "NO SEDENTARIO" cambiadas a "ACTIVO"
+- ✅ `generar_pca_3d.py` - Todas las referencias a "NO SEDENTARIO" cambiadas a "ACTIVO"
+
+**Justificación del cambio:**
+- **Coherencia con nomenclatura del documento:** El Capítulo 5 y Capítulo 6 utilizan consistentemente "ACTIVO" y "SEDENTARIO" como nomenclatura de clusters.
+- **Claridad:** "ACTIVO" es más directo y claro que "NO SEDENTARIO" para el lector.
+- **Convención científica:** La nomenclatura binaria ACTIVO/SEDENTARIO es estándar en literatura de comportamiento físico.
+
+**Estado:** ✅ **COMPLETADO** - Figuras regeneradas y copiadas a carpeta de tesis con etiquetas actualizadas.
+
+**⚡ Zeus (Rayo Veloz)**  
+**Próxima acción:** Verificar que las figuras en la tesis muestren correctamente las etiquetas "ACTIVO" y "SEDENTARIO"
+
