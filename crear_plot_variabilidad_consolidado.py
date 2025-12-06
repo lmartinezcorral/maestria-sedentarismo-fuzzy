@@ -128,7 +128,25 @@ print("")
 # 3. PLOT 1: VARIABILIDAD OPERATIVA VS OBSERVADA
 # ============================================================================
 
-print("📈 Generando Plot 1: Variabilidad Operativa vs Observada...")
+print("📈 Generando Plot 1: Variabilidad Operativa vs Observada (Paleta Tigre Morado)...")
+
+# ============ PALETA TIGRE MORADO (MORADO PROFUNDO) ============
+PALETA_TIGRE_MORADO = {
+    'morado_suave': '#4F3859',
+    'morado_profundo': '#392840',      # Color principal - Morado Profundo
+    'morado_intenso': '#402759',
+    'dorado_apagado': '#BFB093',
+    'gris_calido': '#A6A09C'
+}
+
+COLORES_USO = {
+    'operativa': PALETA_TIGRE_MORADO['morado_profundo'],      # #392840 - Barras operativa
+    'observada': PALETA_TIGRE_MORADO['morado_intenso'],       # #402759 - Barras observada
+    'ratio': PALETA_TIGRE_MORADO['dorado_apagado'],           # #BFB093 - Línea ratio
+    'grid': PALETA_TIGRE_MORADO['gris_calido'],               # #A6A09C - Grid
+    'linea_referencia': PALETA_TIGRE_MORADO['morado_suave']   # #4F3859 - Línea referencia
+}
+# ==============================================================
 
 fig, ax = plt.subplots(figsize=(14, 8))
 
@@ -138,16 +156,23 @@ width = 0.35
 
 bars1 = ax.bar(x - width/2, df_oper['cv_operativo'], width,
                label='Variabilidad Operativa (entre usuarios)',
-               color='steelblue', alpha=0.8)
+               color=COLORES_USO['operativa'],  # #392840 - Morado Profundo
+               alpha=0.8, edgecolor='white', linewidth=1.5)
 bars2 = ax.bar(x + width/2, df_oper['cv_observado_mean'], width,
                label='Variabilidad Observada (intra-usuario, promedio)',
-               color='coral', alpha=0.8)
+               color=COLORES_USO['observada'],  # #402759 - Morado Intenso
+               alpha=0.8, edgecolor='white', linewidth=1.5)
 
 # Línea de ratio
 ax2 = ax.twinx()
-line = ax2.plot(x, df_oper['ratio_oper_obs'], 'o-', color='green',
-                linewidth=2, markersize=8, label='Ratio Oper/Obs')
-ax2.axhline(y=1.0, color='gray', linestyle='--', linewidth=1, alpha=0.5)
+line = ax2.plot(x, df_oper['ratio_oper_obs'], 'o-', 
+                color=COLORES_USO['ratio'],  # #BFB093 - Dorado Apagado
+                linewidth=2.5, markersize=8, label='Ratio Oper/Obs',
+                markerfacecolor=COLORES_USO['ratio'],
+                markeredgecolor=PALETA_TIGRE_MORADO['morado_profundo'],
+                markeredgewidth=1.5)
+ax2.axhline(y=1.0, color=COLORES_USO['linea_referencia'],  # #4F3859
+            linestyle='--', linewidth=2, alpha=0.7)
 
 # Configuración de ejes
 ax.set_xlabel('Variable', fontsize=12, fontweight='bold')
@@ -159,7 +184,7 @@ ax.set_title('Variabilidad Operativa vs Observada\n(Justificación de Variabilid
 
 ax.set_xticks(x)
 ax.set_xticklabels(df_oper['variable'], rotation=45, ha='right')
-ax.grid(axis='y', alpha=0.3)
+ax.grid(axis='y', alpha=0.3, color=COLORES_USO['grid'])  # #A6A09C - Gris Cálido
 
 # Leyendas
 lines, labels = ax.get_legend_handles_labels()
@@ -170,11 +195,16 @@ ax.legend(lines + lines2, labels + labels2, loc='upper left', fontsize=10)
 for i, row in df_oper.iterrows():
     if not np.isnan(row['ratio_oper_obs']):
         ax2.text(i, row['ratio_oper_obs'] + 0.1, f"{row['ratio_oper_obs']:.2f}",
-                 ha='center', fontsize=9, color='green', fontweight='bold')
+                 ha='center', fontsize=9, 
+                 color=PALETA_TIGRE_MORADO['morado_profundo'],  # #392840
+                 fontweight='bold',
+                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', 
+                          edgecolor=PALETA_TIGRE_MORADO['morado_profundo'],
+                          linewidth=1, alpha=0.9))
 
 plt.tight_layout()
 plot1_path = OUTPUT_DIR / 'variabilidad_operativa_vs_observada.png'
-fig.savefig(plot1_path, dpi=150)
+fig.savefig(plot1_path, dpi=300, bbox_inches='tight', facecolor='white')
 plt.close(fig)
 print(f"✅ Guardado: {plot1_path.name}")
 print("")

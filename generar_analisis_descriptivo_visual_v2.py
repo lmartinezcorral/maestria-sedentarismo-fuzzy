@@ -383,8 +383,34 @@ def plot_scatter_matrix(df, variables, output_dir):
     """
     Scatter matrix: Relaciones bivariadas entre variables clave.
     Sample de datos para performance (máx 2000 puntos).
+    Paleta Navideña Morado-Dorado + Etiquetas APA 7 (a), (b), (c)...
     """
-    print("🔍 Generando scatter matrix (relaciones bivariadas)...")
+    print("🔍 Generando scatter matrix (relaciones bivariadas + paleta Navideña)...")
+
+    # ============ PALETA NAVIDEÑA MORADO-DORADO ============
+    PALETA_NAVIDENA = {
+        'azul_grisaceo': '#7C83A6',
+        'azul_oscuro': '#1B2440',
+        'azul_medio': '#273459',
+        'dorado_crema': '#F2E1AE',
+        'dorado_vibrante': '#F2B544'
+    }
+    
+    # Generar paleta para 10 usuarios usando colores navideños
+    # Ciclamos entre los colores para tener 10 colores distintos
+    COLORES_NAVIDENA_USUARIOS = [
+        PALETA_NAVIDENA['azul_medio'],      # #273459
+        PALETA_NAVIDENA['azul_grisaceo'],   # #7C83A6
+        PALETA_NAVIDENA['azul_oscuro'],     # #1B2440
+        PALETA_NAVIDENA['dorado_vibrante'], # #F2B544
+        PALETA_NAVIDENA['dorado_crema'],    # #F2E1AE
+        PALETA_NAVIDENA['azul_medio'],      # Repetir para 10 usuarios
+        PALETA_NAVIDENA['azul_grisaceo'],
+        PALETA_NAVIDENA['azul_oscuro'],
+        PALETA_NAVIDENA['dorado_vibrante'],
+        PALETA_NAVIDENA['dorado_crema']
+    ]
+    # ======================================================
 
     # Seleccionar 4 variables más importantes para legibilidad
     vars_principales = [
@@ -407,72 +433,130 @@ def plot_scatter_matrix(df, variables, output_dir):
     # Renombrar columnas
     df_sample_renamed = df_sample.rename(columns=NOMBRES_AMIGABLES)
 
-    # Scatter matrix con colores por usuario
+    # Scatter matrix con colores navideños por usuario
     g = sns.PairGrid(df_sample_renamed, hue='Usuario',
-                     palette=USER_COLORS, height=2.5, aspect=1)
+                     palette=COLORES_NAVIDENA_USUARIOS, height=2.5, aspect=1)
     g.map_upper(sns.scatterplot, alpha=0.5, s=20)
     g.map_lower(sns.kdeplot, alpha=0.6)
     g.map_diag(sns.histplot, kde=True, alpha=0.6)
     g.add_legend(title='Usuario', bbox_to_anchor=(
         1.05, 0.5), loc='center left', fontsize=9)
 
+    # ========== AGREGAR ETIQUETAS APA 7 (a), (b), (c)... ==========
+    # Para una matriz 4×4, tenemos 16 subplots
+    # Etiquetamos de (a) a (p) en orden fila por fila
+    label_idx = 0
+    n_vars = len(vars_disponibles)
+    
+    for i in range(n_vars):
+        for j in range(n_vars):
+            ax = g.axes[i, j]
+            label = chr(97 + label_idx)  # a=97 en ASCII
+            ax.text(0.02, 0.98, f'({label})',
+                   transform=ax.transAxes,
+                   fontsize=12,
+                   fontweight='bold',
+                   va='top',
+                   ha='left',
+                   bbox=dict(boxstyle='round,pad=0.4',
+                            facecolor='white',
+                            edgecolor=PALETA_NAVIDENA['azul_oscuro'],  # #1B2440
+                            linewidth=1.5,
+                            alpha=0.95))
+            label_idx += 1
+    # ============================================================
+
     g.fig.suptitle('Matriz de Dispersión: Relaciones Bivariadas\n(Muestra n=2,000 días, Coloreado por Usuario)',
                    fontsize=14, fontweight='bold', y=1.01)
 
     plt.tight_layout()
     output_file = output_dir / 'scatter_matrix_relaciones.png'
-    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    plt.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
-    print(f"  ✅ {output_file.name}")
+    print(f"  ✅ {output_file.name} regenerado (Paleta Navideña + Etiquetas APA 7)")
 
 
 def plot_boxplots_comparativos(df, variables, output_dir):
     """
-    Boxplots comparativos - VERSIÓN APA 7 CON PALETA FACULTAD
+    Boxplots comparativos - VERSIÓN REEDITADA (6 VARIABLES + PALETA MARACUYADA NATURAL)
     
     Distribución de variables con outliers visibles,
     aplicando etiquetas (a), (b), (c)... según convención APA 7
-    y colores oficiales de la Facultad de Medicina y Ciencias Biomédicas.
-    """
-    print("📦 Generando boxplots comparativos (APA 7 + paleta facultad)...")
+    y paleta Maracuyada Natural.
     
-    # ============ COLORES OFICIALES FACULTAD ============
-    COLORES_FACULTAD = {
-        'morado_oscuro': '#571E72',
-        'magenta': '#AA03C0',
-        'morado_medio': '#A733EA',
-        'rosa_purpura': '#A4579F',
-        'dorado': '#D0A433',
-        'crema_claro': '#FEF7CD',
-        'crema': '#F1F0D9',
-        'morado_oscuro2': '#750CA3'
+    Variables incluidas (6):
+    - Izquierda (Comportamiento Físico): Pasos Diarios, Actividad Relativa, Superávit Calórico
+    - Derecha (Cardiovasculares): FC Reposo, FC al Caminar, HRV SDNN
+    
+    Variables eliminadas:
+    - Calorías Activas (Gasto_calorico_activo)
+    - Horas Monitoreadas (Total_hrs_monitorizadas)
+    """
+    print("📦 Generando boxplots comparativos (6 variables + paleta Maracuyada Natural)...")
+    
+    # ============ PALETA MARACUYADA NATURAL ============
+    PALETA_MARACUYADA_NATURAL = {
+        'morado_muy_oscuro': '#3F0340',
+        'morado_profundo': '#612073',
+        'morado_medio': '#772B8C',
+        'dorado_natural': '#BFA556',
+        'marron_dorado': '#8C5C03'
     }
     
-    # Para boxplots, usaremos una paleta personalizada derivada de los colores oficiales
-    COLORES_BOXPLOT = [COLORES_FACULTAD['morado_medio'], COLORES_FACULTAD['magenta'], 
-                       COLORES_FACULTAD['rosa_purpura'], COLORES_FACULTAD['morado_oscuro2'],
-                       COLORES_FACULTAD['dorado'], COLORES_FACULTAD['morado_oscuro'],
-                       COLORES_FACULTAD['magenta'], COLORES_FACULTAD['morado_medio'],
-                       COLORES_FACULTAD['rosa_purpura'], COLORES_FACULTAD['morado_oscuro']]
+    # Para boxplots, usaremos una paleta personalizada derivada de Maracuyada Natural
+    COLORES_BOXPLOT = [
+        PALETA_MARACUYADA_NATURAL['morado_medio'],      # #772B8C
+        PALETA_MARACUYADA_NATURAL['morado_profundo'],   # #612073
+        PALETA_MARACUYADA_NATURAL['morado_muy_oscuro'], # #3F0340
+        PALETA_MARACUYADA_NATURAL['dorado_natural'],    # #BFA556
+        PALETA_MARACUYADA_NATURAL['marron_dorado'],     # #8C5C03
+        PALETA_MARACUYADA_NATURAL['morado_medio'],      # #772B8C (repetir para 10 usuarios)
+        PALETA_MARACUYADA_NATURAL['morado_profundo'],   # #612073
+        PALETA_MARACUYADA_NATURAL['morado_muy_oscuro'], # #3F0340
+        PALETA_MARACUYADA_NATURAL['dorado_natural'],    # #BFA556
+        PALETA_MARACUYADA_NATURAL['marron_dorado']      # #8C5C03
+    ]
     
     COLORES_USO = {
-        'media': COLORES_FACULTAD['dorado'],
-        'borde': COLORES_FACULTAD['morado_oscuro'],
-        'grid': COLORES_FACULTAD['crema']
+        'media': PALETA_MARACUYADA_NATURAL['dorado_natural'],  # #BFA556
+        'borde': PALETA_MARACUYADA_NATURAL['morado_muy_oscuro'], # #3F0340
+        'grid': PALETA_MARACUYADA_NATURAL['dorado_natural']     # #BFA556 (alpha=0.2)
     }
     # ==================================================
 
-    n_vars = len(variables)
+    # ========== FILTRAR SOLO 6 VARIABLES CLAVE (ELIMINAR CALORÍAS Y HORAS) ==========
+    # Orden específico: Izquierda (comportamiento físico) / Derecha (cardiovasculares)
+    variables_seleccionadas = [
+        'Numero_pasos_por_dia',           # (a) Izquierda - Comportamiento Físico
+        'FCr_promedio_diario',            # (b) Derecha - Cardiovascular
+        'Actividad_relativa',             # (c) Izquierda - Comportamiento Físico
+        'FC_al_caminar_promedio_diario',  # (d) Derecha - Cardiovascular
+        'Superavit_calorico_basal',       # (e) Izquierda - Comportamiento Físico
+        'HRV_SDNN'                        # (f) Derecha - Cardiovascular
+    ]
+    
+    # Filtrar solo las que existen en el dataset
+    variables_disponibles = [v for v in variables_seleccionadas if v in df.columns]
+    
+    if not variables_disponibles:
+        print("  ⚠️  Ninguna de las variables seleccionadas está disponible")
+        return None
+    
+    print(f"  ✅ Variables a graficar: {len(variables_disponibles)}")
+    for var in variables_disponibles:
+        print(f"     - {NOMBRES_AMIGABLES.get(var, var)}")
+    
+    n_vars = len(variables_disponibles)
     n_cols = 2
     n_rows = (n_vars + n_cols - 1) // n_cols
 
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(16, 4 * n_rows))
     axes = axes.flatten() if n_vars > 1 else [axes]
 
-    fig.suptitle('Distribución de Variables con Detección de Outliers\n(Boxplots + Media Superpuesta)',
+    fig.suptitle('Distribución de Variables con Detección de Outliers',
                  fontsize=16, fontweight='bold', y=0.995)
 
-    for idx, var in enumerate(variables):
+    for idx, var in enumerate(variables_disponibles):
         ax = axes[idx]
 
         if var not in df.columns:
@@ -484,22 +568,30 @@ def plot_boxplots_comparativos(df, variables, output_dir):
 
         df_plot = df[['Usuario', var]].dropna()
 
-        # ========== BOXPLOT CON COLORES FACULTAD ==========
+        # ========== BOXPLOT CON COLORES MARACUYADA NATURAL ==========
         bp = sns.boxplot(data=df_plot, x='Usuario', y=var, ax=ax, palette=COLORES_BOXPLOT,
                          width=0.6, linewidth=1.5, showfliers=True, fliersize=3)
 
-        # ========== SUPERPONER MEDIAS CON COLOR FACULTAD ==========
+        # ========== AJUSTAR LÍMITES DEL EJE Y SEGÚN VARIABLE ==========
+        # (c) Actividad Relativa: ylim(0, 1.5)
+        if var == 'Actividad_relativa':
+            ax.set_ylim(0, 1.5)
+        # (e) Superávit Calórico: ylim(0, 400)
+        elif var == 'Superavit_calorico_basal':
+            ax.set_ylim(0, 400)
+
+        # ========== SUPERPONER MEDIAS CON COLOR MARACUYADA ==========
         medias = df_plot.groupby('Usuario')[var].mean()
         usuarios = medias.index
         ax.scatter(range(len(usuarios)), medias.values, 
-                  color=COLORES_USO['media'],  # #D0A433 (dorado)
+                  color=COLORES_USO['media'],  # #BFA556 (dorado natural)
                   s=100, zorder=3,
                   marker='D', label='Media', 
-                  edgecolors=COLORES_USO['borde'],  # #571E72
+                  edgecolors=COLORES_USO['borde'],  # #3F0340 (morado muy oscuro)
                   linewidth=1.5)
 
-        # ========== ⭐ ETIQUETA APA 7 EN TÍTULO (CORREGIDO) ==========
-        label = chr(97 + idx)  # a, b, c, d, e, f, g, h
+        # ========== ⭐ ETIQUETA APA 7 EN TÍTULO ==========
+        label = chr(97 + idx)  # a, b, c, d, e, f
         
         ax.set_xlabel('Usuario', fontsize=11, fontweight='bold')
         ax.set_ylabel(NOMBRES_AMIGABLES.get(var, var),
@@ -508,7 +600,7 @@ def plot_boxplots_comparativos(df, variables, output_dir):
                      fontsize=12, fontweight='bold')
         
         ax.legend(loc='best', fontsize=9)
-        ax.grid(True, axis='y', alpha=0.3, color=COLORES_USO['grid'])  # #F1F0D9
+        ax.grid(True, axis='y', alpha=0.3, color=COLORES_USO['grid'])  # #BFA556 (alpha=0.2)
 
     # Ocultar ejes sobrantes
     for idx in range(n_vars, len(axes)):
@@ -518,7 +610,7 @@ def plot_boxplots_comparativos(df, variables, output_dir):
     output_file = output_dir / 'boxplots_comparativos.png'
     plt.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
-    print(f"  ✅ {output_file.name} regenerado (APA 7 + paleta facultad)")
+    print(f"  ✅ {output_file.name} regenerado (6 variables + paleta Maracuyada Natural)")
 
 
 def plot_time_series_ultimos_90_dias(df, variables, output_dir):
@@ -844,7 +936,7 @@ def plot_hibrido_histograma_kde_6_variables(df, variables, output_dir):
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(14, 4 * n_rows))
     axes = axes.flatten() if n_vars > 1 else [axes]
     
-    fig.suptitle('Distribuciones de Variables Clave (Nivel Diario)\nHíbrido Histograma + KDE - Paleta Custom',
+    fig.suptitle('Distribuciones de Variables Clave (Nivel Diario)',
                  fontsize=16, fontweight='bold', y=0.995)
     
     for idx, var in enumerate(variables_disponibles):

@@ -3055,3 +3055,48 @@ Estas figuras son críticas porque:
 **⚡ Zeus (Rayo Veloz)**  
 **Próxima acción:** Verificar que las figuras en la tesis muestren correctamente las etiquetas "ACTIVO" y "SEDENTARIO"
 
+---
+
+## 📊 **ACTUALIZACIÓN: CAMBIO DE COLORES EN FIGURAS PCA (MEJOR CONTRASTE)**
+
+**Timestamp:** 06 de diciembre de 2025, 00:45:00  
+**Rol activado:** ⚡ Rayo Veloz  
+**Tarea:** Cambiar colores de clusters en figuras PCA para mejorar contraste visual
+
+### **PROBLEMA IDENTIFICADO:**
+
+Los colores originales (Morado Intenso `#402759` para ACTIVO y Morado Profundo `#392840` para SEDENTARIO) tenían muy poco contraste entre sí, dificultando la diferenciación visual de los puntos en los scatter plots de PCA.
+
+### **SOLUCIÓN APLICADA:**
+
+**Nuevos colores con mejor contraste:**
+- **ACTIVO:** `#F1B253` (Naranja dorado) - Color cálido y vibrante que contrasta fuertemente con el púrpura
+- **SEDENTARIO:** `#5C025D` (Púrpura intenso) - Color frío y oscuro que se distingue claramente del naranja
+
+**Justificación del cambio:**
+- **Contraste cromático:** El naranja dorado y el púrpura intenso están en lados opuestos del círculo cromático, maximizando la diferenciación visual.
+- **Accesibilidad:** La diferencia de luminosidad entre ambos colores (naranja claro vs. púrpura oscuro) mejora la legibilidad para personas con daltonismo.
+- **Legibilidad en impresión:** Estos colores mantienen buen contraste tanto en pantalla como en impresión en escala de grises.
+
+### **CAMBIOS REALIZADOS:**
+
+**Scripts modificados:**
+- ✅ `generar_pca_tsne_4variables.py` - Paleta actualizada a `PALETA_PCA` con nuevos colores
+- ✅ `generar_pca_3d.py` - Paleta actualizada a `PALETA_PCA` con nuevos colores
+
+**Figuras regeneradas:**
+1. ✅ `PCA_4_VARIABLES_CORRECTAS.png` - Colores actualizados
+2. ✅ `COMPARATIVA_PCA_TSNE_4V.png` - Colores actualizados
+3. ✅ `PCA_3D_4_VISTAS.png` - Colores actualizados
+
+**Colores finales aplicados:**
+- **ACTIVO (Cluster activo):** `#F1B253` (Naranja dorado) - 502 semanas (36.3%)
+- **SEDENTARIO (Cluster sedentario):** `#5C025D` (Púrpura intenso) - 882 semanas (63.7%)
+- **Vectores de carga:** `#BFB093` (Dorado apagado) con borde púrpura intenso
+- **Grid y líneas de referencia:** Mantienen colores neutros (gris cálido, morado suave)
+
+**Estado:** ✅ **COMPLETADO** - Figuras regeneradas con mejor contraste visual y copiadas a carpeta de tesis.
+
+**⚡ Zeus (Rayo Veloz)**  
+**Próxima acción:** Verificar visualmente que el contraste entre clusters sea adecuado en las figuras finales
+

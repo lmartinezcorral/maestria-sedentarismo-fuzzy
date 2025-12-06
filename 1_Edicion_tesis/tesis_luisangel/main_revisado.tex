@@ -1,0 +1,492 @@
+﻿% ============================================================================
+% PLANTILLA DE TESIS - FACULTAD DE MEDICINA Y CIENCIAS BIOM├ëDICAS
+% Universidad Aut├│noma de Chihuahua (UACH)
+% Maestr├¡a en Formaci├│n e Innovaci├│n para Profesionales de la Salud
+% ============================================================================
+
+\documentclass[12pt,letterpaper,oneside]{report}
+
+% --------------------- PAQUETES B├üSICOS ---------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{times}  % Times New Roman para todo el documento
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+% --------------------- BIBLIOGRAF├ìA (APA 7) -----------------
+\usepackage[style=apa,backend=biber,natbib]{biblatex}
+\addbibresource{referencias.bib}  % Archivo de referencias BibTeX
+\usepackage{hyperref}
+\usepackage{ragged2e} % Para \justifying (texto justificado)
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{float}  % Para tablas con posicionamiento [H] (exacto)
+\usepackage{placeins} % Para controlar flotantes con \FloatBarrier
+\usepackage{amsmath}
+\usepackage{amssymb}  % Para s├¡mbolos matem├íticos (\mathbb)
+\usepackage{caption}
+\usepackage{cleveref}
+\usepackage{enumitem}
+
+% --------------------- CONFIGURACI├ôN CLEVEREF (ESPA├æOL) -----
+\crefname{table}{tabla}{tablas}
+\Crefname{table}{Tabla}{Tablas}
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
+\crefname{equation}{ecuaci├│n}{ecuaciones}
+\Crefname{equation}{Ecuaci├│n}{Ecuaciones}
+\crefname{section}{secci├│n}{secciones}
+\Crefname{section}{Secci├│n}{Secciones}
+
+\usepackage{pdflscape}  % Para tablas en orientaci├│n horizontal (landscape)
+\usepackage{titlesec}  % Para controlar formato de t├¡tulos
+\usepackage{tocloft}   % Para controlar formato del ├¡ndice
+\usepackage{etoolbox}  % Para hooks de comandos
+
+% --------------------- FORMATO APA 7 -------------------------
+% M├írgenes: 2.54 cm (1 pulgada) en todos los lados
+% headheight debe ser suficiente para logo de 2.2cm (~62pt) + margen
+\geometry{letterpaper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,headheight=67pt,headsep=5pt}
+\onehalfspacing
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\parindent}{1.27cm} % Sangr├¡a APA 7: ┬¢ pulgada = 1.27 cm
+
+% --------------------- FORMATO DE T├ìTULOS APA 7 --------------
+% Cap├¡tulos (Nivel 1): Centrado, Negrita, 12pt, SIN "Cap├¡tulo X"
+\titleformat{\chapter}[block]
+  {\filcenter\normalfont\fontsize{12}{14}\selectfont\bfseries}
+  {}
+  {0pt}
+  {}
+
+\titlespacing*{\chapter}
+  {0pt}     % Sin sangr├¡a
+  {0pt}     % Espacio ANTES (0pt - cap├¡tulos inician en p├ígina nueva)
+  {18pt}    % Espacio DESPU├ëS (1.5 renglones)
+
+% Forzar estilo fancy en p├íginas de cap├¡tulo (para que aparezca logo en todas las p├íginas)
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+% Secciones (Nivel 2): Izquierda, Negrita (NO justificado)
+\titleformat{\section}
+  {\raggedright\normalfont\fontsize{12}{14}\selectfont\bfseries}
+  {\thesection}
+  {1em}
+  {}
+
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+% Subsecciones (Nivel 3): Izquierda, Negrita Cursiva (NO justificado)
+\titleformat{\subsection}
+  {\raggedright\normalfont\fontsize{12}{14}\selectfont\bfseries\itshape}
+  {\thesubsection}
+  {1em}
+  {}
+
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+
+% Subsubsecciones (Nivel 4): Izquierda, Negrita (NO justificado)
+\titleformat{\subsubsection}
+  {\raggedright\normalfont\fontsize{12}{14}\selectfont\bfseries}
+  {\thesubsubsection}
+  {1em}
+  {}
+
+\titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
+
+% --------------------- FORMATO DEL ├ìNDICE (TOC) --------------
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{12pt}
+\renewcommand{\cfttoctitlefont}{\hfill\fontsize{12}{14}\selectfont\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+% --------------------- DATOS EDITABLES ----------------------
+% Universidad y Facultad
+\newcommand{\miUniversidad}{Universidad~Aut\'onoma~de~Chihuahua}  % Espacios ~ expl├¡citos
+\newcommand{\miFacultad}{Facultad~de~Medicina~y~Ciencias~Biom\'edicas}  % Espacios ~ expl├¡citos
+\newcommand{\miSecretaria}{Secretar\'ia~de~Investigaci\'on~y~Posgrado}  % Espacios ~ expl├¡citos
+
+% Programa y grado
+\newcommand{\miPrograma}{Maestr\'ia~en~Formaci\'on~e~Innovaci\'on~para~Profesionales~de~la~Salud}  % Espacios ~ expl├¡citos
+\newcommand{\miGrado}{Maestro~en~Formaci\'on~e~Innovaci\'on~para~Profesionales~de~la~Salud}  % Espacios ~ expl├¡citos
+
+% T\'itulo y autor (DATOS ACTUALIZADOS)
+\newcommand{\miTitulo}{Modelo~de~Evaluaci\'on~del~Comportamiento~Sedentario~mediante~L\'ogica~Difusa~y~Datos~Biom\'etricos}  % Espacios ~ expl├¡citos
+\newcommand{\miAutor}{Luis~Angel~Mart\'inez~Corral}  % Espacios expl├¡citos con ~
+
+% Lugar y fecha
+\newcommand{\miCiudad}{Chihuahua, Chih., M\'exico}
+\newcommand{\miFecha}{27 de Octubre de 2025}
+
+% Ruta del logo (ya incluido en figuras/)
+\newcommand{\miLogo}{figuras/logo_uach_portada.png}  % Logo UACH para portada
+\newcommand{\miLogoEncabezado}{figuras/Logo_facultad_medicina.png}  % Logo Facultad para encabezados
+
+% --------------------- COMIT├ë TUTORIAL ----------------------
+\newcommand{\miSecretario}{Dr. Oscar Aguirre Barrera}
+\newcommand{\miSecretarioCargo}{Secretario de Investigaci\'on y Posgrado}
+
+\newcommand{\miCoordinadora}{Dra. Hayde\'e Parra Acosta}
+\newcommand{\miCoordinadoraCargo}{Profesor Coordinador Acad\'emico}
+
+\newcommand{\miDirector}{Dr. Abimael Guzm\'an Pando}
+\newcommand{\miDirectorCargo}{Director de Tesis}
+
+\newcommand{\miCodirector}{Dr. David Ricardo L\'opez Flores}
+\newcommand{\miCodirectorCargo}{Co director de tesis}
+
+\newcommand{\miAsesorUno}{Dra. Celia Mar\'ia Qui\~nez Cruz}
+\newcommand{\miAsesorUnoCargo}{Asesor(a)}
+
+\newcommand{\miAsesorDos}{Dr. Javier Camarillo Cisneros}
+\newcommand{\miAsesorDosCargo}{Asesor(a)}
+
+% --------------------- METADATOS PDF ------------------------
+\hypersetup{
+  pdftitle={\miTitulo},
+  pdfauthor={\miAutor},
+  pdfsubject={\miPrograma},
+  pdfkeywords={tesis, UACH, FMyCB},
+  hidelinks
+}
+
+\begin{document}
+% Formato APA 7: Justificado, sangr├¡a 1.27cm, interlineado 1.5
+\setlength{\parindent}{1.27cm}
+\onehalfspacing
+\setlength{\parskip}{6pt plus 2pt minus 1pt} % Espacio entre p├írrafos (similar a listas)
+
+% ===================== PORTADA OFICIAL ======================
+\begin{titlepage}
+    \centering
+    \vspace*{0.5cm}
+    
+    % Universidad - Times 22pt (+2pts solo para este), negrita, centrado, MAY├ÜSCULAS
+    {\fontsize{22}{26}\selectfont\bfseries \MakeUppercase{\miUniversidad}\\}
+    \vspace{0.2cm}
+    
+    % Facultad - Times 18pt (tama├▒o original), negrita, centrado, MAY├ÜSCULAS
+    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miFacultad}\\}
+    \vspace{0.2cm}
+    
+    % Secretar├¡a - Times 18pt (tama├▒o original), negrita, centrado, MAY├ÜSCULAS
+    {\fontsize{18}{22}\selectfont\bfseries \MakeUppercase{\miSecretaria}\\}
+    \vspace{1.0cm}
+    
+    % Logo sin modificaciones
+    \includegraphics[width=0.22\textwidth]{\miLogo}\\
+    \vspace{2.5cm}
+
+    % T├¡tulo de la tesis directo (Times 12pt en MAY├ÜSCULAS, sin etiqueta, con saltos de l├¡nea manuales)
+    {\fontsize{12}{14}\selectfont 
+    MODELO DE EVALUACI├ôN DEL COMPORTAMIENTO\\
+    SEDENTARIO MEDIANTE L├ôGICA DIFUSA Y\\
+    DATOS BIOM├ëTRICOS}\\[1.2cm]
+
+    % POR: (Times 12pt)
+    {\fontsize{12}{14}\selectfont POR:}\\[0.2cm]
+    
+    % Nombre del autor (Times 12pt en MAY├ÜSCULAS)
+    {\fontsize{12}{14}\selectfont \MakeUppercase{\miAutor}}\\[1.2cm]
+
+    % Texto introductorio del grado (Times 12pt en MAY├ÜSCULAS)
+    {\fontsize{12}{14}\selectfont \MakeUppercase{Tesis presentada como requisito para obtener el grado de:}}\\[0.3cm]
+    
+    % Nombre del grado - Times 12pt, sin negrita, centrado, MAY├ÜSCULAS
+    {\fontsize{12}{14}\selectfont \MakeUppercase{\miGrado}}\\[2.0cm]
+
+    % Fecha: Chihuahua alineado a la izquierda, fecha alineada a la derecha (Times 12pt)
+    \noindent\makebox[\textwidth][s]{%
+        {\fontsize{12}{14}\selectfont \miCiudad}%
+        \hfill%
+        {\fontsize{12}{14}\selectfont \miFecha}%
+    }
+    \vspace{0.8cm}
+\end{titlepage}
+
+% --------------- HOJA DE RESUMEN (P├íg. 2 - SIN NUMERACI├ôN) ---------------
+\newpage
+\pagenumbering{roman}  % N├║meros romanos para p├íginas preliminares
+\setcounter{page}{1}
+\thispagestyle{empty}
+
+% T├¡tulo "Resumen" centrado
+{\centering
+{\fontsize{14}{16}\selectfont\bfseries RESUMEN}\\[1cm]
+}
+
+% Resumen con formato de p├írrafos est├índar del documento (justificado, sangr├¡a 1.27cm, interlineado 1.5, espacio 6pt)
+\setlength{\parindent}{1.27cm}
+\onehalfspacing
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+\noindent El comportamiento sedentario representa un factor de riesgo para enfermedades cr├│nicas no transmisibles, cuya medici├│n objetiva en condiciones de vida libre presenta desaf├¡os metodol├│gicos significativos. Los m├®todos tradicionales de evaluaci├│n (cuestionarios de autorreporte) adolecen de sesgos de memoria y deseabilidad social, mientras que las t├®cnicas de referencia se restringen a entornos de laboratorio que no capturan la complejidad del comportamiento ecol├│gico. Este estudio desarroll├│ un modelo de clasificaci├│n del sedentarismo mediante l├│gica difusa que integra datos biom├®tricos de dispositivos port├ítiles de consumo, aplicado bajo el paradigma \textit{Bring Your Own Device} (BYOD) en condiciones de vida libre.
+
+La cohorte estuvo conformada por 10 adultos j├│venes con seguimiento longitudinal retrospectivo multianual (media: 133.7 semanas; rango: 7-298 semanas), acumulando 9,185 d├¡as de registro biom├®trico continuo mediante Apple Watch. Tras preprocesamiento (imputaci├│n jer├írquica, normalizaci├│n antropom├®trica), se generaron 1,337 semanas v├ílidas con cuatro variables derivadas: Actividad relativa, Super├ívit cal├│rico basal, Delta card├¡aco y HRV-SDNN. La metodolog├¡a emple├│ un enfoque h├¡brido: clustering K-Means no supervisado (K=2) para establecer verdad operativa a partir de patrones emp├¡ricos, seguido de un Sistema de Inferencia Difusa Mamdani que codifica conocimiento experto mediante cinco reglas ling├╝├¡sticas interpretables.
+
+La validaci├│n Leave-One-User-Out demostr├│ F1-Score=0.840 (Precisi├│n=0.833, Recall=0.850), con variabilidad inter-sujeto excepcional (CV=4.8\%), superando estudios comparables. El an├ílisis de ablaci├│n revel├│ que HRV-SDNN, aunque d├®bil discriminador univariado (p=0.24), resulta cr├¡tico en modelo multivariado (ablaci├│n: -50\% F1-Score). El sistema propuesto clasifica comportamiento sedentario con alta fiabilidad, preservando interpretabilidad cl├¡nica mediante reglas transparentes aplicables en monitorizaci├│n ecol├│gica de salud p├║blica.
+
+\vspace{0.5cm}
+\noindent\textbf{Palabras clave:} comportamiento sedentario, l├│gica difusa, BYOD, wearables, LOUO, vida libre
+
+% --------------- ABSTRACT EN INGL├ëS (P├íg. 3 - SIN NUMERACI├ôN) ---------------
+\newpage
+\thispagestyle{empty}
+
+% T├¡tulo "Abstract" centrado
+{\centering
+{\fontsize{14}{16}\selectfont\bfseries ABSTRACT}\\[1cm]
+}
+
+% Abstract con mismo formato que resumen
+\setlength{\parindent}{1.27cm}
+\onehalfspacing
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+\noindent Sedentary behavior represents a risk factor for chronic non-communicable diseases, whose objective measurement in free-living conditions presents significant methodological challenges. Traditional evaluation methods (self-report questionnaires) suffer from recall and social desirability biases, while reference techniques are restricted to laboratory settings that do not capture the complexity of ecological behavior. This study developed a sedentary lifestyle classification model using fuzzy logic that integrates biometric data from consumer wearable devices, applied under the \textit{Bring Your Own Device} (BYOD) paradigm in free-living conditions.
+
+The cohort consisted of 10 young adults with multi-year retrospective longitudinal follow-up (mean: 133.7 weeks; range: 7-298 weeks), accumulating 9,185 days of continuous biometric recording via Apple Watch. After preprocessing (hierarchical imputation, anthropometric normalization), 1,337 valid weeks were generated with four derived variables: Relative activity, Basal caloric surplus, Cardiac delta, and HRV-SDNN. The methodology employed a hybrid approach: unsupervised K-Means clustering (K=2) to establish operational truth from empirical patterns, followed by a Mamdani Fuzzy Inference System that encodes expert knowledge through five interpretable linguistic rules.
+
+Leave-One-User-Out validation demonstrated F1-Score=0.840 (Precision=0.833, Recall=0.850), with exceptional inter-subject variability (CV=4.8\%), surpassing comparable studies. Ablation analysis revealed that HRV-SDNN, although a weak univariate discriminator (p=0.24), is critical in the multivariate model (ablation: -50\% F1-Score). The proposed system classifies sedentary behavior with high reliability, preserving clinical interpretability through transparent rules applicable in ecological public health monitoring.
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} sedentary behavior, fuzzy logic, BYOD, wearables, LOOU, free-living
+
+% --------------- HOJA DE FIRMAS NUEVA (P├íg. 4 - SIN NUMERACI├ôN) ---------------
+\newpage
+\thispagestyle{empty}
+
+% Encabezado: logos laterales (altura 3 l├¡neas) + t├¡tulos centrados (3 l├¡neas verticales)
+% SOLUCI├ôN A: raisebox con altura fija [2.2cm] + vspace negativo para alineaci├│n perfecta
+\noindent
+\begin{tabular}{@{}p{0.15\textwidth}p{0.65\textwidth}p{0.15\textwidth}@{}}
+\raisebox{0pt}[2.2cm][0pt]{\includegraphics[height=2.2cm]{figuras/logo_uach_portada.png}} &
+\raisebox{0pt}[2.2cm][0pt]{%
+\begin{minipage}[t]{0.65\textwidth}
+    \centering
+    \vspace*{-2.8\baselineskip}% Ajuste fino: sube t├¡tulos al top de logos
+    {\fontsize{12}{14}\selectfont\bfseries
+    Universidad Aut\'onoma de Chihuahua\\
+    Facultad de Medicina y Ciencias Biom\'edicas\\
+    Secretar\'ia de Investigaci\'on y Posgrado}
+\end{minipage}} &
+\raisebox{0pt}[2.2cm][0pt]{\raggedleft\includegraphics[height=2.2cm]{\miLogoEncabezado}} \\
+\end{tabular}
+
+\vspace{18pt}
+
+% Primer p├írrafo justificado SIN SANGR├ìA (Times 12, sin negritas)
+{\fontsize{12}{14}\selectfont
+\noindent La tesis ``\miTitulo'' que presenta \miAutor, como requisito parcial para obtener el grado de: Maestr\'ia en Formaci\'on Biom\'edica ha sido revisada y aprobada por la Facultad de Medicina y Ciencias Biom\'edicas.
+}
+
+\vspace{18pt}
+
+% Firmas usando VARIABLES - l├¡nea AL CALCE (abajo) y a la derecha
+{\fontsize{12}{14}\selectfont
+\noindent
+\miSecretario\\
+\miSecretarioCargo\\
+\miFacultad\\
+\miUniversidad \hfill \rule{5.5cm}{0.5pt}
+
+\vspace{12pt}
+
+\noindent
+\miCoordinadora\\
+\miCoordinadoraCargo \hfill \rule{5.5cm}{0.5pt}
+
+\vspace{12pt}
+
+\noindent
+\miDirector\\
+\miDirectorCargo \hfill \rule{5.5cm}{0.5pt}
+
+\vspace{12pt}
+
+\noindent
+\miCodirector\\
+\miCodirectorCargo \hfill \rule{5.5cm}{0.5pt}
+
+\vspace{12pt}
+
+\noindent
+\miAsesorUno\\
+\miAsesorUnoCargo \hfill \rule{5.5cm}{0.5pt}
+
+\vspace{12pt}
+
+\noindent
+\miAsesorDos\\
+\miAsesorDosCargo \hfill \rule{5.5cm}{0.5pt}
+}
+
+\vspace{1.0cm}
+
+% P├írrafo final justificado SIN SANGR├ìA (Times 12, sin negritas)
+{\fontsize{12}{14}\selectfont
+\noindent Se certifica, bajo protesta de decir verdad, que las firmas consignadas al pie del presente documento son de car\'acter original y aut\'entico, correspondiendo de manera inequ\'ivoca a los responsables de las labores de direcci\'on, seguimiento, asesor\'ia y evaluaci\'on, en estricta conformidad con lo dispuesto en la normativa vigente de esta instituci\'on universitaria.
+}
+
+% --------------- CARTA DE LIBERACI├ôN (P├íg. 5 - SIN NUMERACI├ôN) ---------------
+\newpage
+\thispagestyle{empty}
+
+% Logo de la universidad (peque├▒o, arriba a la izquierda) y fecha a la derecha
+\begin{flushleft}
+\includegraphics[width=0.12\textwidth]{figuras/logo_uach_bn.png}\\
+\end{flushleft}
+
+\begin{flushright}
+{\fontsize{12}{14}\selectfont Chihuahua, Chih., a \underline{\hspace{1.5cm}} de \underline{\hspace{1.5cm}} de 2025}\\[0.3cm]
+\end{flushright}
+
+% Destinatario (quien recibe la carta) - SIN sangr├¡a izquierda, alineado a la izquierda
+\noindent
+{\fontsize{12}{14}\selectfont 
+Dr. Oscar Aguirre Barrera\\[0.1cm]
+Secretario de Investigaci\'on y Posgrado\\[0.1cm]
+Facultad de Medicina y Ciencias Biom\'edicas\\[0.3cm]
+
+P {\hspace{0.15cm}} R {\hspace{0.15cm}} E {\hspace{0.15cm}} S {\hspace{0.15cm}} E {\hspace{0.15cm}} N {\hspace{0.15cm}} T {\hspace{0.15cm}} E.-\\[0.3cm]
+}
+
+% Cuerpo de la carta - JUSTIFICADO, SIN sangr├¡a izquierda
+{\fontsize{12}{14}\selectfont
+\setlength{\parindent}{0cm}   % Sin sangr├¡a en primera l├¡nea de p├írrafos
+\setlength{\parskip}{0.2cm}   % Espacio entre p├írrafos
+
+\noindent Por medio de la presente nos permitimos informar a usted que el C. Luis Angel Mart\'inez Corral, con n\'umero de matr\'icula 261337, ha concluido la elaboraci\'on de la tesis ``Modelo de Evaluaci\'on del Comportamiento Sedentario mediante L\'ogica Difusa y Datos Biom\'etricos'', como requisito para obtener el grado de: \textbf{Maestro en Formaci\'on e Innovaci\'on para Profesionales de la Salud}.
+
+As\'i mismo, manifestamos que la tesis ha sido revisada y aprobada por los abajo firmantes, miembros del Comit\'e de Grado.
+
+Sin otro particular, quedamos de usted.
+
+}
+
+% Cierre y firma
+\begin{center}
+{\fontsize{12}{14}\selectfont\bfseries ATENTAMENTE}\\[0.3cm]
+{\fontsize{12}{14}\selectfont ``MENTI DA LUCEM, MANIBUS ARTEM''}\\[0.5cm]
+\end{center}
+
+% Firmas con nombres
+\begin{center}
+\begin{tabular}{@{}p{6.5cm}p{6.5cm}@{}}
+\rule{0pt}{10pt}\textbf{Director de Tesis} & \textbf{Co-Director de Tesis}\\[0.3cm]
+
+Dr. Abimael Guzm\'an Pando & Dr. David Ricardo L\'opez Flores\\[0.8cm]
+
+\textbf{Asesor de Tesis} & \textbf{Asesor de Tesis}\\[0.3cm]
+
+Dra. Celia Mar\'ia Qui\~nez Cruz & Dr. Javier Camarillo Cisneros\\[0.3cm]
+\end{tabular}
+\end{center}
+
+% --------------- P├üGINA DE DEDICATORIA Y AGRADECIMIENTOS (P├íg. 6 - SIN NUMERACI├ôN) ---------------
+\newpage
+\thispagestyle{empty}
+
+% Dedicatoria
+\begin{center}
+{\fontsize{14}{16}\selectfont\bfseries DEDICATORIA}\\[1.5cm]
+\end{center}
+
+\begin{flushleft}
+{\fontsize{12}{14}\selectfont 
+
+Dedico este trabajo a \underline{\hspace{3cm}} por \underline{\hspace{3cm}}\\[2cm]
+
+}
+\end{flushleft}
+
+% Agradecimientos
+\begin{center}
+{\fontsize{14}{16}\selectfont\bfseries AGRADECIMIENTOS}\\[1.5cm]
+\end{center}
+
+\begin{flushleft}
+{\fontsize{12}{14}\selectfont 
+
+Se agradece a:\\[0.5cm]
+
+[Escribe aqu├¡ tus agradecimientos a las personas que apoyaron tu trabajo]
+
+}
+\end{flushleft}
+
+% --------------- ├ìNDICE DE CONTENIDOS ---------------
+\clearpage  % Forzar nueva p├ígina
+
+% Configurar encabezado con logo y NUMERACI├ôN AR├üBIGA (pero n├║meros ocultos en ├¡ndice)
+\pagenumbering{arabic}  % Cambiar a n├║meros ar├íbigos DESDE ├ìNDICE (p├íg 7)
+\setcounter{page}{7}  % ├ìndice inicia en p├ígina 7 (despu├®s de 6 p├íginas preliminares)
+
+\fancyhf{}
+% Logo con ajuste vertical para dejar espacio en impresi├│n
+\fancyhead[L]{\raisebox{0pt}[2.2cm][0pt]{% 
+    \begin{minipage}[t]{2.2cm}
+        \vspace*{-2.8\baselineskip}% Mismo ajuste que Hoja Firmas
+        \includegraphics[height=2.2cm]{\miLogoEncabezado}
+    \end{minipage}}}
+\fancyhead[R]{}  % SIN n├║mero de p├ígina en ├¡ndice (pero se cuenta internamente)
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{67pt}
+\setlength{\headsep}{18pt}  % Espacio entre encabezado y contenido (separaci├│n ├│ptima para impresi├│n)
+\pagestyle{fancy}
+
+% Personalizar t├¡tulo del ├¡ndice (CENTRADO)
+\renewcommand{\contentsname}{\centering \'Indice de contenidos}
+
+% SOLUCI├ôN DEFINITIVA: Forzar fancy desde DENTRO del archivo .toc
+\addtocontents{toc}{\protect\thispagestyle{fancy}}
+
+% Tabla de contenidos (CON logo, SIN n├║meros visibles, pero SE CUENTAN p├íginas 7-11)
+\tableofcontents
+\clearpage
+
+% --------------- INICIO DEL CONTENIDO ----------------
+% Restaurar numeraci├│n VISIBLE en cap├¡tulos (p├ígina 12+)
+
+\fancyhf{}
+% Logo con ajuste vertical para TODO el documento
+\fancyhead[L]{\raisebox{0pt}[2.2cm][0pt]{%
+    \begin{minipage}[t]{2.2cm}
+        \vspace*{-2.8\baselineskip}% Ajuste milim├®trico consistente
+        \includegraphics[height=2.2cm]{\miLogoEncabezado}
+    \end{minipage}}}
+\fancyhead[R]{\thepage}  % Ahora S├ì mostrar n├║meros
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{67pt}
+\setlength{\headsep}{18pt}  % Espacio entre encabezado y contenido (separaci├│n ├│ptima)
+\pagestyle{fancy}
+
+\include{capitulos/01_introduccion}
+\include{capitulos/02_marco_teorico_antecedentes}
+\include{capitulos/03_delimitacion}
+\include{capitulos/04_justificacion}
+\include{capitulos/05_materiales_metodos}
+\include{capitulos/06_resultados}
+\include{capitulos/07_discusion}
+\include{capitulos/08_conclusiones}
+
+% ----------------- BIBLIOGRAF├ìA -----------------
+% Las referencias van ANTES de los anexos (orden correcto)
+\clearpage
+\renewcommand{\refname}{}
+% Imprimir referencias en formato APA 7
+\printbibliography[heading=bibintoc,title={Referencias}]
+
+% ----------------- ANEXOS -----------------
+% Los anexos van AL FINAL del documento
+\include{capitulos/09_anexos}
+
+\end{document}
