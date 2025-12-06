@@ -163,3 +163,17 @@ crear_zip_bibliografia.py
 # ARCHIVOS COMPRIMIDOS DE HERRAMIENTAS
 # ==============================================
 *.zip
+
+# ==============================================
+# ARCHIVOS PDF PROBLEMÁTICOS
+# ==============================================
+# PDFs con nombres muy largos (limitación Windows)
+**/Guias_redaccion/*.pdf
+
+# PDFs de compilación de tesis (generados automáticamente)
+**/proyecto_tesis_LAMC_*.pdf
+
+# PDFs de plantillas IEEE (generados automáticamente)
+**/Plantillas_IEE/**/main.pdf
+**/Plantillas_IEE/**/main_esp.pdf
+**/Plantillas_IEE/**/main_eng.pdf
