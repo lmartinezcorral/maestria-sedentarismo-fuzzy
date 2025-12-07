@@ -38,7 +38,7 @@ warnings.filterwarnings('ignore')
 # CONFIGURACIÓN
 # ============================================================================
 
-BASE_DIR = Path(__file__).parent.parent / '4 semestre_dataset'
+BASE_DIR = Path(__file__).parent.parent
 FUZZY_OUTPUT_FILE = BASE_DIR / 'analisis_u' / 'fuzzy' / 'fuzzy_output.csv'
 CLUSTER_FILE = BASE_DIR / 'analisis_u' / \
     'clustering' / 'cluster_assignments.csv'
@@ -341,28 +341,32 @@ Ver: `plots/comparativa_f1_scores.png`
 
 def generar_visualizacion(df_tau_4v, df_tau_2v, tau_4v, tau_2v, f1_4v, f1_2v):
     """Genera gráfico comparativo de curvas F1 vs τ"""
+    
+    # Colores según paleta solicitada
+    COLOR_4V = '#94268F'  # Púrpura brillante (Modelo Completo 4V)
+    COLOR_2V = '#5C025D'  # Púrpura intenso (Modelo Reducido 2V)
 
     fig, ax = plt.subplots(figsize=(12, 7))
 
     # Curvas F1 vs τ
     ax.plot(df_tau_4v['tau'], df_tau_4v['f1'], 'o-',
-            linewidth=2.5, markersize=4, color='#1976d2', alpha=0.7,
+            linewidth=2.5, markersize=4, color=COLOR_4V, alpha=0.7,
             label=f'Modelo Completo (4V) - F1 máx: {f1_4v:.3f}')
 
     ax.plot(df_tau_2v['tau'], df_tau_2v['f1'], 's-',
-            linewidth=2.5, markersize=4, color='#d32f2f', alpha=0.7,
+            linewidth=2.5, markersize=4, color=COLOR_2V, alpha=0.7,
             label=f'Modelo Reducido (2V) - F1 máx: {f1_2v:.3f}')
 
     # Marcar τ óptimos
-    ax.axvline(x=tau_4v, color='#1976d2',
+    ax.axvline(x=tau_4v, color=COLOR_4V,
                linestyle='--', linewidth=2, alpha=0.5)
     ax.text(tau_4v, ax.get_ylim()[1] * 0.95, f'τ={tau_4v:.2f}',
-            ha='center', fontsize=10, color='#1976d2', fontweight='bold')
+            ha='center', fontsize=10, color=COLOR_4V, fontweight='bold')
 
-    ax.axvline(x=tau_2v, color='#d32f2f',
+    ax.axvline(x=tau_2v, color=COLOR_2V,
                linestyle='--', linewidth=2, alpha=0.5)
     ax.text(tau_2v, ax.get_ylim()[1] * 0.90, f'τ={tau_2v:.2f}',
-            ha='center', fontsize=10, color='#d32f2f', fontweight='bold')
+            ha='center', fontsize=10, color=COLOR_2V, fontweight='bold')
 
     # Etiquetas y formato
     ax.set_xlabel('Umbral τ', fontsize=13, fontweight='bold')
@@ -381,7 +385,7 @@ def generar_visualizacion(df_tau_4v, df_tau_2v, tau_4v, tau_2v, f1_4v, f1_2v):
     plt.tight_layout()
 
     output_file = OUTPUT_DIR / 'plots' / 'comparativa_f1_scores.png'
-    fig.savefig(output_file, dpi=150, bbox_inches='tight')
+    fig.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close(fig)
 
     return output_file

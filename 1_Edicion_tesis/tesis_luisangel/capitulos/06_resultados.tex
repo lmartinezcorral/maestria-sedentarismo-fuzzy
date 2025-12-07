@@ -22,6 +22,8 @@ Para evaluar la generalización del sistema a usuarios no vistos durante el entr
 
 La \Cref{tab:rendimiento_louo} presenta los resultados detallados por usuario de la validación \textit{LOUO}. El \textit{F1-Score} promedio fue 0.780 $\pm$ 0.167, con un coeficiente de variación (CV) del 21.4\%. Este resultado, aunque ligeramente inferior al rendimiento global (F1 = 0.840), es esperado dado que cada \textit{fold} entrena con menos datos (9 usuarios en lugar de 10) y debe generalizar a un usuario con patrones potencialmente distintos.
 
+Realizamos una prueba t de una muestra para evaluar si el \textit{F1-Score} promedio \textit{LOUO} (0.780) es significativamente superior a un clasificador aleatorio (F1 = 0.50, asumiendo balance de clases). La prueba arrojó t(9) = 5.30, p $<$ 0.001, indicando que el desempeño del sistema es estadísticamente superior al azar. El intervalo de confianza del 95\% para el \textit{F1-Score} promedio fue [0.667, 0.893], confirmando que incluso en el límite inferior del intervalo, el modelo supera significativamente el desempeño aleatorio. El tamaño del efecto (Cohen's d = 1.77) es grande, evidenciando una diferencia clínicamente relevante entre el sistema difuso y un clasificador aleatorio.
+
 % Tabla multi-página con longtable
 \begin{longtable}{@{}lcccccccccccc@{}}
 \caption{Rendimiento del Sistema Difuso por Usuario (Validación LOUO)}
@@ -61,7 +63,44 @@ El análisis de heterogeneidad inter-usuario reveló un rango de \textit{F1-Scor
 
 Siete de los 10 usuarios (70\%) alcanzaron F1 $\geq$ 0.65, validando que el sistema captura patrones universales de sedentarismo generalizables a la mayoría de usuarios, no solo específicos de la muestra completa. Los tres usuarios con F1 $<$ 0.65 (u2, u3, u8) presentan características distintivas: u2 tiene solo 8 semanas de seguimiento (insuficiente para estabilizar patrones), u3 muestra alta variabilidad en Superávit\_calórico (CV $>$ 50\%), y u8 exhibe un perfil cardiovascular atípico con \textit{HRV-SDNN} elevada (62.8 ms) pero baja Actividad\_relativa, patrón que desafía las reglas estándar del sistema.
 
-El coeficiente de variación del 21.4\% es comparable con estudios de validación de \textit{wearables} en condiciones ecológicas con cohortes pequeñas (N $\leq$ 15), donde la heterogeneidad conductual inherente a datos de vida libre genera variabilidad esperada en métricas de desempeño. Esta variabilidad no compromete la validez del sistema, sino que refleja la complejidad real del comportamiento humano en condiciones no controladas.
+El coeficiente de variación del 21.4\% es comparable con estudios de validación de \textit{wearables} en condiciones de vida libre con cohortes pequeñas (N $\leq$ 15), donde la heterogeneidad conductual inherente a datos de vida libre genera variabilidad esperada en métricas de desempeño. Esta variabilidad no compromete la validez del sistema, sino que refleja la complejidad real del comportamiento humano en condiciones no controladas.
+
+Para evaluar la separabilidad de los \textit{scores} continuos generados por el sistema difuso entre los dos \textit{clusters} identificados mediante \textit{clustering}, analizamos la distribución de los \textit{scores} de sedentarismo para cada conglomerado. Este análisis es fundamental porque permite verificar si el sistema difuso genera \textit{scores} que discriminan efectivamente entre patrones activos y sedentarios, o si existe solapamiento significativo que justifique el uso de un umbral de decisión. La \Cref{fig:distribucion_scores_fuzzy} presenta la distribución de \textit{scores} mediante histogramas superpuestos y estimación de densidad (\textit{KDE}) para ambos \textit{clusters}. Los resultados revelan que el \textit{cluster} sedentario (Cluster 1, n=935 semanas) exhibe una media de \textit{score} significativamente mayor (0.621 $\pm$ 0.212) que el \textit{cluster} activo (Cluster 0, n=402 semanas, media = 0.454 $\pm$ 0.249), con una diferencia de medias de 0.167 puntos. La prueba de Mann-Whitney U confirmó que esta diferencia es estadísticamente significativa (U = 124,700, p $<$ 0.001), validando que el sistema difuso genera \textit{scores} que discriminan efectivamente entre ambos patrones de comportamiento. A pesar de la separación estadísticamente significativa, existe solapamiento natural entre las distribuciones, característico de datos de vida libre donde los comportamientos no son categóricos sino continuos. Este solapamiento justifica el uso de lógica difusa, que modela el sedentarismo como un constructo continuo [0,1] en lugar de una categoría binaria rígida, capturando la naturaleza gradual del comportamiento humano.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Distribución de \textit{scores} fuzzy por \textit{cluster}}
+    \label{fig:distribucion_scores_fuzzy}
+    \includegraphics[width=0.9\textwidth]{figuras/distribucion_scores_fuzzy.png}
+\end{figure}
+
+\subsection{Análisis de Sensibilidad del Umbral de Decisión}
+
+Realizamos un análisis de sensibilidad evaluando el \textit{F1-Score} para valores de $\tau$ en el rango [0.20, 0.40] con incrementos de 0.01. El análisis reveló que el \textit{F1-Score} se mantiene $>$ 0.80 para $\tau \in [0.25, 0.35]$, indicando robustez del modelo a variaciones moderadas del umbral. Valores de $\tau < 0.20$ resultaron en alta sensibilidad (\textit{Recall} $>$ 0.99) pero baja precisión (\textit{Precision} $<$ 0.65), mientras que valores $\tau > 0.40$ incrementaron la precisión pero redujeron la sensibilidad (\textit{Recall} $<$ 0.90). El valor óptimo $\tau^* = 0.30$ maximiza el \textit{F1-Score} balanceando ambos componentes, y la estabilidad del rendimiento en el rango [0.25, 0.35] garantiza que pequeñas variaciones en el umbral no comprometan significativamente el desempeño del sistema en aplicaciones clínicas.
+
+\subsection{Análisis Sistemático de Errores de Clasificación}
+
+Analizamos sistemáticamente las semanas mal clasificadas para identificar patrones comunes en los errores del sistema. Este análisis es esencial para comprender las limitaciones del modelo y guiar mejoras futuras, permitiendo distinguir si los errores son aleatorios o sistemáticos y si están asociados a características específicas de usuarios o períodos temporales. De las 1,337 semanas evaluadas, el sistema clasificó correctamente 990 semanas (74.0\%) e incurrió en 347 errores (26.0\%). El desglose de errores reveló que el 93.7\% de los errores corresponden a falsos positivos (FP: 325 semanas clasificadas como sedentarias por el sistema difuso pero activas según el \textit{clustering}), mientras que solo el 6.3\% son falsos negativos (FN: 22 semanas activas según el sistema difuso pero sedentarias según el \textit{clustering}). Esta asimetría en el patrón de errores indica que el sistema es conservador, priorizando la detección de casos de riesgo (alta sensibilidad) sobre la especificidad, característica deseable para aplicaciones de \textit{screening} donde la omisión de casos de sedentarismo tiene consecuencias más graves que las falsas alarmas. La \Cref{fig:analisis_errores} presenta la distribución de errores por usuario mediante gráficos de barras que comparan falsos positivos y falsos negativos. El análisis por usuario identificó que tres usuarios concentran el 74.8\% de los errores totales: u8 (107 errores, 56.0\% de sus semanas), u3 (102 errores, 72.3\% de sus semanas) y u6 (51 errores, 18.3\% de sus semanas). Estos usuarios presentan características distintivas que explican la mayor frecuencia de errores: u3 y u8 exhiben alta variabilidad intra-semanal o perfiles cardiovasculares atípicos que desafían las reglas estándar del sistema, mientras que u6, a pesar de tener el mayor número de semanas (303), muestra patrones de actividad inconsistentes que generan discrepancias entre el sistema difuso y el \textit{clustering}. La concentración de errores en usuarios específicos sugiere que las limitaciones del modelo están asociadas a perfiles conductuales particulares más que a deficiencias generales del sistema, validando que el modelo captura efectivamente patrones universales de sedentarismo para la mayoría de usuarios.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Análisis sistemático de errores de clasificación por usuario}
+    \label{fig:analisis_errores}
+    \includegraphics[width=0.9\textwidth]{figuras/analisis_errores.png}
+\end{figure}
+
+\subsection{Tamaño del Efecto}
+
+Evaluamos el tamaño del efecto para cuantificar la magnitud práctica de las diferencias observadas, complementando las pruebas de significancia estadística con medidas de relevancia clínica. El análisis de tamaño del efecto es fundamental en estudios con cohortes pequeñas (N=10) donde las pruebas estadísticas pueden alcanzar significancia incluso con diferencias clínicamente irrelevantes, o viceversa, donde diferencias clínicamente relevantes pueden no alcanzar significancia estadística debido a la limitada potencia. La \Cref{fig:effect_size} presenta la visualización de los tamaños del efecto (Cohen's d) para las métricas principales del sistema \textit{LOUO} comparadas contra un clasificador aleatorio. Los resultados revelan que el \textit{F1-Score} \textit{LOUO} (0.780) presenta un tamaño del efecto grande (Cohen's d = 1.77) respecto al clasificador aleatorio (F1 = 0.50), evidenciando que la diferencia observada no solo es estadísticamente significativa sino también clínicamente relevante. De manera similar, la \textit{Precision} \textit{LOUO} (0.836) exhibe un tamaño del efecto muy grande (Cohen's d = 2.84), mientras que el \textit{Recall} presenta un efecto mediano negativo (Cohen's d = -0.63), reflejando la tendencia conservadora del sistema a priorizar sensibilidad sobre especificidad. El \textit{MCC} muestra un tamaño del efecto mediano (Cohen's d = 0.56), confirmando una correlación moderada pero clínicamente relevante entre las clasificaciones del sistema difuso y el \textit{clustering}. Estos resultados validan que el desempeño del sistema no es atribuible al azar ni representa mejoras marginales, sino diferencias sustanciales que justifican su implementación en aplicaciones clínicas reales.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Tamaño del efecto: métricas \textit{LOUO} vs clasificador aleatorio}
+    \label{fig:effect_size}
+    \includegraphics[width=0.9\textwidth]{figuras/effect_size_visualization.png}
+\end{figure}
+
+\FloatBarrier
 
 % ============================================================================
 \section{Análisis de Robustez y Contribución Sinérgica de las Variables}
@@ -70,13 +109,13 @@ El coeficiente de variación del 21.4\% es comparable con estudios de validació
 
 Para evaluar la importancia relativa de cada variable en el modelo, realizamos un análisis de ablación comparando el rendimiento del sistema completo (4 variables: Actividad\_relativa, Superávit\_calórico\_basal, \textit{HRV-SDNN}, Delta\_cardiaco) contra un modelo reducido que excluía las variables cardiovasculares (\textit{HRV-SDNN} y Delta\_cardiaco), manteniendo solo las dos variables de actividad física.
 
-El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo. El \textit{F1-Score} cayó de 0.840 a 0.420, representando una reducción del 50.0\%. La \Cref{fig:analisis_robustez} ilustra esta dependencia crítica mediante un gráfico de barras agrupadas que compara las cuatro métricas principales (F1-Score, Precision, Recall, MCC) entre ambos modelos. Los resultados evidencian el impacto devastador de la exclusión de variables cardiovasculares sobre todas las dimensiones del rendimiento: Precision cayó de 0.737 a 0.356 (-51.7\%), Recall de 0.976 a 0.521 (-46.6\%), y MCC de 0.294 a valores negativos, indicando que el modelo reducido clasifica peor que un clasificador aleatorio.
+El resultado reveló un hallazgo contraintuitivo y fundamental: la exclusión de las variables cardiovasculares provocó un colapso del rendimiento del modelo. El \textit{F1-Score} cayó de 0.840 a 0.420, representando una reducción del 50.0\%. La \Cref{fig:analisis_robustez} presenta las curvas de F1-Score en función del umbral de decisión $\tau$ para el modelo completo (4V) y el modelo reducido (2V). El modelo completo alcanza un \textit{F1-Score} máximo de 0.840 en $\tau = 0.30$, manteniéndose estable (\textit{F1} $>$ 0.80) para valores de $\tau$ entre 0.25 y 0.45, lo cual indica robustez del sistema a variaciones moderadas del umbral. En contraste, el modelo reducido (que excluye las variables cardiovasculares \textit{HRV-SDNN} y Delta\_cardiaco) alcanza un \textit{F1} máximo de solo 0.420 en $\tau = 0.10$, representando una reducción del 50.0\% respecto al modelo completo. Esta diferencia sustancial valida la inclusión de variables cardiovasculares en el sistema difuso, confirmando que aportan información predictiva crítica a pesar de que \textit{HRV-SDNN} no es significativo en análisis univariados (Paradoja \textit{HRV} que discutimos a continuación).
 
 \begin{figure}[htbp]
     \centering
     \caption{Análisis de robustez: modelo completo vs. modelo reducido}
     \label{fig:analisis_robustez}
-    \includegraphics[width=0.9\textwidth]{figuras/analisis_robustez.png}
+    \includegraphics[width=0.9\textwidth]{figuras/comparativa_f1_scores.png}
 \end{figure}
 
 \FloatBarrier
@@ -99,7 +138,7 @@ La Task Force de la European Society of Cardiology \cite{TaskForce1996} establec
 
 \textbf{Implicación metodológica:} Este hallazgo valida la elección de un sistema difuso, cuyas reglas basadas en operadores AND (intersecciones de conjuntos difusos) capturan sinergias que los análisis estadísticos tradicionales (ANOVA, Mann-Whitney) diseñados para detectar efectos aditivos no pueden identificar. La lógica difusa permite modelar premisas como ``Alto sedentarismo ocurre cuando Actividad es Baja \textbf{Y} \textit{HRV} es Baja \textbf{Y} Superávit\_calórico es Bajo'', donde la conjunción de condiciones (operador mínimo en el sistema \textit{Mamdani}) modera el efecto de cada variable individual.
 
-La Paradoja \textit{HRV} demuestra la \textbf{naturaleza multivariada y no lineal} del comportamiento sedentario, y justifica el uso de inteligencia artificial explicable sobre métodos estadísticos univariados tradicionales. Este hallazgo subraya que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa.
+La Paradoja \textit{HRV} demuestra la naturaleza multivariada y no lineal del comportamiento sedentario, y justifica el uso de inteligencia artificial explicable sobre métodos estadísticos univariados tradicionales. Este hallazgo subraya que la robustez del sistema no reside en el poder discriminativo de variables aisladas, sino en la integración sinérgica de estas a través de las reglas difusas, demostrando que la interacción entre marcadores de actividad y cardiovasculares es crítica para una clasificación precisa.
 
 % ============================================================================
 \section{Tesis}

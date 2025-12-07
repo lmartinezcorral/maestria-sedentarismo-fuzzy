@@ -61,13 +61,22 @@ variables = [
     ('Delta_cardiaco_p50', 'Delta Cardíaco\n(lpm normalizado)', 'Delta Cardíaco')
 ]
 
+# Paleta Bokeh Morado-Dorado (San Valentín) - Alto contraste
+PALETA_BOKEH = {
+    'rosa_brillante': '#D9597B',
+    'morado_profundo': '#6A2C73',
+    'lila_suave': '#A979D9',
+    'dorado_luminoso': '#F2BB77',
+    'naranja_calido': '#D98452'
+}
+
 colores = {
-    'Baja': '#2563eb',        # Azul
-    'Media': '#f97316',       # Naranja
-    'Alta': '#16a34a',        # Verde
-    'Baja_Carga': '#2563eb',  # Azul (para Delta)
-    'Media_Carga': '#f97316', # Naranja
-    'Alta_Carga': '#16a34a'   # Verde
+    'Baja': PALETA_BOKEH['morado_profundo'],      # #6A2C73 - Morado profundo (oscuro)
+    'Media': PALETA_BOKEH['rosa_brillante'],      # #D9597B - Rosa brillante (intermedio)
+    'Alta': PALETA_BOKEH['dorado_luminoso'],      # #F2BB77 - Dorado luminoso (claro)
+    'Baja_Carga': PALETA_BOKEH['morado_profundo'],  # #6A2C73
+    'Media_Carga': PALETA_BOKEH['rosa_brillante'],  # #D9597B
+    'Alta_Carga': PALETA_BOKEH['dorado_luminoso']   # #F2BB77
 }
 
 # ==============================================================================
@@ -145,9 +154,23 @@ for idx, (var_key, var_title, var_short) in enumerate(variables):
     ax.set_ylabel('Grado de Membresía μ(x)', fontsize=10, fontweight='bold')
     ax.set_title(f'{var_short}', fontsize=12, fontweight='bold', pad=10)
     ax.legend(loc='upper right', fontsize=9, framealpha=0.9)
-    ax.grid(True, alpha=0.3, linestyle=':', linewidth=0.5)
+    ax.grid(True, alpha=0.3, linestyle=':', linewidth=0.5, color='gray')
     ax.set_xlim(x_min, x_max)
     ax.set_ylim(-0.05, 1.15)
+    
+    # Etiqueta APA 7: (a), (b), (c), (d)
+    label = chr(97 + idx)  # a, b, c, d
+    ax.text(0.02, 0.98, f'({label})',
+            transform=ax.transAxes,
+            fontsize=14,
+            fontweight='bold',
+            va='top',
+            ha='left',
+            bbox=dict(boxstyle='round,pad=0.5',
+                      facecolor='white',
+                      edgecolor=PALETA_BOKEH['morado_profundo'],
+                      linewidth=2,
+                      alpha=0.95))
     
     # Añadir anotación de interpretación
     interpretation_text = ""

@@ -1,0 +1,2 @@
+n,mean_f1,std_f1,t_statistic,p_value,ci_95_lower,ci_95_upper,is_significant,is_normal,shapiro_p,cohens_d,interpretacion_cohens_d
+10,0.78,0.15849984227121489,5.29968981648982,0.00024702987663390393,0.6666160432332239,0.8933839567667762,True,True,0.3185593490058851,1.766563272163273,Grande
